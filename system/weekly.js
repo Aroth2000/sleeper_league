@@ -165,6 +165,17 @@ const SYNTH_STATE_PATH = STATE_PATH.replace(/\.json$/, '') + '.synthesis.json'
 const PREV_STATE_PATH = argValue(ARGS, 'prevstate') ||
   (PREV_WEEK !== null ? STATE_DIR + '/week_' + PREV_WEEK + '.json' : '(none)')
 const REPORT_PATH = argValue(ARGS, 'report') || (REPORT_DIR + '/week_' + WEEK + '.md')
+/* Phase 3 of weekly_loop_closure_plan.md: analysis/build_analysis_output.py runs BEFORE
+ * this workflow starts (it has to - agent() calls are LLM calls, not code execution, so
+ * there is no way to invoke Python mid-workflow) and writes one combined JSON holding the
+ * deterministic opponent-pressure model, first-pass predicted claims, the Monte Carlo
+ * waiver-contention report, the keeper-equity board, and the code-verified free-agent gate.
+ * This is a PATH, like STATE_PATH and PREV_STATE_PATH - the workflow has no fs, so every
+ * agent that needs it reads it with the Read tool. See the "baseline vs refine" contract in
+ * weekly_README.md: agents cite and refine these numbers with qualitative signals they find,
+ * they do not recompute them from scratch, and they must never contradict verified_free_agents. */
+const ANALYSIS_OUTPUT_PATH = argValue(ARGS, 'analysis_output') || argValue(ARGS, 'analysis') ||
+  (STATE_DIR + '/week_' + WEEK + '_analysis_output.json')
 
 function todayISO() {
   var d = new Date()
@@ -247,6 +258,21 @@ const CTX = [
   '                             deterministic standings, rosters, starters, matchups, transactions,',
   '                             injuries and the verified free-agent set. READ IT. It is ground truth',
   '                             for every mechanical fact, and it beats anything you derive by hand.)',
+  'Analysis baseline ........ ' + ANALYSIS_OUTPUT_PATH,
+  '  ALREADY COMPUTED by build_analysis_output.py before this run, from the same state file, using',
+  '  opponent_pressure.py / waiver_contention.py / keeper_equity.py. Holds four sections:',
+  '    opponent_pressure     per-rival pressure scores (vacancy/performance/role/depth), keyed by roster_id',
+  '    predicted_claims      a first-pass predicted-claims list per rival against the real FA pool',
+  '    waiver_contention     a full Monte Carlo landing-probability report over every verified free agent',
+  '    keeper_equity         the ranked keeper board off the real 2026 keeper-cost provenance',
+  '    verified_free_agents  the code-verified availability gate (who is and is not a free agent, from',
+  '                          code, not a guess) plus a valued pool',
+  '  THIS IS A DETERMINISTIC BASELINE, not a finished answer: it was built from box-score and roster data',
+  '  ALONE, with no role_signals, because it runs before any of you exist. YOUR JOB is to REFINE it with',
+  '  the qualitative signal you find - snap counts, beat reports, injury news - not to recompute the',
+  '  numbers from scratch. Cite the baseline number, then say what you are adjusting it to and why. Never',
+  '  silently ignore it, and never contradict verified_free_agents - that gate is code, not a prompt, and',
+  '  it is right by construction.',
   'LAST week state .......... ' + PREV_STATE_PATH,
   (WEEK === 1
     ? '  NOTE: week_0.json is the PRESEASON BASELINE, not a played week. It has post-draft rosters,\n' +
@@ -263,8 +289,14 @@ const CTX = [
 const HARD_RULES = [
   '=== NON-NEGOTIABLE RULES ===',
   '1. AVAILABILITY GATE. Never recommend a player who is not genuinely a free agent IN THIS LEAGUE.',
-  '   Check him against every roster in the rosters payload / state file before you name him.',
-  '   If you cannot verify availability, mark the player unverified rather than recommending him.',
+  '   ' + ANALYSIS_OUTPUT_PATH + ' -> verified_free_agents IS this gate, computed in code from every',
+  '   roster before this run started. A player must appear in verified_free_agents.raw',
+  '   .confirmed_available_known_players (or as a DEF in .available_defenses) to be recommended. Do not',
+  '   contradict it and do not re-derive it from scratch - it is already right. If that file is missing,',
+  '   unreadable or you have a specific, stated reason to distrust it for one player, fall back to',
+  '   checking him against every roster in the rosters payload / state file yourself, and say loudly that',
+  '   you had to. If you cannot verify availability by either path, mark the player unverified rather than',
+  '   recommending him.',
   '2. FRESHNESS GATE. Every injury, snap-count, practice or role claim must cite a source dated within',
   '   7 days of ' + TODAY + '. Include the source name and the source date. If the freshest thing you can',
   '   find is older than that, label it STALE explicitly instead of presenting it as current.',
@@ -784,16 +816,24 @@ const intel = await parallel([].concat(
         '  Read the transactions payload to see every add, drop and claim this team made in week ' + (WEEK - 1) + ',\n' +
         '  INCLUDING which waiver priority they burned - that tells you where they now sit in the order.\n' +
         '  Read the matchups payload to see what this team actually STARTED and what those starters scored.\n\n' +
-        'STEP 2 - COMPUTE THE FOUR PRESSURES from Part 4 of the plan, per position, each 0..1:\n' +
-        '  VACANCY  - a starter is injured, suspended, or on bye with nobody behind him. Highest signal, easiest to detect.\n' +
-        '  PERFORMANCE - a starter is below replacement level over a rolling 2-3 week window. Use the matchups data, not vibes.\n' +
-        '  ROLE - a player is losing snaps, routes or targets to a teammate BEFORE the box score reflects it. Web-search\n' +
-        '         beat reporting for this team specifically. This is the highest-value and hardest pressure to see.\n' +
-        '  DEPTH - there is no viable replacement on their own bench, so the fix must come from outside the roster.\n' +
-        '  Then combine them into one pressure score per position. Show the evidence for each - a number with no evidence\n' +
-        '  behind it is worthless to the model downstream.\n\n' +
-        'STEP 3 - PREDICT. Given their pressure profile, their bench, and their waiver position, name the two or three\n' +
-        '  specific free agents this manager will most likely claim this week, each with a likelihood. Also predict who\n' +
+        'STEP 2 - START FROM THE DETERMINISTIC BASELINE, then refine it. Read ' + ANALYSIS_OUTPUT_PATH + '\n' +
+        '  -> opponent_pressure, keyed by roster_id AS A STRING (resolve this owner to a roster_id the same way you\n' +
+        '  did in STEP 1). That entry already has VACANCY, PERFORMANCE and DEPTH computed from real roster and\n' +
+        '  matchup data - cite those numbers, do not recompute them from box scores yourself. What it does NOT have,\n' +
+        '  by construction, is ROLE: that pressure is an external input the baseline script cannot see, and its\n' +
+        '  data_gaps will say so explicitly for every position. YOUR job on this step is almost entirely ROLE -\n' +
+        '  web-search beat reporting for this team specifically (a player losing snaps, routes or targets to a\n' +
+        '  teammate BEFORE the box score reflects it) and layer that on top of the baseline\'s vacancy/performance/\n' +
+        '  depth numbers. If you have a concrete, evidenced reason the baseline\'s own numbers look wrong for this\n' +
+        '  team (e.g. an injury that happened after the state file was built), say so explicitly and adjust - do not\n' +
+        '  silently override a code-computed number with a vibe. Show the evidence for each pressure - a number with\n' +
+        '  no evidence behind it is worthless to the model downstream.\n\n' +
+        'STEP 3 - PREDICT. ' + ANALYSIS_OUTPUT_PATH + ' -> predicted_claims, keyed by this owner\'s name, already has a\n' +
+        '  first-pass predicted-claims list for this team computed from the baseline pressure crossed with the real\n' +
+        '  verified free-agent pool. Start there, cite it, and refine it: does your ROLE finding from STEP 2 change\n' +
+        '  what this manager is actually likely to chase this week? Add or reorder specific free agents with your own\n' +
+        '  likelihoods where you have a concrete reason to differ from the baseline, and say what that reason is.\n' +
+        '  Do not invent a claims list from nothing when a computed first pass already exists. Also predict who\n' +
         '  they would drop to make room.\n\n' +
         'STEP 4 - TRADE READ. What position are they acutely and SUSTAINABLY short at? Where do they have surplus?\n' +
         '  A team with acute sustained need at a position where Andrew has surplus is a team that will overpay.\n' +
@@ -835,11 +875,18 @@ const intel = await parallel([].concat(
     return agent(
       ctxFor('FREE AGENT POOL - rank everyone actually available IN THIS LEAGUE') +
       'You produce the definitive ranked board of players who are genuinely unrostered in this specific 10-team league.\n\n' +
-      'STEP 1 - BUILD THE ACTUAL POOL. This is the part that must not be hand-waved.\n' +
-      '  Read every roster in the rosters payload under ' + RAW_DIR + ' and union all rostered player ids.\n' +
-      '  Resolve ids with ' + P_PLAYERS + '. Anyone NOT in that union is a free agent. Anyone in it is not, no matter\n' +
-      '  how appealing he looks. With 10 teams and 16-man rosters only 160 players are rostered, so the pool here is\n' +
-      '  much deeper than in a 12-team league - genuinely startable players sit on waivers. Search accordingly.\n' +
+      'STEP 1 - START FROM THE DETERMINISTIC POOL, then extend it. Read ' + ANALYSIS_OUTPUT_PATH + '\n' +
+      '  -> verified_free_agents. Its .raw.confirmed_available_known_players and .raw.available_defenses were built\n' +
+      '  in code as the complement of every rostered player id against the local players cache - that IS the hard\n' +
+      '  availability gate, already correct, do not re-derive the union yourself unless that file is missing. Its\n' +
+      '  .valued_pool wraps the same list with a placeholder value (positional replacement-level points, NOT a real\n' +
+      '  projection - it exists only so the pressure model had a number to sort by before you ran). Your job is to\n' +
+      '  turn that placeholder pool into a real ranked board: replace the placeholder value with an actual\n' +
+      '  rest-of-season projection for every name, and go find the free agents the local cache does not know about\n' +
+      '  yet (the cache is missing players outside the 222 ids it has seen in draft/transaction payloads - the raw\n' +
+      '  section says exactly how many). For anyone you add that is NOT already in verified_free_agents, you must\n' +
+      '  independently confirm him unrostered against every roster in the rosters payload under ' + RAW_DIR + ' before\n' +
+      '  naming him - the STEP 1 gate below still applies to net-new names.\n' +
       '  Also read the Sleeper trending-adds payload if present: it shows what is being claimed across all of Sleeper,\n' +
       '  which is a strong proxy for who the rest of THIS league is about to claim.\n\n' +
       'STEP 2 - RANK BY REST-OF-SEASON VALUE IN THIS FORMAT. Not generic PPR ranks. Half-PPR plus 0.5 per first down\n' +
@@ -913,24 +960,36 @@ const cross = await parallel([
       ctxFor('THE WAIVER CONTENTION MODEL') +
       'This is the stage that converts a flat wishlist into an ORDERED claim sheet. Andrew does not need to know who\n' +
       'the best available players are - he needs to know which of them will actually still be there when his turn comes.\n\n' +
-      '=== NINE RIVAL MODELS (pressure scores and predicted claims) ===\n' + OPP_PACK + '\n\n' +
+      '=== DETERMINISTIC BASELINE (read this first) ===\n' +
+      'Read ' + ANALYSIS_OUTPUT_PATH + ' -> waiver_contention. This is a full CONTENTION_SCHEMA-shaped report already\n' +
+      'computed in code by waiver_contention.py: a seeded Monte Carlo simulation of the actual rolling-priority\n' +
+      'processing order (not a closed-form guess), run over every player in verified_free_agents, using the\n' +
+      "opponent_pressure baseline's predicted_claims as each rival's wishlist. Its priority_order, andrew_priority,\n" +
+      'teams_ahead_of_andrew, claim_sheet, contention_map, do_not_bother and quiet_wins are your STARTING POINT, not\n' +
+      'background reading - do not re-run the arithmetic by hand, you will get a worse answer than the simulation.\n' +
+      'Your job is to REFINE it: the baseline was built with no role_signals (the news agents had not run yet), so it\n' +
+      "cannot see a rival's beat-reported role change that would send them after a different player than their\n" +
+      'box-score-derived predicted_claims suggested. Use the nine rival models and news sweep below - which DO have\n' +
+      'that qualitative layer - to adjust specific probabilities where you have a concrete reason to, cite the\n' +
+      'baseline number you are moving away from and why, and keep everything else from the simulation as-is.\n\n' +
+      '=== NINE RIVAL MODELS (pressure scores and predicted claims, refined with qualitative signal) ===\n' + OPP_PACK + '\n\n' +
       '=== RANKED FREE AGENT POOL ===\n' + FA_PACK + '\n\n' +
       "=== ANDREW'S TEAM ===\n" + MY_PACK + '\n\n' +
       '=== NEWS SWEEP (four topic slices) ===\n' + NEWS_PACK + '\n\n' +
       '=== WHAT TO PRODUCE ===\n' +
-      '1. ESTABLISH THE ORDER. Waivers are reverse-standings ROLLING PRIORITY: worst record picks first, and a team that\n' +
-      '   uses its priority drops to the back. Read the rosters payload for records and waiver_position, and read the\n' +
-      '   week ' + (WEEK - 1) + ' transactions payload to see who BURNED priority last week - that reshuffles the order and\n' +
-      '   is the single most commonly missed input. State where Andrew sits and exactly who picks ahead of him.\n' +
-      '   The declared mode from args for this run is: ' + WAIVER_MODE + '.\n' +
-      '   THE LEAGUE SETTING IS AMBIGUOUS - the commissioner says rolling priority but Sleeper carries a 100-unit budget\n' +
-      '   field that usually means FAAB. Produce BOTH answers: a priority-ordered claim sheet AND a FAAB bid percentage\n' +
-      '   for each target. Flag the ambiguity loudly at the top. Do not quietly pick one and hope.\n\n' +
-      '2. FOR EVERY TARGET, compute the realistic probability it reaches Andrew. The method is: for each team picking\n' +
-      '   ahead of him, take that team pressure at the target position, cross it with whether the target is in that team\n' +
-      '   predicted-claims list and whether the target is even an upgrade for them, and derive a per-team claim\n' +
-      '   probability. The probability the player survives is the product of him NOT being taken by each team ahead.\n' +
-      '   Show that arithmetic - a bare percentage with no working is not auditable and Andrew should not trust it.\n\n' +
+      '1. ESTABLISH THE ORDER. The baseline already resolved this from the rosters payload - confirm priority_order\n' +
+      '   and andrew_priority match it, then read the week ' + (WEEK - 1) + ' transactions payload yourself to check\n' +
+      '   nothing has burned priority SINCE the state file was built (this can only move the order later than the\n' +
+      '   baseline, never earlier). State where Andrew sits and exactly who picks ahead of him.\n' +
+      '   The declared mode from args for this run is: ' + WAIVER_MODE + '. The baseline used: waiver_mode_used in its\n' +
+      '   output. THE LEAGUE SETTING IS AMBIGUOUS - the commissioner says rolling priority but Sleeper carries a\n' +
+      '   100-unit budget field that usually means FAAB. Produce BOTH answers: a priority-ordered claim sheet AND a\n' +
+      '   FAAB bid percentage for each target. Flag the ambiguity loudly at the top. Do not quietly pick one and hope.\n\n' +
+      '2. FOR EVERY TARGET, start from the baseline probability_reaches_andrew in claim_sheet / contention_map and\n' +
+      '   adjust it where your qualitative read of a specific rival genuinely changes their odds of chasing that\n' +
+      '   player (a role change that redirects their need, an injury the state file predates, etc). Show your\n' +
+      '   reasoning for every adjustment - a moved number with no reason attached is not auditable and Andrew should\n' +
+      "   not trust it. Where you have no reason to move a number, keep the baseline's.\n\n" +
       '3. ORDER THE CLAIMS. Rank by expected value, not raw player quality. A 90 percent chance at the fourth-best player\n' +
       '   beats a 10 percent chance at the best. Explicitly list the players NOT worth claiming because they will never\n' +
       '   reach him, and separately the QUIET WINS nobody else is tracking.\n\n' +
@@ -940,9 +999,10 @@ const cross = await parallel([
       '5. KEEPER EQUITY ON EVERY CLAIM. A waiver add is keepable in 2027 for a 12TH-ROUND PICK. Every recommendation\n' +
       '   carries both a win-now value and a 2027 keeper-equity flag. In the late season those weights invert.\n\n' +
       '6. DROPS. For each claim, name who Andrew drops to make room, and confirm the roster maths works.\n\n' +
-      'HARD GATE: every player you name must be confirmed unrostered in this league. If the free-agent agent marked a\n' +
-      'player availability_verified false, either verify him yourself against the rosters payload or leave him off.\n' +
-      'Recommending a rostered player is the worst failure this system can produce.',
+      'HARD GATE: every player you name must appear in the baseline verified_free_agents gate (see analysis baseline\n' +
+      'above and rule 1 of NON-NEGOTIABLE RULES). If the free-agent agent marked a player availability_verified false\n' +
+      'and he is not in the baseline gate either, leave him off. Recommending a rostered player is the worst failure\n' +
+      'this system can produce.',
       { label: 'waiver-contention', phase: 'Cross-Analysis', schema: CONTENTION_SCHEMA, model: 'opus', effort: 'high' }
     )
   },
@@ -951,6 +1011,14 @@ const cross = await parallel([
     return agent(
       ctxFor('THE TRADE BOARD') +
       'You match Andrew positional surplus against each rival acute need, and draft specific, sendable offers.\n\n' +
+      '=== DETERMINISTIC BASELINE (read this first) ===\n' +
+      'Read ' + ANALYSIS_OUTPUT_PATH + ' -> waiver_contention and -> opponent_pressure. A rival who is heavily\n' +
+      'contested on the waiver wire for a position (see do_not_bother / contention_map / a rival whose\n' +
+      'predicted_claims keep losing out in the baseline simulation) is a rival who cannot fix that hole from waivers\n' +
+      'and is a MUCH better trade target for the same need than one who can plug it Wednesday for free. Use the\n' +
+      'baseline claim_sheet and pressure numbers as given facts about who is actually short and how easily they can\n' +
+      'self-solve it - do not re-derive pressure scores yourself, cite them and reason from them alongside the\n' +
+      'refined rival models below.\n\n' +
       '=== NINE RIVAL MODELS (needs, surplus, pressure, trade appetite) ===\n' + OPP_PACK + '\n\n' +
       "=== ANDREW'S TEAM (surplus, holes, sell-high, buy-low) ===\n" + MY_PACK + '\n\n' +
       '=== NEWS SWEEP ===\n' + NEWS_PACK + '\n\n' +
@@ -1069,6 +1137,7 @@ return {
     run_date: TODAY,
     season_phase: PHASE_INFO.name,
     waiver_mode_arg: WAIVER_MODE,
+    analysis_output_path: ANALYSIS_OUTPUT_PATH,
     args_received: ARGS,
   },
   write_targets: {

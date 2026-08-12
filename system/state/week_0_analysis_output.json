@@ -1,0 +1,4123 @@
+{
+  "_note": "DETERMINISTIC BASELINE. Every number in this file was computed from box-score and roster data alone (state_builder.py's Sleeper payloads, league_config.json's keeper-cost board) with no qualitative input -- no snap counts, no beat reports, no role signals, because those only exist in the news agents that run AFTER this file is built. The LLM agents' job is to REFINE this with qualitative info they find, citing it explicitly, not to recompute these numbers from scratch. In particular: do not contradict verified_free_agents' availability flags -- that is a hard, code-verified gate, not a starting guess.",
+  "meta": {
+    "generator": "build_analysis_output.py",
+    "generated_at": "2026-08-12T23:46:29+00:00",
+    "source_state": "/home/claude/sunday_scaries/system/state/week_0.json",
+    "week": 0,
+    "recent_scoring_notes": [
+      "no weekly state files with matchup data found -- performance and depth pressure will be unmeasured"
+    ],
+    "role_signals_supplied": false,
+    "waiver_mode_used": "rolling_priority"
+  },
+  "opponent_pressure": {
+    "1": {
+      "roster_id": 1,
+      "owner": "tlekes",
+      "team": "Pabst Interference",
+      "waiver_priority": 10,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Carson Wentz on bench; Daniel Jones on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Chris Rodriguez on bench; Kareem Hunt on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Adonai Mitchell on bench; Rashee Rice on bench; Ryan Flournoy on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.747,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "nothing flagged",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 1.0,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "no bench cover at DEF",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    },
+    "3": {
+      "roster_id": 3,
+      "owner": "havicht",
+      "team": "Water, Barkley, and Hops",
+      "waiver_priority": 6,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.747,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "nothing flagged",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Cam Skattebo on bench; David Montgomery on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Chris Godwin on bench; Darnell Mooney on bench; Jayden Reed on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Mark Andrews on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.55,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Tampa Bay Buccaneers on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported",
+            "bench viability at DEF assumed, not measured"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at DEF assumed, not measured",
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    },
+    "4": {
+      "roster_id": 4,
+      "owner": "jomud",
+      "team": "jomud",
+      "waiver_priority": 8,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Cam Ward on bench; J.J. McCarthy on bench; Patrick Mahomes on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Tyler Allgeier on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Drake London on bench; Rome Odunze on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Dalton Kincaid on bench; Tucker Kraft on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 1.0,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "no bench cover at DEF",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    },
+    "5": {
+      "roster_id": 5,
+      "owner": "LoochCarluccio",
+      "team": "Glizzy Guzzler",
+      "waiver_priority": 3,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Caleb Williams on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Isaiah Davis on bench; Jacory Croskey-Merritt on bench; Kimani Vidal on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Brian Thomas on bench; Malik Nabers on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.747,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "nothing flagged",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.55,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Los Angeles Rams on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported",
+            "bench viability at DEF assumed, not measured"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at DEF assumed, not measured",
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    },
+    "6": {
+      "roster_id": 6,
+      "owner": "pdustin",
+      "team": "Mass General Hospital",
+      "waiver_priority": 7,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Shedeur Sanders on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Blake Corum on bench; Woody Marks on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Troy Franklin on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Oronde Gadsden on bench; T.J. Hockenson on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 1.0,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "no bench cover at DEF",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    },
+    "7": {
+      "roster_id": 7,
+      "owner": "PeterCrisileo",
+      "team": "Still at RPI",
+      "waiver_priority": 5,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Jalen Hurts on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Jaydon Blue on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Garrett Wilson on bench; Jakobi Meyers on bench; Luther Burden on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Brock Bowers on bench; Chig Okonkwo on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 1.0,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "no bench cover at DEF",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    },
+    "8": {
+      "roster_id": 8,
+      "owner": "Edeecher",
+      "team": "Ethan's Younglings",
+      "waiver_priority": 9,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Jayden Daniels on bench; Quinn Ewers on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Jaylen Wright on bench; Kyle Monangai on bench; Trey Benson on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Emeka Egbuka on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Hunter Henry on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 1.0,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "no bench cover at DEF",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    },
+    "9": {
+      "roster_id": 9,
+      "owner": "DannyBC1",
+      "team": "DannyBC1",
+      "waiver_priority": 1,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Geno Smith on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Najee Harris on bench; Tyjae Spears on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Deebo Samuel on bench; Michael Pittman on bench; Tez Johnson on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "David Njoku on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 1.0,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "no bench cover at DEF",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    },
+    "10": {
+      "roster_id": 10,
+      "owner": "jpalmeri1616",
+      "team": "Big Mommy Milkers (UCSF)",
+      "waiver_priority": 2,
+      "pressure": {
+        "QB": 0.0,
+        "RB": 0.0,
+        "WR": 0.0,
+        "TE": 0.0,
+        "DEF": 0.0
+      },
+      "pressure_breakdown": [
+        {
+          "position": "QB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.499,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Tyler Shough on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for QB - news agents have not reported",
+            "bench viability at QB assumed, not measured"
+          ]
+        },
+        {
+          "position": "RB",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Aaron Jones on bench; Zonovan Knight on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for RB - news agents have not reported",
+            "bench viability at RB assumed, not measured"
+          ]
+        },
+        {
+          "position": "WR",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.438,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "Davante Adams on bench; Keenan Allen on bench",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for WR - news agents have not reported",
+            "bench viability at WR assumed, not measured"
+          ]
+        },
+        {
+          "position": "TE",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 0.747,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "nothing flagged",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for TE - news agents have not reported",
+            "bench viability at TE assumed, not measured"
+          ]
+        },
+        {
+          "position": "DEF",
+          "vacancy": 0.0,
+          "performance": 0.0,
+          "role": 0.0,
+          "depth": 1.0,
+          "need": 0.0,
+          "pressure": 0.0,
+          "evidence": "no bench cover at DEF",
+          "components_used": [
+            "vacancy"
+          ],
+          "role_signal_supplied": false,
+          "data_gaps": [
+            "no recent scoring supplied - performance and depth are estimates",
+            "no role signal supplied for DEF - news agents have not reported"
+          ]
+        }
+      ],
+      "need_positions": [],
+      "surplus_positions": [],
+      "vulnerable_starters": [],
+      "confidence": "low",
+      "data_gaps": [
+        "bench viability at QB assumed, not measured",
+        "bench viability at RB assumed, not measured",
+        "bench viability at TE assumed, not measured",
+        "bench viability at WR assumed, not measured",
+        "no recent scoring supplied - performance and depth are estimates",
+        "no role signal supplied for DEF - news agents have not reported",
+        "no role signal supplied for QB - news agents have not reported",
+        "no role signal supplied for RB - news agents have not reported",
+        "no role signal supplied for TE - news agents have not reported",
+        "no role signal supplied for WR - news agents have not reported"
+      ]
+    }
+  },
+  "predicted_claims": {
+    "tlekes": [],
+    "havicht": [],
+    "jomud": [],
+    "LoochCarluccio": [],
+    "pdustin": [],
+    "PeterCrisileo": [],
+    "Edeecher": [],
+    "DannyBC1": [],
+    "jpalmeri1616": []
+  },
+  "waiver_contention": {
+    "waiver_mode_used": "rolling_priority",
+    "andrew_priority": 4,
+    "priority_order": [
+      "DannyBC1",
+      "jpalmeri1616",
+      "LoochCarluccio",
+      "andrewroth32",
+      "PeterCrisileo",
+      "havicht",
+      "pdustin",
+      "jomud",
+      "Edeecher",
+      "tlekes"
+    ],
+    "teams_ahead_of_andrew": [
+      "DannyBC1",
+      "jpalmeri1616",
+      "LoochCarluccio"
+    ],
+    "rejected_unverified": [],
+    "closed_form_check": {
+      "Sam LaPorta": 1.0,
+      "Michael Penix": 1.0,
+      "Keon Coleman": 1.0,
+      "Ricky Pearsall": 1.0,
+      "Russell Wilson": 1.0,
+      "Dylan Sampson": 1.0,
+      "Jack Bech": 1.0,
+      "Jayden Higgins": 1.0,
+      "Bhayshul Tuten": 1.0,
+      "Matthew Golden": 1.0,
+      "Kaleb Johnson": 1.0,
+      "Tre' Harris": 1.0,
+      "Colston Loveland": 1.0,
+      "Travis Hunter": 1.0,
+      "Kyle Williams": 1.0,
+      "Tyreek Hill": 1.0,
+      "Alvin Kamara": 1.0,
+      "Cooper Kupp": 1.0,
+      "Evan Engram": 1.0,
+      "James Conner": 1.0,
+      "Jonnu Smith": 1.0,
+      "Calvin Ridley": 1.0,
+      "Kyler Murray": 1.0,
+      "Tua Tagovailoa": 1.0,
+      "Jerry Jeudy": 1.0,
+      "J.K. Dobbins": 1.0,
+      "Rashod Bateman": 1.0,
+      "Justin Fields": 1.0,
+      "Chuba Hubbard": 1.0,
+      "Brian Robinson": 1.0,
+      "Isiah Pacheco": 1.0,
+      "Tank Bigsby": 1.0,
+      "Anthony Richardson": 1.0,
+      "Josh Downs": 1.0,
+      "Zach Charbonnet": 1.0,
+      "ARI": 1.0,
+      "ATL": 1.0,
+      "BAL": 1.0,
+      "BUF": 1.0,
+      "CAR": 1.0,
+      "CHI": 1.0,
+      "CIN": 1.0,
+      "DAL": 1.0,
+      "GB": 1.0,
+      "IND": 1.0,
+      "LAC": 1.0,
+      "LV": 1.0,
+      "MIA": 1.0,
+      "MIN": 1.0,
+      "NYG": 1.0,
+      "NYJ": 1.0,
+      "PHI": 1.0,
+      "SF": 1.0,
+      "TEN": 1.0,
+      "WAS": 1.0
+    },
+    "claim_sheet": [
+      {
+        "player": "Michael Penix",
+        "position": "QB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 16.5,
+        "adjusted_value": 16.5,
+        "priority_score": 16.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 16.5); a failed claim costs nothing, so listing him high is free",
+        "order": 1
+      },
+      {
+        "player": "Russell Wilson",
+        "position": "QB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 16.5,
+        "adjusted_value": 16.5,
+        "priority_score": 16.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 16.5); a failed claim costs nothing, so listing him high is free",
+        "order": 2
+      },
+      {
+        "player": "Kyler Murray",
+        "position": "QB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 16.5,
+        "adjusted_value": 16.5,
+        "priority_score": 16.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 16.5); a failed claim costs nothing, so listing him high is free",
+        "order": 3
+      },
+      {
+        "player": "Tua Tagovailoa",
+        "position": "QB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 16.5,
+        "adjusted_value": 16.5,
+        "priority_score": 16.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 16.5); a failed claim costs nothing, so listing him high is free",
+        "order": 4
+      },
+      {
+        "player": "Justin Fields",
+        "position": "QB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 16.5,
+        "adjusted_value": 16.5,
+        "priority_score": 16.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 16.5); a failed claim costs nothing, so listing him high is free",
+        "order": 5
+      },
+      {
+        "player": "Anthony Richardson",
+        "position": "QB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 16.5,
+        "adjusted_value": 16.5,
+        "priority_score": 16.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 16.5); a failed claim costs nothing, so listing him high is free",
+        "order": 6
+      },
+      {
+        "player": "Keon Coleman",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 7
+      },
+      {
+        "player": "Ricky Pearsall",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 8
+      },
+      {
+        "player": "Jack Bech",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 9
+      },
+      {
+        "player": "Jayden Higgins",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 10
+      },
+      {
+        "player": "Matthew Golden",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 11
+      },
+      {
+        "player": "Tre' Harris",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 12
+      },
+      {
+        "player": "Travis Hunter",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 13
+      },
+      {
+        "player": "Kyle Williams",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 14
+      },
+      {
+        "player": "Tyreek Hill",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 15
+      },
+      {
+        "player": "Cooper Kupp",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 16
+      },
+      {
+        "player": "Calvin Ridley",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 17
+      },
+      {
+        "player": "Jerry Jeudy",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 18
+      },
+      {
+        "player": "Rashod Bateman",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 19
+      },
+      {
+        "player": "Josh Downs",
+        "position": "WR",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.5,
+        "adjusted_value": 10.5,
+        "priority_score": 10.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.5); a failed claim costs nothing, so listing him high is free",
+        "order": 20
+      },
+      {
+        "player": "Dylan Sampson",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 21
+      },
+      {
+        "player": "Bhayshul Tuten",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 22
+      },
+      {
+        "player": "Kaleb Johnson",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 23
+      },
+      {
+        "player": "Alvin Kamara",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 24
+      },
+      {
+        "player": "James Conner",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 25
+      },
+      {
+        "player": "J.K. Dobbins",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 26
+      },
+      {
+        "player": "Chuba Hubbard",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 27
+      },
+      {
+        "player": "Brian Robinson",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 28
+      },
+      {
+        "player": "Isiah Pacheco",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 29
+      },
+      {
+        "player": "Tank Bigsby",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 30
+      },
+      {
+        "player": "Zach Charbonnet",
+        "position": "RB",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 10.0,
+        "adjusted_value": 10.0,
+        "priority_score": 10.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 10.0); a failed claim costs nothing, so listing him high is free",
+        "order": 31
+      },
+      {
+        "player": "Sam LaPorta",
+        "position": "TE",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 7.5,
+        "adjusted_value": 7.5,
+        "priority_score": 7.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 7.5); a failed claim costs nothing, so listing him high is free",
+        "order": 32
+      },
+      {
+        "player": "Colston Loveland",
+        "position": "TE",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 7.5,
+        "adjusted_value": 7.5,
+        "priority_score": 7.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 7.5); a failed claim costs nothing, so listing him high is free",
+        "order": 33
+      },
+      {
+        "player": "Evan Engram",
+        "position": "TE",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 7.5,
+        "adjusted_value": 7.5,
+        "priority_score": 7.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 7.5); a failed claim costs nothing, so listing him high is free",
+        "order": 34
+      },
+      {
+        "player": "Jonnu Smith",
+        "position": "TE",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 7.5,
+        "adjusted_value": 7.5,
+        "priority_score": 7.5,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 7.5); a failed claim costs nothing, so listing him high is free",
+        "order": 35
+      },
+      {
+        "player": "ARI",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 36
+      },
+      {
+        "player": "ATL",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 37
+      },
+      {
+        "player": "BAL",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 38
+      },
+      {
+        "player": "BUF",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 39
+      },
+      {
+        "player": "CAR",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 40
+      },
+      {
+        "player": "CHI",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 41
+      },
+      {
+        "player": "CIN",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 42
+      },
+      {
+        "player": "DAL",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 43
+      },
+      {
+        "player": "GB",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 44
+      },
+      {
+        "player": "IND",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 45
+      },
+      {
+        "player": "LAC",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 46
+      },
+      {
+        "player": "LV",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 47
+      },
+      {
+        "player": "MIA",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 48
+      },
+      {
+        "player": "MIN",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 49
+      },
+      {
+        "player": "NYG",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 50
+      },
+      {
+        "player": "NYJ",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 51
+      },
+      {
+        "player": "PHI",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 52
+      },
+      {
+        "player": "SF",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 53
+      },
+      {
+        "player": "TEN",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 54
+      },
+      {
+        "player": "WAS",
+        "position": "DEF",
+        "availability_verified": true,
+        "contenders_ahead": [],
+        "probability_reaches_andrew": 1.0,
+        "faab_bid_pct": null,
+        "drop_to_make_room": null,
+        "win_now_value": null,
+        "keeper_equity_2027": null,
+        "blocking_value": null,
+        "value_score": 6.0,
+        "adjusted_value": 6.0,
+        "priority_score": 6.0,
+        "rationale": "nobody ahead of Andrew is tracking him - near-certain add (value 6.0); a failed claim costs nothing, so listing him high is free",
+        "order": 55
+      }
+    ],
+    "contention_map": [
+      {
+        "player": "Sam LaPorta",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Michael Penix",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Keon Coleman",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Ricky Pearsall",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Russell Wilson",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Dylan Sampson",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Jack Bech",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Jayden Higgins",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Bhayshul Tuten",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Matthew Golden",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Kaleb Johnson",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Tre' Harris",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Colston Loveland",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Travis Hunter",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Kyle Williams",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Tyreek Hill",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Alvin Kamara",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Cooper Kupp",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Evan Engram",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "James Conner",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Jonnu Smith",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Calvin Ridley",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Kyler Murray",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Tua Tagovailoa",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Jerry Jeudy",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "J.K. Dobbins",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Rashod Bateman",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Justin Fields",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Chuba Hubbard",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Brian Robinson",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Isiah Pacheco",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Tank Bigsby",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Anthony Richardson",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Josh Downs",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "Zach Charbonnet",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "ARI",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "ATL",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "BAL",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "BUF",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "CAR",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "CHI",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "CIN",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "DAL",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "GB",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "IND",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "LAC",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "LV",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "MIA",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "MIN",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "NYG",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "NYJ",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "PHI",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "SF",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "TEN",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      },
+      {
+        "player": "WAS",
+        "interested_teams": [],
+        "expected_winner": "andrewroth32",
+        "probability_reaches_andrew": 1.0
+      }
+    ],
+    "do_not_bother": [],
+    "quiet_wins": [
+      "Michael Penix",
+      "Russell Wilson",
+      "Kyler Murray",
+      "Tua Tagovailoa",
+      "Justin Fields",
+      "Anthony Richardson",
+      "Keon Coleman",
+      "Ricky Pearsall",
+      "Jack Bech",
+      "Jayden Higgins",
+      "Matthew Golden",
+      "Tre' Harris",
+      "Travis Hunter",
+      "Kyle Williams",
+      "Tyreek Hill",
+      "Cooper Kupp",
+      "Calvin Ridley",
+      "Jerry Jeudy",
+      "Rashod Bateman",
+      "Josh Downs",
+      "Dylan Sampson",
+      "Bhayshul Tuten",
+      "Kaleb Johnson",
+      "Alvin Kamara",
+      "James Conner",
+      "J.K. Dobbins",
+      "Chuba Hubbard",
+      "Brian Robinson",
+      "Isiah Pacheco",
+      "Tank Bigsby",
+      "Zach Charbonnet",
+      "Sam LaPorta",
+      "Colston Loveland",
+      "Evan Engram",
+      "Jonnu Smith",
+      "ARI",
+      "ATL",
+      "BAL",
+      "BUF",
+      "CAR",
+      "CHI",
+      "CIN",
+      "DAL",
+      "GB",
+      "IND",
+      "LAC",
+      "LV",
+      "MIA",
+      "MIN",
+      "NYG",
+      "NYJ",
+      "PHI",
+      "SF",
+      "TEN",
+      "WAS"
+    ],
+    "assumptions": [
+      "Rolling priority simulated over 4000 trials (seed 20260807): a team that wins a claim drops to the back of the order, so its remaining threats fade.",
+      "A failed claim costs nothing in a priority league, so claims are ordered value-first with a sqrt(probability) discount rather than by probability."
+    ],
+    "flags": []
+  },
+  "keeper_equity": {
+    "board": [
+      {
+        "player": "Jameson Williams",
+        "player_id": "8148",
+        "position": "WR",
+        "acquired": "keeper",
+        "keeper_cost_2026": "R14",
+        "keeper_cost_round": 14,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 2,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 133,
+        "notes": [
+          "kept at round 14 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 1
+      },
+      {
+        "player": "Javonte Williams",
+        "player_id": "7588",
+        "position": "RB",
+        "acquired": "draft",
+        "keeper_cost_2026": "R13",
+        "keeper_cost_round": 13,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 128,
+        "notes": [
+          "kept at round 13 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 2
+      },
+      {
+        "player": "Bo Nix",
+        "player_id": "11563",
+        "position": "QB",
+        "acquired": "keeper",
+        "keeper_cost_2026": "R12",
+        "keeper_cost_round": 12,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 2,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 113,
+        "notes": [
+          "kept at round 12 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 3
+      },
+      {
+        "player": "Jordan Mason",
+        "player_id": "8408",
+        "position": "RB",
+        "acquired": "draft",
+        "keeper_cost_2026": "R10",
+        "keeper_cost_round": 10,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 93,
+        "notes": [
+          "kept at round 10 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 4
+      },
+      {
+        "player": "Joe Mixon",
+        "player_id": "4018",
+        "position": "RB",
+        "acquired": "draft",
+        "keeper_cost_2026": "R8",
+        "keeper_cost_round": 8,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 73,
+        "notes": [
+          "kept at round 8 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 5
+      },
+      {
+        "player": "Travis Kelce",
+        "player_id": "1466",
+        "position": "TE",
+        "acquired": "draft",
+        "keeper_cost_2026": "R7",
+        "keeper_cost_round": 7,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 68,
+        "notes": [
+          "kept at round 7 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 6
+      },
+      {
+        "player": "DeVonta Smith",
+        "player_id": "7525",
+        "position": "WR",
+        "acquired": "draft",
+        "keeper_cost_2026": "R6",
+        "keeper_cost_round": 6,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 53,
+        "notes": [
+          "kept at round 6 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 7
+      },
+      {
+        "player": "Tetairoa McMillan",
+        "player_id": "12526",
+        "position": "WR",
+        "acquired": "draft",
+        "keeper_cost_2026": "R5",
+        "keeper_cost_round": 5,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 48,
+        "notes": [
+          "kept at round 5 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 8
+      },
+      {
+        "player": "Kenneth Walker",
+        "player_id": "8151",
+        "position": "RB",
+        "acquired": "draft",
+        "keeper_cost_2026": "R4",
+        "keeper_cost_round": 4,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 33,
+        "notes": [
+          "kept at round 4 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 9
+      },
+      {
+        "player": "Mike Evans",
+        "player_id": "2216",
+        "position": "WR",
+        "acquired": "draft",
+        "keeper_cost_2026": "R4",
+        "keeper_cost_round": 4,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 33,
+        "notes": [
+          "kept at round 4 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 10
+      },
+      {
+        "player": "Puka Nacua",
+        "player_id": "9493",
+        "position": "WR",
+        "acquired": "keeper",
+        "keeper_cost_2026": "R2",
+        "keeper_cost_round": 2,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": null,
+        "surplus": "unknown",
+        "valued": false,
+        "eligible": true,
+        "ineligible_reason": null,
+        "consecutive_years_if_kept": 2,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 13,
+        "notes": [
+          "kept at round 2 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 11
+      },
+      {
+        "player": "Ashton Jeanty",
+        "player_id": "12527",
+        "position": "RB",
+        "acquired": "draft",
+        "keeper_cost_2026": "R1",
+        "keeper_cost_round": 1,
+        "market_round": null,
+        "projected_ppg": null,
+        "projected_value": "unknown",
+        "surplus_rounds": 0,
+        "surplus": "none",
+        "valued": false,
+        "eligible": false,
+        "ineligible_reason": "1st-round picks are not keeper-eligible",
+        "consecutive_years_if_kept": 1,
+        "is_final_eligible_year": false,
+        "forfeits_overall_pick": 8,
+        "notes": [
+          "kept at round 1 last year; that round carries forward",
+          "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+        ],
+        "rank": 12
+      }
+    ],
+    "optimal_slate": {
+      "keep": [],
+      "next_in_line": [],
+      "needs_projection": [
+        {
+          "player": "Jameson Williams",
+          "player_id": "8148",
+          "position": "WR",
+          "acquired": "keeper",
+          "keeper_cost_2026": "R14",
+          "keeper_cost_round": 14,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 2,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 133,
+          "notes": [
+            "kept at round 14 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 1
+        },
+        {
+          "player": "Javonte Williams",
+          "player_id": "7588",
+          "position": "RB",
+          "acquired": "draft",
+          "keeper_cost_2026": "R13",
+          "keeper_cost_round": 13,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 128,
+          "notes": [
+            "kept at round 13 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 2
+        },
+        {
+          "player": "Bo Nix",
+          "player_id": "11563",
+          "position": "QB",
+          "acquired": "keeper",
+          "keeper_cost_2026": "R12",
+          "keeper_cost_round": 12,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 2,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 113,
+          "notes": [
+            "kept at round 12 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 3
+        },
+        {
+          "player": "Jordan Mason",
+          "player_id": "8408",
+          "position": "RB",
+          "acquired": "draft",
+          "keeper_cost_2026": "R10",
+          "keeper_cost_round": 10,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 93,
+          "notes": [
+            "kept at round 10 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 4
+        },
+        {
+          "player": "Joe Mixon",
+          "player_id": "4018",
+          "position": "RB",
+          "acquired": "draft",
+          "keeper_cost_2026": "R8",
+          "keeper_cost_round": 8,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 73,
+          "notes": [
+            "kept at round 8 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 5
+        },
+        {
+          "player": "Travis Kelce",
+          "player_id": "1466",
+          "position": "TE",
+          "acquired": "draft",
+          "keeper_cost_2026": "R7",
+          "keeper_cost_round": 7,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 68,
+          "notes": [
+            "kept at round 7 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 6
+        },
+        {
+          "player": "DeVonta Smith",
+          "player_id": "7525",
+          "position": "WR",
+          "acquired": "draft",
+          "keeper_cost_2026": "R6",
+          "keeper_cost_round": 6,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 53,
+          "notes": [
+            "kept at round 6 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 7
+        },
+        {
+          "player": "Tetairoa McMillan",
+          "player_id": "12526",
+          "position": "WR",
+          "acquired": "draft",
+          "keeper_cost_2026": "R5",
+          "keeper_cost_round": 5,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 48,
+          "notes": [
+            "kept at round 5 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 8
+        },
+        {
+          "player": "Kenneth Walker",
+          "player_id": "8151",
+          "position": "RB",
+          "acquired": "draft",
+          "keeper_cost_2026": "R4",
+          "keeper_cost_round": 4,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 33,
+          "notes": [
+            "kept at round 4 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 9
+        },
+        {
+          "player": "Mike Evans",
+          "player_id": "2216",
+          "position": "WR",
+          "acquired": "draft",
+          "keeper_cost_2026": "R4",
+          "keeper_cost_round": 4,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 33,
+          "notes": [
+            "kept at round 4 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 10
+        },
+        {
+          "player": "Puka Nacua",
+          "player_id": "9493",
+          "position": "WR",
+          "acquired": "keeper",
+          "keeper_cost_2026": "R2",
+          "keeper_cost_round": 2,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": null,
+          "surplus": "unknown",
+          "valued": false,
+          "eligible": true,
+          "ineligible_reason": null,
+          "consecutive_years_if_kept": 2,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 13,
+          "notes": [
+            "kept at round 2 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 11
+        }
+      ],
+      "provisional": true,
+      "ineligible": [
+        {
+          "player": "Ashton Jeanty",
+          "player_id": "12527",
+          "position": "RB",
+          "acquired": "draft",
+          "keeper_cost_2026": "R1",
+          "keeper_cost_round": 1,
+          "market_round": null,
+          "projected_ppg": null,
+          "projected_value": "unknown",
+          "surplus_rounds": 0,
+          "surplus": "none",
+          "valued": false,
+          "eligible": false,
+          "ineligible_reason": "1st-round picks are not keeper-eligible",
+          "consecutive_years_if_kept": 1,
+          "is_final_eligible_year": false,
+          "forfeits_overall_pick": 8,
+          "notes": [
+            "kept at round 1 last year; that round carries forward",
+            "NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."
+          ],
+          "rank": 12
+        }
+      ],
+      "total_surplus_rounds": 0,
+      "picks_forfeited": [],
+      "aging_out": [],
+      "slots_used": 0,
+      "slots_available": 3
+    }
+  },
+  "verified_free_agents": {
+    "raw": {
+      "_gate": "A player may only be recommended if he appears here. Anything not in players_cache.json is simply unknown, NOT confirmed available.",
+      "confirmed_available_known_players": [
+        {
+          "player_id": "10859",
+          "name": "Sam LaPorta",
+          "pos": "TE",
+          "team": "DET"
+        },
+        {
+          "player_id": "11559",
+          "name": "Michael Penix",
+          "pos": "QB",
+          "team": "ATL"
+        },
+        {
+          "player_id": "11637",
+          "name": "Keon Coleman",
+          "pos": "WR",
+          "team": "BUF"
+        },
+        {
+          "player_id": "11638",
+          "name": "Ricky Pearsall",
+          "pos": "WR",
+          "team": "SF"
+        },
+        {
+          "player_id": "1234",
+          "name": "Russell Wilson",
+          "pos": "QB",
+          "team": "NYG"
+        },
+        {
+          "player_id": "12469",
+          "name": "Dylan Sampson",
+          "pos": "RB",
+          "team": "CLE"
+        },
+        {
+          "player_id": "12483",
+          "name": "Jack Bech",
+          "pos": "WR",
+          "team": "LV"
+        },
+        {
+          "player_id": "12484",
+          "name": "Jayden Higgins",
+          "pos": "WR",
+          "team": "HOU"
+        },
+        {
+          "player_id": "12490",
+          "name": "Bhayshul Tuten",
+          "pos": "RB",
+          "team": "JAX"
+        },
+        {
+          "player_id": "12501",
+          "name": "Matthew Golden",
+          "pos": "WR",
+          "team": "GB"
+        },
+        {
+          "player_id": "12504",
+          "name": "Kaleb Johnson",
+          "pos": "RB",
+          "team": "PIT"
+        },
+        {
+          "player_id": "12509",
+          "name": "Tre' Harris",
+          "pos": "WR",
+          "team": "LAC"
+        },
+        {
+          "player_id": "12517",
+          "name": "Colston Loveland",
+          "pos": "TE",
+          "team": "CHI"
+        },
+        {
+          "player_id": "12530",
+          "name": "Travis Hunter",
+          "pos": "WR",
+          "team": "JAX"
+        },
+        {
+          "player_id": "12547",
+          "name": "Kyle Williams",
+          "pos": "WR",
+          "team": "NE"
+        },
+        {
+          "player_id": "3321",
+          "name": "Tyreek Hill",
+          "pos": "WR",
+          "team": "MIA"
+        },
+        {
+          "player_id": "4035",
+          "name": "Alvin Kamara",
+          "pos": "RB",
+          "team": "NO"
+        },
+        {
+          "player_id": "4039",
+          "name": "Cooper Kupp",
+          "pos": "WR",
+          "team": "SEA"
+        },
+        {
+          "player_id": "4066",
+          "name": "Evan Engram",
+          "pos": "TE",
+          "team": "DEN"
+        },
+        {
+          "player_id": "4137",
+          "name": "James Conner",
+          "pos": "RB",
+          "team": "ARI"
+        },
+        {
+          "player_id": "4144",
+          "name": "Jonnu Smith",
+          "pos": "TE",
+          "team": "PIT"
+        },
+        {
+          "player_id": "4981",
+          "name": "Calvin Ridley",
+          "pos": "WR",
+          "team": "TEN"
+        },
+        {
+          "player_id": "5849",
+          "name": "Kyler Murray",
+          "pos": "QB",
+          "team": "ARI"
+        },
+        {
+          "player_id": "6768",
+          "name": "Tua Tagovailoa",
+          "pos": "QB",
+          "team": "MIA"
+        },
+        {
+          "player_id": "6783",
+          "name": "Jerry Jeudy",
+          "pos": "WR",
+          "team": "CLE"
+        },
+        {
+          "player_id": "6806",
+          "name": "J.K. Dobbins",
+          "pos": "RB",
+          "team": "DEN"
+        },
+        {
+          "player_id": "7571",
+          "name": "Rashod Bateman",
+          "pos": "WR",
+          "team": "BAL"
+        },
+        {
+          "player_id": "7591",
+          "name": "Justin Fields",
+          "pos": "QB",
+          "team": "NYJ"
+        },
+        {
+          "player_id": "7594",
+          "name": "Chuba Hubbard",
+          "pos": "RB",
+          "team": "CAR"
+        },
+        {
+          "player_id": "8154",
+          "name": "Brian Robinson",
+          "pos": "RB",
+          "team": "WAS"
+        },
+        {
+          "player_id": "8205",
+          "name": "Isiah Pacheco",
+          "pos": "RB",
+          "team": "KC"
+        },
+        {
+          "player_id": "9225",
+          "name": "Tank Bigsby",
+          "pos": "RB",
+          "team": "JAX"
+        },
+        {
+          "player_id": "9229",
+          "name": "Anthony Richardson",
+          "pos": "QB",
+          "team": "IND"
+        },
+        {
+          "player_id": "9500",
+          "name": "Josh Downs",
+          "pos": "WR",
+          "team": "IND"
+        },
+        {
+          "player_id": "9753",
+          "name": "Zach Charbonnet",
+          "pos": "RB",
+          "team": "SEA"
+        }
+      ],
+      "available_defenses": [
+        "ARI",
+        "ATL",
+        "BAL",
+        "BUF",
+        "CAR",
+        "CHI",
+        "CIN",
+        "DAL",
+        "GB",
+        "IND",
+        "LAC",
+        "LV",
+        "MIA",
+        "MIN",
+        "NYG",
+        "NYJ",
+        "PHI",
+        "SF",
+        "TEN",
+        "WAS"
+      ],
+      "count": 35,
+      "caveat": "This is the complement of rostered ids against the LOCAL cache only. It is a proof of non-availability, not a complete FA pool. To rank the real pool, cross-reference trending_add plus the news agents' names and check each against the rostered set below.",
+      "rostered_player_ids": [
+        "10219",
+        "10222",
+        "10229",
+        "10232",
+        "10236",
+        "11560",
+        "11563",
+        "11564",
+        "11565",
+        "11566",
+        "11571",
+        "11579",
+        "11584",
+        "11586",
+        "11589",
+        "11604",
+        "11620",
+        "11624",
+        "11625",
+        "11627",
+        "11628",
+        "11631",
+        "11632",
+        "11635",
+        "11643",
+        "11647",
+        "11655",
+        "1166",
+        "11783",
+        "12457",
+        "12474",
+        "12481",
+        "12485",
+        "12489",
+        "12493",
+        "12500",
+        "12506",
+        "12507",
+        "12508",
+        "12512",
+        "12514",
+        "12518",
+        "12519",
+        "12522",
+        "12524",
+        "12526",
+        "12527",
+        "12529",
+        "12533",
+        "12534",
+        "12545",
+        "1373",
+        "1466",
+        "1479",
+        "2133",
+        "2216",
+        "2449",
+        "3161",
+        "3163",
+        "3198",
+        "3214",
+        "3257",
+        "3294",
+        "4018",
+        "4033",
+        "4034",
+        "4037",
+        "4046",
+        "4098",
+        "4199",
+        "421",
+        "4217",
+        "4866",
+        "4881",
+        "4892",
+        "4943",
+        "4983",
+        "4984",
+        "5012",
+        "5022",
+        "5045",
+        "5844",
+        "5846",
+        "5850",
+        "5859",
+        "5870",
+        "5872",
+        "5892",
+        "5927",
+        "5947",
+        "5967",
+        "6770",
+        "6786",
+        "6790",
+        "6794",
+        "6797",
+        "6801",
+        "6804",
+        "6813",
+        "6819",
+        "6865",
+        "6904",
+        "7002",
+        "7021",
+        "7049",
+        "7090",
+        "7523",
+        "7525",
+        "7526",
+        "7528",
+        "7543",
+        "7547",
+        "7553",
+        "7564",
+        "7567",
+        "7569",
+        "7588",
+        "7607",
+        "7611",
+        "8110",
+        "8112",
+        "8122",
+        "8126",
+        "8130",
+        "8132",
+        "8134",
+        "8137",
+        "8138",
+        "8144",
+        "8146",
+        "8148",
+        "8150",
+        "8151",
+        "8155",
+        "8167",
+        "8183",
+        "8210",
+        "8228",
+        "8408",
+        "9221",
+        "9224",
+        "9226",
+        "9228",
+        "9482",
+        "9484",
+        "9488",
+        "9493",
+        "9504",
+        "9508",
+        "9509",
+        "96",
+        "9754",
+        "9756",
+        "9758",
+        "9997",
+        "CLE",
+        "DEN",
+        "DET",
+        "HOU",
+        "JAX",
+        "KC",
+        "LAR",
+        "NE",
+        "NO",
+        "PIT",
+        "SEA",
+        "TB"
+      ]
+    },
+    "valued_pool": [
+      {
+        "player": "Sam LaPorta",
+        "player_id": "10859",
+        "position": "TE",
+        "nfl_team": "DET",
+        "value": 7.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Michael Penix",
+        "player_id": "11559",
+        "position": "QB",
+        "nfl_team": "ATL",
+        "value": 16.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Keon Coleman",
+        "player_id": "11637",
+        "position": "WR",
+        "nfl_team": "BUF",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Ricky Pearsall",
+        "player_id": "11638",
+        "position": "WR",
+        "nfl_team": "SF",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Russell Wilson",
+        "player_id": "1234",
+        "position": "QB",
+        "nfl_team": "NYG",
+        "value": 16.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Dylan Sampson",
+        "player_id": "12469",
+        "position": "RB",
+        "nfl_team": "CLE",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Jack Bech",
+        "player_id": "12483",
+        "position": "WR",
+        "nfl_team": "LV",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Jayden Higgins",
+        "player_id": "12484",
+        "position": "WR",
+        "nfl_team": "HOU",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Bhayshul Tuten",
+        "player_id": "12490",
+        "position": "RB",
+        "nfl_team": "JAX",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Matthew Golden",
+        "player_id": "12501",
+        "position": "WR",
+        "nfl_team": "GB",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Kaleb Johnson",
+        "player_id": "12504",
+        "position": "RB",
+        "nfl_team": "PIT",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Tre' Harris",
+        "player_id": "12509",
+        "position": "WR",
+        "nfl_team": "LAC",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Colston Loveland",
+        "player_id": "12517",
+        "position": "TE",
+        "nfl_team": "CHI",
+        "value": 7.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Travis Hunter",
+        "player_id": "12530",
+        "position": "WR",
+        "nfl_team": "JAX",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Kyle Williams",
+        "player_id": "12547",
+        "position": "WR",
+        "nfl_team": "NE",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Tyreek Hill",
+        "player_id": "3321",
+        "position": "WR",
+        "nfl_team": "MIA",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Alvin Kamara",
+        "player_id": "4035",
+        "position": "RB",
+        "nfl_team": "NO",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Cooper Kupp",
+        "player_id": "4039",
+        "position": "WR",
+        "nfl_team": "SEA",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Evan Engram",
+        "player_id": "4066",
+        "position": "TE",
+        "nfl_team": "DEN",
+        "value": 7.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "James Conner",
+        "player_id": "4137",
+        "position": "RB",
+        "nfl_team": "ARI",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Jonnu Smith",
+        "player_id": "4144",
+        "position": "TE",
+        "nfl_team": "PIT",
+        "value": 7.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Calvin Ridley",
+        "player_id": "4981",
+        "position": "WR",
+        "nfl_team": "TEN",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Kyler Murray",
+        "player_id": "5849",
+        "position": "QB",
+        "nfl_team": "ARI",
+        "value": 16.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Tua Tagovailoa",
+        "player_id": "6768",
+        "position": "QB",
+        "nfl_team": "MIA",
+        "value": 16.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Jerry Jeudy",
+        "player_id": "6783",
+        "position": "WR",
+        "nfl_team": "CLE",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "J.K. Dobbins",
+        "player_id": "6806",
+        "position": "RB",
+        "nfl_team": "DEN",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Rashod Bateman",
+        "player_id": "7571",
+        "position": "WR",
+        "nfl_team": "BAL",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Justin Fields",
+        "player_id": "7591",
+        "position": "QB",
+        "nfl_team": "NYJ",
+        "value": 16.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Chuba Hubbard",
+        "player_id": "7594",
+        "position": "RB",
+        "nfl_team": "CAR",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Brian Robinson",
+        "player_id": "8154",
+        "position": "RB",
+        "nfl_team": "WAS",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Isiah Pacheco",
+        "player_id": "8205",
+        "position": "RB",
+        "nfl_team": "KC",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Tank Bigsby",
+        "player_id": "9225",
+        "position": "RB",
+        "nfl_team": "JAX",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Anthony Richardson",
+        "player_id": "9229",
+        "position": "QB",
+        "nfl_team": "IND",
+        "value": 16.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Josh Downs",
+        "player_id": "9500",
+        "position": "WR",
+        "nfl_team": "IND",
+        "value": 10.5,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "Zach Charbonnet",
+        "player_id": "9753",
+        "position": "RB",
+        "nfl_team": "SEA",
+        "value": 10.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG) - no individual projection exists yet at this stage",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "ARI",
+        "player_id": "ARI",
+        "position": "DEF",
+        "nfl_team": "ARI",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "ATL",
+        "player_id": "ATL",
+        "position": "DEF",
+        "nfl_team": "ATL",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "BAL",
+        "player_id": "BAL",
+        "position": "DEF",
+        "nfl_team": "BAL",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "BUF",
+        "player_id": "BUF",
+        "position": "DEF",
+        "nfl_team": "BUF",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "CAR",
+        "player_id": "CAR",
+        "position": "DEF",
+        "nfl_team": "CAR",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "CHI",
+        "player_id": "CHI",
+        "position": "DEF",
+        "nfl_team": "CHI",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "CIN",
+        "player_id": "CIN",
+        "position": "DEF",
+        "nfl_team": "CIN",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "DAL",
+        "player_id": "DAL",
+        "position": "DEF",
+        "nfl_team": "DAL",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "GB",
+        "player_id": "GB",
+        "position": "DEF",
+        "nfl_team": "GB",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "IND",
+        "player_id": "IND",
+        "position": "DEF",
+        "nfl_team": "IND",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "LAC",
+        "player_id": "LAC",
+        "position": "DEF",
+        "nfl_team": "LAC",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "LV",
+        "player_id": "LV",
+        "position": "DEF",
+        "nfl_team": "LV",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "MIA",
+        "player_id": "MIA",
+        "position": "DEF",
+        "nfl_team": "MIA",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "MIN",
+        "player_id": "MIN",
+        "position": "DEF",
+        "nfl_team": "MIN",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "NYG",
+        "player_id": "NYG",
+        "position": "DEF",
+        "nfl_team": "NYG",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "NYJ",
+        "player_id": "NYJ",
+        "position": "DEF",
+        "nfl_team": "NYJ",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "PHI",
+        "player_id": "PHI",
+        "position": "DEF",
+        "nfl_team": "PHI",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "SF",
+        "player_id": "SF",
+        "position": "DEF",
+        "nfl_team": "SF",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "TEN",
+        "player_id": "TEN",
+        "position": "DEF",
+        "nfl_team": "TEN",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      },
+      {
+        "player": "WAS",
+        "player_id": "WAS",
+        "position": "DEF",
+        "nfl_team": "WAS",
+        "value": 6.0,
+        "value_basis": "positional replacement-level placeholder (REPLACEMENT_PPG)",
+        "availability_verified": true,
+        "available": true
+      }
+    ]
+  }
+}

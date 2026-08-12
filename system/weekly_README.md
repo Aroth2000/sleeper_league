@@ -46,16 +46,21 @@ Workflow: /home/claude/sunday_scaries/system/weekly.js
 args:     week=7
 ```
 
-From the `sunday-scaries` skill this is step 3 of 4. The full order of operations is:
+From the `sunday-scaries` skill this is step 4 of 5. The full order of operations is:
 
 1. **WebFetch** the URLs in `system/fetch_manifest.md` into `system/raw/`.
    Sleeper is unreachable from bash/python in this sandbox — WebFetch is the only path out.
 2. **Run** `system/state_builder.py` to normalise `raw/` into `system/state/week_N.json`.
-3. **Run this workflow.**
-4. **Write** the two things it returns to disk (see *Return shape* below). The workflow itself does
+3. **Run** `system/analysis/build_analysis_output.py system/state/week_N.json` to produce
+   `system/state/week_N_analysis_output.json` — see **"The analysis baseline"** below. This has to run
+   as a separate step *before* the workflow, not from inside it: `agent()` calls are LLM calls, not code
+   execution, so there is no way for a prompt mid-workflow to invoke Python. Moving the deterministic
+   analysis modules earlier, into their own pre-workflow step, is the only shape that actually works.
+4. **Run this workflow.**
+5. **Write** the two things it returns to disk (see *Return shape* below). The workflow itself does
    no file I/O — it has no `fs`. Every agent reads its own inputs with the Read tool, and the caller
    writes the outputs.
-5. **Run** `system/merge_state.py --week N` to fold the agent's `opponent_model`, `keeper_equity`,
+6. **Run** `system/merge_state.py --week N` to fold the agent's `opponent_model`, `keeper_equity`,
    `decisions_log` and `open_questions` into the deterministic `week_N.json` from step 2.
    `state_json` goes to `week_N.synthesis.json`, **never** straight to `week_N.json` — that file
    holds facts computed from the Sleeper payloads and a model must not overwrite them.
@@ -65,8 +70,59 @@ Before running, make sure these exist:
 | Directory | Why |
 |---|---|
 | `system/raw/` | the fetched Sleeper JSON every agent reads |
-| `system/state/` | last week's state file, and where this week's lands |
+| `system/state/` | last week's state file, this week's analysis-output file, and where this week's state lands |
 | `system/reports/` | where the markdown brief lands |
+
+---
+
+## The analysis baseline — Phase 3 of `weekly_loop_closure_plan.md`
+
+**The gap this closes:** `weekly.js` cannot call `analysis/opponent_pressure.py`, `waiver_contention.py`
+or `keeper_equity.py` itself — those are Python and the Workflow tool's `agent()` calls are LLM calls,
+not code execution. Before this existed, the "availability gate" and the pressure/contention model ran
+entirely as prompt instructions ("verify availability yourself", "estimate pressure"), which is exactly
+what the plan's hard rule says must never happen: a fact that must be exactly right belongs in
+deterministic code, not a model's self-discipline.
+
+The fix is to run the Python **before the Workflow starts**, against the same state file, and hand the
+result to every agent as a fourth input alongside the state file, the raw payloads and the reference
+docs:
+
+```
+python3 system/analysis/build_analysis_output.py system/state/week_N.json
+# -> writes system/state/week_N_analysis_output.json
+```
+
+That file has five top-level sections:
+
+| Section | Built by | What it is |
+|---|---|---|
+| `opponent_pressure` | `opponent_pressure.compute_league_pressure()` | per-rival vacancy/performance/role/depth pressure, keyed by `roster_id` (string). `role` is always 0 here — it is an external input the baseline cannot see, see below. |
+| `predicted_claims` | `opponent_pressure.predicted_claims_from_pressure()` | a first-pass predicted-claims list per rival, keyed by owner name, run against the real verified free-agent pool |
+| `waiver_contention` | `waiver_contention.contention_report()` | a full Monte Carlo (`DEFAULT_TRIALS=4000`) landing-probability report over every verified free agent, using `predicted_claims` as each rival's wishlist |
+| `keeper_equity` | `keeper_equity.build_keeper_board()` / `optimal_keeper_slate()` | the ranked 2026 keeper board and legal best-3 slate, off `league_config.json`'s real keeper-cost provenance |
+| `verified_free_agents` | pass-through of `state['free_agents']` plus a valued pool | the code-verified availability gate — a player must appear here (or as a DEF) to be recommended anywhere downstream |
+
+`weekly.js` reads this as a **path**, exactly like `STATE_PATH` and `PREV_STATE_PATH` — the workflow has
+no `fs`, so it never parses the JSON itself; every agent that needs it reads it with the Read tool. The
+arg is `analysis_output` (or its short form `analysis`); it defaults to
+`system/state/week_<N>_analysis_output.json`, matching the default state path.
+
+**The contract is "baseline vs refine," not "baseline vs ignore" and not "baseline vs recompute."**
+Every prompt that touches pressure, predicted claims, waiver contention or free-agent availability is
+told explicitly: cite the baseline number, then say what you are adjusting it to and why, using
+qualitative signal the baseline cannot see (it runs before the news agents, so it has zero role_signals
+and zero beat-reporting input) — never silently recompute the arithmetic from scratch, and never
+contradict `verified_free_agents`.
+
+**Concrete example** (from a real run against `week_0.json`): the baseline's `waiver_contention.claim_sheet`
+already puts Michael Penix at `probability_reaches_andrew: 1.0` because nobody ahead of Andrew in the
+priority order shows a predicted claim on a QB. If a news agent's beat-reporting sweep turns up a QB
+injury on `DannyBC1`'s roster (first pick in the order) that the box-score-only baseline had no way to
+know about, the opponent-model agent for `DannyBC1` is expected to say exactly that — "baseline vacancy
+was 0.0 for QB, but \[source, dated\] reports \[starter\] is now out; raising vacancy and predicted claims
+accordingly" — not to silently leave Penix at 100% or, worse, invent a new number with no baseline
+reference at all.
 
 ---
 
@@ -80,6 +136,7 @@ Before running, make sure these exist:
 | `waivers` | `waivers=priority` / `waivers=faab` | `ambiguous` — produces **both** answers |
 | `state` | `state=/path/week_7.json` | `system/state/week_<N>.json` (the *deterministic* file; the agent's output is written alongside it as `week_<N>.synthesis.json`) |
 | `prevstate` | `prevstate=/path/week_6.json` | `system/state/week_<N-1>.json` (week 1 → `week_0.json`) |
+| `analysis_output` (or `analysis`) | `analysis_output=/path/week_7_analysis_output.json` | `system/state/week_<N>_analysis_output.json` — must exist before the run, built by `build_analysis_output.py` (see **"The analysis baseline"** above) |
 | `report` | `report=/path/week_7.md` | `system/reports/week_<N>.md` |
 
 **Week fallback chain:** explicit `week=` → a bare 1–18 integer anywhere in `args` → derived from
@@ -182,10 +239,14 @@ independently of each other.
 
 These are in the script rather than in the skill, so they survive being called from anywhere.
 
-- **Availability gate.** Every agent that names a free agent is told to verify him against all ten
-  rosters first. The FA agent carries an `availability_verified` boolean per player and an
-  `unverified_excluded` list; the contention model is told to drop anything it cannot confirm.
-  Recommending an already-rostered player is the most damaging failure this system has.
+- **Availability gate.** This now runs in two layers. The code layer is `verified_free_agents` inside
+  `analysis_output.json` (see above) — computed before the run, straight from every roster, and every
+  agent is told it must not be contradicted. The prompt layer is the fallback: every agent that names a
+  free agent NOT already in that baseline is told to verify him against all ten rosters itself before
+  naming him. The FA agent still carries an `availability_verified` boolean per player and an
+  `unverified_excluded` list for anything it adds beyond the baseline; the contention model is told to
+  drop anything it cannot confirm either way. Recommending an already-rostered player is the most
+  damaging failure this system has.
 - **Freshness gate.** Every injury, snap, practice or role claim needs a named source with a date
   inside 7 days, and an `is_stale` flag when it is not. Wikipedia is banned for anything
   time-sensitive — a previous sweep had to be redone over exactly that.

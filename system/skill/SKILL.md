@@ -18,14 +18,19 @@ ROOT = /home/claude/sunday_scaries
   system/fetch_manifest.md      the WebFetch <-> builder contract, full detail
   system/players_cache.py       ingest / lookup / unresolved / stale / stats
   system/state_builder.py       raw/*.json  ->  state/week_N.json
+  system/repo_sync.py           the loop's durable memory: pull/push data/week_NN/ against
+                                the git repo, since a Tuesday session has no memory of its own
   system/merge_state.py         folds the agent's opponent_model/keeper_equity/decisions_log/
                                 open_questions into week_N.json without overwriting facts
   system/weekly.js              the 18-agent workflow (Workflow tool, NOT node)
   system/analysis/*.py          scoring, opponent_pressure, waiver_contention, keeper_equity
                                 (+ test_analysis.py — 76 tests, run it after any edit)
   system/raw/                   fetched Sleeper JSON lands here
-  system/state/week_N.json      the memory. week_0.json is the preseason baseline.
+  system/state/week_N.json      the local working copy. week_0.json is the preseason baseline.
   system/reports/week_N.md      the delivered brief
+  repo_clone/                   working directory for the git-backed archive (see Step 0), default
+                                path repo_sync.py uses -- data/week_NN/{report.md,state.json,
+                                state.synthesis.json} for every week that has closed
 ```
 
 ## Two hard environment facts
@@ -36,10 +41,29 @@ ROOT = /home/claude/sunday_scaries
 2. **`/players/nfl` (~5MB) will not come through WebFetch.** Never attempt it. The player cache is
    built incrementally from draft-pick payloads and per-player calls. See `reference/data_layer.md`.
 
-## Step 0 — orient before doing anything
+## Step 0 — sync the repo, then orient
+
+**Every Tuesday firing is a brand-new session with no memory of last week's session.** The only
+durable memory this system has is the git repo (`github.com/Aroth2000/sleeper_league`), so the
+first thing every run does — before reading anything else — is try to sync it:
 
 ```bash
-ls /home/claude/sunday_scaries/system/state/          # what weeks exist?
+python3 /home/claude/sunday_scaries/system/repo_sync.py pull
+echo $?
+```
+
+Branch on the result immediately, out loud, in whatever you say back to Andrew:
+
+| Result | Do this |
+|---|---|
+| Exit 0 | The clone at `repo_clone/` (default; override with `--dir`) is current. This is the source of truth for "last week's real state" in Step 2. |
+| Exit non-zero | **Fall back to the skill's bundled snapshot exactly as documented before this repo existed** — `system/state/week_N.json` on local disk is what you have. **Say so plainly in the delivered brief** — e.g. "repo sync failed this run, working from the last locally-bundled state, continuity may be stale." Never fail silently; this is the same non-negotiable guardrail as the availability and freshness gates below. |
+
+Then orient:
+
+```bash
+ls /home/claude/sunday_scaries/system/state/          # what weeks exist locally?
+python3 /home/claude/sunday_scaries/system/repo_sync.py latest-week   # what weeks exist in the repo?
 python3 /home/claude/sunday_scaries/system/state_builder.py --dry-run --summary
 ```
 
@@ -49,10 +73,11 @@ missing — it is the fastest read on where the system stands. Then branch:
 | What you find | Do this |
 |---|---|
 | `system/` missing entirely | **Cold start.** See "Rebuilding from nothing" below. |
+| `repo_sync.py latest-week` prints `none` | Fresh start — no prior week anywhere in the repo. Proceed with no diff in Step 2 and say so; this is correct and expected for a brand-new league-year or a repo that was just bootstrapped. |
 | State files exist, newest is last week | Normal run. Go to Step 1. |
 | Newest state is this week, generated today | Already ran. Show the existing `reports/week_N.md` unless asked to re-run. |
 | State exists but `meta.degraded == true` | A fetch was missing. Check `meta.sources.missing`, re-fetch those, rebuild. |
-| Only `week_0.json` and it is week 1 | Correct and expected. Week 0 is the preseason baseline, not a played week. |
+| Only `week_0.json` (or repo's `week_00`) and it is week 1 | Correct and expected. Week 0 is the preseason baseline, not a played week. |
 
 Confirm the week from `raw/state_nfl.json` (fetch it fresh — step 1 below). Never assume the week
 from the calendar if a real answer is available.
@@ -82,15 +107,35 @@ Strip any ```json fences before writing. A 404 on a URL you know is good is a 15
 artifact — retry with a throwaway query string (`?r=1`). Filenames matter: a wrong name produces a
 silently empty section, not an error.
 
-## Step 2 — build state (deterministic, no model)
+## Step 2 — pull the real diff target out of the repo, THEN build state
+
+**Order matters here and is not cosmetic.** `state_builder.py` has no `--prevstate` flag — it
+silently looks for last week's state at the fixed path `system/state/week_{N-1}.json` (i.e.
+`<out-dir>/week_{N-1}.json`) at the moment it runs, and if that file is not there yet it just
+degrades to `roster_diff: {"status": "no_previous_state", ...}` with a warning, not an error. On a
+genuinely fresh container that has never seen week `N-1` locally, the only place that file can come
+from is the repo clone — so `repo_sync.py get-state` **must run before** `state_builder.py`, not
+after. (An earlier version of this doc had these two steps in the opposite order; that silently
+produced an empty diff on every first-run-in-a-fresh-container, which defeats the entire point of
+Step 0's repo sync. Verified by execution in `system/LOOP_VERIFICATION_REPORT.md` §2 — running the
+old order against a container with no local `week_{N-1}.json` reproduces the empty diff, and
+swapping the order fixes it with no other change.)
 
 ```bash
 cd /home/claude/sunday_scaries/system
-python3 players_cache.py ingest --dir raw     # identities FIRST
-python3 state_builder.py --week {N} --summary # then state
+python3 players_cache.py ingest --dir raw          # identities FIRST
+python3 repo_sync.py get-state --week {N-1}         # THEN the diff target, before building state
+python3 state_builder.py --week {N} --summary        # now state_builder finds week_{N-1}.json already staged
 ```
 
-Order is not optional — building before ingesting yields a state file full of `UNKNOWN(12474)`.
+This copies `data/week_{N-1}/state.json` out of the `repo_sync.py pull` clone from Step 0 to
+`system/state/week_{N-1}.json` — exactly where `state_builder.py`'s diff lookup and `weekly.js`'s
+`prevstate` argument already look by default (see `weekly_README.md`), so nothing downstream has to
+change to pick it up. **Backward compatibility, unchanged from before this existed:** if Step 0
+reported the repo unreachable, or `repo_sync.py latest-week` said `none`, or `get-state` exits
+non-zero because that week isn't in the repo yet, there is no prior week to diff against — proceed
+with no diff, exactly as today, and say so in the brief rather than inventing a comparison.
+
 Then check the cache is clean:
 
 ```bash
@@ -103,9 +148,25 @@ draft, so its **team and injury fields are 2025-vintage and must not be trusted*
 cached from that draft as TB when he is on SF. Refresh stale entries for Andrew's roster and for
 anyone you are about to recommend.
 
-## Step 3 — run the workflow
+## Step 3 — build the analysis baseline, then run the workflow
 
-Invoke with the **Workflow tool**, absolute path. It is not a node program; do not `node` it.
+**First, run the deterministic analysis stack** — `weekly.js` cannot call this Python itself
+(`agent()` calls are LLM calls, not code execution), so it has to run as its own command, after
+`state_builder.py` and before the Workflow tool:
+
+```bash
+python3 /home/claude/sunday_scaries/system/analysis/build_analysis_output.py \
+  /home/claude/sunday_scaries/system/state/week_{N}.json
+```
+
+This writes `system/state/week_{N}_analysis_output.json` — opponent pressure, predicted waiver
+claims, a full Monte Carlo contention report, the keeper board, and the code-verified free-agent
+pool, all computed from box scores and rosters alone with zero qualitative input. `weekly.js`'s
+`analysis_output` arg defaults to exactly this path, so no arg is needed if you ran this first. Full
+detail, including the "baseline vs refine" contract every prompt is held to, is in
+`weekly_README.md`'s "The analysis baseline" section.
+
+**Then invoke the Workflow tool**, absolute path. It is not a node program; do not `node` it.
 
 ```
 Workflow: /home/claude/sunday_scaries/system/weekly.js
@@ -114,8 +175,8 @@ args:     week={N}
 
 18 agents: 15 sonnet in parallel (9 opponent models, 4 topic-sliced news sweeps, free-agent board,
 my-team read), then 2 opus (waiver contention, trade board), then 1 opus synthesis.
-Optional args: `waivers=priority|faab` (default hedges both), `state=`, `prevstate=`, `report=`.
-Full detail in `system/weekly_README.md`.
+Optional args: `waivers=priority|faab` (default hedges both), `state=`, `prevstate=`,
+`analysis_output=` (rarely needed — see above), `report=`. Full detail in `system/weekly_README.md`.
 
 ## Step 4 — write the outputs and deliver
 
@@ -148,6 +209,35 @@ Then **send Andrew the files** (report + state JSON) so he holds a copy independ
 container. That is what makes the next cold start survivable. Post the action card inline in chat —
 it should be readable on a phone in thirty seconds. Format: `reference/output_format.md`.
 
+## Step 5 — archive the week into the repo
+
+This is what makes next Tuesday's Step 0/Step 2 actually work — commit this week's outputs to the
+same repo Step 0 pulled from, so the *next* brand-new session has something real to read.
+
+```bash
+python3 /home/claude/sunday_scaries/system/repo_sync.py commit-and-push \
+  --week {N} \
+  --report system/reports/week_{N}.md \
+  --state system/state/week_{N}.json \
+  --synthesis system/state/week_{N}.synthesis.json
+```
+
+Run this **after** Step 4's `merge_state.py`, using the merged (post-merge) `week_{N}.json` —
+never the pre-merge or synthesis-only file — so the archived copy matches what
+`state_builder.py`/`merge_state.py` actually produced, facts intact.
+
+What to expect, and how to react:
+
+| Result | Meaning | Do this |
+|---|---|---|
+| Exit 0, "pushed ... to origin" | Archived for real. `git log` in the clone is now this month's index. | Nothing further. |
+| Exit 0, "SUNDAY_SCARIES_GH_TOKEN is not set" | Expected until Andrew provides a token — this is not an error. The week is committed **locally** in the clone, just not pushed. | Mention it in passing in the brief (not an alarm — this is the documented current state), and note the manual push command the script printed. |
+| Exit non-zero, push failed (auth/network) | The commit still exists locally; only the push failed. | See "When it breaks" below — do not lose the week's brief over this. |
+
+Re-running this step for the same week (e.g. after fixing a token problem) is safe — identical
+content produces no new commit, and `commit-and-push` still (re)attempts the push, so retrying is
+the correct recovery action, not a special case.
+
 ---
 
 ## Not every question needs 18 agents
@@ -172,7 +262,9 @@ depends on modelling what rivals will do.
   failure the system has: it looks authoritative and wastes a claim. Deterministic check, not vibes.
 - **Freshness gate.** Every injury, snap, practice or role claim carries a named source dated inside
   7 days. Wikipedia is banned for anything time-sensitive.
-- **Diff, don't snapshot.** The value is in what changed. Load last week's state and compare.
+- **Diff, don't snapshot.** The value is in what changed. Load last week's state and compare —
+  from the repo clone (`repo_sync.py get-state`, Step 0/2), not from session memory, which does
+  not exist between Tuesday firings.
 - **Never invent a bye week.** 2026 byes are not populated and are not available from any Sleeper
   endpoint here. `bye_coverage` stays `unknown` until someone hand-enters them. A guessed bye
   silently produces a wrong lineup.
@@ -201,6 +293,31 @@ the restore command) plus the most recent `week_N.json` he was sent. Everything 
 raw is static and restores byte-for-byte. If nothing at all survives, the league is still fully
 reconstructible from the API: this skill's reference files carry every constant, and steps 1–2
 rebuild the rest from scratch. Nothing here depends on a chat staying alive.
+
+**GitHub push fails / repo unreachable.** This can happen at either end of the loop — Step 0's
+pull or Step 5's push — and neither one should ever cost Andrew the week's brief:
+
+- *Step 0 pull fails* (auth, network, repo renamed/deleted): `repo_sync.py pull` exits non-zero and
+  prints why. Fall back to the bundled local snapshot exactly as this skill worked before the repo
+  existed — `system/state/week_{N-1}.json` on local disk, if present — and say plainly in the
+  delivered brief that continuity may be stale this run because the repo sync failed. Do not block
+  the rest of the run on this; a stale-but-present diff target is still better than refusing to
+  produce the brief.
+- *Step 5 push fails* (bad/expired token, network, GitHub outage): `commit-and-push` still commits
+  locally before attempting the push, so the week's archive is **not lost** — it is sitting in
+  `repo_clone/` waiting for a working push. Tell Andrew the brief is done and delivered, but this
+  week's archive is pending (local-only) and needs either a token fix or a manual
+  `git push origin main` from `repo_clone/` once the problem clears. Never treat an archival
+  failure as a reason to withhold or redo the brief itself — the brief and the archive are
+  independent deliverables.
+- *`SUNDAY_SCARIES_GH_TOKEN` unset* is not a failure at all — it is today's expected state until
+  Andrew provides a fine-grained PAT (repo: `Aroth2000/sleeper_league`, contents read/write). Treat
+  it exactly like the second bullet above: local commit good, push pending, mention it without
+  alarm.
+- Either way, **verify by checking, not assuming** — `cd repo_clone && git log --oneline -3` shows
+  whether this week's commit exists locally, and `git log origin/main --oneline -3` (after a
+  `git fetch`) shows whether it actually reached GitHub. Don't report a push as successful without
+  having seen `repo_sync.py` print the "pushed ... to origin" line for real.
 
 ## Reference files — read on demand, not up front
 
