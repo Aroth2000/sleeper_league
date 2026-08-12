@@ -1,0 +1,626 @@
+{
+  "_doc": "Canonical league constants for the Sunday Scaries weekly system. Hand-maintained + verified against the live Sleeper API on 2026-08-07. Anything marked _unverified must be confirmed before it is trusted in a decision.",
+  "_generated_at": "2026-08-07",
+  "_verified_against_api": true,
+  "league": {
+    "name": "Sunday Scaries",
+    "sport": "nfl",
+    "season": 2026,
+    "season_label": "Year 3",
+    "league_id": "1389753893356838912",
+    "previous_league_id": "1257451899603402752",
+    "draft_id_2026": "1389753893356838913",
+    "draft_id_2025": "1257451899603402753",
+    "status_at_config_time": "pre_draft",
+    "num_teams": 10,
+    "scoring_type": "2qb_superflex",
+    "draft_type": "snake",
+    "draft_rounds": 16,
+    "draft_datetime_et": "2026-08-28T19:30:00-04:00",
+    "andrew_draft_slot": 8
+  },
+  "roster": {
+    "roster_positions": [
+      "QB",
+      "RB",
+      "RB",
+      "WR",
+      "WR",
+      "TE",
+      "FLEX",
+      "FLEX",
+      "SUPER_FLEX",
+      "DEF",
+      "BN",
+      "BN",
+      "BN",
+      "BN",
+      "BN",
+      "BN"
+    ],
+    "starter_slots": [
+      "QB",
+      "RB",
+      "RB",
+      "WR",
+      "WR",
+      "TE",
+      "FLEX",
+      "FLEX",
+      "SUPER_FLEX",
+      "DEF"
+    ],
+    "num_starters": 10,
+    "num_bench": 6,
+    "roster_size": 16,
+    "reserve_slots": 1,
+    "taxi_slots": 0,
+    "flex_eligible": {
+      "FLEX": [
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "SUPER_FLEX": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ]
+    },
+    "_flex_note": "Sleeper's live 2026 config shows TWO FLEX slots (confirmed via GET /league/1389753893356838912 roster_positions on 2026-08-07). The commissioner's 'Season 2 Changes' doc said one. Sleeper is authoritative for what the app will actually enforce; open_question #3 in the plan is therefore resolved IN FAVOUR OF 2 FLEX unless the commissioner changes the setting."
+  },
+  "scoring": {
+    "_source": "GET /v1/league/1389753893356838912 -> scoring_settings, pulled 2026-08-07",
+    "format_summary": "half-PPR + 0.5 per first down (rush and rec)",
+    "rec": 0.5,
+    "rec_fd": 0.5,
+    "rush_fd": 0.5,
+    "pass_yd": 0.04,
+    "rush_yd": 0.1,
+    "rec_yd": 0.1,
+    "pass_td": 4.0,
+    "rush_td": 6.0,
+    "rec_td": 6.0,
+    "pass_int": -1.0,
+    "fum_lost": -2.0,
+    "fum": 0.0,
+    "pass_2pt": 2.0,
+    "rush_2pt": 2.0,
+    "rec_2pt": 2.0,
+    "def": {
+      "sack": 1.0,
+      "int": 2.0,
+      "fum_rec": 2.0,
+      "ff": 1.0,
+      "safe": 2.0,
+      "def_td": 6.0,
+      "st_td": 6.0,
+      "def_st_td": 6.0,
+      "fum_rec_td": 6.0,
+      "blk_kick": 2.0,
+      "st_ff": 1.0,
+      "st_fum_rec": 1.0,
+      "def_st_ff": 1.0,
+      "def_st_fum_rec": 1.0,
+      "pts_allow_0": 10.0,
+      "pts_allow_1_6": 7.0,
+      "pts_allow_7_13": 4.0,
+      "pts_allow_14_20": 1.0,
+      "pts_allow_21_27": 0.0,
+      "pts_allow_28_34": -1.0,
+      "pts_allow_35p": -4.0,
+      "yds_allow_0_100": 5.0,
+      "yds_allow_100_199": 3.0,
+      "yds_allow_200_299": 2.0,
+      "yds_allow_300_349": 1.0,
+      "yds_allow_350_399": 0.0,
+      "yds_allow_400_449": -1.0,
+      "yds_allow_450_499": -2.0,
+      "yds_allow_500_549": -3.0,
+      "yds_allow_550p": -5.0,
+      "_def_note": "Commissioner flagged 2025 DEF scoring as overpowered/buggy and said 'Fix Def scoring (TBD)'. The yardage-allowed tier stack above IS still present in the 2026 config and is the likely source of the inflation (a DEF can bank 5 + 10 = 15 pts before making a single play). NOT confirmed fixed as of 2026-08-07. Do not trust historical DEF totals."
+    },
+    "strategic_notes": [
+      "0.5/first-down rewards chain-movers: slot WRs, check-down RBs, possession TEs. Nudge those up vs standard half-PPR ADP.",
+      "Superflex + only 10 teams means ~15-18 QBs rostered leaguewide; QB scarcity is real but a 2nd starter-quality QB covers SUPER_FLEX."
+    ]
+  },
+  "waivers": {
+    "type_code": 1,
+    "type": "reverse_standings_rolling_priority",
+    "is_faab": false,
+    "_resolution": "RESOLVED 2026-08-07. league.settings.waiver_type == 1 (Sleeper: 0=rolling, 1=reverse standings, 2=FAAB). The waiver_budget:100 field is Sleeper boilerplate present on every league and is NOT in use here. Confirmed empirically: 2025 transactions show settings.priority integers on waiver claims and waiver_budget:[] on every single transaction — i.e. priority was consumed, no bids were placed.",
+    "waiver_budget_field_present": 100,
+    "waiver_budget_actually_used": false,
+    "waiver_day_of_week": 2,
+    "waiver_day_name": "Wednesday",
+    "_day_note": "AMBIGUOUS - DO NOT TREAT AS RESOLVED. Sleeper reports waiver_day_of_week=2, waiver_clear_days=2, daily_waivers=0, daily_waivers_hour=0. Reading 0=Sunday..6=Saturday makes day 2 = TUESDAY, and hour 0 makes that TUESDAY 00:00 ET - i.e. a Tuesday-morning run would already be too late. Reading it as 'Tuesday night rolling into Wednesday 00:00 ET' makes the Tuesday run correct. These two readings give OPPOSITE answers about whether the whole Tuesday premise works, and nothing in the payload settles it. waiver_day_name below is set to Wednesday on the second reading and is NOT verified. CONFIRM WITH THE COMMISSIONER, or observe when a real claim actually processes, before relying on run timing. Until then submit claims by MONDAY night to be safe under either reading.",
+    "waiver_clear_days": 2,
+    "run_deadline_guidance": "UNVERIFIED. Safe under both readings: submit claims by Monday night ET. If processing is confirmed to be Wednesday 00:00 ET, Tuesday 18:00 ET is fine.",
+    "priority_rule": "Worst record gets priority 1. Using a claim sends that team to the back of the queue (rolling).",
+    "priority_source_field": "rosters[].settings.waiver_position",
+    "_evidence_file": "raw/transactions_2025_week8.json",
+    "_evidence_summary": "2025 week 8, n=33 transactions: 0 with a non-empty waiver_budget; 3 with settings.priority. Model contention as priority ordering, not bid sizing.",
+    "waiver_day_name_verified": false
+  },
+  "keeper_rules": {
+    "max_keepers": 3,
+    "cost_rule": "Keeping a player costs the round he was drafted in last year, or the round he was KEPT at last year (that round carries forward).",
+    "first_round_ineligible": true,
+    "undrafted_pickup_cost_round": 12,
+    "undrafted_pickup_rule": "A player added via free agency or waivers who was never drafted costs a 12th-round pick to keep.",
+    "max_consecutive_years": 3,
+    "deadline": null,
+    "_deadline_note": "Sleeper metadata carries keeper_deadline:'1' with no readable date. _unverified — confirm with commissioner.",
+    "strategic_note": "Every in-season waiver add carries hidden 2027 keeper equity at a 12th-round price. A claimed breakout is worth far more than identical production from a player drafted in round 3."
+  },
+  "season_phases": [
+    {
+      "name": "small_sample",
+      "weeks": [
+        1,
+        2,
+        3
+      ],
+      "default_posture": "Judge opportunity (snaps, routes, target share), not fantasy points. Do not cut good players for one-week wonders. Waiver claims should target opportunity changes, not box scores."
+    },
+    {
+      "name": "trade_window",
+      "weeks": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "default_posture": "Most aggressive phase for the trade board. Rivals have formed strong opinions off small samples — buy low and sell high now."
+    },
+    {
+      "name": "playoff_positioning",
+      "weeks": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "default_posture": "Weight weeks 15-17 schedules over season-long averages. Trade deadline is week 13 — a hard wall for consolidation moves."
+    },
+    {
+      "name": "playoffs",
+      "weeks": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "default_posture": "Streaming and matchup optimisation dominate. If elimination is likely, flip the entire objective to keeper-equity accumulation for 2027."
+    }
+  ],
+  "calendar": {
+    "regular_season_weeks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "playoff_week_start": 15,
+    "playoff_weeks": [
+      15,
+      16,
+      17
+    ],
+    "playoff_teams": 6,
+    "trade_deadline_week": 13,
+    "start_week": 1,
+    "last_regular_season_week": 14,
+    "season_start_date": "2026-08-06",
+    "_playoff_note": "playoff_week_start=15 and playoff_teams=6 confirmed from Sleeper. Week 14 is the last regular-season week; the plan doc's 'weeks 14-17 are the playoffs' is loose phrasing — week 14 is the last chance to secure a seed."
+  },
+  "trading": {
+    "pick_trading_allowed": true,
+    "trades_disabled": false,
+    "trade_review_days": 1,
+    "veto_votes_needed": 5,
+    "trade_deadline_week": 13
+  },
+  "andrew": {
+    "user_id": "1128203360286429184",
+    "display_name": "andrewroth32",
+    "roster_id": 2,
+    "team_name": null,
+    "draft_slot": 8,
+    "current_waiver_position": 4,
+    "keeper_plan": {
+      "status": "leaning, not locked on Sleeper as of 2026-08-07 (rosters[roster_id=2].keepers == null)",
+      "keeping": [
+        {
+          "player_id": "8151",
+          "name": "Kenneth Walker",
+          "pos": "RB",
+          "cost_round": 4,
+          "forfeits_overall_pick": 33,
+          "consecutive_years_if_kept": 1,
+          "final_eligible_year_if_kept": 2028
+        },
+        {
+          "player_id": "11563",
+          "name": "Bo Nix",
+          "pos": "QB",
+          "cost_round": 12,
+          "forfeits_overall_pick": 113,
+          "consecutive_years_if_kept": 2,
+          "final_eligible_year_if_kept": 2027
+        },
+        {
+          "player_id": "8148",
+          "name": "Jameson Williams",
+          "pos": "WR",
+          "cost_round": 14,
+          "forfeits_overall_pick": 133,
+          "consecutive_years_if_kept": 2,
+          "final_eligible_year_if_kept": 2027
+        }
+      ],
+      "passed_over": [
+        {
+          "player_id": "9493",
+          "name": "Puka Nacua",
+          "pos": "WR",
+          "cost_round": 2,
+          "note": "Ranked #2. Replaceable with the R1 pick (London/Lamb tier)."
+        },
+        {
+          "player_id": "2216",
+          "name": "Mike Evans",
+          "pos": "WR",
+          "cost_round": 4,
+          "note": "Ranked #3. Now SF WR1. Age 33, new team/QB/scheme, TD-dependent profile fits this first-down format poorly."
+        }
+      ]
+    },
+    "keeper_cost_board_2026": [
+      {
+        "player_id": "9493",
+        "name": "Puka Nacua",
+        "pos": "WR",
+        "cost_round": 2,
+        "kept_in_2025": true
+      },
+      {
+        "player_id": "8151",
+        "name": "Kenneth Walker",
+        "pos": "RB",
+        "cost_round": 4,
+        "kept_in_2025": false
+      },
+      {
+        "player_id": "2216",
+        "name": "Mike Evans",
+        "pos": "WR",
+        "cost_round": 4,
+        "kept_in_2025": false
+      },
+      {
+        "player_id": "12526",
+        "name": "Tetairoa McMillan",
+        "pos": "WR",
+        "cost_round": 5,
+        "kept_in_2025": false
+      },
+      {
+        "player_id": "7525",
+        "name": "DeVonta Smith",
+        "pos": "WR",
+        "cost_round": 6,
+        "kept_in_2025": false
+      },
+      {
+        "player_id": "1466",
+        "name": "Travis Kelce",
+        "pos": "TE",
+        "cost_round": 7,
+        "kept_in_2025": false
+      },
+      {
+        "player_id": "4018",
+        "name": "Joe Mixon",
+        "pos": "RB",
+        "cost_round": 8,
+        "kept_in_2025": false,
+        "flag": "effectively unrosterable - unsigned, chronic foot/circulation issue"
+      },
+      {
+        "player_id": "8408",
+        "name": "Jordan Mason",
+        "pos": "RB",
+        "cost_round": 10,
+        "kept_in_2025": false
+      },
+      {
+        "player_id": "11563",
+        "name": "Bo Nix",
+        "pos": "QB",
+        "cost_round": 12,
+        "kept_in_2025": true
+      },
+      {
+        "player_id": "7588",
+        "name": "Javonte Williams",
+        "pos": "RB",
+        "cost_round": 13,
+        "kept_in_2025": false
+      },
+      {
+        "player_id": "8148",
+        "name": "Jameson Williams",
+        "pos": "WR",
+        "cost_round": 14,
+        "kept_in_2025": true
+      },
+      {
+        "player_id": "12527",
+        "name": "Ashton Jeanty",
+        "pos": "RB",
+        "cost_round": 1,
+        "kept_in_2025": false,
+        "eligible": false,
+        "flag": "1st-round pick - NOT keeper eligible"
+      }
+    ],
+    "pick_map_2026": {
+      "_basis": "Slot 8, 10 teams, snake, 16 rounds, 160 total picks. Keepers consume the pick in their cost round.",
+      "picks": [
+        {
+          "round": 1,
+          "overall": 8,
+          "status": "live"
+        },
+        {
+          "round": 2,
+          "overall": 13,
+          "status": "live"
+        },
+        {
+          "round": 3,
+          "overall": 28,
+          "status": "live"
+        },
+        {
+          "round": 4,
+          "overall": 33,
+          "status": "forfeited",
+          "reason": "Kenneth Walker keep"
+        },
+        {
+          "round": 5,
+          "overall": 48,
+          "status": "live"
+        },
+        {
+          "round": 6,
+          "overall": 53,
+          "status": "live"
+        },
+        {
+          "round": 7,
+          "overall": 68,
+          "status": "live"
+        },
+        {
+          "round": 8,
+          "overall": 73,
+          "status": "live"
+        },
+        {
+          "round": 9,
+          "overall": 88,
+          "status": "live"
+        },
+        {
+          "round": 10,
+          "overall": 93,
+          "status": "live"
+        },
+        {
+          "round": 11,
+          "overall": 108,
+          "status": "live"
+        },
+        {
+          "round": 12,
+          "overall": 113,
+          "status": "forfeited",
+          "reason": "Bo Nix keep"
+        },
+        {
+          "round": 13,
+          "overall": 128,
+          "status": "live"
+        },
+        {
+          "round": 14,
+          "overall": 133,
+          "status": "forfeited",
+          "reason": "Jameson Williams keep"
+        },
+        {
+          "round": 15,
+          "overall": 148,
+          "status": "live"
+        },
+        {
+          "round": 16,
+          "overall": 153,
+          "status": "live"
+        }
+      ],
+      "live_pick_count": 13,
+      "dead_zones": [
+        {
+          "from_overall": 28,
+          "to_overall": 48,
+          "gap": 19,
+          "cause": "R4 forfeited to Walker keep"
+        },
+        {
+          "from_overall": 108,
+          "to_overall": 128,
+          "gap": 19,
+          "cause": "R12 forfeited to Nix keep"
+        },
+        {
+          "from_overall": 128,
+          "to_overall": 148,
+          "gap": 19,
+          "cause": "R14 forfeited to Jameson Williams keep"
+        }
+      ],
+      "rule_of_thumb": "Anything needed must be secured BEFORE a dead zone, never planned for after one."
+    }
+  },
+  "teams": [
+    {
+      "roster_id": 1,
+      "user_id": "1123669553063526400",
+      "display_name": "tlekes",
+      "team_name": "Pabst Interference",
+      "is_commissioner": true,
+      "waiver_position_at_config": 10
+    },
+    {
+      "roster_id": 2,
+      "user_id": "1128203360286429184",
+      "display_name": "andrewroth32",
+      "team_name": null,
+      "is_commissioner": false,
+      "is_andrew": true,
+      "waiver_position_at_config": 4
+    },
+    {
+      "roster_id": 3,
+      "user_id": "1128898667324239872",
+      "display_name": "havicht",
+      "team_name": "Water, Barkley, and Hops",
+      "is_commissioner": false,
+      "waiver_position_at_config": 6
+    },
+    {
+      "roster_id": 4,
+      "user_id": "1129508145568686080",
+      "display_name": "jomud",
+      "team_name": null,
+      "is_commissioner": false,
+      "waiver_position_at_config": 8
+    },
+    {
+      "roster_id": 5,
+      "user_id": "603841382339108864",
+      "display_name": "LoochCarluccio",
+      "team_name": "Glizzy Guzzler",
+      "is_commissioner": false,
+      "waiver_position_at_config": 3
+    },
+    {
+      "roster_id": 6,
+      "user_id": "869724998703763456",
+      "display_name": "pdustin",
+      "team_name": "Mass General Hospital",
+      "is_commissioner": false,
+      "waiver_position_at_config": 7
+    },
+    {
+      "roster_id": 7,
+      "user_id": "870744736284196864",
+      "display_name": "PeterCrisileo",
+      "team_name": "Still at RPI",
+      "is_commissioner": false,
+      "waiver_position_at_config": 5
+    },
+    {
+      "roster_id": 8,
+      "user_id": "869654771978641408",
+      "display_name": "Edeecher",
+      "team_name": "Ethan's Younglings",
+      "is_commissioner": false,
+      "waiver_position_at_config": 9
+    },
+    {
+      "roster_id": 9,
+      "user_id": "1131700966283177984",
+      "display_name": "DannyBC1",
+      "team_name": null,
+      "is_commissioner": false,
+      "waiver_position_at_config": 1
+    },
+    {
+      "roster_id": 10,
+      "user_id": "1133830654808072192",
+      "display_name": "jpalmeri1616",
+      "team_name": "Big Mommy Milkers (UCSF)",
+      "is_commissioner": false,
+      "waiver_position_at_config": 2
+    }
+  ],
+  "nfl_bye_weeks_2026": {
+    "_status": "NOT POPULATED - must be filled before week 4",
+    "_why_empty": "Sleeper exposes no bye-week endpoint and the 5MB /players/nfl dump (which does not carry byes either) is unreachable through WebFetch. Deliberately left empty rather than guessed: a wrong bye week silently produces a zero-point starter. state_builder.py detects the empty map and raises an open_question instead of reporting false coverage.",
+    "_how_to_fill": "Add entries of the form \"KC\": 10 for all 32 NFL team abbreviations once the 2026 schedule is released. state_builder.py picks it up automatically with no code change.",
+    "_abbrev_note": "Use Sleeper team abbreviations (LAR, LAC, LV, JAX, WAS, ARI, ...).",
+    "byes": {}
+  },
+  "open_questions": [
+    {
+      "id": "flex_count",
+      "question": "Is FLEX really 2 slots for 2026?",
+      "status": "resolved_by_api",
+      "answer": "Sleeper roster_positions confirms 2 FLEX + 1 SUPER_FLEX. Commissioner doc disagrees but Sleeper is what the app enforces."
+    },
+    {
+      "id": "waiver_type",
+      "question": "Priority or FAAB?",
+      "status": "resolved_by_api",
+      "answer": "waiver_type=1 = reverse-standings rolling priority. Verified empirically against a full real week (2025 wk8, 33 transactions, saved as raw/transactions_2025_week8.json): ZERO non-empty waiver_budget fields, and 3 claims stamped with settings.priority (0,1,2). Sleeper stamps settings.priority only on claims that consumed priority. Not FAAB.",
+      "evidence_file": "raw/transactions_2025_week8.json"
+    },
+    {
+      "id": "waiver_clock",
+      "question": "Exact processing clock time for waivers?",
+      "status": "open",
+      "answer": null,
+      "impact": "Determines how late the Tuesday run can fire. Assume Tuesday 18:00 ET deadline until confirmed."
+    },
+    {
+      "id": "def_scoring_fix",
+      "question": "Has the DEF scoring fix been applied?",
+      "status": "open",
+      "answer": null,
+      "impact": "yds_allow tiers still present in 2026 config; DEF totals may still be inflated. Do not trust historical DEF scoring."
+    },
+    {
+      "id": "keeper_deadline",
+      "question": "Actual keeper lock date/time?",
+      "status": "open",
+      "answer": null,
+      "impact": "Sleeper shows keeper_deadline:'1' with no date."
+    },
+    {
+      "id": "bye_weeks",
+      "question": "2026 NFL bye weeks per team?",
+      "status": "open",
+      "answer": null,
+      "impact": "Blocks bye-week coverage analysis. Fill nfl_bye_weeks_2026.byes."
+    }
+  ]
+}

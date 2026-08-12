@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Sunday Scaries &mdash; Command Dashboard</title>
+<style>
+:root{
+  --bg:#0b0f14; --panel:#151b23; --panel2:#1b232d; --line:#2a3441;
+  --tx:#e7edf4; --mut:#93a1b1; --dim:#8090a0;
+  --grn:#3fb950; --red:#f85149; --amb:#e3b341; --blu:#58a6ff; --pur:#bc8cff;
+  --tap:46px;
+}
+*{box-sizing:border-box;-webkit-text-size-adjust:100%}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--tx);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{padding-bottom:56px;overflow-x:hidden}
+.wrap{max-width:940px;margin:0 auto;padding:0 12px}
+a{color:var(--blu)}
+h1,h2,h3{margin:0;font-weight:650;line-height:1.25}
+code{background:#0d1117;border:1px solid var(--line);border-radius:4px;
+  padding:1px 5px;font-size:.85em;word-break:break-word}
+strong{color:#fff;font-weight:650}
+
+/* ---------- header ---------- */
+header{background:linear-gradient(180deg,#131a22,#0b0f14);
+  border-bottom:1px solid var(--line);padding:14px 0 10px}
+.hd-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.hd-top h1{font-size:19px;letter-spacing:.2px}
+.hd-sub{color:var(--mut);font-size:12.5px;margin-top:5px;line-height:1.45}
+.stamp{display:inline-flex;align-items:center;gap:6px;background:#0d1117;
+  border:1px solid var(--line);border-radius:999px;padding:3px 10px;
+  font-size:11.5px;color:var(--mut);margin-top:8px;margin-right:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--grn);flex:none}
+.dot.warn{background:var(--amb)} .dot.bad{background:var(--red)}
+
+/* ---------- tabs ---------- */
+nav{position:sticky;top:0;z-index:20;background:rgba(11,15,20,.97);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 12px;
+  max-width:940px;margin:0 auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;min-height:var(--tap);padding:0 15px;border-radius:10px;
+  border:1px solid var(--line);background:var(--panel);color:var(--mut);
+  font-size:13.5px;font-weight:650;letter-spacing:.6px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.tab:active{transform:scale(.97)}
+.tab[aria-selected="true"]{background:#1d3a5c;border-color:#2f6cb0;color:#fff}
+.tab .pill{background:#0d1117;border:1px solid var(--line);border-radius:999px;
+  padding:0 6px;font-size:10.5px;color:var(--mut);font-weight:600}
+.tab[aria-selected="true"] .pill{color:#cfe3ff;border-color:#2f6cb0}
+
+/* ---------- panels ---------- */
+section[role=tabpanel]{display:none;padding:14px 0 30px}
+section[role=tabpanel].on{display:block}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:13px;margin:0 0 12px;overflow-wrap:break-word;min-width:0}
+.card h2{font-size:14px;letter-spacing:.7px;text-transform:uppercase;
+  color:var(--mut);margin-bottom:10px;display:flex;align-items:center;
+  gap:8px;flex-wrap:wrap}
+.card h3{font-size:14.5px;margin:14px 0 7px}
+.card h3:first-child{margin-top:0}
+p{margin:0 0 9px} p:last-child{margin-bottom:0}
+.mut{color:var(--mut)} .dim{color:var(--dim);font-size:12.5px}
+.small{font-size:12.5px}
+
+.badge{display:inline-block;border-radius:6px;padding:2px 7px;font-size:11px;
+  font-weight:700;letter-spacing:.4px;white-space:nowrap;border:1px solid}
+.b-grn{color:#8ee79b;border-color:#2b6a37;background:#12281a}
+.b-red{color:#ffb1ab;border-color:#79302c;background:#2b1513}
+.b-amb{color:#f5d98a;border-color:#7a601f;background:#2a2210}
+.b-blu{color:#a9d1ff;border-color:#2b5580;background:#111f30}
+.b-pur{color:#dcc4ff;border-color:#5b3f86;background:#1f1630}
+.b-gry{color:var(--mut);border-color:var(--line);background:#10161d}
+
+.nodata{border:1px dashed #46525f;background:#12181f;border-radius:10px;
+  padding:12px;color:var(--mut);font-size:13.5px}
+.nodata b{display:block;color:var(--amb);font-size:11.5px;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:6px}
+.warnbox{border:1px solid #6b4a10;background:#221a09;border-radius:10px;
+  padding:11px;font-size:13px;color:#f0dcae;margin-bottom:12px}
+.warnbox b{color:var(--amb);display:block;font-size:11.5px;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:6px}
+
+/* ---------- responsive tables: no horizontal scroll, ever ---------- */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);
+  vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+th{color:var(--mut);font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;
+  font-weight:650}
+tbody tr:last-child td{border-bottom:0}
+@media (max-width:700px){
+  table,thead,tbody,tr,td{display:block;width:100%}
+  thead{position:absolute;left:-9999px}
+  tbody tr{border:1px solid var(--line);border-radius:10px;margin-bottom:9px;
+    background:var(--panel2);padding:3px 0}
+  td{border-bottom:1px solid #222c37;padding:7px 11px}
+  tr td:last-child{border-bottom:0}
+  td:before{content:attr(data-l);display:block;color:var(--dim);font-size:10.5px;
+    letter-spacing:.7px;text-transform:uppercase;margin-bottom:2px}
+  td[data-l=""]:before{display:none}
+}
+
+/* ---------- pick map ---------- */
+.picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:7px}
+.pk{border:1px solid var(--line);border-radius:10px;background:var(--panel2);
+  padding:8px 6px;text-align:center}
+.pk .rd{font-size:10.5px;color:var(--dim);letter-spacing:.6px}
+.pk .ov{font-size:20px;font-weight:700;line-height:1.15}
+.pk .st{font-size:10px;margin-top:3px;letter-spacing:.3px}
+.pk.live{border-color:#2b6a37}.pk.live .ov{color:#8ee79b}
+.pk.live .st{color:#5f9c6b}
+.pk.dead{border-color:#79302c;background:#1d1211}.pk.dead .ov{color:#ff9d95}
+.pk.dead .st{color:#c0736c}
+.gapbar{display:flex;align-items:center;gap:8px;border:1px solid #7a601f;
+  background:#241d0d;border-radius:9px;padding:8px 10px;margin:8px 0;font-size:13px}
+.gapbar .n{font-size:17px;font-weight:700;color:var(--amb);flex:none}
+
+.kv{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0}
+.kv div{background:var(--panel2);border:1px solid var(--line);border-radius:9px;
+  padding:7px 10px;font-size:12.5px;min-width:78px}
+.kv span{display:block;color:var(--dim);font-size:10.5px;letter-spacing:.6px;
+  text-transform:uppercase}
+.kv b{font-size:16px;font-weight:700}
+
+.slot{display:flex;align-items:center;gap:9px;padding:9px 4px;
+  border-bottom:1px solid var(--line)}
+.slot:last-child{border-bottom:0}
+.slot .sl{flex:0 0 62px;font-size:10.5px;font-weight:700;letter-spacing:.6px;
+  color:var(--mut);text-transform:uppercase}
+.slot .nm{flex:1 1 auto;min-width:0}
+.slot .nm b{display:block;font-size:14.5px;word-break:break-word}
+.slot .nm .meta{color:var(--dim);font-size:11.5px}
+.slot .rt{flex:0 0 auto;text-align:right;display:flex;flex-direction:column;
+  align-items:flex-end;gap:3px}
+
+.bars{margin-top:6px}
+.bar{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12.5px}
+.bar .lb{flex:0 0 38px;color:var(--mut);font-weight:650;font-size:11.5px}
+.bar .tr{flex:1 1 auto;height:7px;background:#0d1117;border-radius:4px;
+  border:1px solid var(--line);overflow:hidden}
+.bar .fl{height:100%;background:linear-gradient(90deg,#2f6cb0,#58a6ff)}
+.bar .fl.hi{background:linear-gradient(90deg,#8a3a2e,#f85149)}
+.bar .fl.md{background:linear-gradient(90deg,#7a601f,#e3b341)}
+.bar .vl{flex:0 0 34px;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
+
+details{border:1px solid var(--line);border-radius:10px;background:var(--panel2);
+  margin:8px 0;overflow:hidden}
+summary{padding:11px 12px;min-height:var(--tap);display:flex;align-items:center;
+  cursor:pointer;font-size:13.5px;font-weight:650;color:var(--tx);
+  list-style:none;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"›";display:inline-block;margin-right:9px;color:var(--blu);
+  font-size:19px;line-height:1;transform:rotate(0);transition:transform .15s}
+details[open] summary:before{transform:rotate(90deg)}
+details .bd{padding:0 12px 12px;font-size:13.5px}
+.opp{margin-bottom:10px}
+.opp .hd{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.opp .hd b{font-size:15px}
+ul.tight{margin:6px 0;padding-left:19px} ul.tight li{margin:3px 0}
+.rulelist{counter-reset:r;list-style:none;padding:0;margin:0}
+.rulelist li{border-bottom:1px solid var(--line);padding:9px 0;font-size:13.5px}
+.rulelist li:last-child{border-bottom:0}
+.mono{font-variant-numeric:tabular-nums}
+footer{color:var(--dim);font-size:11.5px;text-align:center;padding:18px 12px 26px;
+  line-height:1.6}
+.hr{height:1px;background:var(--line);margin:13px 0}
+.act{background:linear-gradient(180deg,#1a2a1c,#141d16);border:1px solid #2b6a37;
+  border-radius:12px;padding:12px;margin:12px 0 0}
+.act h2{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8ee79b;
+  margin-bottom:8px}
+.act ol{margin:0;padding-left:22px}
+.act li{padding:5px 0;font-size:14px;border-bottom:1px solid #22331f}
+.act li:last-child{border-bottom:0}
+.act .dl{display:block;color:var(--amb);font-size:11.5px;margin-top:2px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="hd-top"><h1 id="hTitle">Sunday Scaries</h1><span class="badge b-blu" id="hPhase">&nbsp;</span></div>
+  <div class="hd-sub" id="hSub"></div>
+  <div id="hStamps"></div>
+</div></header>
+
+<div class="wrap"><div id="actionCard"></div></div>
+
+<nav><div class="tabs" id="tabs" role="tablist"></div></nav>
+
+<main class="wrap" id="main"></main>
+
+<footer id="foot"></footer>
+
+<script id="payload" type="application/json">{"build":{"generated_at":"2026-08-08T02:57:25+00:00","builder":"build_dashboard.py","state_file":"/home/claude/sunday_scaries/system/state/week_0.json","state_generated_at":"2026-08-08T02:35:39+00:00","week":0,"season":"2026","season_phase":{"name":"preseason","weeks":[],"default_posture":"Draft prep and keeper decisions. No lineup or waiver activity yet."},"league_status":"pre_draft","league_name":"Sunday Scaries","degraded":true,"state_warnings":["Sleeper reports week 0 (preseason). Building a preseason snapshot; there is no lineup to set yet.","every team is 0-0; standings order is PF-only and not meaningful yet","no previous state at /home/claude/sunday_scaries/system/state/week_-1.json; roster_diff will be empty (expected on the first run)"],"sources":{"loaded":["league.json","users.json","rosters.json","state_nfl.json"],"missing":["trending_add.json","transactions_week0.json"],"unparseable":[],"players_cache":{"total_ids":222,"named":222,"unresolved":0,"stale_rostered":104,"stale_rostered_ids":["10222","10229","10236","11560","11564","11565","11566","11584","11604","11620","11624","11628","11631","11632","11635","11655","12457","12481","12489","12507","12508","12512","12514","12518","12519","12522","12529","1373","2133","2449","3163","3198","3214","3294","4033","4034","4037","4046","4199","421","4217","4866","4881","4892","4943","4983","4984","5012","5022","5045","5844","5846","5850","5859","5872","5892","5927","5947","5967","6770","6786","6790","6794","6797","6801","6804","6813","6819","6904","7049","7090","7523","7526","7528","7543","7547","7553","7564","7569","7611","8110","8112","8130","8134","8137","8138","8144","8146","8150","8155","8183","8210","8228","9221","9224","9226","9228","9484","9488","9509","96","9756","9758","9997"]}},"open_questions":["2026 NFL bye weeks are not populated in league_config.json (nfl_bye_weeks_2026.byes). Bye-week coverage cannot be computed until they are. Deliberately not guessed.","[waiver_clock] Exact processing clock time for waivers? (impact: Determines how late the Tuesday run can fire. Assume Tuesday 18:00 ET deadline until confirmed.)","[def_scoring_fix] Has the DEF scoring fix been applied? (impact: yds_allow tiers still present in 2026 config; DEF totals may still be inflated. Do not trust historical DEF scoring.)","[keeper_deadline] Actual keeper lock date/time? (impact: Sleeper shows keeper_deadline:'1' with no date.)","[bye_weeks] 2026 NFL bye weeks per team? (impact: Blocks bye-week coverage analysis. Fill nfl_bye_weeks_2026.byes.)","104 rostered player(s) still carry draft-vintage team/injury data and have never been refreshed from GET /v1/players/nfl/{id}. Their NFL team may be a full season stale (this is how Mike Evans read as TB after signing with SF). Run `python3 players_cache.py stale --roster-file raw/rosters.json` for the list, then fetch_manifest.md step 7."],"report_path":null,"synthesis_file":null,"build_warnings":[]},"action_card":[],"standings":[{"roster_id":1,"owner":"tlekes","team_name":"Pabst Interference","wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":10,"total_moves":0,"is_andrew":false,"rank":1,"playoff_position":"in"},{"roster_id":2,"owner":"andrewroth32","team_name":null,"wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":4,"total_moves":0,"is_andrew":true,"rank":2,"playoff_position":"in"},{"roster_id":3,"owner":"havicht","team_name":"Water, Barkley, and Hops","wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":6,"total_moves":0,"is_andrew":false,"rank":3,"playoff_position":"in"},{"roster_id":4,"owner":"jomud","team_name":null,"wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":8,"total_moves":0,"is_andrew":false,"rank":4,"playoff_position":"in"},{"roster_id":5,"owner":"LoochCarluccio","team_name":"Glizzy Guzzler","wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":3,"total_moves":0,"is_andrew":false,"rank":5,"playoff_position":"in"},{"roster_id":6,"owner":"pdustin","team_name":"Mass General Hospital","wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":7,"total_moves":0,"is_andrew":false,"rank":6,"playoff_position":"in"},{"roster_id":7,"owner":"PeterCrisileo","team_name":"Still at RPI","wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":5,"total_moves":0,"is_andrew":false,"rank":7,"playoff_position":"out"},{"roster_id":8,"owner":"Edeecher","team_name":"Ethan's Younglings","wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":9,"total_moves":0,"is_andrew":false,"rank":8,"playoff_position":"out"},{"roster_id":9,"owner":"DannyBC1","team_name":null,"wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":1,"total_moves":0,"is_andrew":false,"rank":9,"playoff_position":"out"},{"roster_id":10,"owner":"jpalmeri1616","team_name":"Big Mommy Milkers (UCSF)","wins":0,"losses":0,"ties":0,"pf":0.0,"pa":0.0,"waiver_priority":2,"total_moves":0,"is_andrew":false,"rank":10,"playoff_position":"out"}],"draft":{"slot":8,"num_teams":10,"rounds":16,"draft_datetime_et":"2026-08-28T19:30:00-04:00","days_until":20.9,"picks":[{"round":1,"overall":8,"status":"live","reason":null},{"round":2,"overall":13,"status":"live","reason":null},{"round":3,"overall":28,"status":"live","reason":null},{"round":4,"overall":33,"status":"forfeited","reason":"Kenneth Walker keep"},{"round":5,"overall":48,"status":"live","reason":null},{"round":6,"overall":53,"status":"live","reason":null},{"round":7,"overall":68,"status":"live","reason":null},{"round":8,"overall":73,"status":"live","reason":null},{"round":9,"overall":88,"status":"live","reason":null},{"round":10,"overall":93,"status":"live","reason":null},{"round":11,"overall":108,"status":"live","reason":null},{"round":12,"overall":113,"status":"forfeited","reason":"Bo Nix keep"},{"round":13,"overall":128,"status":"live","reason":null},{"round":14,"overall":133,"status":"forfeited","reason":"Jameson Williams keep"},{"round":15,"overall":148,"status":"live","reason":null},{"round":16,"overall":153,"status":"live","reason":null}],"live_overalls":[8,13,28,48,53,68,73,88,93,108,128,148,153],"forfeited":[{"round":4,"overall":33,"status":"forfeited","reason":"Kenneth Walker keep"},{"round":12,"overall":113,"status":"forfeited","reason":"Bo Nix keep"},{"round":14,"overall":133,"status":"forfeited","reason":"Jameson Williams keep"}],"gaps":[{"from":8,"to":13,"nominal":4,"dead_zone":false},{"from":13,"to":28,"nominal":14,"dead_zone":false},{"from":28,"to":48,"nominal":19,"dead_zone":true},{"from":48,"to":53,"nominal":4,"dead_zone":false},{"from":53,"to":68,"nominal":14,"dead_zone":false},{"from":68,"to":73,"nominal":4,"dead_zone":false},{"from":73,"to":88,"nominal":14,"dead_zone":false},{"from":88,"to":93,"nominal":4,"dead_zone":false},{"from":93,"to":108,"nominal":14,"dead_zone":false},{"from":108,"to":128,"nominal":19,"dead_zone":true},{"from":128,"to":148,"nominal":19,"dead_zone":true},{"from":148,"to":153,"nominal":4,"dead_zone":false}],"keepers":[{"name":"Kenneth Walker","player_id":"8151","pos":"RB","cost_round":4,"forfeits_overall_pick":33,"consecutive_years_if_kept":1,"years_remaining_after":2,"final_eligible_year_if_kept":2028},{"name":"Bo Nix","player_id":"11563","pos":"QB","cost_round":12,"forfeits_overall_pick":113,"consecutive_years_if_kept":2,"years_remaining_after":1,"final_eligible_year_if_kept":2027},{"name":"Jameson Williams","player_id":"8148","pos":"WR","cost_round":14,"forfeits_overall_pick":133,"consecutive_years_if_kept":2,"years_remaining_after":1,"final_eligible_year_if_kept":2027}],"keeper_status":"leaning, not locked on Sleeper as of 2026-08-07 (rosters[roster_id=2].keepers == null)","passed_over":[{"player_id":"9493","name":"Puka Nacua","pos":"WR","cost_round":2,"note":"Ranked #2. Replaceable with the R1 pick (London/Lamb tier)."},{"player_id":"2216","name":"Mike Evans","pos":"WR","cost_round":4,"note":"Ranked #3. Now SF WR1. Age 33, new team/QB/scheme, TD-dependent profile fits this first-down format poorly."}],"needs":{"filled_by_keepers":[{"slot":"RB","player":"Kenneth Walker","pos":"RB"},{"slot":"QB","player":"Bo Nix","pos":"QB"},{"slot":"WR","player":"Jameson Williams","pos":"WR"}],"unfilled_starters":["RB","WR","TE","FLEX","FLEX","SUPER_FLEX","DEF"],"bench_slots":6,"picks_available":13,"spots_to_fill":13},"board":{"available":true,"path":"/home/claude/sunday_scaries/draft_board_2026.md","bytes":62318,"tiers":{"headers":["Tier","Players (live in the pool)","Maps to Andrew's picks"],"rows":[["**T1 — Untouchable**","Ja'Marr Chase WR (–), **Puka Nacua WR ↑↑**, Josh Allen QB ↑↑, Lamar Jackson QB ↑↑, Christian McCaffrey RB ↑↑, Joe Burrow QB **↓** (zero rush equity)","**Gone by pick 6.** Not yours."],["**T2 — Andrew's pick-8/13 window**","**Ashton Jeanty RB ↑↑** (55 catches as a rookie), **Jonathan Taylor RB ↑**, CeeDee Lamb WR (–), **Trey McBride TE ↑↑** (169 tgts — biggest single-position edge on the board), Jalen Hurts QB ↑↑, Drake London WR ↑ (37.4% first-read rate), Justin Herbert QB **↓**, Trevor Lawrence QB ↑ (359 rush yds/9 rush TD)","**p8, p13**"],["**T3 — Late R2 / R3**","A.J. Brown WR (–), Malik Nabers WR (–, ACL), **Javonte Williams RB ↑↑**, Breece Hall RB (–), Josh Jacobs RB (–, conduct risk), De'Von Achane RB **↓**, **Ladd McConkey WR ↑↑**, **DeVonta Smith WR ↑↑** (now PHI alpha), **Chris Olave WR ↑**, Rashee Rice WR ↑, Garrett Wilson WR (–), Tee Higgins WR (–), **Emeka Egbuka WR ↑↑**, Patrick Mahomes QB **↓** (ACL, lost scramble equity), **Kyler Murray QB ↑↑**, Brock Purdy QB ↓, Quinshon Judkins RB **↓↓** (~30 catches, TD-dependent), Bucky Irving RB ↑","**p28** (and the tail of it reaches **p48**)"],["**T4 — R4/R5 equivalent**","Matthew Stafford QB ↓↓, Jared Goff QB ↓↓, Jordan Love QB (–), C.J. Stroud QB (–), Baker Mayfield QB (–), J.J. McCarthy QB (–), **Cam Ward QB ↑**, **Colston Loveland TE ↑↑**, Tyler Warren TE **↓** (QB-dependent, big-play reliant), **Kyle Pitts TE ↑** (118 tgts), Sam LaPorta TE ↑, Tucker Kraft TE (–, ACL return), **DJ Moore WR ↑**, Jaylen Waddle WR ↑, Davante Adams WR ↓, **Mike Evans WR ↓**, **Tetairoa McMillan WR ↓** (contested-catch profile), Chuba Hubbard RB (–), Cam Skattebo RB ↑ (if ankle clears), D'Andre Swift RB (–), TreVeyon Henderson RB (–), Rhamondre Stevenson RB (–)","**p48, p53**"],["**T5 — R6/R7**","**Travis Kelce TE ↑↑** (your own R7 discard; still elite catch-rate chain-mover), Dallas Goedert TE **↓** (11 TD = TD-spike dependent), T.J. Hockenson TE (–), **Jake Ferguson TE ↑**, Dalton Kincaid TE ↑, **David Njoku TE ↑**, **Chris Godwin WR ↑↑**, **Jakobi Meyers WR ↑↑**, **Jayden Reed WR ↑↑**, Jordan Addison WR ↓, Luther Burden WR (–), **Rome Odunze WR ↓↓** (29.3% deep-tgt rate), **George Pickens WR ↓**, **Marvin Harrison Jr. WR ↓↓**, **Brian Thomas Jr. WR ↓↓**, **DK Metcalf WR ↓↓**, **Courtland Sutton WR ↓↓**, **Xavier Worthy WR ↓↓**, **Jaylen Warren RB ↑↑** (Rodgers checkdown back), Tony Pollard RB ↑, Aaron Jones RB ↑, Joe Mixon RB (–)","**p53, p68, p73**"],["**T6 — R8/R9**","**Michael Pittman WR ↑**, **Stefon Diggs WR ↑**, Deebo Samuel WR (–), Jauan Jennings WR ↑, Darnell Mooney WR ↓, **Woody Marks RB ↑↑** (inherits Mixon's HOU passing-down role), RJ Harvey RB (–), Jordan Mason RB (–), Najee Harris RB ↓, **Alvin Kamara RB ↓**, Tyrone Tracy RB (–), Bhayshul Tuten RB ↓, Rico Dowdle RB (–), Chig Okonkwo TE ↑, Hunter Henry TE (–), Harold Fannin TE ↑","**p73, p88**"],["**T7 — R9/R10**","**Josh Downs WR ↑↑** (80% slot rate — highest in the NFL, purest format asset available this late), **Wan'Dale Robinson WR ↑↑** (185 catches/33 gms), Ricky Pearsall WR (–), Matthew Golden WR (–), **Quentin Johnston WR ↓↓**, Christian Watson WR ↓↓, **Justice Hill RB ↑↑** (receiving handcuff), **Jordan James RB ↑↑** (CMC handcuff — best handcuff in football), **Samaje Perine RB ↑**, Blake Corum RB (–), Isaiah Likely TE ↓, Brenton Strange TE ↑, Juwan Johnson TE ↑","**p88, p93**"],["**T8 — R11**","**Tyler Shough QB ↑** (QB12 pace from Wk9 on), **Malik Willis QB ↑↑** (44.8 rush yds/gm as a starter), Geno Smith QB ↓, Bryce Young QB (–), Daniel Jones QB ↑, Jaydon Blue RB (–), Kyle Monangai RB (–), Isiah Pacheco RB (–), Zach Charbonnet RB (–), DJ Giddens RB (–), Jalen Coker WR ↑ (10.1 HPPR final 9 gms), Jonathon Brooks RB (–)","**p108**"],["**T9 — R13/R15**","**Jalen Nailor WR ↑**, **Antonio Williams WR ↑** (2.27 YPRR, vacated WAS slot), **Jaylin Noel WR ↑**, **Jayden Higgins WR ↑** (24% TPRR down the stretch), Ryan Flournoy WR ↓, Alec Pierce WR ↓↓, **Greg Dulcich TE ↑↑** (2.31 YPRR, gutted MIA WR room), Dalton Schultz TE ↓, Cade Otton TE ↓, AJ Barner TE (–), Tank Bigsby RB ↓, MarShawn Lloyd RB (–), Brian Robinson RB (–), Jaylen Wright RB (–), **Justin Fields QB ↑↑** (Mahomes handcuff — top-15 format asset the day Mahomes' knee goes)","**p128, p148**"],["**T10 — R16 / DEF**","**Houston DST**, **Seattle DST**, LA Rams DST, Denver DST (schedule risk), Detroit DST (easiest Wk1–5 slate), Baltimore DST, LAC DST · Fernando Mendoza QB stash, Anthony Richardson QB stash","**p153**"]]},"pick_targets":{"headers":["Pick","Rd","Realistic pool at that pick","**PRIMARY TARGET**","Fallback A","Fallback B","Position priority"],"rows":[["**8**","1","4–5 QBs, Chase, Nacua, CMC gone. Left: Jeanty, J. Taylor, Lamb, London, McBride, Herbert, Lawrence, A.J. Brown, possibly Hurts","**Ashton Jeanty (RB)** — 321 touches + 55 catches as a rookie in a bad situation, better OL in Yr2; dual rush+rec first-down engine. This is the last pick where a true bell-cow is available.","**Jonathan Taylor (RB)**","**CeeDee Lamb (WR)**","**RB > elite WR > TE > QB.** If Chase or Nacua improbably falls, take him instantly."],["**13**","2","~8 more picks gone, ~3 live. Left: McBride (if he survives), Lamb/London, A.J. Brown, Nabers, Breece, Javonte, Herbert/Lawrence","**Trey McBride (TE)** — the only 160-target TE in the pool, 7 rival teams have zero TE, and the FD bonus makes him a WR1 in scoring (~250 pts vs. ~150 for TE10). **Largest positional edge on the entire board.**","**CeeDee Lamb / Drake London (WR)**","**Javonte Williams (RB)** — DAL bell-cow, 16.5+ HPPR in 6 of 9 games","**TE > WR > RB > QB.** If McBride is gone at 13, do NOT reach for TE2 here — take the WR and get Loveland/Pitts/Kelce at 48/53."],["**28**","3","Only 6 live picks in R3. ~10–11 QBs gone. Left: Purdy, K. Murray, Stafford, Goff, Love, Stroud; McConkey, DeVonta Smith, Olave, Egbuka, Higgins; Judkins, Irving, Hubbard","**Kyler Murray (QB)** if live — MIN job w/ Jefferson/Addison/Hockenson + 30–40 rush yds/gm floor the format double-pays. Else **Trevor Lawrence / Justin Herbert / Patrick Mahomes / Brock Purdy**, in that order.","**Ladd McConkey (WR ↑↑)**","**DeVonta Smith (WR ↑↑)** — PHI's true alpha now that A.J. Brown is in NE","**QB > WR > RB.** This is your QB deadline-minus-one. See §5."],["**48**","5","~14 QBs gone. Left: Loveland, Pitts, LaPorta, Kraft, Kelce; DJ Moore, Waddle, Adams, Evans, Burden, Godwin; Pollard, A. Jones, Warren, Skattebo, Swift","**Best WR2 available — DJ Moore (↑) or Jaylen Waddle (↑)**. If you punted QB at 28: **Cam Ward / Baker Mayfield / J.J. McCarthy — HARD DEADLINE, take one.**","**Chris Godwin (WR ↑↑)**","**Colston Loveland (TE ↑↑)** if McBride was missed at 13","**WR2 (or QB if punted) > TE-if-missed > RB**"],["**53**","6","3.4 live picks after 48 — treat as a package with p48","**RB2/FLEX — Jaylen Warren (RB ↑↑)** or **Tony Pollard (RB ↑)**. Warren is the designated Rodgers checkdown back: pure format gold.","**Cam Skattebo (RB ↑)** if ankle cleared","**Travis Kelce (TE ↑↑)** if TE still open","**RB > TE > WR.** Both starting FLEX slots must be filled by end of 53 — the next real gap is 13.3 live picks."],["**68**","7","⚠️ **Full 10-team field, zero keepers in R7 — most competitive round of the mid-draft.** Left: Meyers, Godwin, Reed, Addison, Burden, Pittman, Diggs; Ferguson, Kincaid, Njoku, Hockenson; A. Jones, Harvey, Mason, Marks","**Jakobi Meyers (WR ↑↑)** or **Jayden Reed (WR ↑↑)** — high-floor slot chain-movers, 2–3 rounds of value vs. standard ADP","**Michael Pittman Jr. (WR ↑)**","**Jake Ferguson / David Njoku (TE ↑)** as TE2","**WR3 > RB depth > TE2**"],["**73**","8","7 live picks in R8 — favorable","**Woody Marks (RB ↑↑)** — inherits Mixon's HOU early-down + passing-down role; a genuine format riser at a bench price","**Stefon Diggs (WR ↑)**","**Rico Dowdle / Aaron Jones (RB)**","**RB depth > WR > TE2**"],["**88**","9","Left: Downs, Wan'Dale, Pearsall, Jennings, Golden; Okonkwo, H. Henry, Fannin, Strange; Tracy, Tuten, Harvey","**Josh Downs (WR ↑↑)** — 80% slot rate, the highest in the NFL. In a 0.5-FD league this is the best value on the board relative to ADP.","**Wan'Dale Robinson (WR ↑↑)**","**Chig Okonkwo (TE ↑)** — clear WAS #2 target with 171 vacated targets","**WR possession > TE2 > RB**"],["**93**","10","3.4 live picks after 88 — package with p88","**Jordan James (RB ↑↑)** — the single most valuable handcuff in football behind CMC's injury history; standalone flex value if CMC misses time","**Justice Hill (RB ↑↑)** — receiving back behind a 32-yr-old Henry","**Samaje Perine (RB ↑)**","**Pass-catching handcuff RB > WR > QB3**"],["**108**","11","⚠️ **Last pick before a 14.7-live-pick dead zone.** Left: Shough, Willis, Geno, Bryce Young, D. Jones; Blue, Monangai, Pacheco, Corum, Charbonnet; Coker, Nailor","**Tyler Shough (QB)** or **Malik Willis (QB ↑↑)** — dual purpose: bye-week SUPERFLEX insurance **and a trade chip**, because four rival teams (havicht, Mass General, DannyBC1, Big Mommy) will be one injury from a dead SF slot all season","**Jalen Coker (WR ↑)** — 10.1 HPPR over his final 9 games","**Blake Corum / Isiah Pacheco (RB)**","**QB3-as-asset > WR upside > RB handcuff**"],["**128**","13","⚠️ **Before the longest gap of the draft (15.7 live picks).** 7 live picks in R13. Left: Nailor, A. Williams, Noel, J. Higgins, Flournoy; Dulcich, Strange, Barner; Brooks, Bigsby, Lloyd","**Jayden Higgins or Jaylin Noel (WR ↑)** — Yr-2 Texans climbing a short-passing target tree; Higgins hit a 24% TPRR down the stretch","**Antonio Williams (WR ↑)** — 2.27 YPRR into a vacated WAS slot role","**Jonathon Brooks (RB)** — fully healthy, glowing camp, behind a Hubbard who fell RB15→RB38","**WR upside > RB lottery > TE2**"],["**148**","15","9 live picks in R15. Thin.","**Greg Dulcich (TE ↑↑)** — 2.31 YPRR (most efficient TE per snap) into a gutted Miami WR room; your TE2","**Brenton Strange (TE ↑)** — TE12 over a 7-game stretch at a waiver price","**Justin Fields (QB ↑↑)** — the best \"if he plays\" asset in the league; Mahomes' knee is one hit from making him a top-15 format QB","**TE2 > QB stash > RB dart**"],["**153**","16","Full 10-team field, ~8 DSTs still live","**Houston DST** — DST2 in 2025, 3rd-fewest PPG allowed, projects DST1","**Seattle DST** — highest-scoring DST in 2025 (17.2 PPG allowed), opens vs. NE/ARI","**Detroit DST** — easiest Wk1–5 schedule in football","**DEF.** Never earlier. Stream from Week 1 waivers anyway."]]},"depletion":{"headers":["Rd","Picks consumed by keepers","**Live picks in round**","Andrew's pick","Environment"],"rows":[["1","0","**10**","**p8**","Full field. Fight for it."],["2","4 (Glizzy, MassGen, Ethan's, Danny)","**6**","**p13**","**RICHEST round in the draft**"],["3","4 (Pabst, havicht, RPI, Danny)","**6**","**p28**","**RICHEST round in the draft**"],["4","4 (**Andrew**, jomud, Glizzy, MassGen)","6","— (forfeit)","You're not here"],["5","2 (jomud, Ethan's)","8","**p48**","Slightly thin field"],["6","1 (Big Mommy)","9","**p53**","Near-full field"],["7","**0**","**10**","**p68**","**Full field — most competitive mid-round**"],["8","3 (havicht, RPI, Big Mommy)","7","**p73**","Favorable"],["9","2 (havicht, Big Mommy)","8","**p88**","Neutral"],["10","1 (Danny)","9","**p93**","Near-full"],["11","1 (Pabst)","9","**p108**","Near-full"],["12","2 (**Andrew**, Ethan's)","8","— (forfeit)","You're not here"],["13","3 (jomud, Glizzy, RPI)","7","**p128**","Favorable"],["14","2 (**Andrew**, MassGen)","8","— (forfeit)","You're not here"],["15","1 (Pabst)","9","**p148**","Near-full"],["16","**0**","**10**","**p153**","Full field"]]},"real_waits":{"headers":["Gap","Nominal picks","**Expected LIVE picks between**","Reality"],"rows":[["p8 → p13","4","**3.2**","Effectively back-to-back"],["p13 → p28","14","**8.4**","Much softer than it looks (R2/R3 are 60% live)"],["**p28 → p48**","**19**","**12.8**","Real, but not the worst"],["p48 → p53","4","3.4","Back-to-back"],["**p53 → p68**","**14**","**13.3**","⚠️ **As bad as the \"dead zone\" — R7 has ZERO keepers**"],["p68 → p73","4","3.4","Back-to-back"],["p73 → p88","14","10.5","Moderate"],["p88 → p93","4","3.4","Back-to-back"],["p93 → p108","14","12.6","Moderate"],["**p108 → p128**","**19**","**14.7**","⚠️ Real dead zone"],["**p128 → p148**","**19**","**15.7**","⚠️ **Longest actual wait of the draft**"],["p148 → p153","4","3.8","Back-to-back"]]},"seat_map":{"headers":["Slot","Team","QBs kept","Biggest hole"],"rows":[["1","Water, Barkley, and Hops (havicht)","**0**","QB×2, WR×0"],["2","Big Mommy Milkers (jpalmeri)","**0**","QB×2 **and** RB×0 — most cornered team"],["3","jomud","1 (Dak)","QB2, WR"],["4","Mass General (pdustin)","**0**","QB×2"],["5","Pabst Interference (tlekes)","1 (Rodgers)","QB2, TE"],["6","DannyBC1","**0**","QB×2"],["7","Still at RPI (PeterCrisileo)","1 (Maye)","QB2, RB2"],["**8**","**ANDREW**","1 (Nix)","TE, RB2, WR2"],["9","Glizzy Guzzler (Looch)","**2 — DONE**","**TE, WR — will never bid on a QB**"],["10","Ethan's Younglings (Edeecher)","**2 — DONE**","**WR×0, TE×0 — will never bid on a QB**"]]},"true_pick_map":{"headers":["Your pick","Rd","Live picks until your next","Live picks that occur between","Character"],"rows":[["**8**","1","2","9, 10 only — 11 and 12 are forfeits","**Effectively back-to-back with 13**"],["**13**","2","8","14, 16, 18, 19, 20, 22, 23, 24","Softer than it looks"],["**28**","3","**14**","29–31, 34–36, 39–42, 44–47","⚠️ Dead zone #1"],["**48**","5","3","49, 51, 52","Back-to-back with 53"],["**53**","6","**13**","54–58, 60–67","⚠️ Hidden dead zone — R7 has ZERO forfeits"],["**68**","7","4","69, 70, 71, 72","Back-to-back with 73"],["**73**","8","9","75–78, 83–87","Moderate"],["**88**","9","4","89, 90, 91, 92","Back-to-back with 93"],["**93**","10","12","94, 96–104, 106, 107","Moderate"],["**108**","11","**15**","109–110, R12 ×8, 121–126","⚠️ Dead zone #3"],["**128**","13","**15**","130, R14 ×8, 141–147","⚠️ **Longest wait of the draft**"],["**148**","15","4","149, 150, 151, 152","Back-to-back with 153"],["**153**","16","—","—","Last pick"]]},"checklist":{"headers":["Before pick","Must own"],"rows":[["**28**","Bell-cow RB · Elite TE (or explicit punt) · **QB2**"],["**53**","Complete starting lineup minus DEF: RB2, WR2, both FLEX bodies"],["**108**","3 RBs, 4 WRs, TE1, QB2 — plus the QB3 trade chip taken AT 108"],["**128**","All upside swings made; 148/153 reserved for TE2 + DEF"]]},"pivot_triggers":{"headers":["If TWO of these are gone…","…at this pick","Then pivot to"],"rows":[["CMC · Jeanty · Jonathan Taylor","**8**","McBride, or an elite QB if McBride is also gone"],["McBride · a bell-cow RB · Chase/Nacua","**8**","Elite QB — Hurts > Lamar > Lawrence"],["Kyler Murray · Lawrence · Herbert","**28**","Take Mahomes/Purdy/Love immediately — the tier is collapsing"],["Loveland · Tyler Warren · Pitts","**48**","Take LaPorta or Kraft NOW; do not wait for Kelce at 53"],["Jaylen Warren · Pollard · Skattebo","**53**","Take Aaron Jones or D'Andre Swift — you need a FLEX body, not the perfect one"],["Meyers · Reed · Godwin","**68**","Pittman or Diggs — same archetype, one round later"],["Downs · Wan'Dale · Pearsall","**88**","Chig Okonkwo as TE2 instead; the slot-WR tier is done"]]},"dead_zone_notes":[{"title":"Dead zone #1: p28 → p48 (nominal 19 · **12.8 live picks**)","body":["**Must be secured BEFORE pick 28 closes:**","**What you can safely leave until p48/53:** WR2, RB2/FLEX, TE2. WR at 1.60 supply survives easily; the TE tier-3 shelf (Kelce/Goedert/Hockenson/Ferguson) does not clear before pick 55.","✅ **Bell-cow RB (pick 8)** — the pool is empty of workhorses by pick 32","✅ **Trey McBride or an accepted TE-punt plan (pick 13)**","✅ **QB2 (pick 28)** — ~4 QBs come off in this window; you enter it with Purdy/Murray/Stafford/Goff/Love/Stroud available and exit it with Mayfield/McCarthy/Ward"]},{"title":"Dead zone #2 (the hidden one): p53 → p68 (nominal 14 · **13.3 live picks**)","body":["Round 7 has **zero keeper forfeits** — all ten teams pick. This is the most competitive stretch of the middle rounds and it is *statistically as long a wait as dead zone #1.* **Must be secured BEFORE pick 53 closes:** both **FLEX-caliber starters** — one WR2 and one RB2. Leave 48/53 with a complete starting lineup except DEF. If you exit pick 53 still needing a starter, you will be shopping in a fully-populated Round 7 where every rival is filling the same holes."]},{"title":"Dead zone #3: p108 → p128 (nominal 19 · **14.7 live picks**)","body":["**Must be secured BEFORE pick 108 closes:** every roster spot that could plausibly start a game. By pick 108 you should own: QB×2(+3), RB×3, WR×4, TE×1(+2), and be shopping purely for upside. **Pick 108 itself** should be the **QB3 trade asset (Shough/Willis)** — that is the last pick at which a startable NFL quarterback exists, and its trade value to four QB-desperate rivals is the highest-leverage thing you can buy that late."]},{"title":"Dead zone #4: p128 → p148 (nominal 19 · **15.7 live picks — the longest actual wait of the draft**)","body":["**Must be secured BEFORE pick 128 closes:** your last real upside swing. Picks 148 and 153 are effectively a single package (3.8 live picks apart) and should be spent on **TE2 (Dulcich/Strange) + DEF (Houston/Seattle).** Do not enter this dead zone still needing a startable body — 15.7 live picks in rounds 14–15 will strip every name with a pulse."]}],"one_paragraph":"Take **Ashton Jeanty (or Jonathan Taylor) at 8** — pick 8 is your only bell-cow window, and RB is the only position in this draft with a 1.00 supply-to-demand ratio. Take **Trey McBride at 13** — he is the only elite TE left in a pool where 7 of 10 teams have zero, and the first-down bonus turns his 169 targets into WR1 scoring. Take your **QB2 at 28** (Kyler Murray → Lawrence → Herbert → Mahomes → Purdy → Love), because the QB cliff falls precisely inside your 28→48 gap and Bo Nix means you need QB12, not QB4. Fill both **FLEX starters at 48/53** with a possession WR (DJ Moore/Godwin) and a pass-catching RB (Jaylen Warren/Pollard) before the hidden 13.3-pick Round-7 gap. Then spend **68 through 108 exclusively on the format's arbitrage** — Meyers, Reed, Pittman, Woody Marks, **Josh Downs**, Wan'Dale, Jordan James, Justice Hill — high-catch, low-aDOT chain-movers whose ADP is set by leagues that don't pay for first downs. Take a **QB3 at 108 as a trade asset** aimed at the four teams with empty quarterback rooms. Close with **Dulcich at 148 and Houston DST at 153.** ---","thirty_second":["**8:** Bell-cow RB. If none → McBride. If neither → elite QB.","**13:** McBride if alive. Else the falling elite QB. Else best RB. **Never TE2 here.**","**28:** QB2. Murray → Lawrence → Herbert → Mahomes → Purdy → Love. Skip only if 2+ of those six will survive to 48.","**48+53:** Fill every remaining starter. WR2 + FLEX RB. DJ Moore / Godwin / Waddle and Jaylen Warren / Pollard. **Zero empty starting slots after 53.**","**68+73:** Meyers, Reed, Pittman, Diggs, Woody Marks.","**88+93:** Josh Downs, Wan'Dale, then the handcuff to your own RB1.","**108:** QB3 as a trade chip. Shough / Willis / Fields.","**128:** Last upside swing. Higgins / Noel / Antonio Williams / your RB1's backup.","**148+153:** Dulcich or Strange, then Houston or Seattle DST. **Never a defense earlier.**"],"rules":[{"group":"Inviolable","text":"**NEVER take a defense before pick 153.** Not 148, not 128. Houston, Seattle, Detroit, LAR, Baltimore and LAC will all still be available at 153 — there are ~8 startable DSTs and one round of demand. You will stream from Week 1 waivers anyway."},{"group":"Inviolable","text":"**NEVER leave pick 48 without a QB2.** After pick 48 the pool is Shough, Willis, Bryce Young and Geno. There is no skill player worth a dead SUPERFLEX slot for 17 weeks."},{"group":"Inviolable","text":"**NEVER leave pick 53 without all nine non-DEF starters filled.** The gap from 53 to 68 is 13 live picks through the only round in the draft with zero keeper forfeits. Every one of your ten rivals picks in Round 7."},{"group":"Inviolable","text":"**NEVER take a second player at a position before you have one at every position.** With 13 picks for 13 roster spots you have exactly zero margin for a wasted selection."},{"group":"Inviolable","text":"**NEVER reach for TE2 at pick 13 or 28 if McBride is gone.** The McBride-to-Loveland drop is ~85 points. The Loveland-to-Kelce drop is ~20. Punt to 48/53."},{"group":"Format","text":"**A 7-catch / 55-yard / 5-first-down day equals a 2-catch / 70-yard / 1-TD day. Both are 12.0 points.** The possession player does that every week; the deep threat does it four times a year."},{"group":"Format","text":"**AUTO-BUY when the value is even:** McBride, Kelce, Josh Downs, Wan'Dale Robinson, Godwin, Meyers, Reed, McConkey, DeVonta Smith, Jaylen Warren, Woody Marks, Justice Hill, Kyler Murray, Cam Ward, Malik Willis, Michael Pittman."},{"group":"Format","text":"**AUTO-FADE, even at a one-round discount:** Xavier Worthy, DK Metcalf, Courtland Sutton, Rome Odunze, Marvin Harrison Jr., Brian Thomas Jr., George Pickens, Quentin Johnston, Quinshon Judkins, Dallas Goedert, Jared Goff, Matthew Stafford."},{"group":"Format","text":"**A rushing QB is worth roughly a full round more than his ADP here** — you are paid 0.1/yard AND 0.5 per rushing first down. Hurts, Lamar, Lawrence, Kyler Murray, Willis, Fields all move up. Burrow, Goff, Stafford, Herbert move down."},{"group":"Timing","text":"**Pre-decide every paired pick before the first of the pair.** 8+13, 48+53, 68+73, 88+93, 148+153 are single decisions with two names. On a 60-second clock you cannot think twice."},{"group":"Timing","text":"**Between picks, maintain exactly three counters:** QBs gone · bell-cow RBs gone · tier-2 TEs gone. Nothing else matters."},{"group":"Timing","text":"**Front-run RB in Round 1, front-run TE in Round 2, fade the QB run entirely until pick 28, and fade WR completely until pick 28.** WR has a 1.60 supply ratio; the format's best WR archetype is available from round 7 through round 15."},{"group":"Timing","text":"**Take a QB3 at 108 even if you love a receiver there.** Four teams — havicht, Mass General, DannyBC1, Big Mommy Milkers — have zero QB depth. A free QB3 is the highest-value trade asset you can manufacture in this league."}],"panics":[{"title":"🔴 PANIC 1 — \"McBride went at 9 or 10\"","body":["**Probability: HIGH — roughly 60%.** Both teams behind you are QB-solved and TE-empty. **Do NOT** take Loveland or Tyler Warren at 13. That is a ~40-pick reach for a ~20-point upgrade. **Do:** take the best bell-cow RB or elite QB at 13, then run the **two-TE punt**: Colston Loveland or Kyle Pitts at 48 *if* the tier is collapsing, otherwise **Travis Kelce at 53** — your own R7 keeper discard, whose ADP is suppressed by decline narratives while his catch rate and first-down rate remain elite. Backstop it with **Jake Ferguson or David Njoku at 68** and **Greg Dulcich or Brenton Strange at 148**. Two mid TEs streamed by matchup recovers ~70% of the McBride edge for a fraction of the cost."]},{"title":"🔴 PANIC 2 — \"All the bell-cow RBs are gone before pick 8\"","body":["**Probability: MODERATE.** Ten workhorses exist and they are gone by ~pick 32. **Do:** stop chasing. Take McBride at 8 and an elite QB at 13 — you convert an RB scarcity problem into two positional monopolies. Then build the backfield out of **volume-by-committee first-down accumulators**: Jaylen Warren at 53, Woody Marks at 73, Justice Hill at 93, plus a direct handcuff at 128. In this format three 12-touch backs who catch passes out-score one 20-carry grinder. **Do not panic-reach for Judkins** — ~30 catches and TD-dependent is the worst possible profile here."]},{"title":"🔴 PANIC 3 — \"Nine or more QBs are gone before my pick 28\"","body":["**Probability: MODERATE-HIGH in Scenario A.** **Do:** take the last name on your six-deep list — Murray → Lawrence → Herbert → Mahomes → Purdy → Love — **immediately, without comparing him to a receiver.** If all six are gone at 28, take the best skill player and then take **Cam Ward at 48 without hesitation** (Ward is the one riser in that tier: added rushing volume, high completion offense). If Ward is gone too, Mayfield → McCarthy → Stroud → Geno. Then take a **second** cheap QB at 108 so your SUPERFLEX slot is never dead."]},{"title":"🔴 PANIC 4 — \"Round 7 emptied the WR shelf before pick 68\"","body":["**Probability: HIGH. Round 7 has zero keeper forfeits — all ten teams pick, 13 live picks between your 53 and 68.** **Do:** this is why rule 3 exists — you should already have all nine starters. Pivot 68 and 73 to the **second wave of the same archetype**: Michael Pittman Jr., Stefon Diggs, Jauan Jennings, Luther Burden. If those are gone too, take **TE2 early** (Ferguson, Kincaid, Njoku) and buy receivers at 88/93, where Josh Downs and Wan'Dale Robinson are the deepest pocket of format value in the entire draft. **The slot-WR pool does not truly run dry until pick 100.**"]},{"title":"🔴 PANIC 5 — \"A run at 49–52 took every tier-2 TE while I waited\"","body":["**Do:** take **Travis Kelce at 53** without a second thought. If Kelce is also gone, take a starting RB/WR at 53 and grab **Jake Ferguson or David Njoku at 68** — Ferguson is a genuine format riser at a TE10 price and the gap from Kraft to Ferguson is small. Then double up at 148 with **Dulcich or Strange** and stream."]},{"title":"🔴 PANIC 6 — \"I'm at pick 108 and I still don't have a startable X\"","body":["**Do:** abandon the QB3 trade-chip plan and fill the hole. The 15-live-pick gap to 128 will strip every name with a pulse. Emergency fills by position: **QB** Bryce Young or Daniel Jones · **RB** Isiah Pacheco, Blake Corum, Zach Charbonnet, Kyle Monangai · **WR** Jalen Coker, Ricky Pearsall, Matthew Golden · **TE** Isaiah Likely, Juwan Johnson. Then take the QB3 at 128 instead — Justin Fields will still be there and he is the best \"if he plays\" asset in the league."]},{"title":"🔴 PANIC 7 — \"Someone took a DEF at pick 130 and now there's a defense run\"","body":["**Probability: LOW, but it happens.** **Do:** nothing. There are eight-plus startable defenses — Houston, Seattle, LAR, Denver, Detroit, Baltimore, LAC, Pittsburgh. Even if five go before 153 you will get a top-8 unit. **Taking a DEF at 148 to \"beat the run\" costs you Greg Dulcich, and that trade is a loss.** Take your player at 148 and whichever defense remains at 153."]},{"title":"🔴 PANIC 8 — \"Chase or Nacua is somehow still there at 13\"","body":["Not a panic — but do not freeze. **Take him.** A top-3 overall asset at pick 13 outweighs any positional plan, including McBride. Your TE hole is recoverable at 48/53; a two-round discount on the WR1 overall is not recoverable at all.","---"]}],"qb_headline":"**Do NOT take an elite QB at pick 8 or pick 13. Take your QB2 at pick 28, with pick 48 as the absolute hard deadline.**","qb_answer":["**The one exception that overrides everything:** if **Jalen Hurts or Trevor Lawrence is somehow on the board at pick 13**, take him. Hurts' value is now almost entirely concentrated in short-yardage designed runs — the exact stat this league pays twice for (0.5 FD + 0.1/yd) — and Lawrence added 359 rush yards / 9 rush TDs under Liam Coen. Either at pick 13 is a top-4 format QB at a QB7 price, and pairing him with Nix would give you the best SUPERFLEX room in the league plus a tradeable surplus. **Do not do this at pick 8** — pick 8 is your only shot at a bell-cow RB.","**Decision rule for pick 28, in order:** Kyler Murray → Trevor Lawrence → Justin Herbert → Patrick Mahomes → Brock Purdy → Jordan Love. **If all six are gone, pivot to McConkey/DeVonta Smith at 28 and take Cam Ward or Baker Mayfield at 48 — but you must not leave pick 48 without a QB2.**","**Bonus play:** take a 3rd QB at pick 108 (Shough or Willis). Four teams will be one QB injury from a hole in their most valuable lineup slot. A $0 QB3 is the highest-EV trade asset you can manufacture in this league.","**You already own a SUPERFLEX starter.** Bo Nix is confirmed healthy (\"nothing's holding me back\"), unquestioned in Denver, has a real scrambling floor the FD bonus pays for, and — critically — cost you a **12th-round pick.** Four rival teams have **zero** QBs. Your marginal need for QB is the 9th-most-urgent in a 10-team league.","**12 QB starting slots, ~16 startable arms live.** That's a 1.33 ratio — the *second-loosest* position on the board. Compare RB at 1.00.","**You need QB *#12*, not QB *#4*.** The four zero-QB teams need eight arms; they will pay picks 1–20 prices for the top of the tier. You need one arm that is better than replacement. The delta between the QB you'd take at pick 8 (say Jalen Hurts) and the QB you'd take at pick 28 (say Kyler Murray or Brock Purdy) is roughly **60–70 fantasy points over a season.** The delta between the RB you'd take at pick 8 (Jeanty, ~280 format points) and the RB you'd take at pick 48 (Swift/Stevenson, ~180) is **~100 points**, and the delta between McBride at 13 (~250) and the TE you'd get at 53 (~165) is **~85 points.** Spending pick 8 on a QB costs you ~185 points across two positions to gain ~65 at one.","**Two rival teams (Glizzy Guzzler and Ethan's Younglings) have their QB rooms fully solved** and will never bid against you. That's a 20% reduction in QB demand that nobody at the table is pricing in.","**The cliff is between your picks 28 and 48, not before 13.** Expected QBs gone: ~5–6 by p13, ~10–11 by p28, ~14–15 by p48. At 28 you're picking from **Purdy / Kyler Murray / Stafford / Goff / Love / Stroud** — genuine weekly SUPERFLEX starters. At 48 you're down to **Mayfield / McCarthy / Cam Ward / Geno.** At 68 you're at **Shough / Willis / Bryce Young** — streamers, not starters."],"scenarios":[{"name":"SCENARIO A — \"QB RUN EARLY\"","picks":[{"pick":8,"take":"**CHRISTIAN McCAFFREY (RB, SF)**"},{"pick":13,"take":"**TREY McBRIDE (TE, ARI)**"},{"pick":28,"take":"**JORDAN LOVE (QB, GB)**"},{"pick":48,"take":"**DJ MOORE (WR, CHI)**"},{"pick":53,"take":"**JAYLEN WARREN (RB, PIT)**"},{"pick":68,"take":"**JAKOBI MEYERS (WR, LV)**"},{"pick":73,"take":"**STEFON DIGGS (WR, NE)**"},{"pick":88,"take":"**JOSH DOWNS (WR, IND)**"},{"pick":93,"take":"**JORDAN JAMES (RB, SF)**"},{"pick":108,"take":"**MALIK WILLIS (QB, GB)**"},{"pick":128,"take":"**JAYDEN HIGGINS (WR, HOU)** · 🟢 **148 — GREG DULCICH (TE, MIA)** · 🟢 **153 — HOUSTON DST**"}]},{"name":"SCENARIO B — \"SKILL PLAYERS FIRST\"","picks":[{"pick":8,"take":"**TREY McBRIDE (TE, ARI)** ← the counterintuitive one"},{"pick":13,"take":"**LAMAR JACKSON (QB, BAL)**"},{"pick":28,"take":"**JOSH JACOBS (RB, GB)**"},{"pick":48,"take":"**DJ MOORE (WR, CHI)** · 🟢 PICK 53 — **JAYLEN WARREN (RB, PIT)**"},{"pick":68,"take":"**JAKOBI MEYERS (WR, LV)** — your WR2 proper."},{"pick":73,"take":"**MICHAEL PITTMAN JR. (WR, IND)** — 100+ target floor, first-down machine, FLEX-quality depth."},{"pick":88,"take":"**JOSH DOWNS (WR, IND)**"},{"pick":93,"take":"**JUSTICE HILL (RB, BAL)** — receiving back behind a 32-year-old Derrick Henry; pure checkdown-first-down asset. *Alternative: whoever is Josh Jacobs' direct backup, as insurance on your RB2.*"},{"pick":108,"take":"**TYLER SHOUGH (QB, NO)** — QB3 as a trade chip, not as a player."},{"pick":128,"take":"**ANTONIO WILLIAMS (WR, WAS)** · 🟢 **148 — BRENTON STRANGE (TE, JAX)** · 🟢 **153 — SEATTLE DST**"}]},{"name":"SCENARIO C — \"CHAOS / BEST CASE\"","picks":[{"pick":8,"take":"**JA'MARR CHASE (WR, CIN)** — no deliberation, no clock burn"},{"pick":13,"take":"**JONATHAN TAYLOR (RB, IND)**"},{"pick":28,"take":"**BROCK PURDY (QB, SF)**"},{"pick":48,"take":"**COLSTON LOVELAND (TE, CHI)**"},{"pick":53,"take":"**DJ MOORE (WR, CHI)** — your WR2 opposite Chase."},{"pick":68,"take":"**JAYLEN WARREN (RB, PIT)** — FLEX #1, checkdown gold."},{"pick":73,"take":"**MICHAEL PITTMAN JR. (WR, IND)** — FLEX #2 / WR3."},{"pick":88,"take":"**JOSH DOWNS (WR, IND)**"},{"pick":93,"take":"**JUSTICE HILL (RB, BAL)**"},{"pick":108,"take":"**MALIK WILLIS (QB, GB)** — trade chip."},{"pick":128,"take":"**DJ GIDDENS (RB, IND)** — direct Jonathan Taylor handcuff; league-winning if JT misses time."},{"pick":148,"take":"**GREG DULCICH (TE, MIA)** · 🟢 **153 — HOUSTON DST**"}]}]}},"my_team":{"available":true,"roster_id":2,"owner":"andrewroth32","team_name":null,"starters":[{"slot":"QB","player_id":"3257","name":"Jacoby Brissett","pos":"QB","team":"ARI","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":null,"keeper_eligible":null,"keeper_flag":null},{"slot":"RB","player_id":"12527","name":"Ashton Jeanty","pos":"RB","team":"LV","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":1,"keeper_eligible":false,"keeper_flag":"1st-round pick - NOT keeper eligible"},{"slot":"RB","player_id":"7588","name":"Javonte Williams","pos":"RB","team":"DAL","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":13,"keeper_eligible":true,"keeper_flag":null},{"slot":"WR","player_id":"8148","name":"Jameson Williams","pos":"WR","team":"DET","injury_status":null,"unresolved":false,"keeper":true,"keeper_cost_round":14,"keeper_eligible":true,"keeper_flag":null,"consecutive_years_if_kept":2,"years_remaining_after":1,"final_eligible_year_if_kept":2027,"forfeits_overall_pick":133},{"slot":"WR","player_id":"9493","name":"Puka Nacua","pos":"WR","team":"LAR","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":2,"keeper_eligible":true,"keeper_flag":null},{"slot":"TE","player_id":"1466","name":"Travis Kelce","pos":"TE","team":"KC","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":7,"keeper_eligible":true,"keeper_flag":null},{"slot":"FLEX","player_id":"2216","name":"Mike Evans","pos":"WR","team":"SF","injury_status":"Questionable","unresolved":false,"keeper":false,"keeper_cost_round":4,"keeper_eligible":true,"keeper_flag":null},{"slot":"FLEX","player_id":"8151","name":"Kenneth Walker","pos":"RB","team":"KC","injury_status":null,"unresolved":false,"keeper":true,"keeper_cost_round":4,"keeper_eligible":true,"keeper_flag":null,"consecutive_years_if_kept":1,"years_remaining_after":2,"final_eligible_year_if_kept":2028,"forfeits_overall_pick":33},{"slot":"SUPER_FLEX","player_id":"11563","name":"Bo Nix","pos":"QB","team":"DEN","injury_status":null,"unresolved":false,"keeper":true,"keeper_cost_round":12,"keeper_eligible":true,"keeper_flag":null,"consecutive_years_if_kept":2,"years_remaining_after":1,"final_eligible_year_if_kept":2027,"forfeits_overall_pick":113},{"slot":"DEF","player_id":"JAX","name":"Jacksonville Jaguars","pos":"DEF","team":"JAX","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":null,"keeper_eligible":null,"keeper_flag":null}],"bench":[{"player_id":"1166","name":"Kirk Cousins","pos":"QB","team":"LV","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":null,"keeper_eligible":null,"keeper_flag":null},{"player_id":"4018","name":"Joe Mixon","pos":"RB","team":null,"injury_status":"Questionable","unresolved":false,"keeper":false,"keeper_cost_round":8,"keeper_eligible":true,"keeper_flag":"effectively unrosterable - unsigned, chronic foot/circulation issue"},{"player_id":"8408","name":"Jordan Mason","pos":"RB","team":"MIN","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":10,"keeper_eligible":true,"keeper_flag":null},{"player_id":"6865","name":"Colby Parkinson","pos":"TE","team":"LAR","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":null,"keeper_eligible":null,"keeper_flag":null},{"player_id":"7525","name":"DeVonta Smith","pos":"WR","team":"PHI","injury_status":"Questionable","unresolved":false,"keeper":false,"keeper_cost_round":6,"keeper_eligible":true,"keeper_flag":null},{"player_id":"10232","name":"Michael Wilson","pos":"WR","team":"ARI","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":null,"keeper_eligible":null,"keeper_flag":null},{"player_id":"12526","name":"Tetairoa McMillan","pos":"WR","team":"CAR","injury_status":null,"unresolved":false,"keeper":false,"keeper_cost_round":5,"keeper_eligible":true,"keeper_flag":null}],"positional_counts":{"DEF":1,"QB":3,"RB":5,"TE":2,"WR":6},"injuries":[{"player_id":"2216","player":"Mike Evans","pos":"WR","team":"SF","status":"Questionable","body_part":"Quadriceps","practice":null,"severity":2,"is_starter":true,"since_week":0,"owner":"andrewroth32","roster_id":2},{"player_id":"4018","player":"Joe Mixon","pos":"RB","team":null,"status":"Questionable","body_part":"Foot","practice":null,"severity":2,"is_starter":false,"since_week":0,"owner":"andrewroth32","roster_id":2},{"player_id":"7525","player":"DeVonta Smith","pos":"WR","team":"PHI","status":"Questionable","body_part":"Hamstring","practice":null,"severity":2,"is_starter":false,"since_week":0,"owner":"andrewroth32","roster_id":2}],"bye_weeks":{"status":"unknown","reason":"league_config.nfl_bye_weeks_2026.byes is empty; cannot compute","on_bye_this_week":[],"by_position":{},"uncovered_slots":[]},"waiver_priority":4,"starter_slots":["QB","RB","RB","WR","WR","TE","FLEX","FLEX","SUPER_FLEX","DEF"],"lineup_note":"This is the roster Sleeper is carrying into the draft (last season's team). The slot assignments are Sleeper's leftovers, not a 2026 lineup -- after Aug 28 only the three keepers below survive.","lineup_card":[],"keeper_status":"leaning, not locked on Sleeper as of 2026-08-07 (rosters[roster_id=2].keepers == null)","roster_notes":[],"unresolved_player_ids":[]},"opponents":{"cards":[{"roster_id":1,"owner":"tlekes","team_name":"Pabst Interference","record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":10,"positional_counts":{"DEF":1,"QB":4,"RB":4,"TE":1,"WR":7},"injuries":[],"starters":[{"slot":"QB","player_id":"4881","name":"Lamar Jackson","pos":"QB","team":"BAL","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"8138","name":"James Cook","pos":"RB","team":"BUF","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"11579","name":"Audric Estime","pos":"RB","team":"NO","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"11624","name":"Xavier Worthy","pos":"WR","team":"KC","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"5859","name":"A.J. Brown","pos":"WR","team":"PHI","injury_status":null,"unresolved":false},{"slot":"TE","player_id":"8110","name":"Jake Ferguson","pos":"TE","team":"DAL","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"8134","name":"Khalil Shakir","pos":"WR","team":"BUF","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"9756","name":"Jordan Addison","pos":"WR","team":"MIN","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"96","name":"Aaron Rodgers","pos":"QB","team":"PIT","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"KC","name":"Kansas City Chiefs","pos":"DEF","team":"KC","injury_status":null,"unresolved":false}],"bench":[{"player_id":"3161","name":"Carson Wentz","pos":"QB","team":"MIN","injury_status":null,"unresolved":false},{"player_id":"5870","name":"Daniel Jones","pos":"QB","team":"IND","injury_status":null,"unresolved":false},{"player_id":"10219","name":"Chris Rodriguez","pos":"RB","team":"JAX","injury_status":null,"unresolved":false},{"player_id":"4098","name":"Kareem Hunt","pos":"RB","team":null,"injury_status":null,"unresolved":false},{"player_id":"11625","name":"Adonai Mitchell","pos":"WR","team":"NYJ","injury_status":null,"unresolved":false},{"player_id":"10229","name":"Rashee Rice","pos":"WR","team":"KC","injury_status":null,"unresolved":false},{"player_id":"11783","name":"Ryan Flournoy","pos":"WR","team":"DAL","injury_status":null,"unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["Carson Wentz on bench; Daniel Jones on bench","Chris Rodriguez on bench; Kareem Hunt on bench","Adonai Mitchell on bench; Rashee Rice on bench; Ryan Flournoy on bench","nothing flagged","no bench cover at DEF"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"1 (Rodgers)","biggest_hole":"QB2, TE","slot":"5"},"intel":null,"blocking_opportunity":null},{"roster_id":3,"owner":"havicht","team_name":"Water, Barkley, and Hops","record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":6,"positional_counts":{"DEF":2,"QB":2,"RB":5,"TE":2,"WR":6},"injuries":[],"starters":[{"slot":"QB","player_id":"4984","name":"Josh Allen","pos":"QB","team":"BUF","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"4866","name":"Saquon Barkley","pos":"RB","team":"PHI","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"5850","name":"Josh Jacobs","pos":"RB","team":"GB","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"11628","name":"Marvin Harrison","pos":"WR","team":"ARI","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"9754","name":"Quentin Johnston","pos":"WR","team":"LAC","injury_status":null,"unresolved":false},{"slot":"TE","player_id":"5022","name":"Dallas Goedert","pos":"TE","team":"PHI","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"4983","name":"DJ Moore","pos":"WR","team":"CHI","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"7611","name":"Rhamondre Stevenson","pos":"RB","team":"NE","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"9228","name":"Bryce Young","pos":"QB","team":"CAR","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"SEA","name":"Seattle Seahawks","pos":"DEF","team":"SEA","injury_status":null,"unresolved":false}],"bench":[{"player_id":"TB","name":"Tampa Bay Buccaneers","pos":"DEF","team":"TB","injury_status":null,"unresolved":false},{"player_id":"12481","name":"Cam Skattebo","pos":"RB","team":"NYG","injury_status":null,"unresolved":false},{"player_id":"5892","name":"David Montgomery","pos":"RB","team":"DET","injury_status":null,"unresolved":false},{"player_id":"5012","name":"Mark Andrews","pos":"TE","team":"BAL","injury_status":null,"unresolved":false},{"player_id":"4037","name":"Chris Godwin","pos":"WR","team":"TB","injury_status":null,"unresolved":false},{"player_id":"7090","name":"Darnell Mooney","pos":"WR","team":"ATL","injury_status":null,"unresolved":false},{"player_id":"10222","name":"Jayden Reed","pos":"WR","team":"GB","injury_status":null,"unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["nothing flagged","Cam Skattebo on bench; David Montgomery on bench","Chris Godwin on bench; Darnell Mooney on bench; Jayden Reed on bench","Mark Andrews on bench","Tampa Bay Buccaneers on bench"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at DEF assumed, not measured","bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"**0**","biggest_hole":"QB×2, WR×0","slot":"1"},"intel":null,"blocking_opportunity":null},{"roster_id":4,"owner":"jomud","team_name":null,"record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":8,"positional_counts":{"DEF":1,"QB":4,"RB":5,"TE":3,"WR":4},"injuries":[],"starters":[{"slot":"QB","player_id":"3294","name":"Dak Prescott","pos":"QB","team":"DAL","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"9224","name":"Chase Brown","pos":"RB","team":"CIN","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"11584","name":"Bucky Irving","pos":"RB","team":"TB","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"7569","name":"Nico Collins","pos":"WR","team":"HOU","injury_status":null,"unresolved":false},{"slot":"WR","player_id":null,"name":null,"pos":null,"team":null,"empty":true},{"slot":"TE","player_id":"7002","name":"Juwan Johnson","pos":"TE","team":"NO","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"8228","name":"Jaylen Warren","pos":"RB","team":"PIT","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"6801","name":"Tee Higgins","pos":"WR","team":"CIN","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"7567","name":"Kenny Gainwell","pos":"RB","team":"TB","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"NO","name":"New Orleans Saints","pos":"DEF","team":"NO","injury_status":null,"unresolved":false}],"bench":[{"player_id":"12522","name":"Cam Ward","pos":"QB","team":"TEN","injury_status":null,"unresolved":false},{"player_id":"11565","name":"J.J. McCarthy","pos":"QB","team":"MIN","injury_status":null,"unresolved":false},{"player_id":"4046","name":"Patrick Mahomes","pos":"QB","team":"KC","injury_status":null,"unresolved":false},{"player_id":"8132","name":"Tyler Allgeier","pos":"RB","team":"ARI","injury_status":null,"unresolved":false},{"player_id":"10236","name":"Dalton Kincaid","pos":"TE","team":"BUF","injury_status":null,"unresolved":false},{"player_id":"9484","name":"Tucker Kraft","pos":"TE","team":"GB","injury_status":null,"unresolved":false},{"player_id":"8112","name":"Drake London","pos":"WR","team":"ATL","injury_status":null,"unresolved":false},{"player_id":"11620","name":"Rome Odunze","pos":"WR","team":"CHI","injury_status":null,"unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["Cam Ward on bench; J.J. McCarthy on bench; Patrick Mahomes on bench","Tyler Allgeier on bench","Drake London on bench; Rome Odunze on bench","Dalton Kincaid on bench; Tucker Kraft on bench","no bench cover at DEF"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"1 (Dak)","biggest_hole":"QB2, WR","slot":"3"},"intel":null,"blocking_opportunity":null},{"roster_id":5,"owner":"LoochCarluccio","team_name":"Glizzy Guzzler","record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":3,"positional_counts":{"DEF":2,"QB":3,"RB":6,"TE":1,"WR":5},"injuries":[{"player_id":"11571","player":"Isaiah Davis","pos":"RB","team":"NYJ","status":"Questionable","body_part":"Knee","practice":null,"severity":2,"is_starter":false,"since_week":0,"owner":"LoochCarluccio","roster_id":5}],"starters":[{"slot":"QB","player_id":"12508","name":"Jaxson Dart","pos":"QB","team":"NYG","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"8155","name":"Breece Hall","pos":"RB","team":"NYJ","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"9509","name":"Bijan Robinson","pos":"RB","team":"ATL","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"8126","name":"Wan'Dale Robinson","pos":"WR","team":"TEN","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"6786","name":"CeeDee Lamb","pos":"WR","team":"DAL","injury_status":null,"unresolved":false},{"slot":"TE","player_id":"12518","name":"Tyler Warren","pos":"TE","team":"IND","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"12512","name":"Quinshon Judkins","pos":"RB","team":"CLE","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"8144","name":"Chris Olave","pos":"WR","team":"NO","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"6804","name":"Jordan Love","pos":"QB","team":"GB","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"HOU","name":"Houston Texans","pos":"DEF","team":"HOU","injury_status":null,"unresolved":false}],"bench":[{"player_id":"LAR","name":"Los Angeles Rams","pos":"DEF","team":"LAR","injury_status":null,"unresolved":false},{"player_id":"11560","name":"Caleb Williams","pos":"QB","team":"CHI","injury_status":null,"unresolved":false},{"player_id":"11571","name":"Isaiah Davis","pos":"RB","team":"NYJ","injury_status":"Questionable","unresolved":false},{"player_id":"12533","name":"Jacory Croskey-Merritt","pos":"RB","team":"WAS","injury_status":null,"unresolved":false},{"player_id":"11647","name":"Kimani Vidal","pos":"RB","team":"LAC","injury_status":null,"unresolved":false},{"player_id":"11631","name":"Brian Thomas","pos":"WR","team":"JAX","injury_status":null,"unresolved":false},{"player_id":"11632","name":"Malik Nabers","pos":"WR","team":"NYG","injury_status":null,"unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["Caleb Williams on bench","Isaiah Davis on bench; Jacory Croskey-Merritt on bench; Kimani Vidal on bench","Brian Thomas on bench; Malik Nabers on bench","nothing flagged","Los Angeles Rams on bench"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at DEF assumed, not measured","bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"**2 — DONE**","biggest_hole":"**TE, WR — will never bid on a QB**","slot":"9"},"intel":null,"blocking_opportunity":null},{"roster_id":6,"owner":"pdustin","team_name":"Mass General Hospital","record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":7,"positional_counts":{"DEF":1,"QB":3,"RB":4,"TE":3,"WR":5},"injuries":[],"starters":[{"slot":"QB","player_id":"6770","name":"Joe Burrow","pos":"QB","team":"CIN","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"3198","name":"Derrick Henry","pos":"RB","team":"BAL","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"11655","name":"Tyrone Tracy","pos":"RB","team":"NYG","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"6794","name":"Justin Jefferson","pos":"WR","team":"MIN","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"9488","name":"Jaxon Smith-Njigba","pos":"WR","team":"SEA","injury_status":null,"unresolved":false},{"slot":"TE","player_id":"7553","name":"Kyle Pitts","pos":"TE","team":"ATL","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"2449","name":"Stefon Diggs","pos":"WR","team":"NE","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"9504","name":"Kayshon Boutte","pos":"WR","team":"NE","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"4892","name":"Baker Mayfield","pos":"QB","team":"TB","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"CLE","name":"Cleveland Browns","pos":"DEF","team":"CLE","injury_status":null,"unresolved":false}],"bench":[{"player_id":"12524","name":"Shedeur Sanders","pos":"QB","team":"CLE","injury_status":null,"unresolved":false},{"player_id":"11586","name":"Blake Corum","pos":"RB","team":"LAR","injury_status":null,"unresolved":false},{"player_id":"12474","name":"Woody Marks","pos":"RB","team":"HOU","injury_status":null,"unresolved":false},{"player_id":"12493","name":"Oronde Gadsden","pos":"TE","team":"LAC","injury_status":null,"unresolved":false},{"player_id":"5844","name":"T.J. Hockenson","pos":"TE","team":"MIN","injury_status":null,"unresolved":false},{"player_id":"11627","name":"Troy Franklin","pos":"WR","team":"DEN","injury_status":null,"unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["Shedeur Sanders on bench","Blake Corum on bench; Woody Marks on bench","Troy Franklin on bench","Oronde Gadsden on bench; T.J. Hockenson on bench","no bench cover at DEF"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"**0**","biggest_hole":"QB×2","slot":"4"},"intel":null,"blocking_opportunity":null},{"roster_id":7,"owner":"PeterCrisileo","team_name":"Still at RPI","record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":5,"positional_counts":{"DEF":1,"QB":3,"RB":4,"TE":3,"WR":6},"injuries":[],"starters":[{"slot":"QB","player_id":"11564","name":"Drake Maye","pos":"QB","team":"NE","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"12489","name":"RJ Harvey","pos":"RB","team":"DEN","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"12507","name":"Omarion Hampton","pos":"RB","team":"LAC","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"8137","name":"George Pickens","pos":"WR","team":"DAL","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"11635","name":"Ladd McConkey","pos":"WR","team":"LAC","injury_status":null,"unresolved":false},{"slot":"TE","player_id":"9482","name":"Michael Mayer","pos":"TE","team":"LV","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"5045","name":"Courtland Sutton","pos":"WR","team":"DEN","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"12529","name":"TreVeyon Henderson","pos":"RB","team":"NE","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"421","name":"Matthew Stafford","pos":"QB","team":"LAR","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"PIT","name":"Pittsburgh Steelers","pos":"DEF","team":"PIT","injury_status":null,"unresolved":false}],"bench":[{"player_id":"6904","name":"Jalen Hurts","pos":"QB","team":"PHI","injury_status":null,"unresolved":false},{"player_id":"12457","name":"Jaydon Blue","pos":"RB","team":"DAL","injury_status":null,"unresolved":false},{"player_id":"11604","name":"Brock Bowers","pos":"TE","team":"LV","injury_status":null,"unresolved":false},{"player_id":"8210","name":"Chig Okonkwo","pos":"TE","team":"TEN","injury_status":null,"unresolved":false},{"player_id":"8146","name":"Garrett Wilson","pos":"WR","team":"NYJ","injury_status":null,"unresolved":false},{"player_id":"5947","name":"Jakobi Meyers","pos":"WR","team":"LV","injury_status":null,"unresolved":false},{"player_id":"12519","name":"Luther Burden","pos":"WR","team":"CHI","injury_status":null,"unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["Jalen Hurts on bench","Jaydon Blue on bench","Garrett Wilson on bench; Jakobi Meyers on bench; Luther Burden on bench","Brock Bowers on bench; Chig Okonkwo on bench","no bench cover at DEF"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"1 (Maye)","biggest_hole":"QB2, RB2","slot":"7"},"intel":null,"blocking_opportunity":null},{"roster_id":8,"owner":"Edeecher","team_name":"Ethan's Younglings","record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":9,"positional_counts":{"DEF":1,"QB":4,"RB":7,"TE":2,"WR":3},"injuries":[],"starters":[{"slot":"QB","player_id":"6797","name":"Justin Herbert","pos":"QB","team":"LAC","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"9221","name":"Jahmyr Gibbs","pos":"RB","team":"DET","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"9226","name":"De'Von Achane","pos":"RB","team":"MIA","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"8167","name":"Christian Watson","pos":"WR","team":"GB","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"7564","name":"Ja'Marr Chase","pos":"WR","team":"CIN","injury_status":null,"unresolved":false},{"slot":"TE","player_id":"12506","name":"Harold Fannin","pos":"TE","team":"CLE","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"7607","name":"Michael Carter","pos":"RB","team":"TEN","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"6790","name":"D'Andre Swift","pos":"RB","team":"CHI","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"4943","name":"Sam Darnold","pos":"QB","team":"SEA","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"NE","name":"New England Patriots","pos":"DEF","team":"NE","injury_status":null,"unresolved":false}],"bench":[{"player_id":"11566","name":"Jayden Daniels","pos":"QB","team":"WAS","injury_status":null,"unresolved":false},{"player_id":"12500","name":"Quinn Ewers","pos":"QB","team":"MIA","injury_status":null,"unresolved":false},{"player_id":"11643","name":"Jaylen Wright","pos":"RB","team":"MIA","injury_status":null,"unresolved":false},{"player_id":"12534","name":"Kyle Monangai","pos":"RB","team":"CHI","injury_status":null,"unresolved":false},{"player_id":"11589","name":"Trey Benson","pos":"RB","team":"ARI","injury_status":null,"unresolved":false},{"player_id":"3214","name":"Hunter Henry","pos":"TE","team":"NE","injury_status":null,"unresolved":false},{"player_id":"12514","name":"Emeka Egbuka","pos":"WR","team":"TB","injury_status":null,"unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["Jayden Daniels on bench; Quinn Ewers on bench","Jaylen Wright on bench; Kyle Monangai on bench; Trey Benson on bench","Emeka Egbuka on bench","Hunter Henry on bench","no bench cover at DEF"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"**2 — DONE**","biggest_hole":"**WR×0, TE×0 — will never bid on a QB**","slot":"10"},"intel":null,"blocking_opportunity":null},{"roster_id":9,"owner":"DannyBC1","team_name":null,"record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":1,"positional_counts":{"DEF":1,"QB":3,"RB":5,"TE":2,"WR":6},"injuries":[{"player_id":"12485","player":"Tez Johnson","pos":"WR","team":"TB","status":"Questionable","body_part":"Groin","practice":null,"severity":2,"is_starter":false,"since_week":0,"owner":"DannyBC1","roster_id":9}],"starters":[{"slot":"QB","player_id":"9758","name":"C.J. Stroud","pos":"QB","team":"HOU","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"8150","name":"Kyren Williams","pos":"RB","team":"LAR","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"6813","name":"Jonathan Taylor","pos":"RB","team":"IND","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"7526","name":"Jaylen Waddle","pos":"WR","team":"MIA","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"7547","name":"Amon-Ra St. Brown","pos":"WR","team":"DET","injury_status":null,"unresolved":false},{"slot":"TE","player_id":"8130","name":"Trey McBride","pos":"TE","team":"ARI","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"7543","name":"Travis Etienne","pos":"RB","team":"JAX","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"5846","name":"DK Metcalf","pos":"WR","team":"PIT","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"7523","name":"Trevor Lawrence","pos":"QB","team":"JAX","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"DET","name":"Detroit Lions","pos":"DEF","team":"DET","injury_status":null,"unresolved":false}],"bench":[{"player_id":"1373","name":"Geno Smith","pos":"QB","team":"LV","injury_status":null,"unresolved":false},{"player_id":"7528","name":"Najee Harris","pos":"RB","team":"LAC","injury_status":null,"unresolved":false},{"player_id":"9508","name":"Tyjae Spears","pos":"RB","team":"TEN","injury_status":null,"unresolved":false},{"player_id":"4033","name":"David Njoku","pos":"TE","team":"CLE","injury_status":null,"unresolved":false},{"player_id":"5872","name":"Deebo Samuel","pos":"WR","team":"WAS","injury_status":null,"unresolved":false},{"player_id":"6819","name":"Michael Pittman","pos":"WR","team":"IND","injury_status":null,"unresolved":false},{"player_id":"12485","name":"Tez Johnson","pos":"WR","team":"TB","injury_status":"Questionable","unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["Geno Smith on bench","Najee Harris on bench; Tyjae Spears on bench","Deebo Samuel on bench; Michael Pittman on bench; Tez Johnson on bench","David Njoku on bench","no bench cover at DEF"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"**0**","biggest_hole":"QB×2","slot":"6"},"intel":null,"blocking_opportunity":null},{"roster_id":10,"owner":"jpalmeri1616","team_name":"Big Mommy Milkers (UCSF)","record":"0-0-0","pf":0.0,"pa":0.0,"waiver_priority":2,"positional_counts":{"DEF":1,"QB":3,"RB":5,"TE":1,"WR":5},"injuries":[],"starters":[{"slot":"QB","player_id":"3163","name":"Jared Goff","pos":"QB","team":"DET","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"7021","name":"Rico Dowdle","pos":"RB","team":"PIT","injury_status":null,"unresolved":false},{"slot":"RB","player_id":"4034","name":"Christian McCaffrey","pos":"RB","team":"SF","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"9997","name":"Zay Flowers","pos":"WR","team":"BAL","injury_status":null,"unresolved":false},{"slot":"WR","player_id":"5927","name":"Terry McLaurin","pos":"WR","team":"WAS","injury_status":null,"unresolved":false},{"slot":"TE","player_id":"4217","name":"George Kittle","pos":"TE","team":"SF","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"7049","name":"Jauan Jennings","pos":"WR","team":"SF","injury_status":null,"unresolved":false},{"slot":"FLEX","player_id":"5967","name":"Tony Pollard","pos":"RB","team":"TEN","injury_status":null,"unresolved":false},{"slot":"SUPER_FLEX","player_id":"8183","name":"Brock Purdy","pos":"QB","team":"SF","injury_status":null,"unresolved":false},{"slot":"DEF","player_id":"DEN","name":"Denver Broncos","pos":"DEF","team":"DEN","injury_status":null,"unresolved":false}],"bench":[{"player_id":"12545","name":"Tyler Shough","pos":"QB","team":"NO","injury_status":null,"unresolved":false},{"player_id":"4199","name":"Aaron Jones","pos":"RB","team":"MIN","injury_status":null,"unresolved":false},{"player_id":"8122","name":"Zonovan Knight","pos":"RB","team":"ARI","injury_status":null,"unresolved":false},{"player_id":"2133","name":"Davante Adams","pos":"WR","team":"LAR","injury_status":null,"unresolved":false},{"player_id":"1479","name":"Keenan Allen","pos":"WR","team":null,"injury_status":null,"unresolved":false}],"pressure":{"QB":0.0,"RB":0.0,"WR":0.0,"TE":0.0,"DEF":0.0},"pressure_top":[["QB",0.0],["RB",0.0],["WR",0.0]],"pressure_confidence":"low","pressure_evidence":["Tyler Shough on bench","Aaron Jones on bench; Zonovan Knight on bench","Davante Adams on bench; Keenan Allen on bench","nothing flagged","no bench cover at DEF"],"need_positions":[],"surplus_positions":[],"vulnerable_starters":[],"data_gaps":["bench viability at QB assumed, not measured","bench viability at RB assumed, not measured","bench viability at TE assumed, not measured","bench viability at WR assumed, not measured","no recent scoring supplied - performance and depth are estimates","no role signal supplied for DEF - news agents have not reported","no role signal supplied for QB - news agents have not reported","no role signal supplied for RB - news agents have not reported","no role signal supplied for TE - news agents have not reported","no role signal supplied for WR - news agents have not reported"],"predicted_claims":[],"trade_appetite":null,"exploitable_weakness":null,"model_confidence":null,"seat":{"qbs_kept":"**0**","biggest_hole":"QB×2 **and** RB×0 — most cornered team","slot":"2"},"intel":null,"blocking_opportunity":null}],"has_model":false,"has_pressure":true,"seat_note":"DRAFT-DAY HOLE and QBs-kept come from the seat map in draft_board_2026.md, computed from each rival's predicted keeper set. Only Glizzy Guzzler has actually locked keepers in Sleeper, so for the other eight this is a strong prediction, not a fact.","model_note":"opponent_model is empty in the state file. It is written by the weekly.js opponent agents and folded in by merge_state.py; run those and rebuild to fill in predicted waiver targets, trade appetite and exploitable weakness.","pressure_note":"Pressure is computed live from the roster + injury data in the state file by analysis/opponent_pressure.py. Before Week 1 there is no scoring or role-signal input, so every score is low-confidence by construction."},"waivers":{"claims":[],"drops":[],"has_claim_sheet":false,"claim_note":"No claim sheet exists yet. It is produced by the opus waiver-contention agent in weekly.js (backed by analysis/waiver_contention.py) and only becomes meaningful once the season is under way and rosters are real. Note that merge_state.py does NOT copy it into week_N.json -- dump the full synthesis object to state/week_N.synthesis.json (or pass --synthesis) and it will appear here.","order":[{"priority":1,"roster_id":9,"owner":"DannyBC1","is_andrew":false},{"priority":2,"roster_id":10,"owner":"jpalmeri1616","is_andrew":false},{"priority":3,"roster_id":5,"owner":"LoochCarluccio","is_andrew":false},{"priority":4,"roster_id":2,"owner":"andrewroth32","is_andrew":true},{"priority":5,"roster_id":7,"owner":"PeterCrisileo","is_andrew":false},{"priority":6,"roster_id":3,"owner":"havicht","is_andrew":false},{"priority":7,"roster_id":6,"owner":"pdustin","is_andrew":false},{"priority":8,"roster_id":4,"owner":"jomud","is_andrew":false},{"priority":9,"roster_id":8,"owner":"Edeecher","is_andrew":false},{"priority":10,"roster_id":1,"owner":"tlekes","is_andrew":false}],"andrew_position":4,"teams_ahead":["DannyBC1","jpalmeri1616","LoochCarluccio"],"type":"reverse_standings_rolling_priority","is_faab":false,"type_evidence":"2025 week 8, n=33 transactions: 0 with a non-empty waiver_budget; 3 with settings.priority. Model contention as priority ordering, not bid sizing.","process_day":"Wednesday","day_verified":false,"day_note":"AMBIGUOUS - DO NOT TREAT AS RESOLVED. Sleeper reports waiver_day_of_week=2, waiver_clear_days=2, daily_waivers=0, daily_waivers_hour=0. Reading 0=Sunday..6=Saturday makes day 2 = TUESDAY, and hour 0 makes that TUESDAY 00:00 ET - i.e. a Tuesday-morning run would already be too late. Reading it as 'Tuesday night rolling into Wednesday 00:00 ET' makes the Tuesday run correct. These two readings give OPPOSITE answers about whether the whole Tuesday premise works, and nothing in the payload settles it. waiver_day_name below is set to Wednesday on the second reading and is NOT verified. CONFIRM WITH THE COMMISSIONER, or observe when a real claim actually processes, before relying on run timing. Until then submit claims by MONDAY night to be safe under either reading.","deadline_guidance":"UNVERIFIED. Safe under both readings: submit claims by Monday night ET. If processing is confirmed to be Wednesday 00:00 ET, Tuesday 18:00 ET is fine.","priority_rule":"Worst record gets priority 1. Using a claim sends that team to the back of the queue (rolling).","free_agents":[{"player_id":"10859","name":"Sam LaPorta","pos":"TE","team":"DET"},{"player_id":"11559","name":"Michael Penix","pos":"QB","team":"ATL"},{"player_id":"11637","name":"Keon Coleman","pos":"WR","team":"BUF"},{"player_id":"11638","name":"Ricky Pearsall","pos":"WR","team":"SF"},{"player_id":"1234","name":"Russell Wilson","pos":"QB","team":"NYG"},{"player_id":"12469","name":"Dylan Sampson","pos":"RB","team":"CLE"},{"player_id":"12483","name":"Jack Bech","pos":"WR","team":"LV"},{"player_id":"12484","name":"Jayden Higgins","pos":"WR","team":"HOU"},{"player_id":"12490","name":"Bhayshul Tuten","pos":"RB","team":"JAX"},{"player_id":"12501","name":"Matthew Golden","pos":"WR","team":"GB"},{"player_id":"12504","name":"Kaleb Johnson","pos":"RB","team":"PIT"},{"player_id":"12509","name":"Tre' Harris","pos":"WR","team":"LAC"},{"player_id":"12517","name":"Colston Loveland","pos":"TE","team":"CHI"},{"player_id":"12530","name":"Travis Hunter","pos":"WR","team":"JAX"},{"player_id":"12547","name":"Kyle Williams","pos":"WR","team":"NE"},{"player_id":"3321","name":"Tyreek Hill","pos":"WR","team":"MIA"},{"player_id":"4035","name":"Alvin Kamara","pos":"RB","team":"NO"},{"player_id":"4039","name":"Cooper Kupp","pos":"WR","team":"SEA"},{"player_id":"4066","name":"Evan Engram","pos":"TE","team":"DEN"},{"player_id":"4137","name":"James Conner","pos":"RB","team":"ARI"},{"player_id":"4144","name":"Jonnu Smith","pos":"TE","team":"PIT"},{"player_id":"4981","name":"Calvin Ridley","pos":"WR","team":"TEN"},{"player_id":"5849","name":"Kyler Murray","pos":"QB","team":"ARI"},{"player_id":"6768","name":"Tua Tagovailoa","pos":"QB","team":"MIA"},{"player_id":"6783","name":"Jerry Jeudy","pos":"WR","team":"CLE"},{"player_id":"6806","name":"J.K. Dobbins","pos":"RB","team":"DEN"},{"player_id":"7571","name":"Rashod Bateman","pos":"WR","team":"BAL"},{"player_id":"7591","name":"Justin Fields","pos":"QB","team":"NYJ"},{"player_id":"7594","name":"Chuba Hubbard","pos":"RB","team":"CAR"},{"player_id":"8154","name":"Brian Robinson","pos":"RB","team":"WAS"},{"player_id":"8205","name":"Isiah Pacheco","pos":"RB","team":"KC"},{"player_id":"9225","name":"Tank Bigsby","pos":"RB","team":"JAX"},{"player_id":"9229","name":"Anthony Richardson","pos":"QB","team":"IND"},{"player_id":"9500","name":"Josh Downs","pos":"WR","team":"IND"},{"player_id":"9753","name":"Zach Charbonnet","pos":"RB","team":"SEA"}],"available_defenses":["ARI","ATL","BAL","BUF","CAR","CHI","CIN","DAL","GB","IND","LAC","LV","MIA","MIN","NYG","NYJ","PHI","SF","TEN","WAS"],"fa_count":35,"fa_gate":"A player may only be recommended if he appears here. Anything not in players_cache.json is simply unknown, NOT confirmed available.","fa_caveat":"This is the complement of rostered ids against the LOCAL cache only. It is a proof of non-availability, not a complete FA pool. To rank the real pool, cross-reference trending_add plus the news agents' names and check each against the rostered set below.","trending_adds":[],"keeper_add_cost_round":12},"trades":{"offers":[],"has_offers":false,"appetites":[],"trade_deadline_week":13,"weeks_to_deadline":null,"phase":"preseason","note":"The trade board is written by the opus trade agent in weekly.js. It needs a real opponent_model (positional pressure with actual scoring behind it) to produce sendable offers, so it stays empty until the season starts. Pre-draft, the lever that exists instead is draft-pick trading -- see the DRAFT tab. merge_state.py does not copy trade_board into week_N.json; dump the full synthesis object to state/week_N.synthesis.json to surface it here.","pick_trading_allowed":true},"keepers":{"rules":{"max_keepers":3,"cost_rule":"Keeping a player costs the round he was drafted in last year, or the round he was KEPT at last year (that round carries forward).","first_round_ineligible":true,"undrafted_pickup_cost_round":12,"undrafted_pickup_rule":"A player added via free agency or waivers who was never drafted costs a 12th-round pick to keep.","max_consecutive_years":3,"deadline":null,"_deadline_note":"Sleeper metadata carries keeper_deadline:'1' with no readable date. _unverified — confirm with commissioner.","strategic_note":"Every in-season waiver add carries hidden 2027 keeper equity at a 12th-round price. A claimed breakout is worth far more than identical production from a player drafted in round 3."},"board_2026":[{"player":"Jameson Williams","player_id":"8148","position":"WR","acquired":"keeper","keeper_cost_2027":"R14","keeper_cost_round":14,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":2,"is_final_eligible_year":false,"forfeits_overall_pick":133,"notes":["kept at round 14 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":1},{"player":"Javonte Williams","player_id":"7588","position":"RB","acquired":"draft","keeper_cost_2027":"R13","keeper_cost_round":13,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":128,"notes":["kept at round 13 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":2},{"player":"Bo Nix","player_id":"11563","position":"QB","acquired":"keeper","keeper_cost_2027":"R12","keeper_cost_round":12,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":2,"is_final_eligible_year":false,"forfeits_overall_pick":113,"notes":["kept at round 12 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":3},{"player":"Jordan Mason","player_id":"8408","position":"RB","acquired":"draft","keeper_cost_2027":"R10","keeper_cost_round":10,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":93,"notes":["kept at round 10 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":4},{"player":"Joe Mixon","player_id":"4018","position":"RB","acquired":"draft","keeper_cost_2027":"R8","keeper_cost_round":8,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":73,"notes":["kept at round 8 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":5},{"player":"Travis Kelce","player_id":"1466","position":"TE","acquired":"draft","keeper_cost_2027":"R7","keeper_cost_round":7,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":68,"notes":["kept at round 7 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":6},{"player":"DeVonta Smith","player_id":"7525","position":"WR","acquired":"draft","keeper_cost_2027":"R6","keeper_cost_round":6,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":53,"notes":["kept at round 6 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":7},{"player":"Tetairoa McMillan","player_id":"12526","position":"WR","acquired":"draft","keeper_cost_2027":"R5","keeper_cost_round":5,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":48,"notes":["kept at round 5 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":8},{"player":"Kenneth Walker","player_id":"8151","position":"RB","acquired":"draft","keeper_cost_2027":"R4","keeper_cost_round":4,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":33,"notes":["kept at round 4 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":9},{"player":"Mike Evans","player_id":"2216","position":"WR","acquired":"draft","keeper_cost_2027":"R4","keeper_cost_round":4,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":33,"notes":["kept at round 4 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":10},{"player":"Puka Nacua","player_id":"9493","position":"WR","acquired":"keeper","keeper_cost_2027":"R2","keeper_cost_round":2,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":2,"is_final_eligible_year":false,"forfeits_overall_pick":13,"notes":["kept at round 2 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":11},{"player":"Ashton Jeanty","player_id":"12527","position":"RB","acquired":"draft","keeper_cost_2027":"R1","keeper_cost_round":1,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":0,"surplus":"none","valued":false,"eligible":false,"ineligible_reason":"1st-round picks are not keeper-eligible","consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":8,"notes":["kept at round 1 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":12}],"carried_2027":[{"player":"Jameson Williams","player_id":"8148","position":"WR","acquired":"keeper","keeper_cost_2027":"R14","keeper_cost_round":14,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":3,"is_final_eligible_year":true,"forfeits_overall_pick":133,"notes":["kept at round 14 last year; that round carries forward","FINAL eligible year -- keeping him uses up the 3-year cap","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":1,"cost_basis_unknown":null,"cost_basis":"carried forward from the planned 2026 keep"},{"player":"Bo Nix","player_id":"11563","position":"QB","acquired":"keeper","keeper_cost_2027":"R12","keeper_cost_round":12,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":3,"is_final_eligible_year":true,"forfeits_overall_pick":113,"notes":["kept at round 12 last year; that round carries forward","FINAL eligible year -- keeping him uses up the 3-year cap","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":3,"cost_basis_unknown":null,"cost_basis":"carried forward from the planned 2026 keep"},{"player":"Kenneth Walker","player_id":"8151","position":"RB","acquired":"draft","keeper_cost_2027":"R4","keeper_cost_round":4,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":2,"is_final_eligible_year":false,"forfeits_overall_pick":33,"notes":["kept at round 4 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":9,"cost_basis_unknown":null,"cost_basis":"carried forward from the planned 2026 keep"}],"unknown_2027":[{"player":"Javonte Williams","player_id":"7588","position":"RB","acquired":"draft","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 13 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":2,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null},{"player":"Jordan Mason","player_id":"8408","position":"RB","acquired":"draft","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 10 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":4,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null},{"player":"Joe Mixon","player_id":"4018","position":"RB","acquired":"draft","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 8 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":5,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null},{"player":"Travis Kelce","player_id":"1466","position":"TE","acquired":"draft","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 7 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":6,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null},{"player":"DeVonta Smith","player_id":"7525","position":"WR","acquired":"draft","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 6 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":7,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null},{"player":"Tetairoa McMillan","player_id":"12526","position":"WR","acquired":"draft","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 5 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":8,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null},{"player":"Mike Evans","player_id":"2216","position":"WR","acquired":"draft","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 4 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":10,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null},{"player":"Puka Nacua","player_id":"9493","position":"WR","acquired":"keeper","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":null,"surplus":"unknown","valued":false,"eligible":true,"ineligible_reason":null,"consecutive_years_if_kept":2,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 2 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":11,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null},{"player":"Ashton Jeanty","player_id":"12527","position":"RB","acquired":"draft","keeper_cost_2027":null,"keeper_cost_round":null,"market_round":null,"projected_ppg":null,"projected_value":"unknown","surplus_rounds":0,"surplus":"none","valued":false,"eligible":false,"ineligible_reason":"1st-round picks are not keeper-eligible","consecutive_years_if_kept":1,"is_final_eligible_year":false,"forfeits_overall_pick":null,"notes":["kept at round 1 last year; that round carries forward","NO PROJECTION SUPPLIED -- surplus is unknown, not zero and not negative. Do not rank or drop on this row."],"rank":12,"cost_basis_unknown":"not in the 2026 keeper plan -- he re-enters the draft, so his 2027 cost depends on where he is drafted","cost_basis":null}],"state_keeper_equity":[],"projection_note":"No 2027 projections have been supplied to keeper_equity.py, so every surplus reads 'unknown' rather than being guessed. Surplus becomes real the moment rest-of-season projections are fed in mid-season.","waiver_add_note":"Every in-season waiver add costs a R12 to keep in 2027. That is the single biggest edge in this league -- a claimed breakout is worth far more than identical production from a round-3 draft pick."},"report":null}</script>
+<script>
+"use strict";
+var D = JSON.parse(document.getElementById("payload").textContent);
+
+/* ---------- tiny helpers ---------- */
+function esc(s){return String(s==null?"":s)
+  .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function md(s){                       /* inline markdown from the board doc */
+  var t = esc(s);
+  t = t.replace(/`([^`]+)`/g,"<code>$1</code>");
+  t = t.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+  t = t.replace(/(^|[\s(])\*([^*]+)\*/g,"$1<em>$2</em>");
+  return t;
+}
+function el(tag,cls,htmlStr){var e=document.createElement(tag);
+  if(cls)e.className=cls; if(htmlStr!=null)e.innerHTML=htmlStr; return e;}
+function card(title,extra){var c=el("div","card");
+  if(title){var h=el("h2",null,esc(title)); if(extra)h.insertAdjacentHTML("beforeend"," "+extra);
+  c.appendChild(h);} return c;}
+function nodata(label,msg){return '<div class="nodata"><b>'+esc(label)+
+  '</b>'+esc(msg)+'</div>';}
+function num(v,d){ if(v==null||v==="")return "&mdash;";
+  var n=Number(v); return isNaN(n)?esc(v):n.toFixed(d==null?1:d);}
+function pct(v){return v==null?"&mdash;":Math.round(Number(v)*100)+"%";}
+
+/* responsive table from {headers, rows} or from explicit arrays */
+function table(headers,rows,opts){
+  opts=opts||{};
+  if(!rows||!rows.length) return "";
+  var h="<table><thead><tr>";
+  headers.forEach(function(x){h+="<th>"+md(x)+"</th>";});
+  h+="</tr></thead><tbody>";
+  rows.forEach(function(r){
+    h+="<tr>";
+    r.forEach(function(c,i){
+      h+='<td data-l="'+esc(headers[i]||"")+'">'+(opts.raw?esc(c):md(c))+"</td>";
+    });
+    h+="</tr>";
+  });
+  return h+"</tbody></table>";
+}
+function mdTable(t){ return t&&t.rows&&t.rows.length ? table(t.headers,t.rows) : ""; }
+
+function bar(label,val,thresholds){
+  var v = val==null?0:Number(val);
+  var cls = v>=0.66?"hi":(v>=0.33?"md":"");
+  return '<div class="bar"><div class="lb">'+esc(label)+'</div>'+
+    '<div class="tr"><div class="fl '+cls+'" style="width:'+
+    Math.max(2,Math.round(v*100))+'%"></div></div>'+
+    '<div class="vl">'+(val==null?"&mdash;":v.toFixed(2))+'</div></div>';
+}
+
+/* ---------- header ---------- */
+(function(){
+  var b=D.build||{};
+  document.getElementById("hTitle").textContent =
+    (b.league_name||"Sunday Scaries")+" "+(b.season||"");
+  var ph=(b.season_phase||{}).name||b.league_status||"";
+  var phEl=document.getElementById("hPhase");
+  phEl.textContent = ph? ph.replace(/_/g," ").toUpperCase() : "";
+  if(!ph) phEl.style.display="none";
+  var sub=[];
+  if(b.league_status==="pre_draft") sub.push("Pre-draft. Rosters below are last season's carryover; only keepers survive Aug 28.");
+  if((b.season_phase||{}).default_posture) sub.push((b.season_phase||{}).default_posture);
+  document.getElementById("hSub").innerHTML = sub.map(esc).join(" ");
+  var s=document.getElementById("hStamps"), parts=[];
+  parts.push(['<span class="dot"></span>',"data as of "+esc(b.state_generated_at||"unknown")]);
+  parts.push(['<span class="dot '+(b.degraded?"warn":"")+'"></span>',
+    "week "+(b.week==null?"?":b.week)+(b.degraded?" · degraded":"")]);
+  parts.push(['<span class="dot"></span>',"built "+esc(b.generated_at||"")]);
+  s.innerHTML = parts.map(function(p){return '<span class="stamp">'+p[0]+p[1]+"</span>";}).join("");
+})();
+
+/* ---------- action card (above the tabs, on every tab) ---------- *
+ * Deliberately absent rather than empty when there is nothing to do -- an
+ * empty green box every week would train the eye to ignore it.            */
+(function(){
+  var a=D.action_card||[];
+  if(!a.length) return;
+  document.getElementById("actionCard").innerHTML =
+    '<div class="act"><h2>Do this first &mdash; week '+esc((D.build||{}).week)+'</h2><ol>'+
+    a.map(function(x){return "<li>"+md(x.action||"")+
+      (x.deadline?'<span class="dl">'+esc(x.deadline)+"</span>":"")+"</li>";}).join("")+
+    "</ol></div>";
+})();
+
+/* ---------- TAB: DRAFT ---------- */
+function tabDraft(){
+  var f=document.createDocumentFragment(), d=D.draft||{};
+  var c=card("Draft");
+  var days = d.days_until;
+  var kv='<div class="kv">'+
+    '<div><span>Slot</span><b>'+esc(d.slot||"?")+'</b></div>'+
+    '<div><span>Live picks</span><b>'+((d.live_overalls||[]).length)+'</b></div>'+
+    '<div><span>Forfeited</span><b>'+((d.forfeited||[]).length)+'</b></div>'+
+    '<div><span>Days out</span><b>'+(days==null?"&mdash;":Math.max(0,Math.ceil(days)))+'</b></div>'+
+    '</div>';
+  c.insertAdjacentHTML("beforeend", kv);
+  if(d.draft_datetime_et) c.insertAdjacentHTML("beforeend",
+    '<p class="dim">'+esc(d.draft_datetime_et.replace("T"," ").slice(0,16))+
+    ' ET &middot; '+esc(d.num_teams||"?")+' teams &middot; '+esc(d.rounds||"?")+
+    ' rounds &middot; snake</p>');
+  f.appendChild(c);
+
+  /* pick map */
+  var pm=card("Pick map",'<span class="badge b-gry">slot '+esc(d.slot)+'</span>');
+  var g='<div class="picks">';
+  (d.picks||[]).forEach(function(p){
+    var live = p.status==="live";
+    g+='<div class="pk '+(live?"live":"dead")+'"><div class="rd">R'+esc(p.round)+
+      '</div><div class="ov">'+esc(p.overall)+'</div><div class="st">'+
+      (live?"LIVE":"FORFEIT")+'</div></div>';
+  });
+  g+="</div>";
+  pm.insertAdjacentHTML("beforeend",g);
+  var ff=(d.forfeited||[]);
+  if(ff.length){
+    pm.insertAdjacentHTML("beforeend",'<div class="hr"></div>');
+    pm.insertAdjacentHTML("beforeend", table(["Round","Pick","Lost to"],
+      ff.map(function(p){return ["R"+p.round,"p"+p.overall,p.reason||"keeper"];})));
+  }
+  var dz=(d.gaps||[]).filter(function(g){return g.dead_zone;});
+  if(dz.length){
+    pm.insertAdjacentHTML("beforeend",'<h3>Dead zones &mdash; '+dz.length+
+      ' &times; '+dz[0].nominal+' picks</h3>');
+    dz.forEach(function(g){
+      pm.insertAdjacentHTML("beforeend",'<div class="gapbar"><div class="n">'+
+        g.nominal+'</div><div>p'+g.from+' &rarr; p'+g.to+
+        ' &mdash; nothing you need can be planned for <em>after</em> this gap.</div></div>');
+    });
+  }
+  f.appendChild(pm);
+
+  /* keepers */
+  var kc=card("Keepers","");
+  if((d.keepers||[]).length){
+    if(d.keeper_status) kc.insertAdjacentHTML("beforeend",
+      '<p class="dim">'+esc(d.keeper_status)+'</p>');
+    (d.keepers||[]).forEach(function(k){
+      var yr = k.years_remaining_after;
+      kc.insertAdjacentHTML("beforeend",
+        '<div class="slot"><div class="sl">'+esc(k.pos)+'</div>'+
+        '<div class="nm"><b>'+esc(k.name)+'</b><div class="meta">costs p'+
+        esc(k.forfeits_overall_pick)+' &middot; year '+esc(k.consecutive_years_if_kept)+
+        ' of 3'+(k.final_eligible_year_if_kept?" &middot; final eligible "+
+        esc(k.final_eligible_year_if_kept):"")+'</div></div>'+
+        '<div class="rt"><span class="badge b-pur">R'+esc(k.cost_round)+'</span>'+
+        (yr!=null?'<span class="badge '+(yr<=1?"b-amb":"b-gry")+'">'+yr+
+          ' yr left</span>':'')+'</div></div>');
+    });
+  } else {
+    kc.insertAdjacentHTML("beforeend", nodata("no keeper plan",
+      "league_config.andrew.keeper_plan.keeping is empty."));
+  }
+  if((d.passed_over||[]).length){
+    kc.insertAdjacentHTML("beforeend","<h3>Passed over &mdash; back in the pool</h3>");
+    kc.insertAdjacentHTML("beforeend", table(["Player","Cost","Why not"],
+      d.passed_over.map(function(p){return [p.name+" ("+p.pos+")","R"+p.cost_round,p.note||""];})));
+  }
+  f.appendChild(kc);
+
+  /* roster holes */
+  var n=d.needs||{};
+  var rc=card("Roster holes after keepers");
+  var un=(n.unfilled_starters||[]);
+  rc.insertAdjacentHTML("beforeend",'<div class="kv">'+
+    '<div><span>Starters to fill</span><b>'+un.length+'</b></div>'+
+    '<div><span>Bench</span><b>'+esc(n.bench_slots)+'</b></div>'+
+    '<div><span>Spots</span><b>'+esc(n.spots_to_fill)+'</b></div>'+
+    '<div><span>Picks</span><b>'+esc(n.picks_available)+'</b></div></div>');
+  if(un.length) rc.insertAdjacentHTML("beforeend",
+    '<p>'+un.map(function(s){return '<span class="badge b-red" style="margin:2px 3px 2px 0">'+
+      esc(s)+'</span>';}).join("")+'</p>');
+  if((n.filled_by_keepers||[]).length) rc.insertAdjacentHTML("beforeend",
+    '<p class="small mut">Filled by keepers: '+n.filled_by_keepers.map(function(x){
+      return esc(x.slot)+" = "+esc(x.player);}).join(" &middot; ")+'</p>');
+  if(n.spots_to_fill===n.picks_available) rc.insertAdjacentHTML("beforeend",
+    '<p class="small mut">'+n.picks_available+' picks for '+n.spots_to_fill+
+    ' spots &mdash; zero margin for a wasted selection.</p>');
+  f.appendChild(rc);
+
+  /* the board */
+  var b=d.board||{};
+  if(!b.available){
+    var pc=card("Draft board");
+    pc.insertAdjacentHTML("beforeend", nodata("placeholder", b.note||
+      "draft_board_2026.md not found."));
+    f.appendChild(pc);
+    return f;
+  }
+  if((b.thirty_second||[]).length){
+    var tc=card("The 30-second version");
+    tc.insertAdjacentHTML("beforeend","<div>"+b.thirty_second.map(function(l){
+      return '<div style="padding:7px 0;border-bottom:1px solid var(--line)">'+md(l)+"</div>";
+    }).join("")+"</div>");
+    f.appendChild(tc);
+  }
+  if(b.pick_targets){
+    var ptc=card("Pick-by-pick targets");
+    ptc.insertAdjacentHTML("beforeend", mdTable(b.pick_targets));
+    f.appendChild(ptc);
+  }
+  if(b.tiers){
+    var tt=card("Value tiers");
+    tt.insertAdjacentHTML("beforeend", mdTable(b.tiers));
+    f.appendChild(tt);
+  }
+  if(b.checklist||(b.dead_zone_notes||[]).length){
+    var dc=card("Dead-zone planning");
+    if(b.checklist) dc.insertAdjacentHTML("beforeend", mdTable(b.checklist));
+    (b.dead_zone_notes||[]).forEach(function(s){
+      dc.insertAdjacentHTML("beforeend",'<details><summary>'+md(s.title)+
+        '</summary><div class="bd">'+(s.body||[]).map(function(p){
+          return "<p>"+md(p)+"</p>";}).join("")+'</div></details>');
+    });
+    f.appendChild(dc);
+  }
+  if(b.real_waits||b.true_pick_map||b.depletion){
+    var wc=card("Real waits (live picks, not nominal)");
+    wc.insertAdjacentHTML("beforeend", mdTable(b.real_waits||b.true_pick_map));
+    if(b.depletion) wc.insertAdjacentHTML("beforeend",
+      '<details><summary>Round-by-round keeper depletion</summary><div class="bd">'+
+      mdTable(b.depletion)+'</div></details>');
+    if(b.true_pick_map && b.real_waits) wc.insertAdjacentHTML("beforeend",
+      '<details><summary>Live picks between each of your selections</summary>'+
+      '<div class="bd">'+mdTable(b.true_pick_map)+'</div></details>');
+    f.appendChild(wc);
+  }
+  if((b.rules||[]).length||b.pivot_triggers){
+    var rc2=card("Draft-day rules");
+    var groups={};
+    (b.rules||[]).forEach(function(r){(groups[r.group]=groups[r.group]||[]).push(r.text);});
+    Object.keys(groups).forEach(function(g){
+      rc2.insertAdjacentHTML("beforeend","<h3>"+esc(g)+"</h3><ul class='rulelist'>"+
+        groups[g].map(function(t){return "<li>"+md(t)+"</li>";}).join("")+"</ul>");
+    });
+    if(b.pivot_triggers) rc2.insertAdjacentHTML("beforeend",
+      "<h3>Pivot triggers</h3>"+mdTable(b.pivot_triggers));
+    f.appendChild(rc2);
+  }
+  if((b.panics||[]).length){
+    var pcx=card("Panic buttons");
+    b.panics.forEach(function(s){
+      pcx.insertAdjacentHTML("beforeend",'<details><summary>'+md(s.title)+
+        '</summary><div class="bd">'+(s.body||[]).map(function(p){
+          return "<p>"+md(p)+"</p>";}).join("")+'</div></details>');
+    });
+    f.appendChild(pcx);
+  }
+  if((b.scenarios||[]).length){
+    var sc=card("Mock drafts");
+    b.scenarios.forEach(function(s){
+      sc.insertAdjacentHTML("beforeend",'<details><summary>'+md(s.name)+
+        '</summary><div class="bd">'+table(["Pick","Take"],
+          s.picks.map(function(p){return ["p"+p.pick,p.take];}))+'</div></details>');
+    });
+    f.appendChild(sc);
+  }
+  if(b.one_paragraph){
+    var oc=card("The one-paragraph plan");
+    oc.insertAdjacentHTML("beforeend","<p>"+md(b.one_paragraph)+"</p>");
+    f.appendChild(oc);
+  }
+  if((b.qb_answer||[]).length){
+    var qc=card("The QB question");
+    if(b.qb_headline) qc.insertAdjacentHTML("beforeend","<h3>"+md(b.qb_headline)+"</h3>");
+    b.qb_answer.forEach(function(p){qc.insertAdjacentHTML("beforeend","<p>"+md(p)+"</p>");});
+    f.appendChild(qc);
+  }
+  return f;
+}
+
+/* ---------- TAB: MY TEAM ---------- */
+function injBadge(s){
+  if(!s) return "";
+  var cls = /out|ir|doubtful|pup|suspend/i.test(s)?"b-red":"b-amb";
+  return '<span class="badge '+cls+'">'+esc(s)+'</span>';
+}
+function playerRow(p,slot){
+  var badges="";
+  if(p.keeper) badges+='<span class="badge b-pur">KEEP R'+esc(p.keeper_cost_round)+'</span>';
+  else if(p.keeper_cost_round!=null && p.keeper_eligible!==false)
+    badges+='<span class="badge b-gry">R'+esc(p.keeper_cost_round)+'</span>';
+  else if(p.keeper_eligible===false)
+    badges+='<span class="badge b-gry">R1 &mdash; ineligible</span>';
+  badges+=injBadge(p.injury_status);
+  if(p.keeper && p.years_remaining_after!=null)
+    badges+='<span class="badge '+(p.years_remaining_after<=1?"b-amb":"b-gry")+'">'+
+      p.years_remaining_after+' yr left</span>';
+  var meta=[p.pos,p.team||"FA"].filter(Boolean).join(" &middot; ");
+  if(p.keeper_flag) meta+=' &middot; <span style="color:var(--amb)">'+esc(p.keeper_flag)+"</span>";
+  return '<div class="slot"><div class="sl">'+esc(slot||p.pos||"")+'</div>'+
+    '<div class="nm"><b>'+esc(p.name||p.player_id)+'</b><div class="meta">'+meta+
+    '</div></div><div class="rt">'+badges+'</div></div>';
+}
+function tabMyTeam(){
+  var f=document.createDocumentFragment(), t=D.my_team||{};
+  if(!t.available){
+    var c0=card("My team");
+    c0.insertAdjacentHTML("beforeend", nodata("no roster", t.note||"Not in state."));
+    f.appendChild(c0); return f;
+  }
+  var c=card("My team",'<span class="badge b-gry">roster '+esc(t.roster_id)+'</span>');
+  c.insertAdjacentHTML("beforeend",'<p class="dim">'+esc(t.team_name||"(no team name set)")+
+    ' &middot; '+esc(t.owner)+' &middot; waiver priority '+esc(t.waiver_priority)+'</p>');
+  var pc=t.positional_counts||{}, kv='<div class="kv">';
+  ["QB","RB","WR","TE","DEF"].forEach(function(p){
+    if(pc[p]!=null) kv+='<div><span>'+p+'</span><b>'+pc[p]+'</b></div>';});
+  c.insertAdjacentHTML("beforeend", kv+"</div>");
+  if(t.lineup_note) c.insertAdjacentHTML("beforeend",
+    '<div class="warnbox"><b>read this first</b>'+esc(t.lineup_note)+'</div>');
+  f.appendChild(c);
+
+  if((t.lineup_card||[]).length){
+    var lc=card("Recommended lineup",'<span class="badge b-grn">this week</span>');
+    lc.insertAdjacentHTML("beforeend", table(["Slot","Start","Why"],
+      t.lineup_card.map(function(x){return [x.slot||"",x.player||"",x.reason||""];})));
+    f.appendChild(lc);
+  }
+  var sc=card("Starting lineup",
+    (t.lineup_card||[]).length?'<span class="badge b-gry">as set in Sleeper</span>':"");
+  (t.starters||[]).forEach(function(p){
+    sc.insertAdjacentHTML("beforeend", playerRow(p,p.slot));});
+  f.appendChild(sc);
+
+  var bc=card("Bench",'<span class="badge b-gry">'+((t.bench||[]).length)+'</span>');
+  (t.bench||[]).forEach(function(p){bc.insertAdjacentHTML("beforeend", playerRow(p,p.pos));});
+  f.appendChild(bc);
+
+  if((t.injuries||[]).length){
+    var ic=card("Injuries");
+    ic.insertAdjacentHTML("beforeend", table(
+      ["Player","Pos","Status","Detail","Starter"],
+      t.injuries.map(function(i){return [i.player,i.pos,i.status,
+        (i.body_part||"")+(i.practice?" / "+i.practice:""),i.is_starter?"YES":"bench"];})));
+    f.appendChild(ic);
+  }
+  var byc=card("Bye coverage");
+  var bw=t.bye_weeks||{};
+  if(bw.status==="unknown"||!Object.keys(bw.by_position||{}).length){
+    byc.insertAdjacentHTML("beforeend", nodata("no data",
+      bw.reason||"2026 NFL bye weeks are not loaded, so bye coverage cannot be computed."));
+  } else {
+    byc.insertAdjacentHTML("beforeend", table(["Position","Bye weeks"],
+      Object.keys(bw.by_position).map(function(k){
+        return [k,(bw.by_position[k]||[]).join(", ")];})));
+  }
+  f.appendChild(byc);
+  return f;
+}
+
+/* ---------- TAB: OPPONENTS ---------- */
+function tabOpponents(){
+  var f=document.createDocumentFragment(), o=D.opponents||{};
+  var c=card("Rivals",'<span class="badge b-gry">'+((o.cards||[]).length)+'</span>');
+  if(!o.has_model) c.insertAdjacentHTML("beforeend",
+    nodata("no opponent model yet", o.model_note||""));
+  if(o.has_pressure) c.insertAdjacentHTML("beforeend",
+    '<p class="small mut">'+esc(o.pressure_note||"")+'</p>');
+  if((o.cards||[]).some(function(x){return x.seat;})) c.insertAdjacentHTML("beforeend",
+    '<p class="dim small">'+esc(o.seat_note||"")+'</p>');
+  f.appendChild(c);
+
+  (o.cards||[]).forEach(function(t){
+    var cc=el("div","card opp");
+    var hole = t.seat&&t.seat.biggest_hole ? t.seat.biggest_hole : null;
+    cc.insertAdjacentHTML("beforeend",'<div class="hd"><b>'+
+      esc(t.team_name||t.owner)+'</b>'+
+      '<span class="badge b-gry">'+esc(t.owner)+'</span>'+
+      '<span class="badge b-blu">'+esc(t.record)+'</span>'+
+      '<span class="badge b-gry">wvr '+esc(t.waiver_priority)+'</span>'+
+      ((t.injuries||[]).length?'<span class="badge b-red">'+t.injuries.length+
+        ' inj</span>':'')+'</div>');
+    var pcnt=t.positional_counts||{}, s=[];
+    ["QB","RB","WR","TE","DEF"].forEach(function(p){
+      if(pcnt[p]!=null) s.push(p+" "+pcnt[p]);});
+    cc.insertAdjacentHTML("beforeend",'<p class="dim" style="margin-top:6px">'+
+      esc(s.join(" · "))+(t.pf?" · PF "+num(t.pf):"")+'</p>');
+
+    if(hole) cc.insertAdjacentHTML("beforeend",
+      '<p class="small"><span class="badge b-amb">DRAFT-DAY HOLE</span> '+md(hole)+
+      (t.seat.qbs_kept?' <span class="dim">(QBs kept: '+md(t.seat.qbs_kept)+')</span>':'')+'</p>');
+
+    var press=t.pressure||{}, keys=Object.keys(press);
+    if(keys.length){
+      var any=keys.some(function(k){return Number(press[k])>0;});
+      var h='<div class="bars">';
+      ["QB","RB","WR","TE","DEF"].forEach(function(p){
+        if(press[p]!=null) h+=bar(p,press[p]);});
+      h+="</div>";
+      cc.insertAdjacentHTML("beforeend",h);
+      cc.insertAdjacentHTML("beforeend",'<p class="dim small">positional pressure &middot; confidence '+
+        esc(t.pressure_confidence||"?")+(any?"":" &middot; all zero: no injuries, no scoring history yet")+'</p>');
+    }
+    if((t.vulnerable_starters||[]).length) cc.insertAdjacentHTML("beforeend",
+      '<p class="small"><b>Vulnerable starters:</b> '+
+      esc(t.vulnerable_starters.map(function(v){return v.player||v.name||v;}).join(", "))+'</p>');
+    if((t.injuries||[]).length) cc.insertAdjacentHTML("beforeend",
+      '<p class="small"><b>Injured:</b> '+t.injuries.map(function(i){
+        return esc(i.player)+" ("+esc(i.pos)+", "+esc(i.status)+
+        (i.is_starter?", STARTER":"")+")";}).join(", ")+'</p>');
+
+    cc.insertAdjacentHTML("beforeend",'<div class="hr"></div>');
+    if(t.intel) cc.insertAdjacentHTML("beforeend",'<p class="small">'+md(t.intel)+'</p>');
+    cc.insertAdjacentHTML("beforeend",'<p class="small"><b>Predicted waiver targets</b><br>'+
+      ((t.predicted_claims||[]).length
+        ? t.predicted_claims.map(function(x){
+            if(typeof x==="string") return esc(x);
+            return esc(x.player||x.name||"")+(x.likelihood!=null?
+              ' <span class="dim">'+pct(x.likelihood)+"</span>":"");
+          }).join(", ")
+        : '<span class="dim">no data &mdash; written by the weekly opponent agents once the season starts</span>')+'</p>');
+    if(t.blocking_opportunity && !/^none$/i.test(t.blocking_opportunity))
+      cc.insertAdjacentHTML("beforeend",'<p class="small"><span class="badge b-amb">BLOCK</span> '+
+        md(t.blocking_opportunity)+'</p>');
+    cc.insertAdjacentHTML("beforeend",'<p class="small"><b>Exploitable weakness</b><br>'+
+      (t.exploitable_weakness ? md(t.exploitable_weakness)
+        : (hole ? md(hole)+' <span class="dim">(draft-day read, not an in-season model)</span>'
+                : '<span class="dim">no data yet</span>'))+'</p>');
+    if(t.trade_appetite) cc.insertAdjacentHTML("beforeend",
+      '<p class="small"><b>Trade appetite</b><br>'+md(t.trade_appetite)+'</p>');
+
+    var det=[];
+    if((t.starters||[]).length) det.push('<details><summary>Roster</summary><div class="bd">'+
+      table(["Slot","Player","Pos","Team"],(t.starters||[]).map(function(p){
+        return [p.slot,p.name,p.pos,p.team||""];}))+
+      ((t.bench||[]).length?'<h3>Bench</h3>'+table(["Player","Pos","Team"],
+        t.bench.map(function(p){return [p.name,p.pos,p.team||""];})):"")+
+      '</div></details>');
+    if((t.data_gaps||[]).length) det.push('<details><summary>Data gaps ('+
+      t.data_gaps.length+')</summary><div class="bd"><ul class="tight">'+
+      t.data_gaps.map(function(g){return "<li>"+esc(g)+"</li>";}).join("")+
+      '</ul></div></details>');
+    cc.insertAdjacentHTML("beforeend", det.join(""));
+    f.appendChild(cc);
+  });
+  return f;
+}
+
+/* ---------- TAB: WAIVERS ---------- */
+function tabWaivers(){
+  var f=document.createDocumentFragment(), w=D.waivers||{};
+  var c=card("Waiver system");
+  c.insertAdjacentHTML("beforeend",'<div class="kv">'+
+    '<div><span>Type</span><b style="font-size:13px">'+
+      esc(w.is_faab?"FAAB":"PRIORITY")+'</b></div>'+
+    '<div><span>My priority</span><b>'+esc(w.andrew_position==null?"?":w.andrew_position)+'</b></div>'+
+    '<div><span>Teams ahead</span><b>'+((w.teams_ahead||[]).length)+'</b></div>'+
+    '<div><span>Add keeper cost</span><b>R'+esc(w.keeper_add_cost_round||12)+'</b></div>'+
+    '</div>');
+  if(w.priority_rule) c.insertAdjacentHTML("beforeend",'<p class="small mut">'+esc(w.priority_rule)+'</p>');
+  if(w.type_evidence) c.insertAdjacentHTML("beforeend",
+    '<p class="dim small">Evidence: '+esc(w.type_evidence)+'</p>');
+  if(!w.day_verified) c.insertAdjacentHTML("beforeend",
+    '<div class="warnbox"><b>processing day unconfirmed</b>'+
+    esc(w.deadline_guidance||"")+(w.day_note?"<br><br>"+esc(w.day_note):"")+'</div>');
+  f.appendChild(c);
+
+  var cs=card("Claim sheet");
+  if(w.has_claim_sheet){
+    var faab = (w.claims||[]).some(function(x){return x.faab_bid_pct!=null;});
+    cs.insertAdjacentHTML("beforeend", table(
+      ["#","Player",faab?"Bid":"P(land)","Drop","2027 keeper","Why"],
+      (w.claims||[]).map(function(x,i){return [
+        String(x.order||i+1),
+        x.player||x.name||"",
+        faab ? (x.faab_bid_pct!=null?x.faab_bid_pct+"%":"&mdash;")
+             : (x.probability!=null?pct(x.probability):"&mdash;"),
+        x.drop||"&mdash;",
+        x.keeper_equity_2027||x.keeper_equity||"&mdash;",
+        x.note||x.rationale||x.why||""];})));
+  } else {
+    cs.insertAdjacentHTML("beforeend", nodata("no claim sheet", w.claim_note||""));
+  }
+  f.appendChild(cs);
+
+  var dc=card("Drop candidates");
+  if((w.drops||[]).length){
+    dc.insertAdjacentHTML("beforeend", table(["#","Player","What you lose","2027 keeper","Verdict"],
+      w.drops.map(function(x,i){return [String(x.rank||i+1),x.player||x.name||"",
+        x.what_you_lose||x.cost||"",
+        x.keeper_equity_2027||x.keeper_equity||"&mdash;",
+        x.verdict||""];})));
+  } else {
+    dc.insertAdjacentHTML("beforeend", nodata("no drop candidates",
+      "Produced alongside the claim sheet. Nothing to drop before a roster exists."));
+  }
+  f.appendChild(dc);
+
+  var oc=card("Priority order");
+  if((w.order||[]).length){
+    oc.insertAdjacentHTML("beforeend", table(["#","Owner",""],
+      w.order.map(function(r){return [String(r.priority), r.owner||("roster "+r.roster_id),
+        r.is_andrew?"**YOU**":""];})));
+  } else { oc.insertAdjacentHTML("beforeend", nodata("no order","waiver_order is empty in state.")); }
+  f.appendChild(oc);
+
+  var fc=card("Verified free agents",
+    '<span class="badge b-gry">'+((w.free_agents||[]).length)+' + '+
+    ((w.available_defenses||[]).length)+' DEF</span>');
+  if(w.fa_gate) fc.insertAdjacentHTML("beforeend",'<p class="small mut">'+esc(w.fa_gate)+'</p>');
+  if((w.free_agents||[]).length){
+    fc.insertAdjacentHTML("beforeend", table(["Player","Pos","Team"],
+      w.free_agents.map(function(p){return [p.name,p.pos,p.team||""];})));
+  } else {
+    fc.insertAdjacentHTML("beforeend", nodata("empty","No confirmed free agents in state."));
+  }
+  if(w.fa_caveat) fc.insertAdjacentHTML("beforeend",
+    '<p class="dim small">'+esc(w.fa_caveat)+'</p>');
+  if((w.available_defenses||[]).length) fc.insertAdjacentHTML("beforeend",
+    '<details><summary>Available defenses ('+w.available_defenses.length+
+    ')</summary><div class="bd"><p>'+w.available_defenses.map(function(d){
+      return '<span class="badge b-gry" style="margin:2px 3px 2px 0">'+
+      esc(d.name||d.team||d)+'</span>';}).join("")+'</p></div></details>');
+  f.appendChild(fc);
+  return f;
+}
+
+/* ---------- TAB: TRADES ---------- */
+function tabTrades(){
+  var f=document.createDocumentFragment(), t=D.trades||{};
+  var c=card("Trade board");
+  c.insertAdjacentHTML("beforeend",'<p class="small mut">Deadline: week '+
+    esc(t.trade_deadline_week||"?")+
+    (t.weeks_to_deadline!=null?' <span class="badge '+
+      (t.weeks_to_deadline<=2?"b-red":"b-gry")+'">'+t.weeks_to_deadline+
+      ' weeks left</span>':"")+
+    ' &middot; phase: '+esc(t.phase||"?")+
+    ' &middot; draft-pick trading '+(t.pick_trading_allowed?"ALLOWED":"not allowed")+'</p>');
+  if(t.has_offers){
+    (t.offers||[]).forEach(function(o){
+      var offer = o.offer ||
+        ((o.send||[]).join(", ")+" → "+(o.receive||[]).join(", "));
+      c.insertAdjacentHTML("beforeend",
+        '<div style="border-top:1px solid var(--line);padding:11px 0">'+
+        '<div><span class="badge b-blu">'+esc(o.to_owner||o.to||o.owner||"?")+
+        '</span></div>'+
+        '<p style="margin:7px 0 4px"><b>'+md(offer)+'</b></p>'+
+        (o.rationale?'<p class="small mut">'+md(o.rationale)+'</p>':"")+
+        (o.message_to_send?'<details><summary>Message to send</summary>'+
+          '<div class="bd">'+md(o.message_to_send)+'</div></details>':"")+
+        '</div>');
+    });
+  } else {
+    c.insertAdjacentHTML("beforeend", nodata("no offers yet", t.note||""));
+  }
+  f.appendChild(c);
+
+  var ac=card("Rival trade appetite");
+  var rows=(t.appetites||[]).filter(function(a){return a.trade_appetite;});
+  if(rows.length){
+    ac.insertAdjacentHTML("beforeend", table(["Owner","Appetite","Confidence"],
+      rows.map(function(a){return [a.owner||("roster "+a.roster_id),
+        a.trade_appetite,a.confidence||""];})));
+  } else {
+    ac.insertAdjacentHTML("beforeend", nodata("no data",
+      "Filled from opponent_model.trade_appetite once the weekly run has produced one. "+
+      "Until then the OPPONENTS tab shows each rival's draft-day hole, which is the "+
+      "only rival-need signal that actually exists right now."));
+  }
+  f.appendChild(ac);
+  return f;
+}
+
+/* ---------- TAB: KEEPERS ---------- */
+function keeperRows(list){
+  return list.map(function(r){
+    var cost = r.keeper_cost_2027 || (r.keeper_cost_round?("R"+r.keeper_cost_round):null);
+    var yrs = r.consecutive_years_if_kept;
+    return [
+      r.player+" ("+(r.position||"")+")",
+      cost || "unknown",
+      r.forfeits_overall_pick?("p"+r.forfeits_overall_pick):"&mdash;",
+      (yrs!=null? yrs+" of 3":"?")+(r.is_final_eligible_year?" **FINAL**":""),
+      r.eligible===false ? ("**ineligible** &mdash; "+(r.ineligible_reason||"")) : (r.surplus||"unknown")
+    ];
+  });
+}
+function tabKeepers(){
+  var f=document.createDocumentFragment(), k=D.keepers||{};
+  var r=k.rules||{};
+  var c=card("Keeper rules");
+  c.insertAdjacentHTML("beforeend",'<div class="kv">'+
+    '<div><span>Max keepers</span><b>'+esc(r.max_keepers||3)+'</b></div>'+
+    '<div><span>Consecutive cap</span><b>'+esc(r.max_consecutive_years||3)+'</b></div>'+
+    '<div><span>FA add cost</span><b>R'+esc(r.undrafted_pickup_cost_round||12)+'</b></div>'+
+    '<div><span>R1</span><b style="font-size:13px">'+
+      (r.first_round_ineligible?"INELIGIBLE":"ok")+'</b></div></div>');
+  if(r.cost_rule) c.insertAdjacentHTML("beforeend",'<p class="small mut">'+esc(r.cost_rule)+'</p>');
+  c.insertAdjacentHTML("beforeend",'<p class="small"><span class="badge b-pur">THE EDGE</span> '+
+    esc(k.waiver_add_note||"")+'</p>');
+  f.appendChild(c);
+
+  var c27=card("2027 board &mdash; carried forward",
+    '<span class="badge b-grn">'+((k.carried_2027||[]).length)+'</span>');
+  if((k.carried_2027||[]).length){
+    c27.insertAdjacentHTML("beforeend",'<p class="small mut">These are the three '+
+      'players in the 2026 keep plan. Their cost carries forward unchanged and their '+
+      'consecutive-year clock advances by one.</p>');
+    c27.insertAdjacentHTML("beforeend", table(
+      ["Player","2027 cost","Forfeits","Years","Surplus"], keeperRows(k.carried_2027)));
+  } else {
+    c27.insertAdjacentHTML("beforeend", nodata("no data","No 2026 keeper plan to carry forward."));
+  }
+  c27.insertAdjacentHTML("beforeend",'<p class="dim small">'+esc(k.projection_note||"")+'</p>');
+  f.appendChild(c27);
+
+  if((k.unknown_2027||[]).length){
+    var cu=card("2027 cost unknown",
+      '<span class="badge b-amb">'+k.unknown_2027.length+'</span>');
+    cu.insertAdjacentHTML("beforeend",'<p class="small mut">Not in the 2026 keep plan, '+
+      'so they re-enter the draft on Aug 28. Their 2027 keeper cost is the round they '+
+      'are drafted in &mdash; it does not exist yet and is deliberately not guessed here.</p>');
+    cu.insertAdjacentHTML("beforeend", table(["Player","Pos","2026 cost was"],
+      k.unknown_2027.map(function(x){return [x.player,x.position||"",
+        (D.keepers.board_2026||[]).filter(function(y){
+          return y.player_id===x.player_id;}).map(function(y){
+            return y.keeper_cost_2027||"";})[0]||"&mdash;"];})));
+    f.appendChild(cu);
+  }
+
+  var c26=card("2026 decision board (this August)");
+  if((k.board_2026||[]).length){
+    c26.insertAdjacentHTML("beforeend", table(
+      ["Player","2026 cost","Forfeits","Years","Surplus"], keeperRows(k.board_2026)));
+  } else {
+    c26.insertAdjacentHTML("beforeend", nodata("no data","keeper_equity produced nothing."));
+  }
+  f.appendChild(c26);
+
+  var cw=card("In-season keeper watchlist");
+  if((k.state_keeper_equity||[]).length){
+    cw.insertAdjacentHTML("beforeend", table(["Player","Where","2027 cost","Projected","Surplus"],
+      k.state_keeper_equity.map(function(x){return [x.player||"",x.acquired||"",
+        x.keeper_cost_2027||"&mdash;",x.projected_value||"&mdash;",
+        (x.surplus||"")+(x.note?" — "+x.note:"")];})));
+  } else {
+    cw.insertAdjacentHTML("beforeend", nodata("empty",
+      "state.keeper_equity accumulates every in-season waiver add and its 2027 value at "+
+      "a 12th-round price. It fills up as the season runs; there is nothing in it before "+
+      "the draft."));
+  }
+  f.appendChild(cw);
+  return f;
+}
+
+/* ---------- TAB: STATUS ---------- */
+function tabStatus(){
+  var f=document.createDocumentFragment(), b=D.build||{};
+  var c=card("Data provenance");
+  c.insertAdjacentHTML("beforeend", table(["Field","Value"],[
+    ["State file", b.state_file||"none"],
+    ["State generated", b.state_generated_at||"unknown"],
+    ["Dashboard built", b.generated_at||""],
+    ["Week", String(b.week)],
+    ["League status", b.league_status||""],
+    ["Degraded", b.degraded?"**YES**":"no"]
+  ],{raw:false}));
+  f.appendChild(c);
+
+  var s=b.sources||{};
+  if(s.loaded||s.missing){
+    var sc=card("Sources");
+    sc.insertAdjacentHTML("beforeend",'<p class="small"><b>Loaded:</b> '+
+      esc((s.loaded||[]).join(", ")||"none")+'</p>');
+    if((s.missing||[]).length) sc.insertAdjacentHTML("beforeend",
+      '<p class="small"><b>Missing:</b> <span style="color:var(--amb)">'+
+      esc(s.missing.join(", "))+'</span></p>');
+    if((s.unparseable||[]).length) sc.insertAdjacentHTML("beforeend",
+      '<p class="small"><b>Unparseable:</b> <span style="color:var(--red)">'+
+      esc(s.unparseable.join(", "))+'</span></p>');
+    var pcx=s.players_cache;
+    if(pcx) sc.insertAdjacentHTML("beforeend",'<div class="kv">'+
+      '<div><span>Player ids</span><b>'+esc(pcx.total_ids)+'</b></div>'+
+      '<div><span>Named</span><b>'+esc(pcx.named)+'</b></div>'+
+      '<div><span>Unresolved</span><b>'+esc(pcx.unresolved)+'</b></div>'+
+      '<div><span>Stale</span><b>'+esc(pcx.stale_rostered)+'</b></div></div>');
+    f.appendChild(sc);
+  }
+  if((b.state_warnings||[]).length){
+    var wc=card("State warnings");
+    wc.insertAdjacentHTML("beforeend",'<ul class="tight">'+
+      b.state_warnings.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul>');
+    f.appendChild(wc);
+  }
+  if((b.build_warnings||[]).length){
+    var bw=card("Dashboard build warnings");
+    bw.insertAdjacentHTML("beforeend",'<ul class="tight">'+
+      b.build_warnings.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul>');
+    f.appendChild(bw);
+  }
+  if((b.open_questions||[]).length){
+    var oq=card("Open questions");
+    oq.insertAdjacentHTML("beforeend",'<ul class="tight">'+
+      b.open_questions.map(function(x){
+        return "<li>"+esc(typeof x==="string"?x:(x.question||JSON.stringify(x)))+"</li>";
+      }).join("")+'</ul>');
+    f.appendChild(oq);
+  }
+  if((D.standings||[]).length){
+    var st=card("Standings");
+    st.insertAdjacentHTML("beforeend", table(["#","Team","Rec","PF","Wvr"],
+      D.standings.map(function(r){return [String(r.rank),
+        (r.is_andrew?"**":"")+(r.team_name||r.owner)+(r.is_andrew?"**":""),
+        r.wins+"-"+r.losses, String(r.pf), String(r.waiver_priority)];})));
+    f.appendChild(st);
+  }
+  var rc=card("Weekly report");
+  if(D.report){
+    rc.insertAdjacentHTML("beforeend",'<div class="bd small" style="white-space:pre-wrap">'+
+      esc(D.report)+'</div>');
+  } else {
+    rc.insertAdjacentHTML("beforeend", nodata("no report",
+      "No file at "+(b.report_path||"system/reports/week_N.md")+
+      ". Written by the weekly.js synthesis step."));
+  }
+  f.appendChild(rc);
+  return f;
+}
+
+/* ---------- tab wiring ---------- */
+var TABS=[
+  {id:"draft",   label:"DRAFT",     build:tabDraft,
+   pill:function(){var d=D.draft||{};return d.days_until!=null?(Math.ceil(d.days_until)+"d"):null;}},
+  {id:"myteam",  label:"MY TEAM",   build:tabMyTeam,
+   pill:function(){var t=D.my_team||{};return (t.injuries||[]).length?String(t.injuries.length)+"!":null;}},
+  {id:"opp",     label:"OPPONENTS", build:tabOpponents,
+   pill:function(){return String(((D.opponents||{}).cards||[]).length);}},
+  {id:"waivers", label:"WAIVERS",   build:tabWaivers,
+   pill:function(){var w=D.waivers||{};return w.andrew_position!=null?("#"+w.andrew_position):null;}},
+  {id:"trades",  label:"TRADES",    build:tabTrades,
+   pill:function(){var t=D.trades||{};return t.has_offers?String((t.offers||[]).length):null;}},
+  {id:"keepers", label:"KEEPERS",   build:tabKeepers,
+   pill:function(){return String(((D.keepers||{}).carried_2027||[]).length);}},
+  {id:"status",  label:"STATUS",    build:tabStatus,
+   pill:function(){var b=D.build||{};var n=(b.build_warnings||[]).length+(b.state_warnings||[]).length;
+     return n?String(n):null;}}
+];
+var main=document.getElementById("main"), tabsEl=document.getElementById("tabs");
+var built={};
+function show(id){
+  TABS.forEach(function(t){
+    var btn=document.getElementById("tb-"+t.id);
+    var pan=document.getElementById("pn-"+t.id);
+    var on = t.id===id;
+    btn.setAttribute("aria-selected", on?"true":"false");
+    pan.classList.toggle("on", on);
+    if(on && !built[t.id]){
+      try{ pan.appendChild(t.build()); }
+      catch(e){ pan.innerHTML='<div class="card"><div class="nodata"><b>render error</b>'+
+        esc(t.label+": "+e.message)+'</div></div>'; }
+      built[t.id]=true;
+    }
+  });
+  if(location.hash.slice(1)!==id){ try{ history.replaceState(null,"","#"+id); }catch(e){} }
+  window.scrollTo(0,0);
+  /* the tab strip scrolls horizontally on a phone (7 tabs need ~920px at 390px wide).
+     Without this the active tab can sit entirely off-screen -- e.g. opening
+     dashboard.html#status shows three unselected tabs and no indication of where
+     you are. Centre the selected tab inside the strip; never move the page. */
+  try{
+    var ab=document.getElementById("tb-"+id);
+    if(ab && tabsEl && tabsEl.scrollWidth > tabsEl.clientWidth+1){
+      var br=ab.getBoundingClientRect(), sr=tabsEl.getBoundingClientRect();
+      var delta=(br.left-sr.left)-(sr.width-br.width)/2;
+      var want=Math.max(0,Math.min(tabsEl.scrollLeft+delta,
+                                   tabsEl.scrollWidth-tabsEl.clientWidth));
+      tabsEl.scrollLeft=want;
+    }
+  }catch(e){}
+}
+TABS.forEach(function(t){
+  var b=el("button","tab");
+  b.id="tb-"+t.id; b.type="button"; b.setAttribute("role","tab");
+  b.setAttribute("aria-controls","pn-"+t.id); b.setAttribute("aria-selected","false");
+  var p=null; try{ p=t.pill(); }catch(e){}
+  b.innerHTML=esc(t.label)+(p?' <span class="pill">'+esc(p)+"</span>":"");
+  b.addEventListener("click",function(){show(t.id);});
+  tabsEl.appendChild(b);
+  var s=el("section"); s.id="pn-"+t.id; s.setAttribute("role","tabpanel");
+  s.setAttribute("aria-labelledby","tb-"+t.id);
+  main.appendChild(s);
+});
+var start=(location.hash||"").slice(1);
+show(TABS.some(function(t){return t.id===start;})?start:"draft");
+window.addEventListener("hashchange",function(){
+  var h=location.hash.slice(1);
+  if(TABS.some(function(t){return t.id===h;})) show(h);
+});
+document.getElementById("foot").innerHTML =
+  "Sunday Scaries dashboard &middot; self-contained, no network calls &middot; "+
+  "regenerate with <code>python3 system/ui/build_dashboard.py</code><br>"+
+  "Every panel marked NO DATA is genuinely empty upstream, not a placeholder for "+
+  "content that exists elsewhere.";
+</script>
+</body>
+</html>

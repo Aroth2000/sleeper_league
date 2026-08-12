@@ -1,0 +1,3812 @@
+{
+ "meta": {
+  "updated_at": "2026-08-08T02:28:38+00:00",
+  "count": 222,
+  "resolved": 222,
+  "id_only": 0,
+  "schema": "player_id -> {name, pos, team, first_name, last_name, ...}"
+ },
+ "players": {
+  "10219": {
+   "player_id": "10219",
+   "first_name": "Chris",
+   "last_name": "Rodriguez",
+   "pos": "RB",
+   "team": "JAX",
+   "number": 24,
+   "age": 26,
+   "years_exp": 3,
+   "college": "Kentucky",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 141,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Chris Rodriguez",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "10222": {
+   "player_id": "10222",
+   "first_name": "Jayden",
+   "last_name": "Reed",
+   "pos": "WR",
+   "team": "GB",
+   "name": "Jayden Reed",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "10229": {
+   "player_id": "10229",
+   "first_name": "Rashee",
+   "last_name": "Rice",
+   "pos": "WR",
+   "team": "KC",
+   "name": "Rashee Rice",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "10232": {
+   "player_id": "10232",
+   "first_name": "Michael",
+   "last_name": "Wilson",
+   "pos": "WR",
+   "team": "ARI",
+   "number": 14,
+   "age": 26,
+   "years_exp": 3,
+   "college": "Stanford",
+   "status": "Active",
+   "depth_chart_position": "RWR",
+   "depth_chart_order": 2,
+   "search_rank": 75,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Michael Wilson",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "10236": {
+   "player_id": "10236",
+   "first_name": "Dalton",
+   "last_name": "Kincaid",
+   "pos": "TE",
+   "team": "BUF",
+   "name": "Dalton Kincaid",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "10859": {
+   "player_id": "10859",
+   "first_name": "Sam",
+   "last_name": "LaPorta",
+   "pos": "TE",
+   "team": "DET",
+   "name": "Sam LaPorta",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11559": {
+   "player_id": "11559",
+   "first_name": "Michael",
+   "last_name": "Penix",
+   "pos": "QB",
+   "team": "ATL",
+   "name": "Michael Penix",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11560": {
+   "player_id": "11560",
+   "first_name": "Caleb",
+   "last_name": "Williams",
+   "pos": "QB",
+   "team": "CHI",
+   "name": "Caleb Williams",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11563": {
+   "player_id": "11563",
+   "first_name": "Bo",
+   "last_name": "Nix",
+   "pos": "QB",
+   "team": "DEN",
+   "name": "Bo Nix",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 10,
+   "age": 26,
+   "years_exp": 2,
+   "college": "Oregon",
+   "status": "Active",
+   "depth_chart_position": "QB",
+   "depth_chart_order": 1,
+   "search_rank": 34,
+   "fantasy_positions": [
+    "QB"
+   ],
+   "active": true
+  },
+  "11564": {
+   "player_id": "11564",
+   "first_name": "Drake",
+   "last_name": "Maye",
+   "pos": "QB",
+   "team": "NE",
+   "name": "Drake Maye",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11565": {
+   "player_id": "11565",
+   "first_name": "J.J.",
+   "last_name": "McCarthy",
+   "pos": "QB",
+   "team": "MIN",
+   "name": "J.J. McCarthy",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11566": {
+   "player_id": "11566",
+   "first_name": "Jayden",
+   "last_name": "Daniels",
+   "pos": "QB",
+   "team": "WAS",
+   "name": "Jayden Daniels",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11571": {
+   "player_id": "11571",
+   "first_name": "Isaiah",
+   "last_name": "Davis",
+   "pos": "RB",
+   "team": "NYJ",
+   "number": 32,
+   "age": 24,
+   "years_exp": 2,
+   "college": "South Dakota State",
+   "status": "Active",
+   "injury_status": "Questionable",
+   "injury_body_part": "Knee",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 3,
+   "search_rank": 999,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Isaiah Davis",
+   "injury_notes": null,
+   "practice_participation": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11579": {
+   "player_id": "11579",
+   "first_name": "Audric",
+   "last_name": "Estime",
+   "pos": "RB",
+   "team": "NO",
+   "number": 30,
+   "age": 22,
+   "years_exp": 2,
+   "college": "Notre Dame",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 6,
+   "search_rank": 190,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Audric Estime",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11584": {
+   "player_id": "11584",
+   "first_name": "Bucky",
+   "last_name": "Irving",
+   "pos": "RB",
+   "team": "TB",
+   "name": "Bucky Irving",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11586": {
+   "player_id": "11586",
+   "first_name": "Blake",
+   "last_name": "Corum",
+   "pos": "RB",
+   "team": "LAR",
+   "number": 24,
+   "age": 25,
+   "years_exp": 2,
+   "college": "Michigan",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 68,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Blake Corum",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11589": {
+   "player_id": "11589",
+   "first_name": "Trey",
+   "last_name": "Benson",
+   "pos": "RB",
+   "team": "ARI",
+   "number": 33,
+   "age": 24,
+   "years_exp": 2,
+   "college": "Florida State",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 5,
+   "search_rank": 114,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Trey Benson",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11604": {
+   "player_id": "11604",
+   "first_name": "Brock",
+   "last_name": "Bowers",
+   "pos": "TE",
+   "team": "LV",
+   "name": "Brock Bowers",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11620": {
+   "player_id": "11620",
+   "first_name": "Rome",
+   "last_name": "Odunze",
+   "pos": "WR",
+   "team": "CHI",
+   "name": "Rome Odunze",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11624": {
+   "player_id": "11624",
+   "first_name": "Xavier",
+   "last_name": "Worthy",
+   "pos": "WR",
+   "team": "KC",
+   "name": "Xavier Worthy",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11625": {
+   "player_id": "11625",
+   "first_name": "Adonai",
+   "last_name": "Mitchell",
+   "pos": "WR",
+   "team": "NYJ",
+   "number": 15,
+   "age": 23,
+   "years_exp": 2,
+   "college": "Texas",
+   "status": "Active",
+   "depth_chart_position": "LWR",
+   "depth_chart_order": 2,
+   "search_rank": 162,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Adonai Mitchell",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11627": {
+   "player_id": "11627",
+   "first_name": "Troy",
+   "last_name": "Franklin",
+   "pos": "WR",
+   "team": "DEN",
+   "number": 11,
+   "age": 23,
+   "years_exp": 2,
+   "college": "Oregon",
+   "status": "Active",
+   "depth_chart_position": "SWR",
+   "depth_chart_order": 3,
+   "search_rank": 171,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Troy Franklin",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11628": {
+   "player_id": "11628",
+   "first_name": "Marvin",
+   "last_name": "Harrison",
+   "pos": "WR",
+   "team": "ARI",
+   "name": "Marvin Harrison",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11631": {
+   "player_id": "11631",
+   "first_name": "Brian",
+   "last_name": "Thomas",
+   "pos": "WR",
+   "team": "JAX",
+   "name": "Brian Thomas",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11632": {
+   "player_id": "11632",
+   "first_name": "Malik",
+   "last_name": "Nabers",
+   "pos": "WR",
+   "team": "NYG",
+   "name": "Malik Nabers",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11635": {
+   "player_id": "11635",
+   "first_name": "Ladd",
+   "last_name": "McConkey",
+   "pos": "WR",
+   "team": "LAC",
+   "name": "Ladd McConkey",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11637": {
+   "player_id": "11637",
+   "first_name": "Keon",
+   "last_name": "Coleman",
+   "pos": "WR",
+   "team": "BUF",
+   "name": "Keon Coleman",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11638": {
+   "player_id": "11638",
+   "first_name": "Ricky",
+   "last_name": "Pearsall",
+   "pos": "WR",
+   "team": "SF",
+   "name": "Ricky Pearsall",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11643": {
+   "player_id": "11643",
+   "first_name": "Jaylen",
+   "last_name": "Wright",
+   "pos": "RB",
+   "team": "MIA",
+   "number": 5,
+   "age": 23,
+   "years_exp": 2,
+   "college": "Tennessee",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 174,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Jaylen Wright",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11647": {
+   "player_id": "11647",
+   "first_name": "Kimani",
+   "last_name": "Vidal",
+   "pos": "RB",
+   "team": "LAC",
+   "number": 28,
+   "age": 24,
+   "years_exp": 2,
+   "college": "Troy",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 3,
+   "search_rank": 141,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Kimani Vidal",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11655": {
+   "player_id": "11655",
+   "first_name": "Tyrone",
+   "last_name": "Tracy",
+   "pos": "RB",
+   "team": "NYG",
+   "name": "Tyrone Tracy",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "1166": {
+   "player_id": "1166",
+   "first_name": "Kirk",
+   "last_name": "Cousins",
+   "pos": "QB",
+   "team": "LV",
+   "number": 8,
+   "age": 37,
+   "years_exp": 14,
+   "college": "Michigan State",
+   "status": "Active",
+   "depth_chart_position": "QB",
+   "depth_chart_order": 2,
+   "search_rank": 368,
+   "fantasy_positions": [
+    "QB"
+   ],
+   "active": true,
+   "name": "Kirk Cousins",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "11783": {
+   "player_id": "11783",
+   "first_name": "Ryan",
+   "last_name": "Flournoy",
+   "pos": "WR",
+   "team": "DAL",
+   "number": 19,
+   "age": 26,
+   "years_exp": 2,
+   "college": "Southeast Missouri State",
+   "status": "Active",
+   "depth_chart_position": "SWR",
+   "depth_chart_order": 3,
+   "search_rank": 199,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Ryan Flournoy",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "1234": {
+   "player_id": "1234",
+   "first_name": "Russell",
+   "last_name": "Wilson",
+   "pos": "QB",
+   "team": "NYG",
+   "name": "Russell Wilson",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12457": {
+   "player_id": "12457",
+   "first_name": "Jaydon",
+   "last_name": "Blue",
+   "pos": "RB",
+   "team": "DAL",
+   "name": "Jaydon Blue",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12469": {
+   "player_id": "12469",
+   "first_name": "Dylan",
+   "last_name": "Sampson",
+   "pos": "RB",
+   "team": "CLE",
+   "name": "Dylan Sampson",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12474": {
+   "player_id": "12474",
+   "first_name": "Woody",
+   "last_name": "Marks",
+   "pos": "RB",
+   "team": "HOU",
+   "number": 4,
+   "age": 25,
+   "years_exp": 1,
+   "college": "USC",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 105,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Woody Marks",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12481": {
+   "player_id": "12481",
+   "first_name": "Cam",
+   "last_name": "Skattebo",
+   "pos": "RB",
+   "team": "NYG",
+   "name": "Cam Skattebo",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12483": {
+   "player_id": "12483",
+   "first_name": "Jack",
+   "last_name": "Bech",
+   "pos": "WR",
+   "team": "LV",
+   "name": "Jack Bech",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12484": {
+   "player_id": "12484",
+   "first_name": "Jayden",
+   "last_name": "Higgins",
+   "pos": "WR",
+   "team": "HOU",
+   "name": "Jayden Higgins",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12485": {
+   "player_id": "12485",
+   "first_name": "Tez",
+   "last_name": "Johnson",
+   "pos": "WR",
+   "team": "TB",
+   "number": 15,
+   "age": 24,
+   "years_exp": 1,
+   "college": "Oregon",
+   "status": "Active",
+   "injury_status": "Questionable",
+   "injury_body_part": "Groin",
+   "depth_chart_position": "RWR",
+   "depth_chart_order": 7,
+   "search_rank": 999,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Tez Johnson",
+   "injury_notes": null,
+   "practice_participation": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12489": {
+   "player_id": "12489",
+   "first_name": "RJ",
+   "last_name": "Harvey",
+   "pos": "RB",
+   "team": "DEN",
+   "name": "RJ Harvey",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12490": {
+   "player_id": "12490",
+   "first_name": "Bhayshul",
+   "last_name": "Tuten",
+   "pos": "RB",
+   "team": "JAX",
+   "name": "Bhayshul Tuten",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12493": {
+   "player_id": "12493",
+   "first_name": "Oronde",
+   "last_name": "Gadsden",
+   "pos": "TE",
+   "team": "LAC",
+   "number": 86,
+   "age": 23,
+   "years_exp": 1,
+   "college": "Syracuse",
+   "status": "Active",
+   "depth_chart_position": "TE",
+   "depth_chart_order": 1,
+   "search_rank": 83,
+   "fantasy_positions": [
+    "TE"
+   ],
+   "active": true,
+   "name": "Oronde Gadsden",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12500": {
+   "player_id": "12500",
+   "first_name": "Quinn",
+   "last_name": "Ewers",
+   "pos": "QB",
+   "team": "MIA",
+   "number": 14,
+   "age": 23,
+   "years_exp": 1,
+   "college": "Texas",
+   "status": "Active",
+   "depth_chart_position": "QB",
+   "depth_chart_order": 2,
+   "search_rank": 396,
+   "fantasy_positions": [
+    "QB"
+   ],
+   "active": true,
+   "name": "Quinn Ewers",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12501": {
+   "player_id": "12501",
+   "first_name": "Matthew",
+   "last_name": "Golden",
+   "pos": "WR",
+   "team": "GB",
+   "name": "Matthew Golden",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12504": {
+   "player_id": "12504",
+   "first_name": "Kaleb",
+   "last_name": "Johnson",
+   "pos": "RB",
+   "team": "PIT",
+   "name": "Kaleb Johnson",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12506": {
+   "player_id": "12506",
+   "first_name": "Harold",
+   "last_name": "Fannin",
+   "pos": "TE",
+   "team": "CLE",
+   "number": 44,
+   "age": 22,
+   "years_exp": 1,
+   "college": "Bowling Green",
+   "status": "Active",
+   "depth_chart_position": "TE",
+   "depth_chart_order": 1,
+   "search_rank": 63,
+   "fantasy_positions": [
+    "TE"
+   ],
+   "active": true,
+   "name": "Harold Fannin",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12507": {
+   "player_id": "12507",
+   "first_name": "Omarion",
+   "last_name": "Hampton",
+   "pos": "RB",
+   "team": "LAC",
+   "name": "Omarion Hampton",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12508": {
+   "player_id": "12508",
+   "first_name": "Jaxson",
+   "last_name": "Dart",
+   "pos": "QB",
+   "team": "NYG",
+   "name": "Jaxson Dart",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12509": {
+   "player_id": "12509",
+   "first_name": "Tre'",
+   "last_name": "Harris",
+   "pos": "WR",
+   "team": "LAC",
+   "name": "Tre' Harris",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12512": {
+   "player_id": "12512",
+   "first_name": "Quinshon",
+   "last_name": "Judkins",
+   "pos": "RB",
+   "team": "CLE",
+   "name": "Quinshon Judkins",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12514": {
+   "player_id": "12514",
+   "first_name": "Emeka",
+   "last_name": "Egbuka",
+   "pos": "WR",
+   "team": "TB",
+   "name": "Emeka Egbuka",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12517": {
+   "player_id": "12517",
+   "first_name": "Colston",
+   "last_name": "Loveland",
+   "pos": "TE",
+   "team": "CHI",
+   "name": "Colston Loveland",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12518": {
+   "player_id": "12518",
+   "first_name": "Tyler",
+   "last_name": "Warren",
+   "pos": "TE",
+   "team": "IND",
+   "name": "Tyler Warren",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12519": {
+   "player_id": "12519",
+   "first_name": "Luther",
+   "last_name": "Burden",
+   "pos": "WR",
+   "team": "CHI",
+   "name": "Luther Burden",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12522": {
+   "player_id": "12522",
+   "first_name": "Cam",
+   "last_name": "Ward",
+   "pos": "QB",
+   "team": "TEN",
+   "name": "Cam Ward",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12524": {
+   "player_id": "12524",
+   "first_name": "Shedeur",
+   "last_name": "Sanders",
+   "pos": "QB",
+   "team": "CLE",
+   "number": 2,
+   "age": 24,
+   "years_exp": 1,
+   "college": "Colorado",
+   "status": "Active",
+   "depth_chart_position": "QB",
+   "depth_chart_order": 1,
+   "search_rank": 222,
+   "fantasy_positions": [
+    "QB"
+   ],
+   "active": true,
+   "name": "Shedeur Sanders",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12526": {
+   "player_id": "12526",
+   "first_name": "Tetairoa",
+   "last_name": "McMillan",
+   "pos": "WR",
+   "team": "CAR",
+   "name": "Tetairoa McMillan",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 4,
+   "age": 23,
+   "years_exp": 1,
+   "college": "Arizona",
+   "status": "Active",
+   "depth_chart_position": "LWR",
+   "depth_chart_order": 1,
+   "search_rank": 37,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true
+  },
+  "12527": {
+   "player_id": "12527",
+   "first_name": "Ashton",
+   "last_name": "Jeanty",
+   "pos": "RB",
+   "team": "LV",
+   "name": "Ashton Jeanty",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 2,
+   "age": 22,
+   "years_exp": 1,
+   "college": "Boise State",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 1,
+   "search_rank": 12,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true
+  },
+  "12529": {
+   "player_id": "12529",
+   "first_name": "TreVeyon",
+   "last_name": "Henderson",
+   "pos": "RB",
+   "team": "NE",
+   "name": "TreVeyon Henderson",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12530": {
+   "player_id": "12530",
+   "first_name": "Travis",
+   "last_name": "Hunter",
+   "pos": "WR",
+   "team": "JAX",
+   "name": "Travis Hunter",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12533": {
+   "player_id": "12533",
+   "first_name": "Jacory",
+   "last_name": "Croskey-Merritt",
+   "pos": "RB",
+   "team": "WAS",
+   "number": 22,
+   "age": 25,
+   "years_exp": 1,
+   "college": "Arizona",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 1,
+   "search_rank": 95,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Jacory Croskey-Merritt",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12534": {
+   "player_id": "12534",
+   "first_name": "Kyle",
+   "last_name": "Monangai",
+   "pos": "RB",
+   "team": "CHI",
+   "number": 25,
+   "age": 24,
+   "years_exp": 1,
+   "college": "Rutgers",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 61,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Kyle Monangai",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12545": {
+   "player_id": "12545",
+   "first_name": "Tyler",
+   "last_name": "Shough",
+   "pos": "QB",
+   "team": "NO",
+   "number": 6,
+   "age": 26,
+   "years_exp": 1,
+   "college": "Louisville",
+   "status": "Active",
+   "depth_chart_position": "QB",
+   "depth_chart_order": 1,
+   "search_rank": 81,
+   "fantasy_positions": [
+    "QB"
+   ],
+   "active": true,
+   "name": "Tyler Shough",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "12547": {
+   "player_id": "12547",
+   "first_name": "Kyle",
+   "last_name": "Williams",
+   "pos": "WR",
+   "team": "NE",
+   "name": "Kyle Williams",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "1373": {
+   "player_id": "1373",
+   "first_name": "Geno",
+   "last_name": "Smith",
+   "pos": "QB",
+   "team": "LV",
+   "name": "Geno Smith",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "1466": {
+   "player_id": "1466",
+   "first_name": "Travis",
+   "last_name": "Kelce",
+   "pos": "TE",
+   "team": "KC",
+   "name": "Travis Kelce",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 87,
+   "age": 36,
+   "years_exp": 13,
+   "college": "Cincinnati",
+   "status": "Active",
+   "depth_chart_position": "TE",
+   "depth_chart_order": 1,
+   "search_rank": 106,
+   "fantasy_positions": [
+    "TE"
+   ],
+   "active": true
+  },
+  "1479": {
+   "player_id": "1479",
+   "first_name": "Keenan",
+   "last_name": "Allen",
+   "pos": "WR",
+   "number": 13,
+   "age": 33,
+   "years_exp": 13,
+   "college": "California",
+   "status": "Active",
+   "search_rank": 116,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Keenan Allen",
+   "injury_notes": null,
+   "depth_chart_position": null,
+   "practice_participation": null,
+   "team": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "depth_chart_order": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "2133": {
+   "player_id": "2133",
+   "first_name": "Davante",
+   "last_name": "Adams",
+   "pos": "WR",
+   "team": "LAR",
+   "name": "Davante Adams",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "2216": {
+   "player_id": "2216",
+   "first_name": "Mike",
+   "last_name": "Evans",
+   "pos": "WR",
+   "team": "SF",
+   "name": "Mike Evans",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 5,
+   "age": 32,
+   "years_exp": 12,
+   "college": "Texas A&M",
+   "status": "Active",
+   "injury_status": "Questionable",
+   "injury_body_part": "Quadriceps",
+   "depth_chart_position": "LWR",
+   "depth_chart_order": 1,
+   "search_rank": 57,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true
+  },
+  "2449": {
+   "player_id": "2449",
+   "first_name": "Stefon",
+   "last_name": "Diggs",
+   "pos": "WR",
+   "team": "NE",
+   "name": "Stefon Diggs",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "3161": {
+   "player_id": "3161",
+   "first_name": "Carson",
+   "last_name": "Wentz",
+   "pos": "QB",
+   "team": "MIN",
+   "number": 11,
+   "age": 33,
+   "years_exp": 10,
+   "college": "North Dakota State",
+   "status": "Active",
+   "depth_chart_position": "QB",
+   "depth_chart_order": 3,
+   "search_rank": 999,
+   "fantasy_positions": [
+    "QB"
+   ],
+   "active": true,
+   "name": "Carson Wentz",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "3163": {
+   "player_id": "3163",
+   "first_name": "Jared",
+   "last_name": "Goff",
+   "pos": "QB",
+   "team": "DET",
+   "name": "Jared Goff",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "3198": {
+   "player_id": "3198",
+   "first_name": "Derrick",
+   "last_name": "Henry",
+   "pos": "RB",
+   "team": "BAL",
+   "name": "Derrick Henry",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "3214": {
+   "player_id": "3214",
+   "first_name": "Hunter",
+   "last_name": "Henry",
+   "pos": "TE",
+   "team": "NE",
+   "name": "Hunter Henry",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "_override_reason": "WebFetch transcribed 2025 draft pick 160 as WR; Hunter Henry is a TE"
+  },
+  "3257": {
+   "player_id": "3257",
+   "first_name": "Jacoby",
+   "last_name": "Brissett",
+   "pos": "QB",
+   "team": "ARI",
+   "number": 7,
+   "age": 33,
+   "years_exp": 10,
+   "college": "North Carolina State",
+   "status": "Active",
+   "depth_chart_position": "QB",
+   "depth_chart_order": 1,
+   "search_rank": 201,
+   "fantasy_positions": [
+    "QB"
+   ],
+   "active": true,
+   "name": "Jacoby Brissett",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "3294": {
+   "player_id": "3294",
+   "first_name": "Dak",
+   "last_name": "Prescott",
+   "pos": "QB",
+   "team": "DAL",
+   "name": "Dak Prescott",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "3321": {
+   "player_id": "3321",
+   "first_name": "Tyreek",
+   "last_name": "Hill",
+   "pos": "WR",
+   "team": "MIA",
+   "name": "Tyreek Hill",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4018": {
+   "player_id": "4018",
+   "first_name": "Joe",
+   "last_name": "Mixon",
+   "pos": "RB",
+   "team": null,
+   "name": "Joe Mixon",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 28,
+   "age": 29,
+   "years_exp": 9,
+   "college": "Oklahoma",
+   "status": "Active",
+   "injury_status": "Questionable",
+   "injury_body_part": "Foot",
+   "search_rank": 212,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true
+  },
+  "4033": {
+   "player_id": "4033",
+   "first_name": "David",
+   "last_name": "Njoku",
+   "pos": "TE",
+   "team": "CLE",
+   "name": "David Njoku",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4034": {
+   "player_id": "4034",
+   "first_name": "Christian",
+   "last_name": "McCaffrey",
+   "pos": "RB",
+   "team": "SF",
+   "name": "Christian McCaffrey",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4035": {
+   "player_id": "4035",
+   "first_name": "Alvin",
+   "last_name": "Kamara",
+   "pos": "RB",
+   "team": "NO",
+   "name": "Alvin Kamara",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4037": {
+   "player_id": "4037",
+   "first_name": "Chris",
+   "last_name": "Godwin",
+   "pos": "WR",
+   "team": "TB",
+   "name": "Chris Godwin",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4039": {
+   "player_id": "4039",
+   "first_name": "Cooper",
+   "last_name": "Kupp",
+   "pos": "WR",
+   "team": "SEA",
+   "name": "Cooper Kupp",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4046": {
+   "player_id": "4046",
+   "first_name": "Patrick",
+   "last_name": "Mahomes",
+   "pos": "QB",
+   "team": "KC",
+   "name": "Patrick Mahomes",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4066": {
+   "player_id": "4066",
+   "first_name": "Evan",
+   "last_name": "Engram",
+   "pos": "TE",
+   "team": "DEN",
+   "name": "Evan Engram",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4098": {
+   "player_id": "4098",
+   "first_name": "Kareem",
+   "last_name": "Hunt",
+   "pos": "RB",
+   "number": 29,
+   "age": 30,
+   "years_exp": 9,
+   "college": "Toledo",
+   "status": "Active",
+   "search_rank": 242,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Kareem Hunt",
+   "injury_notes": null,
+   "depth_chart_position": null,
+   "practice_participation": null,
+   "team": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "depth_chart_order": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4137": {
+   "player_id": "4137",
+   "first_name": "James",
+   "last_name": "Conner",
+   "pos": "RB",
+   "team": "ARI",
+   "name": "James Conner",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4144": {
+   "player_id": "4144",
+   "first_name": "Jonnu",
+   "last_name": "Smith",
+   "pos": "TE",
+   "team": "PIT",
+   "name": "Jonnu Smith",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4199": {
+   "player_id": "4199",
+   "first_name": "Aaron",
+   "last_name": "Jones",
+   "pos": "RB",
+   "team": "MIN",
+   "name": "Aaron Jones",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "421": {
+   "player_id": "421",
+   "first_name": "Matthew",
+   "last_name": "Stafford",
+   "pos": "QB",
+   "team": "LAR",
+   "name": "Matthew Stafford",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4217": {
+   "player_id": "4217",
+   "first_name": "George",
+   "last_name": "Kittle",
+   "pos": "TE",
+   "team": "SF",
+   "name": "George Kittle",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4866": {
+   "player_id": "4866",
+   "first_name": "Saquon",
+   "last_name": "Barkley",
+   "pos": "RB",
+   "team": "PHI",
+   "name": "Saquon Barkley",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4881": {
+   "player_id": "4881",
+   "first_name": "Lamar",
+   "last_name": "Jackson",
+   "pos": "QB",
+   "team": "BAL",
+   "name": "Lamar Jackson",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4892": {
+   "player_id": "4892",
+   "first_name": "Baker",
+   "last_name": "Mayfield",
+   "pos": "QB",
+   "team": "TB",
+   "name": "Baker Mayfield",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4943": {
+   "player_id": "4943",
+   "first_name": "Sam",
+   "last_name": "Darnold",
+   "pos": "QB",
+   "team": "SEA",
+   "name": "Sam Darnold",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4981": {
+   "player_id": "4981",
+   "first_name": "Calvin",
+   "last_name": "Ridley",
+   "pos": "WR",
+   "team": "TEN",
+   "name": "Calvin Ridley",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4983": {
+   "player_id": "4983",
+   "first_name": "DJ",
+   "last_name": "Moore",
+   "pos": "WR",
+   "team": "CHI",
+   "name": "DJ Moore",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "4984": {
+   "player_id": "4984",
+   "first_name": "Josh",
+   "last_name": "Allen",
+   "pos": "QB",
+   "team": "BUF",
+   "name": "Josh Allen",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5012": {
+   "player_id": "5012",
+   "first_name": "Mark",
+   "last_name": "Andrews",
+   "pos": "TE",
+   "team": "BAL",
+   "name": "Mark Andrews",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5022": {
+   "player_id": "5022",
+   "first_name": "Dallas",
+   "last_name": "Goedert",
+   "pos": "TE",
+   "team": "PHI",
+   "name": "Dallas Goedert",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5045": {
+   "player_id": "5045",
+   "first_name": "Courtland",
+   "last_name": "Sutton",
+   "pos": "WR",
+   "team": "DEN",
+   "name": "Courtland Sutton",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5844": {
+   "player_id": "5844",
+   "first_name": "T.J.",
+   "last_name": "Hockenson",
+   "pos": "TE",
+   "team": "MIN",
+   "name": "T.J. Hockenson",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5846": {
+   "player_id": "5846",
+   "first_name": "DK",
+   "last_name": "Metcalf",
+   "pos": "WR",
+   "team": "PIT",
+   "name": "DK Metcalf",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5849": {
+   "player_id": "5849",
+   "first_name": "Kyler",
+   "last_name": "Murray",
+   "pos": "QB",
+   "team": "ARI",
+   "name": "Kyler Murray",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5850": {
+   "player_id": "5850",
+   "first_name": "Josh",
+   "last_name": "Jacobs",
+   "pos": "RB",
+   "team": "GB",
+   "name": "Josh Jacobs",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5859": {
+   "player_id": "5859",
+   "first_name": "A.J.",
+   "last_name": "Brown",
+   "pos": "WR",
+   "team": "PHI",
+   "name": "A.J. Brown",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5870": {
+   "player_id": "5870",
+   "first_name": "Daniel",
+   "last_name": "Jones",
+   "pos": "QB",
+   "team": "IND",
+   "number": 17,
+   "age": 29,
+   "years_exp": 7,
+   "college": "Duke",
+   "status": "Active",
+   "depth_chart_position": "QB",
+   "depth_chart_order": 1,
+   "search_rank": 109,
+   "fantasy_positions": [
+    "QB"
+   ],
+   "active": true,
+   "name": "Daniel Jones",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5872": {
+   "player_id": "5872",
+   "first_name": "Deebo",
+   "last_name": "Samuel",
+   "pos": "WR",
+   "team": "WAS",
+   "name": "Deebo Samuel",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5892": {
+   "player_id": "5892",
+   "first_name": "David",
+   "last_name": "Montgomery",
+   "pos": "RB",
+   "team": "DET",
+   "name": "David Montgomery",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5927": {
+   "player_id": "5927",
+   "first_name": "Terry",
+   "last_name": "McLaurin",
+   "pos": "WR",
+   "team": "WAS",
+   "name": "Terry McLaurin",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5947": {
+   "player_id": "5947",
+   "first_name": "Jakobi",
+   "last_name": "Meyers",
+   "pos": "WR",
+   "team": "LV",
+   "name": "Jakobi Meyers",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "5967": {
+   "player_id": "5967",
+   "first_name": "Tony",
+   "last_name": "Pollard",
+   "pos": "RB",
+   "team": "TEN",
+   "name": "Tony Pollard",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6768": {
+   "player_id": "6768",
+   "first_name": "Tua",
+   "last_name": "Tagovailoa",
+   "pos": "QB",
+   "team": "MIA",
+   "name": "Tua Tagovailoa",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6770": {
+   "player_id": "6770",
+   "first_name": "Joe",
+   "last_name": "Burrow",
+   "pos": "QB",
+   "team": "CIN",
+   "name": "Joe Burrow",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6783": {
+   "player_id": "6783",
+   "first_name": "Jerry",
+   "last_name": "Jeudy",
+   "pos": "WR",
+   "team": "CLE",
+   "name": "Jerry Jeudy",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6786": {
+   "player_id": "6786",
+   "first_name": "CeeDee",
+   "last_name": "Lamb",
+   "pos": "WR",
+   "team": "DAL",
+   "name": "CeeDee Lamb",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6790": {
+   "player_id": "6790",
+   "first_name": "D'Andre",
+   "last_name": "Swift",
+   "pos": "RB",
+   "team": "CHI",
+   "name": "D'Andre Swift",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6794": {
+   "player_id": "6794",
+   "first_name": "Justin",
+   "last_name": "Jefferson",
+   "pos": "WR",
+   "team": "MIN",
+   "name": "Justin Jefferson",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6797": {
+   "player_id": "6797",
+   "first_name": "Justin",
+   "last_name": "Herbert",
+   "pos": "QB",
+   "team": "LAC",
+   "name": "Justin Herbert",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6801": {
+   "player_id": "6801",
+   "first_name": "Tee",
+   "last_name": "Higgins",
+   "pos": "WR",
+   "team": "CIN",
+   "name": "Tee Higgins",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6804": {
+   "player_id": "6804",
+   "first_name": "Jordan",
+   "last_name": "Love",
+   "pos": "QB",
+   "team": "GB",
+   "name": "Jordan Love",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6806": {
+   "player_id": "6806",
+   "first_name": "J.K.",
+   "last_name": "Dobbins",
+   "pos": "RB",
+   "team": "DEN",
+   "name": "J.K. Dobbins",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6813": {
+   "player_id": "6813",
+   "first_name": "Jonathan",
+   "last_name": "Taylor",
+   "pos": "RB",
+   "team": "IND",
+   "name": "Jonathan Taylor",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6819": {
+   "player_id": "6819",
+   "first_name": "Michael",
+   "last_name": "Pittman",
+   "pos": "WR",
+   "team": "IND",
+   "name": "Michael Pittman",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6865": {
+   "player_id": "6865",
+   "first_name": "Colby",
+   "last_name": "Parkinson",
+   "pos": "TE",
+   "team": "LAR",
+   "number": 84,
+   "age": 27,
+   "years_exp": 6,
+   "college": "Stanford",
+   "status": "Active",
+   "depth_chart_position": "TE",
+   "depth_chart_order": 2,
+   "search_rank": 136,
+   "fantasy_positions": [
+    "TE"
+   ],
+   "active": true,
+   "name": "Colby Parkinson",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "6904": {
+   "player_id": "6904",
+   "first_name": "Jalen",
+   "last_name": "Hurts",
+   "pos": "QB",
+   "team": "PHI",
+   "name": "Jalen Hurts",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7002": {
+   "player_id": "7002",
+   "first_name": "Juwan",
+   "last_name": "Johnson",
+   "pos": "TE",
+   "team": "NO",
+   "number": 83,
+   "age": 29,
+   "years_exp": 6,
+   "college": "Oregon",
+   "status": "Active",
+   "depth_chart_position": "TE",
+   "depth_chart_order": 1,
+   "search_rank": 103,
+   "fantasy_positions": [
+    "TE"
+   ],
+   "active": true,
+   "name": "Juwan Johnson",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7021": {
+   "player_id": "7021",
+   "first_name": "Rico",
+   "last_name": "Dowdle",
+   "pos": "RB",
+   "team": "PIT",
+   "number": 13,
+   "age": 28,
+   "years_exp": 6,
+   "college": "South Carolina",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 1,
+   "search_rank": 65,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Rico Dowdle",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7049": {
+   "player_id": "7049",
+   "first_name": "Jauan",
+   "last_name": "Jennings",
+   "pos": "WR",
+   "team": "SF",
+   "name": "Jauan Jennings",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7090": {
+   "player_id": "7090",
+   "first_name": "Darnell",
+   "last_name": "Mooney",
+   "pos": "WR",
+   "team": "ATL",
+   "name": "Darnell Mooney",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7523": {
+   "player_id": "7523",
+   "first_name": "Trevor",
+   "last_name": "Lawrence",
+   "pos": "QB",
+   "team": "JAX",
+   "name": "Trevor Lawrence",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7525": {
+   "player_id": "7525",
+   "first_name": "DeVonta",
+   "last_name": "Smith",
+   "pos": "WR",
+   "team": "PHI",
+   "name": "DeVonta Smith",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 6,
+   "age": 27,
+   "years_exp": 5,
+   "college": "Alabama",
+   "status": "Active",
+   "injury_status": "Questionable",
+   "injury_body_part": "Hamstring",
+   "depth_chart_position": "RWR",
+   "depth_chart_order": 1,
+   "search_rank": 39,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true
+  },
+  "7526": {
+   "player_id": "7526",
+   "first_name": "Jaylen",
+   "last_name": "Waddle",
+   "pos": "WR",
+   "team": "MIA",
+   "name": "Jaylen Waddle",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7528": {
+   "player_id": "7528",
+   "first_name": "Najee",
+   "last_name": "Harris",
+   "pos": "RB",
+   "team": "LAC",
+   "name": "Najee Harris",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7543": {
+   "player_id": "7543",
+   "first_name": "Travis",
+   "last_name": "Etienne",
+   "pos": "RB",
+   "team": "JAX",
+   "name": "Travis Etienne",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7547": {
+   "player_id": "7547",
+   "first_name": "Amon-Ra",
+   "last_name": "St. Brown",
+   "pos": "WR",
+   "team": "DET",
+   "name": "Amon-Ra St. Brown",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7553": {
+   "player_id": "7553",
+   "first_name": "Kyle",
+   "last_name": "Pitts",
+   "pos": "TE",
+   "team": "ATL",
+   "name": "Kyle Pitts",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7564": {
+   "player_id": "7564",
+   "first_name": "Ja'Marr",
+   "last_name": "Chase",
+   "pos": "WR",
+   "team": "CIN",
+   "name": "Ja'Marr Chase",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7567": {
+   "player_id": "7567",
+   "first_name": "Kenny",
+   "last_name": "Gainwell",
+   "pos": "RB",
+   "team": "TB",
+   "number": 1,
+   "age": 27,
+   "years_exp": 5,
+   "college": "Memphis",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 86,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Kenny Gainwell",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7569": {
+   "player_id": "7569",
+   "first_name": "Nico",
+   "last_name": "Collins",
+   "pos": "WR",
+   "team": "HOU",
+   "name": "Nico Collins",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7571": {
+   "player_id": "7571",
+   "first_name": "Rashod",
+   "last_name": "Bateman",
+   "pos": "WR",
+   "team": "BAL",
+   "name": "Rashod Bateman",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7588": {
+   "player_id": "7588",
+   "first_name": "Javonte",
+   "last_name": "Williams",
+   "pos": "RB",
+   "team": "DAL",
+   "name": "Javonte Williams",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 33,
+   "age": 26,
+   "years_exp": 5,
+   "college": "North Carolina",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 1,
+   "search_rank": 32,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true
+  },
+  "7591": {
+   "player_id": "7591",
+   "first_name": "Justin",
+   "last_name": "Fields",
+   "pos": "QB",
+   "team": "NYJ",
+   "name": "Justin Fields",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7594": {
+   "player_id": "7594",
+   "first_name": "Chuba",
+   "last_name": "Hubbard",
+   "pos": "RB",
+   "team": "CAR",
+   "name": "Chuba Hubbard",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7607": {
+   "player_id": "7607",
+   "first_name": "Michael",
+   "last_name": "Carter",
+   "pos": "RB",
+   "team": "TEN",
+   "number": 35,
+   "age": 27,
+   "years_exp": 5,
+   "college": "North Carolina",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 4,
+   "search_rank": 999,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Michael Carter",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "7611": {
+   "player_id": "7611",
+   "first_name": "Rhamondre",
+   "last_name": "Stevenson",
+   "pos": "RB",
+   "team": "NE",
+   "name": "Rhamondre Stevenson",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8110": {
+   "player_id": "8110",
+   "first_name": "Jake",
+   "last_name": "Ferguson",
+   "pos": "TE",
+   "team": "DAL",
+   "name": "Jake Ferguson",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8112": {
+   "player_id": "8112",
+   "first_name": "Drake",
+   "last_name": "London",
+   "pos": "WR",
+   "team": "ATL",
+   "name": "Drake London",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8122": {
+   "player_id": "8122",
+   "first_name": "Zonovan",
+   "last_name": "Knight",
+   "pos": "RB",
+   "team": "ARI",
+   "number": 20,
+   "age": 25,
+   "years_exp": 4,
+   "college": "North Carolina State",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 4,
+   "search_rank": 999,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Zonovan Knight",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8126": {
+   "player_id": "8126",
+   "first_name": "Wan'Dale",
+   "last_name": "Robinson",
+   "pos": "WR",
+   "team": "TEN",
+   "number": 4,
+   "age": 25,
+   "years_exp": 4,
+   "college": "Kentucky",
+   "status": "Active",
+   "depth_chart_position": "SWR",
+   "depth_chart_order": 2,
+   "search_rank": 102,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Wan'Dale Robinson",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8130": {
+   "player_id": "8130",
+   "first_name": "Trey",
+   "last_name": "McBride",
+   "pos": "TE",
+   "team": "ARI",
+   "name": "Trey McBride",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8132": {
+   "player_id": "8132",
+   "first_name": "Tyler",
+   "last_name": "Allgeier",
+   "pos": "RB",
+   "team": "ARI",
+   "number": 22,
+   "age": 26,
+   "years_exp": 4,
+   "college": "BYU",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 89,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Tyler Allgeier",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8134": {
+   "player_id": "8134",
+   "first_name": "Khalil",
+   "last_name": "Shakir",
+   "pos": "WR",
+   "team": "BUF",
+   "name": "Khalil Shakir",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8137": {
+   "player_id": "8137",
+   "first_name": "George",
+   "last_name": "Pickens",
+   "pos": "WR",
+   "team": "DAL",
+   "name": "George Pickens",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8138": {
+   "player_id": "8138",
+   "first_name": "James",
+   "last_name": "Cook",
+   "pos": "RB",
+   "team": "BUF",
+   "name": "James Cook",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8144": {
+   "player_id": "8144",
+   "first_name": "Chris",
+   "last_name": "Olave",
+   "pos": "WR",
+   "team": "NO",
+   "name": "Chris Olave",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8146": {
+   "player_id": "8146",
+   "first_name": "Garrett",
+   "last_name": "Wilson",
+   "pos": "WR",
+   "team": "NYJ",
+   "name": "Garrett Wilson",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8148": {
+   "player_id": "8148",
+   "first_name": "Jameson",
+   "last_name": "Williams",
+   "pos": "WR",
+   "team": "DET",
+   "name": "Jameson Williams",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 1,
+   "age": 25,
+   "years_exp": 4,
+   "college": "Alabama",
+   "status": "Active",
+   "depth_chart_position": "RWR",
+   "depth_chart_order": 2,
+   "search_rank": 52,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true
+  },
+  "8150": {
+   "player_id": "8150",
+   "first_name": "Kyren",
+   "last_name": "Williams",
+   "pos": "RB",
+   "team": "LAR",
+   "name": "Kyren Williams",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8151": {
+   "player_id": "8151",
+   "first_name": "Kenneth",
+   "last_name": "Walker",
+   "pos": "RB",
+   "team": "KC",
+   "name": "Kenneth Walker",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 9,
+   "age": 25,
+   "years_exp": 4,
+   "college": "Michigan State",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 1,
+   "search_rank": 19,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true
+  },
+  "8154": {
+   "player_id": "8154",
+   "first_name": "Brian",
+   "last_name": "Robinson",
+   "pos": "RB",
+   "team": "WAS",
+   "name": "Brian Robinson",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8155": {
+   "player_id": "8155",
+   "first_name": "Breece",
+   "last_name": "Hall",
+   "pos": "RB",
+   "team": "NYJ",
+   "name": "Breece Hall",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8167": {
+   "player_id": "8167",
+   "first_name": "Christian",
+   "last_name": "Watson",
+   "pos": "WR",
+   "team": "GB",
+   "number": 9,
+   "age": 27,
+   "years_exp": 4,
+   "college": "North Dakota State",
+   "status": "Active",
+   "depth_chart_position": "LWR",
+   "depth_chart_order": 1,
+   "search_rank": 63,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Christian Watson",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8183": {
+   "player_id": "8183",
+   "first_name": "Brock",
+   "last_name": "Purdy",
+   "pos": "QB",
+   "team": "SF",
+   "name": "Brock Purdy",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8205": {
+   "player_id": "8205",
+   "first_name": "Isiah",
+   "last_name": "Pacheco",
+   "pos": "RB",
+   "team": "KC",
+   "name": "Isiah Pacheco",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8210": {
+   "player_id": "8210",
+   "first_name": "Chig",
+   "last_name": "Okonkwo",
+   "pos": "TE",
+   "team": "TEN",
+   "name": "Chig Okonkwo",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8228": {
+   "player_id": "8228",
+   "first_name": "Jaylen",
+   "last_name": "Warren",
+   "pos": "RB",
+   "team": "PIT",
+   "name": "Jaylen Warren",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "8408": {
+   "player_id": "8408",
+   "first_name": "Jordan",
+   "last_name": "Mason",
+   "pos": "RB",
+   "team": "MIN",
+   "name": "Jordan Mason",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 27,
+   "age": 27,
+   "years_exp": 4,
+   "college": "Georgia Tech",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 112,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true
+  },
+  "9221": {
+   "player_id": "9221",
+   "first_name": "Jahmyr",
+   "last_name": "Gibbs",
+   "pos": "RB",
+   "team": "DET",
+   "name": "Jahmyr Gibbs",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9224": {
+   "player_id": "9224",
+   "first_name": "Chase",
+   "last_name": "Brown",
+   "pos": "RB",
+   "team": "CIN",
+   "name": "Chase Brown",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9225": {
+   "player_id": "9225",
+   "first_name": "Tank",
+   "last_name": "Bigsby",
+   "pos": "RB",
+   "team": "JAX",
+   "name": "Tank Bigsby",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9226": {
+   "player_id": "9226",
+   "first_name": "De'Von",
+   "last_name": "Achane",
+   "pos": "RB",
+   "team": "MIA",
+   "name": "De'Von Achane",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9228": {
+   "player_id": "9228",
+   "first_name": "Bryce",
+   "last_name": "Young",
+   "pos": "QB",
+   "team": "CAR",
+   "name": "Bryce Young",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9229": {
+   "player_id": "9229",
+   "first_name": "Anthony",
+   "last_name": "Richardson",
+   "pos": "QB",
+   "team": "IND",
+   "name": "Anthony Richardson",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9482": {
+   "player_id": "9482",
+   "first_name": "Michael",
+   "last_name": "Mayer",
+   "pos": "TE",
+   "team": "LV",
+   "number": 87,
+   "age": 25,
+   "years_exp": 3,
+   "college": "Notre Dame",
+   "status": "Active",
+   "depth_chart_position": "TE",
+   "depth_chart_order": 2,
+   "search_rank": 999,
+   "fantasy_positions": [
+    "TE"
+   ],
+   "active": true,
+   "name": "Michael Mayer",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9484": {
+   "player_id": "9484",
+   "first_name": "Tucker",
+   "last_name": "Kraft",
+   "pos": "TE",
+   "team": "GB",
+   "name": "Tucker Kraft",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9488": {
+   "player_id": "9488",
+   "first_name": "Jaxon",
+   "last_name": "Smith-Njigba",
+   "pos": "WR",
+   "team": "SEA",
+   "name": "Jaxon Smith-Njigba",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9493": {
+   "player_id": "9493",
+   "first_name": "Puka",
+   "last_name": "Nacua",
+   "pos": "WR",
+   "team": "LAR",
+   "name": "Puka Nacua",
+   "sources": [
+    "draft_2025_picks",
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "number": 12,
+   "age": 25,
+   "years_exp": 3,
+   "college": "BYU",
+   "status": "Active",
+   "depth_chart_position": "RWR",
+   "depth_chart_order": 1,
+   "search_rank": 5,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true
+  },
+  "9500": {
+   "player_id": "9500",
+   "first_name": "Josh",
+   "last_name": "Downs",
+   "pos": "WR",
+   "team": "IND",
+   "name": "Josh Downs",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9504": {
+   "player_id": "9504",
+   "first_name": "Kayshon",
+   "last_name": "Boutte",
+   "pos": "WR",
+   "team": "NE",
+   "number": 9,
+   "age": 24,
+   "years_exp": 3,
+   "college": "LSU",
+   "status": "Active",
+   "depth_chart_position": "LWR",
+   "depth_chart_order": 3,
+   "search_rank": 164,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Kayshon Boutte",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9508": {
+   "player_id": "9508",
+   "first_name": "Tyjae",
+   "last_name": "Spears",
+   "pos": "RB",
+   "team": "TEN",
+   "number": 2,
+   "age": 25,
+   "years_exp": 3,
+   "college": "Tulane",
+   "status": "Active",
+   "depth_chart_position": "RB",
+   "depth_chart_order": 2,
+   "search_rank": 122,
+   "fantasy_positions": [
+    "RB"
+   ],
+   "active": true,
+   "name": "Tyjae Spears",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9509": {
+   "player_id": "9509",
+   "first_name": "Bijan",
+   "last_name": "Robinson",
+   "pos": "RB",
+   "team": "ATL",
+   "name": "Bijan Robinson",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "96": {
+   "player_id": "96",
+   "first_name": "Aaron",
+   "last_name": "Rodgers",
+   "pos": "QB",
+   "team": "PIT",
+   "name": "Aaron Rodgers",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9753": {
+   "player_id": "9753",
+   "first_name": "Zach",
+   "last_name": "Charbonnet",
+   "pos": "RB",
+   "team": "SEA",
+   "name": "Zach Charbonnet",
+   "sources": [
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9754": {
+   "player_id": "9754",
+   "first_name": "Quentin",
+   "last_name": "Johnston",
+   "pos": "WR",
+   "team": "LAC",
+   "number": 1,
+   "age": 24,
+   "years_exp": 3,
+   "college": "TCU",
+   "status": "Active",
+   "depth_chart_position": "LWR",
+   "depth_chart_order": 2,
+   "search_rank": 103,
+   "fantasy_positions": [
+    "WR"
+   ],
+   "active": true,
+   "name": "Quentin Johnston",
+   "injury_notes": null,
+   "practice_participation": null,
+   "injury_status": null,
+   "injury_body_part": null,
+   "sources": [
+    "players_resolved",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9756": {
+   "player_id": "9756",
+   "first_name": "Jordan",
+   "last_name": "Addison",
+   "pos": "WR",
+   "team": "MIN",
+   "name": "Jordan Addison",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9758": {
+   "player_id": "9758",
+   "first_name": "C.J.",
+   "last_name": "Stroud",
+   "pos": "QB",
+   "team": "HOU",
+   "name": "C.J. Stroud",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "9997": {
+   "player_id": "9997",
+   "first_name": "Zay",
+   "last_name": "Flowers",
+   "pos": "WR",
+   "team": "BAL",
+   "name": "Zay Flowers",
+   "sources": [
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "ARI": {
+   "player_id": "ARI",
+   "name": "Arizona Cardinals",
+   "pos": "DEF",
+   "team": "ARI",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "ATL": {
+   "player_id": "ATL",
+   "name": "Atlanta Falcons",
+   "pos": "DEF",
+   "team": "ATL",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "BAL": {
+   "player_id": "BAL",
+   "name": "Baltimore Ravens",
+   "pos": "DEF",
+   "team": "BAL",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "Baltimore",
+   "last_name": "Ravens"
+  },
+  "BUF": {
+   "player_id": "BUF",
+   "name": "Buffalo Bills",
+   "pos": "DEF",
+   "team": "BUF",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "Buffalo",
+   "last_name": "Bills"
+  },
+  "CAR": {
+   "player_id": "CAR",
+   "name": "Carolina Panthers",
+   "pos": "DEF",
+   "team": "CAR",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "CHI": {
+   "player_id": "CHI",
+   "name": "Chicago Bears",
+   "pos": "DEF",
+   "team": "CHI",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "CIN": {
+   "player_id": "CIN",
+   "name": "Cincinnati Bengals",
+   "pos": "DEF",
+   "team": "CIN",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "CLE": {
+   "player_id": "CLE",
+   "name": "Cleveland Browns",
+   "pos": "DEF",
+   "team": "CLE",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "DAL": {
+   "player_id": "DAL",
+   "name": "Dallas Cowboys",
+   "pos": "DEF",
+   "team": "DAL",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "DEN": {
+   "player_id": "DEN",
+   "name": "Denver Broncos",
+   "pos": "DEF",
+   "team": "DEN",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "Denver",
+   "last_name": "Broncos"
+  },
+  "DET": {
+   "player_id": "DET",
+   "name": "Detroit Lions",
+   "pos": "DEF",
+   "team": "DET",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "GB": {
+   "player_id": "GB",
+   "name": "Green Bay Packers",
+   "pos": "DEF",
+   "team": "GB",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "HOU": {
+   "player_id": "HOU",
+   "name": "Houston Texans",
+   "pos": "DEF",
+   "team": "HOU",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "Houston",
+   "last_name": "Texans"
+  },
+  "IND": {
+   "player_id": "IND",
+   "name": "Indianapolis Colts",
+   "pos": "DEF",
+   "team": "IND",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "JAX": {
+   "player_id": "JAX",
+   "name": "Jacksonville Jaguars",
+   "pos": "DEF",
+   "team": "JAX",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "KC": {
+   "player_id": "KC",
+   "name": "Kansas City Chiefs",
+   "pos": "DEF",
+   "team": "KC",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "LAC": {
+   "player_id": "LAC",
+   "name": "Los Angeles Chargers",
+   "pos": "DEF",
+   "team": "LAC",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "LAR": {
+   "player_id": "LAR",
+   "name": "Los Angeles Rams",
+   "pos": "DEF",
+   "team": "LAR",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "LV": {
+   "player_id": "LV",
+   "name": "Las Vegas Raiders",
+   "pos": "DEF",
+   "team": "LV",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "MIA": {
+   "player_id": "MIA",
+   "name": "Miami Dolphins",
+   "pos": "DEF",
+   "team": "MIA",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "MIN": {
+   "player_id": "MIN",
+   "name": "Minnesota Vikings",
+   "pos": "DEF",
+   "team": "MIN",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "Minnesota",
+   "last_name": "Vikings"
+  },
+  "NE": {
+   "player_id": "NE",
+   "name": "New England Patriots",
+   "pos": "DEF",
+   "team": "NE",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "NO": {
+   "player_id": "NO",
+   "name": "New Orleans Saints",
+   "pos": "DEF",
+   "team": "NO",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "NYG": {
+   "player_id": "NYG",
+   "name": "New York Giants",
+   "pos": "DEF",
+   "team": "NYG",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "NYJ": {
+   "player_id": "NYJ",
+   "name": "New York Jets",
+   "pos": "DEF",
+   "team": "NYJ",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "PHI": {
+   "player_id": "PHI",
+   "name": "Philadelphia Eagles",
+   "pos": "DEF",
+   "team": "PHI",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "Philadelphia",
+   "last_name": "Eagles"
+  },
+  "PIT": {
+   "player_id": "PIT",
+   "name": "Pittsburgh Steelers",
+   "pos": "DEF",
+   "team": "PIT",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "Pittsburgh",
+   "last_name": "Steelers"
+  },
+  "SEA": {
+   "player_id": "SEA",
+   "name": "Seattle Seahawks",
+   "pos": "DEF",
+   "team": "SEA",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "SF": {
+   "player_id": "SF",
+   "name": "San Francisco 49ers",
+   "pos": "DEF",
+   "team": "SF",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "San Francisco",
+   "last_name": "49ers"
+  },
+  "TB": {
+   "player_id": "TB",
+   "name": "Tampa Bay Buccaneers",
+   "pos": "DEF",
+   "team": "TB",
+   "sources": [
+    "builtin_def",
+    "rosters"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "TEN": {
+   "player_id": "TEN",
+   "name": "Tennessee Titans",
+   "pos": "DEF",
+   "team": "TEN",
+   "sources": [
+    "builtin_def"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00"
+  },
+  "WAS": {
+   "player_id": "WAS",
+   "name": "Washington Commanders",
+   "pos": "DEF",
+   "team": "WAS",
+   "sources": [
+    "builtin_def",
+    "draft_2025_picks"
+   ],
+   "first_seen": "2026-08-08T02:28:38+00:00",
+   "last_updated": "2026-08-08T02:28:38+00:00",
+   "first_name": "Washington",
+   "last_name": "Commanders"
+  }
+ }
+}

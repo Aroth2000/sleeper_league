@@ -1,0 +1,3172 @@
+{
+ "meta": {
+  "league_id": "1389753893356838912",
+  "previous_league_id": "1257451899603402752",
+  "season": "2026",
+  "week": 0,
+  "generated_at": "2026-08-08T02:35:39+00:00",
+  "generator": "state_builder.py",
+  "season_phase": {
+   "name": "preseason",
+   "weeks": [],
+   "default_posture": "Draft prep and keeper decisions. No lineup or waiver activity yet."
+  },
+  "league_status": "pre_draft",
+  "nfl_state": {
+   "week": 0,
+   "season_type": "pre",
+   "display_week": 0
+  },
+  "waiver": {
+   "type_code": 1,
+   "type": "reverse_standings_rolling_priority",
+   "is_faab": false,
+   "process_day": "Wednesday",
+   "day_of_week_code": 2,
+   "clear_days": 2,
+   "submit_deadline_guidance": "UNVERIFIED. Safe under both readings: submit claims by Monday night ET. If processing is confirmed to be Wednesday 00:00 ET, Tuesday 18:00 ET is fine."
+  },
+  "trade_deadline_week": 13,
+  "playoff_week_start": 15,
+  "starter_slots": [
+   "QB",
+   "RB",
+   "RB",
+   "WR",
+   "WR",
+   "TE",
+   "FLEX",
+   "FLEX",
+   "SUPER_FLEX",
+   "DEF"
+  ],
+  "sources": {
+   "loaded": [
+    "league.json",
+    "users.json",
+    "rosters.json",
+    "state_nfl.json"
+   ],
+   "missing": [
+    "trending_add.json",
+    "transactions_week0.json"
+   ],
+   "unparseable": [],
+   "players_cache": {
+    "total_ids": 222,
+    "named": 222,
+    "unresolved": 0,
+    "stale_rostered": 104,
+    "stale_rostered_ids": [
+     "10222",
+     "10229",
+     "10236",
+     "11560",
+     "11564",
+     "11565",
+     "11566",
+     "11584",
+     "11604",
+     "11620",
+     "11624",
+     "11628",
+     "11631",
+     "11632",
+     "11635",
+     "11655",
+     "12457",
+     "12481",
+     "12489",
+     "12507",
+     "12508",
+     "12512",
+     "12514",
+     "12518",
+     "12519",
+     "12522",
+     "12529",
+     "1373",
+     "2133",
+     "2449",
+     "3163",
+     "3198",
+     "3214",
+     "3294",
+     "4033",
+     "4034",
+     "4037",
+     "4046",
+     "4199",
+     "421",
+     "4217",
+     "4866",
+     "4881",
+     "4892",
+     "4943",
+     "4983",
+     "4984",
+     "5012",
+     "5022",
+     "5045",
+     "5844",
+     "5846",
+     "5850",
+     "5859",
+     "5872",
+     "5892",
+     "5927",
+     "5947",
+     "5967",
+     "6770",
+     "6786",
+     "6790",
+     "6794",
+     "6797",
+     "6801",
+     "6804",
+     "6813",
+     "6819",
+     "6904",
+     "7049",
+     "7090",
+     "7523",
+     "7526",
+     "7528",
+     "7543",
+     "7547",
+     "7553",
+     "7564",
+     "7569",
+     "7611",
+     "8110",
+     "8112",
+     "8130",
+     "8134",
+     "8137",
+     "8138",
+     "8144",
+     "8146",
+     "8150",
+     "8155",
+     "8183",
+     "8210",
+     "8228",
+     "9221",
+     "9224",
+     "9226",
+     "9228",
+     "9484",
+     "9488",
+     "9509",
+     "96",
+     "9756",
+     "9758",
+     "9997"
+    ]
+   }
+  },
+  "warnings": [
+   "Sleeper reports week 0 (preseason). Building a preseason snapshot; there is no lineup to set yet.",
+   "every team is 0-0; standings order is PF-only and not meaningful yet",
+   "no previous state at /home/claude/sunday_scaries/system/state/week_-1.json; roster_diff will be empty (expected on the first run)"
+  ],
+  "degraded": true
+ },
+ "standings": [
+  {
+   "roster_id": 1,
+   "owner": "tlekes",
+   "team_name": "Pabst Interference",
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 10,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 1,
+   "playoff_position": "in"
+  },
+  {
+   "roster_id": 2,
+   "owner": "andrewroth32",
+   "team_name": null,
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 4,
+   "total_moves": 0,
+   "is_andrew": true,
+   "rank": 2,
+   "playoff_position": "in"
+  },
+  {
+   "roster_id": 3,
+   "owner": "havicht",
+   "team_name": "Water, Barkley, and Hops",
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 6,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 3,
+   "playoff_position": "in"
+  },
+  {
+   "roster_id": 4,
+   "owner": "jomud",
+   "team_name": null,
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 8,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 4,
+   "playoff_position": "in"
+  },
+  {
+   "roster_id": 5,
+   "owner": "LoochCarluccio",
+   "team_name": "Glizzy Guzzler",
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 3,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 5,
+   "playoff_position": "in"
+  },
+  {
+   "roster_id": 6,
+   "owner": "pdustin",
+   "team_name": "Mass General Hospital",
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 7,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 6,
+   "playoff_position": "in"
+  },
+  {
+   "roster_id": 7,
+   "owner": "PeterCrisileo",
+   "team_name": "Still at RPI",
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 5,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 7,
+   "playoff_position": "out"
+  },
+  {
+   "roster_id": 8,
+   "owner": "Edeecher",
+   "team_name": "Ethan's Younglings",
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 9,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 8,
+   "playoff_position": "out"
+  },
+  {
+   "roster_id": 9,
+   "owner": "DannyBC1",
+   "team_name": null,
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 1,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 9,
+   "playoff_position": "out"
+  },
+  {
+   "roster_id": 10,
+   "owner": "jpalmeri1616",
+   "team_name": "Big Mommy Milkers (UCSF)",
+   "wins": 0,
+   "losses": 0,
+   "ties": 0,
+   "pf": 0.0,
+   "pa": 0.0,
+   "waiver_priority": 2,
+   "total_moves": 0,
+   "is_andrew": false,
+   "rank": 10,
+   "playoff_position": "out"
+  }
+ ],
+ "waiver_order": [
+  {
+   "waiver_priority": 1,
+   "roster_id": 9,
+   "owner": "DannyBC1"
+  },
+  {
+   "waiver_priority": 2,
+   "roster_id": 10,
+   "owner": "jpalmeri1616"
+  },
+  {
+   "waiver_priority": 3,
+   "roster_id": 5,
+   "owner": "LoochCarluccio"
+  },
+  {
+   "waiver_priority": 4,
+   "roster_id": 2,
+   "owner": "andrewroth32"
+  },
+  {
+   "waiver_priority": 5,
+   "roster_id": 7,
+   "owner": "PeterCrisileo"
+  },
+  {
+   "waiver_priority": 6,
+   "roster_id": 3,
+   "owner": "havicht"
+  },
+  {
+   "waiver_priority": 7,
+   "roster_id": 6,
+   "owner": "pdustin"
+  },
+  {
+   "waiver_priority": 8,
+   "roster_id": 4,
+   "owner": "jomud"
+  },
+  {
+   "waiver_priority": 9,
+   "roster_id": 8,
+   "owner": "Edeecher"
+  },
+  {
+   "waiver_priority": 10,
+   "roster_id": 1,
+   "owner": "tlekes"
+  }
+ ],
+ "andrew_waiver_position": 4,
+ "teams_picking_ahead_of_andrew": [
+  "DannyBC1",
+  "jpalmeri1616",
+  "LoochCarluccio"
+ ],
+ "teams": {
+  "1": {
+   "roster_id": 1,
+   "owner": "tlekes",
+   "team_name": "Pabst Interference",
+   "is_andrew": false,
+   "players": [
+    "10219",
+    "10229",
+    "11579",
+    "11624",
+    "11625",
+    "11783",
+    "3161",
+    "4098",
+    "4881",
+    "5859",
+    "5870",
+    "8110",
+    "8134",
+    "8138",
+    "96",
+    "9756",
+    "KC"
+   ],
+   "starter_ids": [
+    "4881",
+    "8138",
+    "11579",
+    "11624",
+    "5859",
+    "8110",
+    "8134",
+    "9756",
+    "96",
+    "KC"
+   ],
+   "bench_ids": [
+    "3161",
+    "5870",
+    "10219",
+    "4098",
+    "11625",
+    "10229",
+    "11783"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "4881",
+     "name": "Lamar Jackson",
+     "pos": "QB",
+     "team": "BAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "8138",
+     "name": "James Cook",
+     "pos": "RB",
+     "team": "BUF",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "11579",
+     "name": "Audric Estime",
+     "pos": "RB",
+     "team": "NO",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "11624",
+     "name": "Xavier Worthy",
+     "pos": "WR",
+     "team": "KC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "5859",
+     "name": "A.J. Brown",
+     "pos": "WR",
+     "team": "PHI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "8110",
+     "name": "Jake Ferguson",
+     "pos": "TE",
+     "team": "DAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "8134",
+     "name": "Khalil Shakir",
+     "pos": "WR",
+     "team": "BUF",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "9756",
+     "name": "Jordan Addison",
+     "pos": "WR",
+     "team": "MIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "96",
+     "name": "Aaron Rodgers",
+     "pos": "QB",
+     "team": "PIT",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "KC",
+     "name": "Kansas City Chiefs",
+     "pos": "DEF",
+     "team": "KC",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "3161",
+     "name": "Carson Wentz",
+     "pos": "QB",
+     "team": "MIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "5870",
+     "name": "Daniel Jones",
+     "pos": "QB",
+     "team": "IND",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "10219",
+     "name": "Chris Rodriguez",
+     "pos": "RB",
+     "team": "JAX",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "4098",
+     "name": "Kareem Hunt",
+     "pos": "RB",
+     "team": null,
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11625",
+     "name": "Adonai Mitchell",
+     "pos": "WR",
+     "team": "NYJ",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "10229",
+     "name": "Rashee Rice",
+     "pos": "WR",
+     "team": "KC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11783",
+     "name": "Ryan Flournoy",
+     "pos": "WR",
+     "team": "DAL",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 1,
+    "QB": 4,
+    "RB": 4,
+    "TE": 1,
+    "WR": 7
+   },
+   "injuries": [],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 10,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  },
+  "2": {
+   "roster_id": 2,
+   "owner": "andrewroth32",
+   "team_name": null,
+   "is_andrew": true,
+   "players": [
+    "10232",
+    "11563",
+    "1166",
+    "12526",
+    "12527",
+    "1466",
+    "2216",
+    "3257",
+    "4018",
+    "6865",
+    "7525",
+    "7588",
+    "8148",
+    "8151",
+    "8408",
+    "9493",
+    "JAX"
+   ],
+   "starter_ids": [
+    "3257",
+    "12527",
+    "7588",
+    "8148",
+    "9493",
+    "1466",
+    "2216",
+    "8151",
+    "11563",
+    "JAX"
+   ],
+   "bench_ids": [
+    "1166",
+    "4018",
+    "8408",
+    "6865",
+    "7525",
+    "10232",
+    "12526"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "3257",
+     "name": "Jacoby Brissett",
+     "pos": "QB",
+     "team": "ARI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "12527",
+     "name": "Ashton Jeanty",
+     "pos": "RB",
+     "team": "LV",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "7588",
+     "name": "Javonte Williams",
+     "pos": "RB",
+     "team": "DAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "8148",
+     "name": "Jameson Williams",
+     "pos": "WR",
+     "team": "DET",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "9493",
+     "name": "Puka Nacua",
+     "pos": "WR",
+     "team": "LAR",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "1466",
+     "name": "Travis Kelce",
+     "pos": "TE",
+     "team": "KC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "2216",
+     "name": "Mike Evans",
+     "pos": "WR",
+     "team": "SF",
+     "injury_status": "Questionable",
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "8151",
+     "name": "Kenneth Walker",
+     "pos": "RB",
+     "team": "KC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "11563",
+     "name": "Bo Nix",
+     "pos": "QB",
+     "team": "DEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "JAX",
+     "name": "Jacksonville Jaguars",
+     "pos": "DEF",
+     "team": "JAX",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "1166",
+     "name": "Kirk Cousins",
+     "pos": "QB",
+     "team": "LV",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "4018",
+     "name": "Joe Mixon",
+     "pos": "RB",
+     "team": null,
+     "injury_status": "Questionable",
+     "unresolved": false
+    },
+    {
+     "player_id": "8408",
+     "name": "Jordan Mason",
+     "pos": "RB",
+     "team": "MIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "6865",
+     "name": "Colby Parkinson",
+     "pos": "TE",
+     "team": "LAR",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "7525",
+     "name": "DeVonta Smith",
+     "pos": "WR",
+     "team": "PHI",
+     "injury_status": "Questionable",
+     "unresolved": false
+    },
+    {
+     "player_id": "10232",
+     "name": "Michael Wilson",
+     "pos": "WR",
+     "team": "ARI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12526",
+     "name": "Tetairoa McMillan",
+     "pos": "WR",
+     "team": "CAR",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 1,
+    "QB": 3,
+    "RB": 5,
+    "TE": 2,
+    "WR": 6
+   },
+   "injuries": [
+    {
+     "player_id": "2216",
+     "player": "Mike Evans",
+     "pos": "WR",
+     "team": "SF",
+     "status": "Questionable",
+     "body_part": "Quadriceps",
+     "practice": null,
+     "severity": 2,
+     "is_starter": true,
+     "since_week": 0,
+     "owner": "andrewroth32",
+     "roster_id": 2
+    },
+    {
+     "player_id": "4018",
+     "player": "Joe Mixon",
+     "pos": "RB",
+     "team": null,
+     "status": "Questionable",
+     "body_part": "Foot",
+     "practice": null,
+     "severity": 2,
+     "is_starter": false,
+     "since_week": 0,
+     "owner": "andrewroth32",
+     "roster_id": 2
+    },
+    {
+     "player_id": "7525",
+     "player": "DeVonta Smith",
+     "pos": "WR",
+     "team": "PHI",
+     "status": "Questionable",
+     "body_part": "Hamstring",
+     "practice": null,
+     "severity": 2,
+     "is_starter": false,
+     "since_week": 0,
+     "owner": "andrewroth32",
+     "roster_id": 2
+    }
+   ],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 4,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  },
+  "3": {
+   "roster_id": 3,
+   "owner": "havicht",
+   "team_name": "Water, Barkley, and Hops",
+   "is_andrew": false,
+   "players": [
+    "10222",
+    "11628",
+    "12481",
+    "4037",
+    "4866",
+    "4983",
+    "4984",
+    "5012",
+    "5022",
+    "5850",
+    "5892",
+    "7090",
+    "7611",
+    "9228",
+    "9754",
+    "SEA",
+    "TB"
+   ],
+   "starter_ids": [
+    "4984",
+    "4866",
+    "5850",
+    "11628",
+    "9754",
+    "5022",
+    "4983",
+    "7611",
+    "9228",
+    "SEA"
+   ],
+   "bench_ids": [
+    "TB",
+    "12481",
+    "5892",
+    "5012",
+    "4037",
+    "7090",
+    "10222"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "4984",
+     "name": "Josh Allen",
+     "pos": "QB",
+     "team": "BUF",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "4866",
+     "name": "Saquon Barkley",
+     "pos": "RB",
+     "team": "PHI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "5850",
+     "name": "Josh Jacobs",
+     "pos": "RB",
+     "team": "GB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "11628",
+     "name": "Marvin Harrison",
+     "pos": "WR",
+     "team": "ARI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "9754",
+     "name": "Quentin Johnston",
+     "pos": "WR",
+     "team": "LAC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "5022",
+     "name": "Dallas Goedert",
+     "pos": "TE",
+     "team": "PHI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "4983",
+     "name": "DJ Moore",
+     "pos": "WR",
+     "team": "CHI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "7611",
+     "name": "Rhamondre Stevenson",
+     "pos": "RB",
+     "team": "NE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "9228",
+     "name": "Bryce Young",
+     "pos": "QB",
+     "team": "CAR",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "SEA",
+     "name": "Seattle Seahawks",
+     "pos": "DEF",
+     "team": "SEA",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "TB",
+     "name": "Tampa Bay Buccaneers",
+     "pos": "DEF",
+     "team": "TB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12481",
+     "name": "Cam Skattebo",
+     "pos": "RB",
+     "team": "NYG",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "5892",
+     "name": "David Montgomery",
+     "pos": "RB",
+     "team": "DET",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "5012",
+     "name": "Mark Andrews",
+     "pos": "TE",
+     "team": "BAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "4037",
+     "name": "Chris Godwin",
+     "pos": "WR",
+     "team": "TB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "7090",
+     "name": "Darnell Mooney",
+     "pos": "WR",
+     "team": "ATL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "10222",
+     "name": "Jayden Reed",
+     "pos": "WR",
+     "team": "GB",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 2,
+    "QB": 2,
+    "RB": 5,
+    "TE": 2,
+    "WR": 6
+   },
+   "injuries": [],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 6,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  },
+  "4": {
+   "roster_id": 4,
+   "owner": "jomud",
+   "team_name": null,
+   "is_andrew": false,
+   "players": [
+    "10236",
+    "11565",
+    "11584",
+    "11620",
+    "12522",
+    "3294",
+    "4046",
+    "6801",
+    "7002",
+    "7567",
+    "7569",
+    "8112",
+    "8132",
+    "8228",
+    "9224",
+    "9484",
+    "NO"
+   ],
+   "starter_ids": [
+    "3294",
+    "9224",
+    "11584",
+    "7569",
+    "7002",
+    "8228",
+    "6801",
+    "7567",
+    "NO"
+   ],
+   "bench_ids": [
+    "12522",
+    "11565",
+    "4046",
+    "8132",
+    "10236",
+    "9484",
+    "8112",
+    "11620"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "3294",
+     "name": "Dak Prescott",
+     "pos": "QB",
+     "team": "DAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "9224",
+     "name": "Chase Brown",
+     "pos": "RB",
+     "team": "CIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "11584",
+     "name": "Bucky Irving",
+     "pos": "RB",
+     "team": "TB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "7569",
+     "name": "Nico Collins",
+     "pos": "WR",
+     "team": "HOU",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": null,
+     "name": null,
+     "pos": null,
+     "team": null,
+     "empty": true
+    },
+    {
+     "slot": "TE",
+     "player_id": "7002",
+     "name": "Juwan Johnson",
+     "pos": "TE",
+     "team": "NO",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "8228",
+     "name": "Jaylen Warren",
+     "pos": "RB",
+     "team": "PIT",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "6801",
+     "name": "Tee Higgins",
+     "pos": "WR",
+     "team": "CIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "7567",
+     "name": "Kenny Gainwell",
+     "pos": "RB",
+     "team": "TB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "NO",
+     "name": "New Orleans Saints",
+     "pos": "DEF",
+     "team": "NO",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "12522",
+     "name": "Cam Ward",
+     "pos": "QB",
+     "team": "TEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11565",
+     "name": "J.J. McCarthy",
+     "pos": "QB",
+     "team": "MIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "4046",
+     "name": "Patrick Mahomes",
+     "pos": "QB",
+     "team": "KC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "8132",
+     "name": "Tyler Allgeier",
+     "pos": "RB",
+     "team": "ARI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "10236",
+     "name": "Dalton Kincaid",
+     "pos": "TE",
+     "team": "BUF",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "9484",
+     "name": "Tucker Kraft",
+     "pos": "TE",
+     "team": "GB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "8112",
+     "name": "Drake London",
+     "pos": "WR",
+     "team": "ATL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11620",
+     "name": "Rome Odunze",
+     "pos": "WR",
+     "team": "CHI",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 1,
+    "QB": 4,
+    "RB": 5,
+    "TE": 3,
+    "WR": 4
+   },
+   "injuries": [],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 8,
+   "roster_notes": [
+    "WR slot is EMPTY"
+   ],
+   "unresolved_player_ids": []
+  },
+  "5": {
+   "roster_id": 5,
+   "owner": "LoochCarluccio",
+   "team_name": "Glizzy Guzzler",
+   "is_andrew": false,
+   "players": [
+    "11560",
+    "11571",
+    "11631",
+    "11632",
+    "11647",
+    "12508",
+    "12512",
+    "12518",
+    "12533",
+    "6786",
+    "6804",
+    "8126",
+    "8144",
+    "8155",
+    "9509",
+    "HOU",
+    "LAR"
+   ],
+   "starter_ids": [
+    "12508",
+    "8155",
+    "9509",
+    "8126",
+    "6786",
+    "12518",
+    "12512",
+    "8144",
+    "6804",
+    "HOU"
+   ],
+   "bench_ids": [
+    "LAR",
+    "11560",
+    "11571",
+    "12533",
+    "11647",
+    "11631",
+    "11632"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "12508",
+     "name": "Jaxson Dart",
+     "pos": "QB",
+     "team": "NYG",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "8155",
+     "name": "Breece Hall",
+     "pos": "RB",
+     "team": "NYJ",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "9509",
+     "name": "Bijan Robinson",
+     "pos": "RB",
+     "team": "ATL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "8126",
+     "name": "Wan'Dale Robinson",
+     "pos": "WR",
+     "team": "TEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "6786",
+     "name": "CeeDee Lamb",
+     "pos": "WR",
+     "team": "DAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "12518",
+     "name": "Tyler Warren",
+     "pos": "TE",
+     "team": "IND",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "12512",
+     "name": "Quinshon Judkins",
+     "pos": "RB",
+     "team": "CLE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "8144",
+     "name": "Chris Olave",
+     "pos": "WR",
+     "team": "NO",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "6804",
+     "name": "Jordan Love",
+     "pos": "QB",
+     "team": "GB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "HOU",
+     "name": "Houston Texans",
+     "pos": "DEF",
+     "team": "HOU",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "LAR",
+     "name": "Los Angeles Rams",
+     "pos": "DEF",
+     "team": "LAR",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11560",
+     "name": "Caleb Williams",
+     "pos": "QB",
+     "team": "CHI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11571",
+     "name": "Isaiah Davis",
+     "pos": "RB",
+     "team": "NYJ",
+     "injury_status": "Questionable",
+     "unresolved": false
+    },
+    {
+     "player_id": "12533",
+     "name": "Jacory Croskey-Merritt",
+     "pos": "RB",
+     "team": "WAS",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11647",
+     "name": "Kimani Vidal",
+     "pos": "RB",
+     "team": "LAC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11631",
+     "name": "Brian Thomas",
+     "pos": "WR",
+     "team": "JAX",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11632",
+     "name": "Malik Nabers",
+     "pos": "WR",
+     "team": "NYG",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 2,
+    "QB": 3,
+    "RB": 6,
+    "TE": 1,
+    "WR": 5
+   },
+   "injuries": [
+    {
+     "player_id": "11571",
+     "player": "Isaiah Davis",
+     "pos": "RB",
+     "team": "NYJ",
+     "status": "Questionable",
+     "body_part": "Knee",
+     "practice": null,
+     "severity": 2,
+     "is_starter": false,
+     "since_week": 0,
+     "owner": "LoochCarluccio",
+     "roster_id": 5
+    }
+   ],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [
+    "11560",
+    "12508",
+    "9509"
+   ],
+   "waiver_priority": 3,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  },
+  "6": {
+   "roster_id": 6,
+   "owner": "pdustin",
+   "team_name": "Mass General Hospital",
+   "is_andrew": false,
+   "players": [
+    "11586",
+    "11627",
+    "11655",
+    "12474",
+    "12493",
+    "12524",
+    "2449",
+    "3198",
+    "4892",
+    "5844",
+    "6770",
+    "6794",
+    "7553",
+    "9488",
+    "9504",
+    "CLE"
+   ],
+   "starter_ids": [
+    "6770",
+    "3198",
+    "11655",
+    "6794",
+    "9488",
+    "7553",
+    "2449",
+    "9504",
+    "4892",
+    "CLE"
+   ],
+   "bench_ids": [
+    "12524",
+    "11586",
+    "12474",
+    "12493",
+    "5844",
+    "11627"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "6770",
+     "name": "Joe Burrow",
+     "pos": "QB",
+     "team": "CIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "3198",
+     "name": "Derrick Henry",
+     "pos": "RB",
+     "team": "BAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "11655",
+     "name": "Tyrone Tracy",
+     "pos": "RB",
+     "team": "NYG",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "6794",
+     "name": "Justin Jefferson",
+     "pos": "WR",
+     "team": "MIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "9488",
+     "name": "Jaxon Smith-Njigba",
+     "pos": "WR",
+     "team": "SEA",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "7553",
+     "name": "Kyle Pitts",
+     "pos": "TE",
+     "team": "ATL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "2449",
+     "name": "Stefon Diggs",
+     "pos": "WR",
+     "team": "NE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "9504",
+     "name": "Kayshon Boutte",
+     "pos": "WR",
+     "team": "NE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "4892",
+     "name": "Baker Mayfield",
+     "pos": "QB",
+     "team": "TB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "CLE",
+     "name": "Cleveland Browns",
+     "pos": "DEF",
+     "team": "CLE",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "12524",
+     "name": "Shedeur Sanders",
+     "pos": "QB",
+     "team": "CLE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11586",
+     "name": "Blake Corum",
+     "pos": "RB",
+     "team": "LAR",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12474",
+     "name": "Woody Marks",
+     "pos": "RB",
+     "team": "HOU",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12493",
+     "name": "Oronde Gadsden",
+     "pos": "TE",
+     "team": "LAC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "5844",
+     "name": "T.J. Hockenson",
+     "pos": "TE",
+     "team": "MIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11627",
+     "name": "Troy Franklin",
+     "pos": "WR",
+     "team": "DEN",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 1,
+    "QB": 3,
+    "RB": 4,
+    "TE": 3,
+    "WR": 5
+   },
+   "injuries": [],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 7,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  },
+  "7": {
+   "roster_id": 7,
+   "owner": "PeterCrisileo",
+   "team_name": "Still at RPI",
+   "is_andrew": false,
+   "players": [
+    "11564",
+    "11604",
+    "11635",
+    "12457",
+    "12489",
+    "12507",
+    "12519",
+    "12529",
+    "421",
+    "5045",
+    "5947",
+    "6904",
+    "8137",
+    "8146",
+    "8210",
+    "9482",
+    "PIT"
+   ],
+   "starter_ids": [
+    "11564",
+    "12489",
+    "12507",
+    "8137",
+    "11635",
+    "9482",
+    "5045",
+    "12529",
+    "421",
+    "PIT"
+   ],
+   "bench_ids": [
+    "6904",
+    "12457",
+    "11604",
+    "8210",
+    "8146",
+    "5947",
+    "12519"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "11564",
+     "name": "Drake Maye",
+     "pos": "QB",
+     "team": "NE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "12489",
+     "name": "RJ Harvey",
+     "pos": "RB",
+     "team": "DEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "12507",
+     "name": "Omarion Hampton",
+     "pos": "RB",
+     "team": "LAC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "8137",
+     "name": "George Pickens",
+     "pos": "WR",
+     "team": "DAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "11635",
+     "name": "Ladd McConkey",
+     "pos": "WR",
+     "team": "LAC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "9482",
+     "name": "Michael Mayer",
+     "pos": "TE",
+     "team": "LV",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "5045",
+     "name": "Courtland Sutton",
+     "pos": "WR",
+     "team": "DEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "12529",
+     "name": "TreVeyon Henderson",
+     "pos": "RB",
+     "team": "NE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "421",
+     "name": "Matthew Stafford",
+     "pos": "QB",
+     "team": "LAR",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "PIT",
+     "name": "Pittsburgh Steelers",
+     "pos": "DEF",
+     "team": "PIT",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "6904",
+     "name": "Jalen Hurts",
+     "pos": "QB",
+     "team": "PHI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12457",
+     "name": "Jaydon Blue",
+     "pos": "RB",
+     "team": "DAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11604",
+     "name": "Brock Bowers",
+     "pos": "TE",
+     "team": "LV",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "8210",
+     "name": "Chig Okonkwo",
+     "pos": "TE",
+     "team": "TEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "8146",
+     "name": "Garrett Wilson",
+     "pos": "WR",
+     "team": "NYJ",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "5947",
+     "name": "Jakobi Meyers",
+     "pos": "WR",
+     "team": "LV",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12519",
+     "name": "Luther Burden",
+     "pos": "WR",
+     "team": "CHI",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 1,
+    "QB": 3,
+    "RB": 4,
+    "TE": 3,
+    "WR": 6
+   },
+   "injuries": [],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 5,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  },
+  "8": {
+   "roster_id": 8,
+   "owner": "Edeecher",
+   "team_name": "Ethan's Younglings",
+   "is_andrew": false,
+   "players": [
+    "11566",
+    "11589",
+    "11643",
+    "12500",
+    "12506",
+    "12514",
+    "12534",
+    "3214",
+    "4943",
+    "6790",
+    "6797",
+    "7564",
+    "7607",
+    "8167",
+    "9221",
+    "9226",
+    "NE"
+   ],
+   "starter_ids": [
+    "6797",
+    "9221",
+    "9226",
+    "8167",
+    "7564",
+    "12506",
+    "7607",
+    "6790",
+    "4943",
+    "NE"
+   ],
+   "bench_ids": [
+    "11566",
+    "12500",
+    "11643",
+    "12534",
+    "11589",
+    "3214",
+    "12514"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "6797",
+     "name": "Justin Herbert",
+     "pos": "QB",
+     "team": "LAC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "9221",
+     "name": "Jahmyr Gibbs",
+     "pos": "RB",
+     "team": "DET",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "9226",
+     "name": "De'Von Achane",
+     "pos": "RB",
+     "team": "MIA",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "8167",
+     "name": "Christian Watson",
+     "pos": "WR",
+     "team": "GB",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "7564",
+     "name": "Ja'Marr Chase",
+     "pos": "WR",
+     "team": "CIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "12506",
+     "name": "Harold Fannin",
+     "pos": "TE",
+     "team": "CLE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "7607",
+     "name": "Michael Carter",
+     "pos": "RB",
+     "team": "TEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "6790",
+     "name": "D'Andre Swift",
+     "pos": "RB",
+     "team": "CHI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "4943",
+     "name": "Sam Darnold",
+     "pos": "QB",
+     "team": "SEA",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "NE",
+     "name": "New England Patriots",
+     "pos": "DEF",
+     "team": "NE",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "11566",
+     "name": "Jayden Daniels",
+     "pos": "QB",
+     "team": "WAS",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12500",
+     "name": "Quinn Ewers",
+     "pos": "QB",
+     "team": "MIA",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11643",
+     "name": "Jaylen Wright",
+     "pos": "RB",
+     "team": "MIA",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12534",
+     "name": "Kyle Monangai",
+     "pos": "RB",
+     "team": "CHI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "11589",
+     "name": "Trey Benson",
+     "pos": "RB",
+     "team": "ARI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "3214",
+     "name": "Hunter Henry",
+     "pos": "TE",
+     "team": "NE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12514",
+     "name": "Emeka Egbuka",
+     "pos": "WR",
+     "team": "TB",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 1,
+    "QB": 4,
+    "RB": 7,
+    "TE": 2,
+    "WR": 3
+   },
+   "injuries": [],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 9,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  },
+  "9": {
+   "roster_id": 9,
+   "owner": "DannyBC1",
+   "team_name": null,
+   "is_andrew": false,
+   "players": [
+    "12485",
+    "1373",
+    "4033",
+    "5846",
+    "5872",
+    "6813",
+    "6819",
+    "7523",
+    "7526",
+    "7528",
+    "7543",
+    "7547",
+    "8130",
+    "8150",
+    "9508",
+    "9758",
+    "DET"
+   ],
+   "starter_ids": [
+    "9758",
+    "8150",
+    "6813",
+    "7526",
+    "7547",
+    "8130",
+    "7543",
+    "5846",
+    "7523",
+    "DET"
+   ],
+   "bench_ids": [
+    "1373",
+    "7528",
+    "9508",
+    "4033",
+    "5872",
+    "6819",
+    "12485"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "9758",
+     "name": "C.J. Stroud",
+     "pos": "QB",
+     "team": "HOU",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "8150",
+     "name": "Kyren Williams",
+     "pos": "RB",
+     "team": "LAR",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "6813",
+     "name": "Jonathan Taylor",
+     "pos": "RB",
+     "team": "IND",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "7526",
+     "name": "Jaylen Waddle",
+     "pos": "WR",
+     "team": "MIA",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "7547",
+     "name": "Amon-Ra St. Brown",
+     "pos": "WR",
+     "team": "DET",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "8130",
+     "name": "Trey McBride",
+     "pos": "TE",
+     "team": "ARI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "7543",
+     "name": "Travis Etienne",
+     "pos": "RB",
+     "team": "JAX",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "5846",
+     "name": "DK Metcalf",
+     "pos": "WR",
+     "team": "PIT",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "7523",
+     "name": "Trevor Lawrence",
+     "pos": "QB",
+     "team": "JAX",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "DET",
+     "name": "Detroit Lions",
+     "pos": "DEF",
+     "team": "DET",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "1373",
+     "name": "Geno Smith",
+     "pos": "QB",
+     "team": "LV",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "7528",
+     "name": "Najee Harris",
+     "pos": "RB",
+     "team": "LAC",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "9508",
+     "name": "Tyjae Spears",
+     "pos": "RB",
+     "team": "TEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "4033",
+     "name": "David Njoku",
+     "pos": "TE",
+     "team": "CLE",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "5872",
+     "name": "Deebo Samuel",
+     "pos": "WR",
+     "team": "WAS",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "6819",
+     "name": "Michael Pittman",
+     "pos": "WR",
+     "team": "IND",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "12485",
+     "name": "Tez Johnson",
+     "pos": "WR",
+     "team": "TB",
+     "injury_status": "Questionable",
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 1,
+    "QB": 3,
+    "RB": 5,
+    "TE": 2,
+    "WR": 6
+   },
+   "injuries": [
+    {
+     "player_id": "12485",
+     "player": "Tez Johnson",
+     "pos": "WR",
+     "team": "TB",
+     "status": "Questionable",
+     "body_part": "Groin",
+     "practice": null,
+     "severity": 2,
+     "is_starter": false,
+     "since_week": 0,
+     "owner": "DannyBC1",
+     "roster_id": 9
+    }
+   ],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 1,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  },
+  "10": {
+   "roster_id": 10,
+   "owner": "jpalmeri1616",
+   "team_name": "Big Mommy Milkers (UCSF)",
+   "is_andrew": false,
+   "players": [
+    "12545",
+    "1479",
+    "2133",
+    "3163",
+    "4034",
+    "4199",
+    "4217",
+    "5927",
+    "5967",
+    "7021",
+    "7049",
+    "8122",
+    "8183",
+    "9997",
+    "DEN"
+   ],
+   "starter_ids": [
+    "3163",
+    "7021",
+    "4034",
+    "9997",
+    "5927",
+    "4217",
+    "7049",
+    "5967",
+    "8183",
+    "DEN"
+   ],
+   "bench_ids": [
+    "12545",
+    "4199",
+    "8122",
+    "2133",
+    "1479"
+   ],
+   "starters": [
+    {
+     "slot": "QB",
+     "player_id": "3163",
+     "name": "Jared Goff",
+     "pos": "QB",
+     "team": "DET",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "7021",
+     "name": "Rico Dowdle",
+     "pos": "RB",
+     "team": "PIT",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "RB",
+     "player_id": "4034",
+     "name": "Christian McCaffrey",
+     "pos": "RB",
+     "team": "SF",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "9997",
+     "name": "Zay Flowers",
+     "pos": "WR",
+     "team": "BAL",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "WR",
+     "player_id": "5927",
+     "name": "Terry McLaurin",
+     "pos": "WR",
+     "team": "WAS",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "TE",
+     "player_id": "4217",
+     "name": "George Kittle",
+     "pos": "TE",
+     "team": "SF",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "7049",
+     "name": "Jauan Jennings",
+     "pos": "WR",
+     "team": "SF",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "FLEX",
+     "player_id": "5967",
+     "name": "Tony Pollard",
+     "pos": "RB",
+     "team": "TEN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "SUPER_FLEX",
+     "player_id": "8183",
+     "name": "Brock Purdy",
+     "pos": "QB",
+     "team": "SF",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "slot": "DEF",
+     "player_id": "DEN",
+     "name": "Denver Broncos",
+     "pos": "DEF",
+     "team": "DEN",
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "bench": [
+    {
+     "player_id": "12545",
+     "name": "Tyler Shough",
+     "pos": "QB",
+     "team": "NO",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "4199",
+     "name": "Aaron Jones",
+     "pos": "RB",
+     "team": "MIN",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "8122",
+     "name": "Zonovan Knight",
+     "pos": "RB",
+     "team": "ARI",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "2133",
+     "name": "Davante Adams",
+     "pos": "WR",
+     "team": "LAR",
+     "injury_status": null,
+     "unresolved": false
+    },
+    {
+     "player_id": "1479",
+     "name": "Keenan Allen",
+     "pos": "WR",
+     "team": null,
+     "injury_status": null,
+     "unresolved": false
+    }
+   ],
+   "positional_counts": {
+    "DEF": 1,
+    "QB": 3,
+    "RB": 5,
+    "TE": 1,
+    "WR": 5
+   },
+   "injuries": [],
+   "bye_weeks": {
+    "status": "unknown",
+    "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+    "on_bye_this_week": [],
+    "by_position": {},
+    "uncovered_slots": []
+   },
+   "locked_keepers": [],
+   "waiver_priority": 2,
+   "roster_notes": [],
+   "unresolved_player_ids": []
+  }
+ },
+ "transaction_log": [],
+ "roster_diff": {
+  "status": "no_previous_state",
+  "note": "First run, or week_N-1.json missing. Nothing to diff against.",
+  "by_team": {},
+  "totals": {
+   "added": 0,
+   "dropped": 0
+  }
+ },
+ "matchups": {
+  "status": "not_loaded",
+  "pairs": [],
+  "by_roster": {}
+ },
+ "injuries": [
+  {
+   "player_id": "12485",
+   "player": "Tez Johnson",
+   "pos": "WR",
+   "team": "TB",
+   "status": "Questionable",
+   "body_part": "Groin",
+   "practice": null,
+   "severity": 2,
+   "is_starter": false,
+   "since_week": 0,
+   "owner": "DannyBC1",
+   "roster_id": 9
+  },
+  {
+   "player_id": "11571",
+   "player": "Isaiah Davis",
+   "pos": "RB",
+   "team": "NYJ",
+   "status": "Questionable",
+   "body_part": "Knee",
+   "practice": null,
+   "severity": 2,
+   "is_starter": false,
+   "since_week": 0,
+   "owner": "LoochCarluccio",
+   "roster_id": 5
+  },
+  {
+   "player_id": "2216",
+   "player": "Mike Evans",
+   "pos": "WR",
+   "team": "SF",
+   "status": "Questionable",
+   "body_part": "Quadriceps",
+   "practice": null,
+   "severity": 2,
+   "is_starter": true,
+   "since_week": 0,
+   "owner": "andrewroth32",
+   "roster_id": 2
+  },
+  {
+   "player_id": "4018",
+   "player": "Joe Mixon",
+   "pos": "RB",
+   "team": null,
+   "status": "Questionable",
+   "body_part": "Foot",
+   "practice": null,
+   "severity": 2,
+   "is_starter": false,
+   "since_week": 0,
+   "owner": "andrewroth32",
+   "roster_id": 2
+  },
+  {
+   "player_id": "7525",
+   "player": "DeVonta Smith",
+   "pos": "WR",
+   "team": "PHI",
+   "status": "Questionable",
+   "body_part": "Hamstring",
+   "practice": null,
+   "severity": 2,
+   "is_starter": false,
+   "since_week": 0,
+   "owner": "andrewroth32",
+   "roster_id": 2
+  }
+ ],
+ "bye_coverage": {
+  "1": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "2": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "3": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "4": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "5": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "6": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "7": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "8": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "9": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  },
+  "10": {
+   "status": "unknown",
+   "reason": "league_config.nfl_bye_weeks_2026.byes is empty; cannot compute",
+   "on_bye_this_week": [],
+   "by_position": {},
+   "uncovered_slots": []
+  }
+ },
+ "free_agents": {
+  "_gate": "A player may only be recommended if he appears here. Anything not in players_cache.json is simply unknown, NOT confirmed available.",
+  "confirmed_available_known_players": [
+   {
+    "player_id": "10859",
+    "name": "Sam LaPorta",
+    "pos": "TE",
+    "team": "DET"
+   },
+   {
+    "player_id": "11559",
+    "name": "Michael Penix",
+    "pos": "QB",
+    "team": "ATL"
+   },
+   {
+    "player_id": "11637",
+    "name": "Keon Coleman",
+    "pos": "WR",
+    "team": "BUF"
+   },
+   {
+    "player_id": "11638",
+    "name": "Ricky Pearsall",
+    "pos": "WR",
+    "team": "SF"
+   },
+   {
+    "player_id": "1234",
+    "name": "Russell Wilson",
+    "pos": "QB",
+    "team": "NYG"
+   },
+   {
+    "player_id": "12469",
+    "name": "Dylan Sampson",
+    "pos": "RB",
+    "team": "CLE"
+   },
+   {
+    "player_id": "12483",
+    "name": "Jack Bech",
+    "pos": "WR",
+    "team": "LV"
+   },
+   {
+    "player_id": "12484",
+    "name": "Jayden Higgins",
+    "pos": "WR",
+    "team": "HOU"
+   },
+   {
+    "player_id": "12490",
+    "name": "Bhayshul Tuten",
+    "pos": "RB",
+    "team": "JAX"
+   },
+   {
+    "player_id": "12501",
+    "name": "Matthew Golden",
+    "pos": "WR",
+    "team": "GB"
+   },
+   {
+    "player_id": "12504",
+    "name": "Kaleb Johnson",
+    "pos": "RB",
+    "team": "PIT"
+   },
+   {
+    "player_id": "12509",
+    "name": "Tre' Harris",
+    "pos": "WR",
+    "team": "LAC"
+   },
+   {
+    "player_id": "12517",
+    "name": "Colston Loveland",
+    "pos": "TE",
+    "team": "CHI"
+   },
+   {
+    "player_id": "12530",
+    "name": "Travis Hunter",
+    "pos": "WR",
+    "team": "JAX"
+   },
+   {
+    "player_id": "12547",
+    "name": "Kyle Williams",
+    "pos": "WR",
+    "team": "NE"
+   },
+   {
+    "player_id": "3321",
+    "name": "Tyreek Hill",
+    "pos": "WR",
+    "team": "MIA"
+   },
+   {
+    "player_id": "4035",
+    "name": "Alvin Kamara",
+    "pos": "RB",
+    "team": "NO"
+   },
+   {
+    "player_id": "4039",
+    "name": "Cooper Kupp",
+    "pos": "WR",
+    "team": "SEA"
+   },
+   {
+    "player_id": "4066",
+    "name": "Evan Engram",
+    "pos": "TE",
+    "team": "DEN"
+   },
+   {
+    "player_id": "4137",
+    "name": "James Conner",
+    "pos": "RB",
+    "team": "ARI"
+   },
+   {
+    "player_id": "4144",
+    "name": "Jonnu Smith",
+    "pos": "TE",
+    "team": "PIT"
+   },
+   {
+    "player_id": "4981",
+    "name": "Calvin Ridley",
+    "pos": "WR",
+    "team": "TEN"
+   },
+   {
+    "player_id": "5849",
+    "name": "Kyler Murray",
+    "pos": "QB",
+    "team": "ARI"
+   },
+   {
+    "player_id": "6768",
+    "name": "Tua Tagovailoa",
+    "pos": "QB",
+    "team": "MIA"
+   },
+   {
+    "player_id": "6783",
+    "name": "Jerry Jeudy",
+    "pos": "WR",
+    "team": "CLE"
+   },
+   {
+    "player_id": "6806",
+    "name": "J.K. Dobbins",
+    "pos": "RB",
+    "team": "DEN"
+   },
+   {
+    "player_id": "7571",
+    "name": "Rashod Bateman",
+    "pos": "WR",
+    "team": "BAL"
+   },
+   {
+    "player_id": "7591",
+    "name": "Justin Fields",
+    "pos": "QB",
+    "team": "NYJ"
+   },
+   {
+    "player_id": "7594",
+    "name": "Chuba Hubbard",
+    "pos": "RB",
+    "team": "CAR"
+   },
+   {
+    "player_id": "8154",
+    "name": "Brian Robinson",
+    "pos": "RB",
+    "team": "WAS"
+   },
+   {
+    "player_id": "8205",
+    "name": "Isiah Pacheco",
+    "pos": "RB",
+    "team": "KC"
+   },
+   {
+    "player_id": "9225",
+    "name": "Tank Bigsby",
+    "pos": "RB",
+    "team": "JAX"
+   },
+   {
+    "player_id": "9229",
+    "name": "Anthony Richardson",
+    "pos": "QB",
+    "team": "IND"
+   },
+   {
+    "player_id": "9500",
+    "name": "Josh Downs",
+    "pos": "WR",
+    "team": "IND"
+   },
+   {
+    "player_id": "9753",
+    "name": "Zach Charbonnet",
+    "pos": "RB",
+    "team": "SEA"
+   }
+  ],
+  "available_defenses": [
+   "ARI",
+   "ATL",
+   "BAL",
+   "BUF",
+   "CAR",
+   "CHI",
+   "CIN",
+   "DAL",
+   "GB",
+   "IND",
+   "LAC",
+   "LV",
+   "MIA",
+   "MIN",
+   "NYG",
+   "NYJ",
+   "PHI",
+   "SF",
+   "TEN",
+   "WAS"
+  ],
+  "count": 35,
+  "caveat": "This is the complement of rostered ids against the LOCAL cache only. It is a proof of non-availability, not a complete FA pool. To rank the real pool, cross-reference trending_add plus the news agents' names and check each against the rostered set below.",
+  "rostered_player_ids": [
+   "10219",
+   "10222",
+   "10229",
+   "10232",
+   "10236",
+   "11560",
+   "11563",
+   "11564",
+   "11565",
+   "11566",
+   "11571",
+   "11579",
+   "11584",
+   "11586",
+   "11589",
+   "11604",
+   "11620",
+   "11624",
+   "11625",
+   "11627",
+   "11628",
+   "11631",
+   "11632",
+   "11635",
+   "11643",
+   "11647",
+   "11655",
+   "1166",
+   "11783",
+   "12457",
+   "12474",
+   "12481",
+   "12485",
+   "12489",
+   "12493",
+   "12500",
+   "12506",
+   "12507",
+   "12508",
+   "12512",
+   "12514",
+   "12518",
+   "12519",
+   "12522",
+   "12524",
+   "12526",
+   "12527",
+   "12529",
+   "12533",
+   "12534",
+   "12545",
+   "1373",
+   "1466",
+   "1479",
+   "2133",
+   "2216",
+   "2449",
+   "3161",
+   "3163",
+   "3198",
+   "3214",
+   "3257",
+   "3294",
+   "4018",
+   "4033",
+   "4034",
+   "4037",
+   "4046",
+   "4098",
+   "4199",
+   "421",
+   "4217",
+   "4866",
+   "4881",
+   "4892",
+   "4943",
+   "4983",
+   "4984",
+   "5012",
+   "5022",
+   "5045",
+   "5844",
+   "5846",
+   "5850",
+   "5859",
+   "5870",
+   "5872",
+   "5892",
+   "5927",
+   "5947",
+   "5967",
+   "6770",
+   "6786",
+   "6790",
+   "6794",
+   "6797",
+   "6801",
+   "6804",
+   "6813",
+   "6819",
+   "6865",
+   "6904",
+   "7002",
+   "7021",
+   "7049",
+   "7090",
+   "7523",
+   "7525",
+   "7526",
+   "7528",
+   "7543",
+   "7547",
+   "7553",
+   "7564",
+   "7567",
+   "7569",
+   "7588",
+   "7607",
+   "7611",
+   "8110",
+   "8112",
+   "8122",
+   "8126",
+   "8130",
+   "8132",
+   "8134",
+   "8137",
+   "8138",
+   "8144",
+   "8146",
+   "8148",
+   "8150",
+   "8151",
+   "8155",
+   "8167",
+   "8183",
+   "8210",
+   "8228",
+   "8408",
+   "9221",
+   "9224",
+   "9226",
+   "9228",
+   "9482",
+   "9484",
+   "9488",
+   "9493",
+   "9504",
+   "9508",
+   "9509",
+   "96",
+   "9754",
+   "9756",
+   "9758",
+   "9997",
+   "CLE",
+   "DEN",
+   "DET",
+   "HOU",
+   "JAX",
+   "KC",
+   "LAR",
+   "NE",
+   "NO",
+   "PIT",
+   "SEA",
+   "TB"
+  ]
+ },
+ "trending_adds": [],
+ "opponent_model": {},
+ "keeper_equity": [],
+ "decisions_log": [],
+ "open_questions": [
+  "2026 NFL bye weeks are not populated in league_config.json (nfl_bye_weeks_2026.byes). Bye-week coverage cannot be computed until they are. Deliberately not guessed.",
+  "[waiver_clock] Exact processing clock time for waivers? (impact: Determines how late the Tuesday run can fire. Assume Tuesday 18:00 ET deadline until confirmed.)",
+  "[def_scoring_fix] Has the DEF scoring fix been applied? (impact: yds_allow tiers still present in 2026 config; DEF totals may still be inflated. Do not trust historical DEF scoring.)",
+  "[keeper_deadline] Actual keeper lock date/time? (impact: Sleeper shows keeper_deadline:'1' with no date.)",
+  "[bye_weeks] 2026 NFL bye weeks per team? (impact: Blocks bye-week coverage analysis. Fill nfl_bye_weeks_2026.byes.)",
+  "104 rostered player(s) still carry draft-vintage team/injury data and have never been refreshed from GET /v1/players/nfl/{id}. Their NFL team may be a full season stale (this is how Mike Evans read as TB after signing with SF). Run `python3 players_cache.py stale --roster-file raw/rosters.json` for the list, then fetch_manifest.md step 7."
+ ]
+}
