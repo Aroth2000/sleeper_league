@@ -10,7 +10,9 @@ Running record of what has been built, by whom, and what state it's in. Maintain
 |---|---|---|---|---|
 | Draft board | Value tiers + slot-8 mock draft decision trees | `wf_13f144b7-c78` | `draft_board_workflow.js` | done |
 | Implementation | Build + test the in-season system and UI | `wf_e2818aec-be8` | `implementation_workflow.js` | **done — all 7 agents completed** (Aug 8, ~03:07 UTC) |
-| **Draft refresh + loop implementation** | Redo draft-order-dependent deliverables with confirmed slots; implement `weekly_loop_closure_plan.md` against `github.com/Aroth2000/sleeper_league` | `wf_2a841a6b-2c8` | `/root/.claude/projects/-home-claude/de833771-3f5b-5e91-ae4d-493aa890c770/workflows/scripts/draft-refresh-and-loop-implementation-wf_2a841a6b-2c8.js` | **done — all 6 agents complete** (Aug 12 ~23:56 UTC). `repo_clone/` re-synced by hand afterward to pick up the 3 agents that finished after `loop:bootstrap`'s commit — now 2 local commits, clean, fully current, push-ready. |
+| **Draft refresh + loop implementation** | Redo draft-order-dependent deliverables with confirmed slots; implement `weekly_loop_closure_plan.md` against `github.com/Aroth2000/sleeper_league` | `wf_2a841a6b-2c8` | `/root/.claude/projects/-home-claude/de833771-3f5b-5e91-ae4d-493aa890c770/workflows/scripts/draft-refresh-and-loop-implementation-wf_2a841a6b-2c8.js` | **done — all 6 agents complete** (Aug 12 ~23:56 UTC). `repo_clone/` re-synced by hand afterward to pick up the 3 agents that finished after `loop:bootstrap`'s commit. |
+
+**Aug 17 — push blocked, migration package prepared instead.** Confirmed by direct test (real `git push` attempt) that this Cowork session cannot push to the repo even after Andrew connected GitHub at the account level — per `code.claude.com/docs/en/cloud-environments`, push rights require the session to have been *attached* to the repo at creation, which this general-purpose Cowork conversation never was. Connecting GitHub doesn't retroactively grant that. Real fix requires either a proper repo-attached session (claude.ai/code / `claude --cloud` pointed at this repo) or pushing from a machine with its own git auth. Rather than keep guessing at sandbox mechanics, added `START_HERE.md` + `docs/` (full project doc history, minus superseded scratch files which went to `docs/archive/`) to `repo_clone/` so the repo is fully self-contained — 3 local commits now — and repackaged as `sleeper_league_repo_ready_to_push.tar.gz` for Andrew to push from anywhere with working git auth. **The scheduled Tuesday task still uses the old bundle-restore flow, not `repo_sync.py` — intentionally not touched until the repo is confirmed pushed.**
 
 Resume command if interrupted: `Workflow({scriptPath: "/root/.claude/projects/-home-claude/de833771-3f5b-5e91-ae4d-493aa890c770/workflows/scripts/draft-refresh-and-loop-implementation-wf_2a841a6b-2c8.js", resumeFromRunId: "wf_2a841a6b-2c8"})` — completed agents replay from cache.
 
@@ -132,3 +134,42 @@ The remaining three phases (`test:integration`, `build:ui`, `test:ui`) ran to co
 **Skill repackaged** after the generator fix — `sunday-scaries.skill` now bundles the corrected `build_dashboard.py` alongside the already-correct `dashboard.html`. Rebuilt with `system/skill/build_skill.sh` (new: a one-command repackage script, see that file for usage), verified as a valid zip (43 entries, `testzip()` clean).
 
 **Status: the implementation phase from the original plan is complete.** The system runs end to end, has been adversarially tested rather than self-reported, and the one substantive gap (analysis modules not wired into the workflow) is a known, documented, deliberate design decision — not an unknown unknown.
+
+---
+
+## Aug 17 — the Tuesday scheduled task disappeared, recreated from scratch
+
+Andrew reported "I think I broke it." Checked `list_triggers` (twice, including
+`include_completed: true`) — the original trigger (`trig_019bKuypi5thgjp2sGkYArBf`) was not
+disabled or edited, it was **entirely absent** from the account. Root cause unknown (not something
+visible from this side — could be user action, could be a platform-side issue). The only trigger on
+the account was an unrelated one ("Weekly Quebec French Lesson") that has nothing to do with this
+project and was left untouched.
+
+The original trigger's exact prompt text was never saved verbatim anywhere in this repo or in
+`IMPLEMENTATION_LOG.md`, so it could not be restored byte-for-byte — it had to be rebuilt. Two facts
+shaped the rebuild:
+1. The `sunday-scaries` skill is **not installed** on Andrew's account (`ListSkills` shows only
+   `morning`, `skill-creator`, `xlsx`, `pptx`, `pdf`, `docx`) — a fresh scheduled-task session cannot
+   load it by name.
+2. `github.com/Aroth2000/sleeper_league` is **public but still empty** (confirmed via WebFetch on
+   the repo page) — the tarball has not been pushed yet.
+
+Recreated as `trig_01TPaGJq7LanKoHq2d6AcKTT`, "Sunday Scaries — Tuesday Fantasy Brief", cron
+`0 12 * * 2` (Tuesdays 12:00 UTC, matching the original cadence per `START_HERE.md`), push
+notifications on. The new prompt is self-contained (a fresh session has zero access to this
+container's filesystem) and tiered:
+- **Tier 1:** use the installed `sunday-scaries` skill if present (not true today).
+- **Tier 2:** clone `github.com/Aroth2000/sleeper_league` and follow `system/skill/SKILL.md` from
+  the clone if it has real content (not true today — repo is empty).
+- **Tier 3 (what will actually run this week):** cold-start mode — tell Andrew plainly that it's
+  degraded, ask him to send the `.skill` file and push the repo, then produce a lighter-weight brief
+  directly from raw Sleeper WebFetch calls (lineup/matchup/standings/confirmed-available waivers,
+  no opponent modeling or keeper-equity board).
+
+**Action still needed from Andrew for the trigger to reach full strength:** (1) push
+`sleeper_league_repo_ready_to_push.tar.gz` to GitHub, (2) get `sunday-scaries.skill` actually
+installed as an account skill (not just delivered as a file) — sending a file via `SendUserFile`
+does not install it, Andrew has to add it. Until at least one of those happens, every Tuesday firing
+will run in Tier 3 cold-start mode, which still produces a real (if thinner) brief rather than
+failing silently.
