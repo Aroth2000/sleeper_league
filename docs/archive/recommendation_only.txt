@@ -1,0 +1,40 @@
+## 1. Draft slot preference — theory holds, and the new research actually strengthens it
+
+**Final ranking: 10 > 9 > 8 > 7 > 6 > 5 > 4 > 3 > 2 > 1 — unchanged from the working theory, but now better justified.**
+
+The key mechanism was always "how much value decays between your Round 1 pick and your Round 2 pick." Two pieces of fresh research confirm that mechanism matters more than ever this year:
+
+- **Round 1 stays uniformly elite regardless of slot.** Every camp report on the 10 repatriated 2025-first-rounders (Chase, Allen, Lamar, Burrow, CMC, Jeanty, Jonathan Taylor, Hurts, London, Lamb) is clean-to-positive — Jonathan Taylor is a "true bell cow" in a contract year, CMC and Bijan-tier backs are healthy, Drake London and CeeDee Lamb are locked-in WR1s. There's no real cliff *inside* round 1 — picking 10th still nets a legitimate stud. So slot position barely changes what you get in Round 1.
+- **The Round 2 cliff is now confirmed deeper than assumed.** The keeper-landscape research shows a wave of round-2-caliber players getting *more* locked in as keepers, not less: Jahmyr Gibbs, Bijan Robinson, Derrick Henry, Chase Brown, Kyren Williams, Jaxon Smith-Njigba, Nico Collins, Terry McLaurin, Brock Bowers, Drake Maye, Caleb Williams are all described as "strongly more likely kept." That thins the post-round-1 pool even further than originally modeled, which makes the timing of your *second* pick (10&11 vs. 1&20) matter more, not less.
+- **New wrinkle in Andrew's favor specifically:** because Andrew already holds Bo Nix as a cheap keeper QB, he has zero need to fight for one of the three elite superflex QBs at the very top of the board (Allen/Lamar/Burrow). That removes the one argument for wanting an early slot (guaranteeing a top-3 QB), and reinforces going as late as possible.
+- **One soft offset:** A.J. Brown, Josh Jacobs, and George Kittle all carry real "might not be kept by current owner" risk, which could add a couple of unexpected difference-makers back into the post-round-1 pool. This is speculative and doesn't change the ranking, but a late slot still benefits more from any surprise arrivals since it acts sooner on them.
+
+Practical note: since the 6 worse-PF teams choose slots before Andrew, he can't control which numbers remain — but whatever is left when his turn comes, he should grab the highest number available, full stop.
+
+## 2. Puka Nacua vs. Kenneth Walker III — lean toward flipping to Walker
+
+Both are legitimately elite now, but the cost-adjusted case has shifted toward **Walker**:
+
+- **Puka:** reaffirmed top-5-overall asset (WR1 in the format last year, no holdout, full health) for a **2nd-round** keeper cost.
+- **Walker:** upgraded from a Seattle committee back to KC's **unchallenged workhorse** — 3-yr/$45M deal, Pacheco and Hunt both gone, only a 5th-round rookie (Emmett Johnson) behind him, glowing Andy Reid praise, and an expected expanded passing-game role (which matters a lot in half-PPR + first-down bonus) — for only a **4th-round** keeper cost.
+
+The gap that matters: true workhorse RBs are now the scarce commodity league-wide. The camp report shows almost every other backfield is a stated committee (Arizona, Carolina, Chicago, Dallas, Houston, Jacksonville, Miami, Minnesota, New England, NYG, Pittsburgh, Tampa, Washington, even Seattle's post-Walker mess). Elite bell-cow WRs, by contrast, are still available as *draft* replacements even if Andrew lets Puka go — Drake London and CeeDee Lamb are sitting right there in Round 1 as near-equivalent fallback stud WRs. There is no equivalent fallback for a true workhorse RB beyond Jonathan Taylor/CMC, and Andrew can only use his one Round 1 pick on one of them anyway.
+
+Bottom line: for two rounds of extra keeper cost (2nd vs. 4th), Andrew can lock in a scarce, workhorse RB in an elite offense, then use his own Round 1 pick on London/Lamb/Chase as a Puka-replacement-tier WR. That nets him roughly the same two elite players either way, but keeping Walker is the cheaper path to get there and leaves his keeper "budget" spent more efficiently. **Recommendation: keep Kenneth Walker III as the 3rd keeper over Puka Nacua**, understanding this is close and either choice is defensible — but scarcity + price now favor Walker.
+
+One flag: Andrew's other keeper, Jameson Williams, has an unresolved research gap (no verified 2026 camp/health data). His cost (14th round) is cheap enough that keeping him is low-risk regardless, but Andrew should re-verify his role/health before the keeper deadline.
+
+## 3. Prioritized action list for Aug 28 draft day
+
+1. **Slot claim:** When it's Andrew's turn (7th), take the latest-numbered slot still available — prefer 10, then 9, 8, 7… in that order.
+2. **Keeper lock:** Finalize Kenneth Walker III as keeper #3 (over Puka Nacua) given his confirmed unchallenged workhorse role and cheap 4th-round cost; quickly re-verify Jameson Williams' current role/health before the deadline.
+3. **Round 1 target list (in rough order of fit):** Jonathan Taylor or CMC (if Andrew wants a true workhorse RB1 to pair with Walker) — otherwise Drake London or CeeDee Lamb (elite WR to pair with Walker/Nacua-replacement need). Don't reach for Allen/Lamar/Burrow — Bo Nix already covers the superflex slot.
+4. **Cross off the board — these will NOT be available:** Jahmyr Gibbs, Bijan Robinson, Derrick Henry, Chase Brown, Kyren Williams, Jaxon Smith-Njigba, Nico Collins, Terry McLaurin, Brock Bowers, Drake Maye, Caleb Williams — all now near-lock keepers elsewhere, don't plan around getting them.
+5. **Watch for buy-low slippage from shaky keepers:** A.J. Brown (traded PHI→NE, rocky Maye chemistry, thumb injury — may get cut loose), Josh Jacobs (domestic-violence arrest risk), George Kittle (Achilles, Week 1 doubtful), Brian Thomas Jr. (down 2025 year) — any of these popping into the draft pool are strong value grabs given their talent.
+6. **Grab Walker's own insurance:** Emari Demercado (and depth piece Emmett Johnson) as a cheap late-round handcuff to Andrew's own keeper — Walker has essentially zero proven competition, so his backup is a near-free stash.
+7. **Target correlated Denver value for Bo Nix:** Jonah Coleman (rookie, praised by Payton, path to short-yardage/passing work) as a cheap piece that could vulture rushing TDs/first-downs from an injury-prone J.K. Dobbins — this directly boosts Nix's ecosystem in a first-down-bonus format.
+8. **Best true handcuffs still worth a late pick:** Jordan Mason (MIN, proven starter-caliber if Aaron Jones' hamstring flares again), Isiah Pacheco (DET, elite handcuff to Gibbs), Tank Bigsby (PHI, strong handcuff to Barkley), Ray Davis (BUF, standalone value already).
+9. **Seattle backfield dart-throw:** George Holani or Jadarian Price — Walker's gone, Charbonnet is hurt (PUP into October), and this is a wide-open lead-RB job in a contending offense; cheap, high-upside late pick.
+10. **TE value plays:** Isaiah Likely (NYG, escaped Andrews' shadow, real starting role) and Harold Fannin Jr. (CLE, proven 72-catch rookie, now clear TE1) — both fit the first-down-bonus/possession-catch profile well.
+11. **Format fit reminder:** in half-PPR + first-down bonus, prioritize high-target-share/possession/chain-moving players (Godwin, Egbuka, Jayden Higgins-type) over boom-bust vertical guys; be cautious pricing Mike Evans-style TD-dependent receivers at a premium.
+12. **Post-draft/trade watch:** whoever wins Atlanta's Tua-vs-Penix QB battle and Minnesota's Murray-vs-McCarthy battle becomes a streamable value add given the weapons around each (Bijan/London; Jefferson) — monitor for in-season trade targets, not draft-day picks.
