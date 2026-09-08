@@ -20,3 +20,7 @@ data/week_NN/       the weekly archive. Each week's finalized state snapshot
 `data/week_NN/` is append-only history: once a week's run closes, its state
 snapshot is committed here so the league's full season is reconstructible from
 git history alone, independent of the sandbox's local filesystem.
+
+## Automation status
+
+- **Write-access verified:** 2026-09-08 22:00 UTC — Claude (Opus 4.8) successfully committed and pushed to this repo through the linked local clone, confirming the read/write round trip works end to end.
