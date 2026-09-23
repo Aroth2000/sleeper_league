@@ -11,12 +11,13 @@
     "previous_league_id": "1257451899603402752",
     "draft_id_2026": "1389753893356838913",
     "draft_id_2025": "1257451899603402753",
-    "status_at_config_time": "pre_draft",
+    "status_at_config_time": "complete",
     "num_teams": 10,
     "scoring_type": "2qb_superflex",
     "draft_type": "snake",
-    "draft_rounds": 16,
-    "draft_datetime_et": "2026-08-28T19:30:00-04:00",
+    "draft_rounds": 15,
+    "draft_datetime_et": "2026-08-24T20:00:00-04:00",
+    "draft_completed": true,
     "andrew_draft_slot": 8
   },
   "roster": {
@@ -27,7 +28,6 @@
       "WR",
       "WR",
       "TE",
-      "FLEX",
       "FLEX",
       "SUPER_FLEX",
       "DEF",
@@ -46,13 +46,12 @@
       "WR",
       "TE",
       "FLEX",
-      "FLEX",
       "SUPER_FLEX",
       "DEF"
     ],
-    "num_starters": 10,
+    "num_starters": 9,
     "num_bench": 6,
-    "roster_size": 16,
+    "roster_size": 15,
     "reserve_slots": 1,
     "taxi_slots": 0,
     "flex_eligible": {
@@ -68,7 +67,7 @@
         "TE"
       ]
     },
-    "_flex_note": "Sleeper's live 2026 config shows TWO FLEX slots (confirmed via GET /league/1389753893356838912 roster_positions on 2026-08-07). The commissioner's 'Season 2 Changes' doc said one. Sleeper is authoritative for what the app will actually enforce; open_question #3 in the plan is therefore resolved IN FAVOUR OF 2 FLEX unless the commissioner changes the setting."
+    "_flex_note": "RESOLVED 2026-08-24 to ONE FLEX. Andrew confirmed the league dropped back to a single FLEX (QB/RB/RB/WR/WR/TE/FLEX/SUPER_FLEX/DEF = 9 starters), matching the 'Season 2 Changes' doc. The pre-draft API pull that had shown 2 FLEX did not hold; the completed 15-round draft (9 starters + 6 bench = 15) confirms it. Re-verify against GET /league each run in case the commissioner changes the setting mid-season."
   },
   "scoring": {
     "_source": "GET /v1/league/1389753893356838912 -> scoring_settings, pulled 2026-08-07",
@@ -146,7 +145,8 @@
   },
   "keeper_rules": {
     "max_keepers": 3,
-    "cost_rule": "Keeping a player costs the round he was drafted in last year, or the round he was KEPT at last year (that round carries forward).",
+    "cost_rule": "First time a player is kept: the round he was drafted last year. Each consecutive year kept after that: N-1, one round cheaper in NUMBER than last year's cost (i.e. more expensive in value). An escalated cost that reaches R1 is valid but is that player's LAST eligible keeper year (there is no R0). Corrected 2026-08-24 from the earlier incorrect flat/carry-forward model.",
+    "cost_rule_model": "n_minus_1",
     "first_round_ineligible": true,
     "undrafted_pickup_cost_round": 12,
     "undrafted_pickup_rule": "A player added via free agency or waivers who was never drafted costs a 12th-round pick to keep.",
@@ -258,19 +258,21 @@
           "player_id": "11563",
           "name": "Bo Nix",
           "pos": "QB",
-          "cost_round": 12,
-          "forfeits_overall_pick": 113,
+          "cost_round": 11,
+          "forfeits_overall_pick": 108,
           "consecutive_years_if_kept": 2,
-          "final_eligible_year_if_kept": 2027
+          "final_eligible_year_if_kept": 2027,
+          "_cost_note": "N-1 corrected: kept @R12 in 2025 -> R11 for 2026 (was mislabeled R12/pick113 under the old flat model)."
         },
         {
           "player_id": "8148",
           "name": "Jameson Williams",
           "pos": "WR",
-          "cost_round": 14,
-          "forfeits_overall_pick": 133,
+          "cost_round": 13,
+          "forfeits_overall_pick": 128,
           "consecutive_years_if_kept": 2,
-          "final_eligible_year_if_kept": 2027
+          "final_eligible_year_if_kept": 2027,
+          "_cost_note": "N-1 corrected: kept @R14 in 2025 -> R13 for 2026 (was mislabeled R14/pick133 under the old flat model)."
         }
       ],
       "passed_over": [
@@ -574,18 +576,26 @@
     }
   ],
   "nfl_bye_weeks_2026": {
-    "_status": "NOT POPULATED - must be filled before week 4",
-    "_why_empty": "Sleeper exposes no bye-week endpoint and the 5MB /players/nfl dump (which does not carry byes either) is unreachable through WebFetch. Deliberately left empty rather than guessed: a wrong bye week silently produces a zero-point starter. state_builder.py detects the empty map and raises an open_question instead of reporting false coverage.",
-    "_how_to_fill": "Add entries of the form \"KC\": 10 for all 32 NFL team abbreviations once the 2026 schedule is released. state_builder.py picks it up automatically with no code change.",
+    "_status": "POPULATED 2026-09-10 from cross-verified 2026 schedule research (two independent sources agreeing). Week 12 has NO byes; Week 11 is an unusually large 6-team bye.",
     "_abbrev_note": "Use Sleeper team abbreviations (LAR, LAC, LV, JAX, WAS, ARI, ...).",
-    "byes": {}
+    "byes": {
+      "CAR": 5, "KC": 5,
+      "CIN": 6, "DET": 6, "MIA": 6, "MIN": 6,
+      "BUF": 7, "JAX": 7, "LAC": 7, "WAS": 7,
+      "HOU": 8, "NO": 8, "NYG": 8, "SF": 8,
+      "PIT": 9, "TEN": 9,
+      "CHI": 10, "DEN": 10, "PHI": 10, "TB": 10,
+      "ATL": 11, "CLE": 11, "GB": 11, "LAR": 11, "NE": 11, "SEA": 11,
+      "BAL": 13, "IND": 13, "LV": 13, "NYJ": 13,
+      "ARI": 14, "DAL": 14
+    }
   },
   "open_questions": [
     {
       "id": "flex_count",
       "question": "Is FLEX really 2 slots for 2026?",
-      "status": "resolved_by_api",
-      "answer": "Sleeper roster_positions confirms 2 FLEX + 1 SUPER_FLEX. Commissioner doc disagrees but Sleeper is what the app enforces."
+      "status": "resolved",
+      "answer": "ONE FLEX. Andrew confirmed 2026-08-24 the league runs QB/RB/RB/WR/WR/TE/FLEX/SUPER_FLEX/DEF = 9 starters; the completed 15-round draft confirms it. The pre-draft API pull that had shown 2 FLEX did not hold."
     },
     {
       "id": "waiver_type",
@@ -618,9 +628,9 @@
     {
       "id": "bye_weeks",
       "question": "2026 NFL bye weeks per team?",
-      "status": "open",
-      "answer": null,
-      "impact": "Blocks bye-week coverage analysis. Fill nfl_bye_weeks_2026.byes."
+      "status": "resolved",
+      "answer": "Filled 2026-09-10 in nfl_bye_weeks_2026.byes from cross-verified schedule research. Week 11 is a 6-team bye (ATL/CLE/GB/LAR/NE/SEA); week 12 has none.",
+      "impact": "Bye-week coverage analysis now enabled."
     }
   ]
 }

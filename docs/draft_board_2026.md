@@ -1,814 +1,389 @@
-# Sunday Scaries 2026 — Draft Board & Slot-8 Game Plan
+# Draft Board 2026 — Sunday Scaries (Andrew, Slot 8)
 
-*10-team superflex keeper league · half-PPR + 0.5 per first down · snake draft, Wed Aug 28 7:30pm ET*
+Live draft-day cheat sheet. Full league detail, rule history, and sourcing lives in `league_reference.md` — this doc is the tight, scannable companion for the table tonight.
 
-**Andrew drafts from SLOT 8.** Keepers: Kenneth Walker III (costs R4), Bo Nix (R12), Jameson Williams (R14).
-
-**Live picks:** 8, 13, 28, 48, 53, 68, 73, 88, 93, 108, 128, 148, 153
-
-
----
-
-# SUNDAY SCARIES 2026 — DRAFT VALUE BOARD
-### Andrew (andrewroth32) · Slot 8 · 10-team Superflex · Half-PPR + 0.5/First Down
-### Draft: Wed Aug 28, 2026, 7:30pm ET · 16 rounds · 160 picks · 130 live picks
-
-**Keepers locked:** Kenneth Walker III (R4), Bo Nix (R12), Jameson Williams (R14)
-**Live picks:** 8, 13, 28, 48, 53, 68, 73, 88, 93, 108, 128, 148, 153
-**Roster holes:** QB2, RB2, WR2, TE, 2×FLEX, DEF + 6 bench = **13 bodies from 13 picks.** Zero margin for a wasted pick.
-
-> **Flag before we start:** Your own R2 keeper slot held **Puka Nacua** — the single best format fit in football (34.8% target rate, 129 catches, 3.57 YPRR) — and you're letting him back into the pool. The surplus math justifies it (Nix at R12 and Jameson Williams at R14 are ~90-pick surpluses vs. Nacua's ~9-pick surplus), so the decision is correct. But understand the consequence: **Nacua is live at pick 1.01 and will not reach pick 8.** Don't sit there hoping.
+**Draft:** Monday Aug 24, 2026, 8:00pm ET / 00:00 UTC Aug 25. Snake, 16 rounds, 10 teams, 60 sec/pick, CPU autopick on missed picks.
+**Format:** Superflex (2QB), half-PPR + 0.5/reception-first-down + 0.5/rush-first-down. **Scoring rewards possession/chain-movers over boom-bust deep threats** — weight rankings below accordingly.
+**Roster:** QB, RB, RB, WR, WR, TE, FLEX, SUPER_FLEX, DEF = **9 starters** (one FLEX, not two). Bench: assumed 6, **unconfirmed** — see Open Flags at bottom.
 
 ---
 
-## 1. SUPPLY-AND-DEMAND MODEL
+## 1. THE SEAT MAP
 
-### 1a. What the 30 predicted keepers remove
+Andrew drafts **slot 8 of 10**. 13 live picks + 3 keeper auto-fills (Walker R4, Nix R11, Jameson Williams R13) = 16 rounds.
 
-| Team | Kept | Pos removed |
+| Round | Overall Pick | Status |
 |---|---|---|
-| Pabst Interference | James Cook, Khalil Shakir, Aaron Rodgers | RB, WR, QB |
-| **Andrew** | **K. Walker, Bo Nix, Jameson Williams** | RB, QB, WR |
-| Water/Barkley/Hops | Saquon Barkley, Mark Andrews, David Montgomery | RB, TE, RB |
-| jomud | Chase Brown, Dak Prescott, Nico Collins | RB, QB, WR |
-| Glizzy Guzzler | Bijan Robinson, Caleb Williams, Jaxson Dart | RB, QB, QB |
-| Mass General | Justin Jefferson, Derrick Henry, Jaxon Smith-Njigba | WR, RB, WR |
-| Still at RPI | Drake Maye, Brock Bowers, Omarion Hampton | QB, TE, RB |
-| Ethan's Younglings | Jahmyr Gibbs, Jayden Daniels, Sam Darnold | RB, QB, QB |
-| DannyBC1 | Amon-Ra St. Brown, Kyren Williams, Travis Etienne | WR, RB, RB |
-| Big Mommy Milkers | Terry McLaurin, Zay Flowers, George Kittle | WR, WR, TE |
+| 1 | 8 | LIVE |
+| 2 | 13 | LIVE |
+| 3 | 28 | LIVE |
+| 4 | 33 | **FORFEIT** — Kenneth Walker III keeper |
+| 5 | 48 | LIVE |
+| 6 | 53 | LIVE |
+| 7 | 68 | LIVE |
+| 8 | 73 | LIVE |
+| 9 | 88 | LIVE |
+| 10 | 93 | LIVE |
+| 11 | 108 | **FORFEIT** — Bo Nix keeper |
+| 12 | 113 | LIVE |
+| 13 | 128 | **FORFEIT** — Jameson Williams keeper |
+| 14 | 133 | LIVE |
+| 15 | 148 | LIVE |
+| 16 | 153 | LIVE |
 
-**Positional totals removed: QB 8 · RB 11 · WR 8 · TE 3 = 30.**
+**Seat neighbors (every round, constant):** Ethan Deecher sits slot 7, Matthew Carluccio sits slot 9 — one always picks immediately before Andrew, the other immediately after. Which side is "before" flips each round with snake direction.
 
-### 1b. Supply vs. demand after keepers
+**Mechanic to trust:** keepers do NOT skip or compress the sequence (verified against the real 2025 draft — 160 contiguous unique picks, every keeper auto-filled in its normal slot). The gap between Andrew's live picks is always exactly **4** (same-round-turn) or **14** (cross-round-turn), every year. What varies is how much of that gap is pre-known (a locked keeper — zero suspense) vs. genuinely live.
 
-League starting slots = 100 (10 QB, 20 RB, 20 WR, 10 TE, 20 FLEX, 10 SUPERFLEX, 10 DEF). SUPERFLEX is functionally QB → **20 QB-eligible slots.**
+### Gap / risk table
 
-| Pos | Startable NFL pool | Removed by keepers | Live supply | Starter slots still to fill from draft | **Supply : Demand** |
-|---|---|---|---|---|---|
-| **RB** | ~30 fantasy-startable | **11** (and they're 11 of the top ~20) | **19** | 9 dedicated + ~10 FLEX = **19** | **1.00 — TIGHTEST** |
-| **TE** | ~14 usable TE1s | 3 (Andrews, Bowers, Kittle) | **11** | 7 dedicated + ~2 FLEX = **9** | **1.22** (but *1 elite for 7 needy teams*) |
-| **QB** | ~24 NFL starters | 8 | **16** | **12** (20 slots − 8 kept) | **1.33** overall / **1.08 in the top 12** |
-| **WR** | ~40 startable | 8 | **32** | 12 dedicated + ~8 FLEX = **20** | **1.60 — DEEPEST** |
-
-### 1c. The QB demand map (this is the number that drives everything)
-
-| QB rooms after keepers | Teams | QBs still needed |
-|---|---|---|
-| **Zero QBs kept** | havicht, Mass General, DannyBC1, Big Mommy Milkers | **4 teams × 2 = 8** |
-| **One QB kept** | Pabst (Rodgers), **Andrew (Nix)**, jomud (Prescott), RPI (Maye) | 4 teams × 1 = **4** |
-| **Two QBs kept — done** | Glizzy Guzzler, Ethan's Younglings | 0 |
-| | | **12 total** |
-
-The critical structural fact: **keepers stripped the MIDDLE of the QB board, not the top.** Every keeper QB (Rodgers, Nix, Prescott, C. Williams, Dart, Maye, Daniels, Darnold) is a QB5–QB18 type. All four elite arms — **Josh Allen, Lamar Jackson, Joe Burrow, Jalen Hurts** — plus Herbert, Lawrence, Mahomes, Purdy, Kyler Murray, Stafford, Goff, Love, Stroud, Mayfield, McCarthy, Cam Ward are **all live.** That's ~16 startable arms for 12 slots.
-
-**Where the QB cliff lands relative to your picks:**
-
-| Range | Cumulative QBs off board | What's left |
-|---|---|---|
-| Picks 1–10 | 4–5 | Allen, Lamar, Burrow, Hurts mostly gone |
-| **Pick 13 (yours)** | **5–6** | Herbert / Lawrence / Mahomes tier |
-| **Pick 28 (yours)** | **10–11** | Purdy, K. Murray, Stafford, Goff, Love, Stroud |
-| **Pick 48 (yours)** | **14–15** | Mayfield, McCarthy, Cam Ward, Geno |
-| Pick 68 | 17–18 | Shough, Bryce Young, Willis, D. Jones, Fields |
-
-**QB cliff = between your pick 28 and your pick 48.** That is the single most actionable number in this document.
-
-### 1d. Where the RB and TE cliffs land
-
-**True bell-cows live in the pool: exactly 10** — McCaffrey, Jeanty, Jonathan Taylor, Josh Jacobs, Javonte Williams, Breece Hall, De'Von Achane, Quinshon Judkins, Chuba Hubbard, Bucky Irving. Ten workhorses, ten teams, and the format widens (does not narrow) the gap between workhorses and committees because every extra touch is a first-down lottery ticket. **RB cliff is inside Round 1 — it lands at your pick 8.** After roughly pick 30 there is not a single uncontested three-down back left.
-
-**Elite TE live in the pool: exactly 1 — Trey McBride** (169 targets / 126 catches / 1,239 yds in 2025). Bowers, Kittle and Andrews are all kept. **7 of 10 teams have zero TE** (Pabst, Andrew, jomud, Glizzy, Mass General, Ethan's, DannyBC1). **TE cliff #1 is McBride vs. everyone — it lands at your pick 13.** TE cliff #2 (Warren/Loveland/Pitts/LaPorta/Kraft → Kelce/Goedert/Hockenson) lands around picks 45–55, i.e. right on your 48/53 turn.
-
-**Verdict: RB is genuinely the scarcest position, TE is the scarcest single *asset*, QB is scarce only in a narrow band (QB10–QB16) that expires between your picks 28 and 48, and WR is a commodity you should never pay a premium for in this draft.**
-
----
-
-## 2. ROUND-BY-ROUND KEEPER DEPLETION MAP
-
-Keeper costs consumed by round (from the predicted keeper set):
-
-| Rd | Picks consumed by keepers | **Live picks in round** | Andrew's pick | Environment |
+| Andrew's pick | Next pick | Gap | Live | Pre-known (keepers, no suspense) |
 |---|---|---|---|---|
-| 1 | 0 | **10** | **p8** | Full field. Fight for it. |
-| 2 | 4 (Glizzy, MassGen, Ethan's, Danny) | **6** | **p13** | **RICHEST round in the draft** |
-| 3 | 4 (Pabst, havicht, RPI, Danny) | **6** | **p28** | **RICHEST round in the draft** |
-| 4 | 4 (**Andrew**, jomud, Glizzy, MassGen) | 6 | — (forfeit) | You're not here |
-| 5 | 2 (jomud, Ethan's) | 8 | **p48** | Slightly thin field |
-| 6 | 1 (Big Mommy) | 9 | **p53** | Near-full field |
-| 7 | **0** | **10** | **p68** | **Full field — most competitive mid-round** |
-| 8 | 3 (havicht, RPI, Big Mommy) | 7 | **p73** | Favorable |
-| 9 | 2 (havicht, Big Mommy) | 8 | **p88** | Neutral |
-| 10 | 1 (Danny) | 9 | **p93** | Near-full |
-| 11 | 1 (Pabst) | 9 | **p108** | Near-full |
-| 12 | 2 (**Andrew**, Ethan's) | 8 | — (forfeit) | You're not here |
-| 13 | 3 (jomud, Glizzy, RPI) | 7 | **p128** | Favorable |
-| 14 | 2 (**Andrew**, MassGen) | 8 | — (forfeit) | You're not here |
-| 15 | 1 (Pabst) | 9 | **p148** | Near-full |
-| 16 | **0** | **10** | **p153** | Full field |
+| 8 | 13 | 4 | 3 | 1 — #9 Carluccio → Bijan Robinson |
+| 13 | 28 | 14 | 12 | 2 — #15 Chow (DannyBC1) → Kyren Williams, #23 Semowo (tlekes) → James Cook |
+| 28 | 33 (own keeper) | 4 | 2 | 2 — #31 Mudse (jomud) → Prescott, #32 Carluccio → Caleb Williams |
+| 33 (own keeper) | 48 | 14 | 10 | 4 — #34 Deecher → Daniels, #43 Semowo → Rashee Rice, #44 Palmeri → Adams, #46 Chow → McBride |
+| 48 | 53 | 4 | 4 | 0 |
+| 53 | 68 | 14 | 12 | 2 — #57 Palmeri → Flowers, #65 Crisileo → Bowers |
+| 68 | 73 | 4 | 4 | 0 |
+| 73 | 88 | 14 | **14 — FULLY LIVE, highest-risk stretch on the board** | 0 |
+| 88 | 93 | 4 | 4 | 0 |
+| 93 | 108 (own keeper) | 14 | 11 | 3 — #100 Crisileo → Pitts, #102 Havicht → Skattebo, #107 Deecher → Egbuka |
+| 108 (own keeper) | 113 | 4 | 2 | 2 — #110 Mudse → Irving, #111 Mudse → Chase Brown |
+| 113 | 128 (own keeper) | 14 | 9 | 5 — #116 Crisileo → Maye, #117 Palmeri → Dowdle, #119 Havicht → Johnston, #120 Crisileo → Corum, #121 Dustin → Smith-Njigba |
+| 128 (own keeper) | 133 | 4 | 3 | 1 — #129 Carluccio → Dart |
+| 133 | 148 | 14 | 12 | 2 — #136 Crisileo → Burden, #139 Havicht → Stevenson |
+| 148 | 153 | 4 | 4 | 0 |
 
-### 2a. Your REAL waits, measured in live picks (not nominal picks)
-
-This is the correction that changes your strategy. The "19-pick dead zone" is mostly an illusion; the *real* dead zones are elsewhere.
-
-| Gap | Nominal picks | **Expected LIVE picks between** | Reality |
-|---|---|---|---|
-| p8 → p13 | 4 | **3.2** | Effectively back-to-back |
-| p13 → p28 | 14 | **8.4** | Much softer than it looks (R2/R3 are 60% live) |
-| **p28 → p48** | **19** | **12.8** | Real, but not the worst |
-| p48 → p53 | 4 | 3.4 | Back-to-back |
-| **p53 → p68** | **14** | **13.3** | ⚠️ **As bad as the "dead zone" — R7 has ZERO keepers** |
-| p68 → p73 | 4 | 3.4 | Back-to-back |
-| p73 → p88 | 14 | 10.5 | Moderate |
-| p88 → p93 | 4 | 3.4 | Back-to-back |
-| p93 → p108 | 14 | 12.6 | Moderate |
-| **p108 → p128** | **19** | **14.7** | ⚠️ Real dead zone |
-| **p128 → p148** | **19** | **15.7** | ⚠️ **Longest actual wait of the draft** |
-| p148 → p153 | 4 | 3.8 | Back-to-back |
-
-**Two headline findings:**
-1. **Your p13 → p28 wait is only ~8 live picks.** You can afford to be greedy at 13 and still expect a Tier-3 player at 28. Round 2 and Round 3 each have only 6 live picks — 40% of the field is skipping those rounds.
-2. **The p53 → p68 gap (13.3 live picks) is functionally as dangerous as the celebrated p28→p48 dead zone,** because Round 7 is the only mid-round with a completely full 10-team field. Everyone picks in Round 7. Plan for it exactly like a dead zone.
+**Takeaways:**
+- **Picks 73→88** — nobody drafts a keeper in this window. Full 14-pick fog. Don't count on anything specific being there or gone at 88; plan a wide target list before pick 73.
+- **28→33** and **108→113** are the two safest waits — only 2 live picks separate them.
+- Round 7 (overall 61–70) has zero league-wide keeper forfeits — fully competitive round.
 
 ---
 
-## 3. MASTER VALUE TIER TABLE
+## 2. LEAGUE-WIDE FORFEIT MAP (by round)
 
-Format markers: **↑↑** big riser under 0.5/first-down · **↑** riser · **↓** faller · **↓↓** big faller · (–) neutral
-
-| Tier | Players (live in the pool) | Maps to Andrew's picks |
+| Round | Teams forfeiting | Notes |
 |---|---|---|
-| **T1 — Untouchable** | Ja'Marr Chase WR (–), **Puka Nacua WR ↑↑**, Josh Allen QB ↑↑, Lamar Jackson QB ↑↑, Christian McCaffrey RB ↑↑, Joe Burrow QB **↓** (zero rush equity) | **Gone by pick 6.** Not yours. |
-| **T2 — Andrew's pick-8/13 window** | **Ashton Jeanty RB ↑↑** (55 catches as a rookie), **Jonathan Taylor RB ↑**, CeeDee Lamb WR (–), **Trey McBride TE ↑↑** (169 tgts — biggest single-position edge on the board), Jalen Hurts QB ↑↑, Drake London WR ↑ (37.4% first-read rate), Justin Herbert QB **↓**, Trevor Lawrence QB ↑ (359 rush yds/9 rush TD) | **p8, p13** |
-| **T3 — Late R2 / R3** | A.J. Brown WR (–), Malik Nabers WR (–, ACL), **Javonte Williams RB ↑↑**, Breece Hall RB (–), Josh Jacobs RB (–, conduct risk), De'Von Achane RB **↓**, **Ladd McConkey WR ↑↑**, **DeVonta Smith WR ↑↑** (now PHI alpha), **Chris Olave WR ↑**, Rashee Rice WR ↑, Garrett Wilson WR (–), Tee Higgins WR (–), **Emeka Egbuka WR ↑↑**, Patrick Mahomes QB **↓** (ACL, lost scramble equity), **Kyler Murray QB ↑↑**, Brock Purdy QB ↓, Quinshon Judkins RB **↓↓** (~30 catches, TD-dependent), Bucky Irving RB ↑ | **p28** (and the tail of it reaches **p48**) |
-| **T4 — R4/R5 equivalent** | Matthew Stafford QB ↓↓, Jared Goff QB ↓↓, Jordan Love QB (–), C.J. Stroud QB (–), Baker Mayfield QB (–), J.J. McCarthy QB (–), **Cam Ward QB ↑**, **Colston Loveland TE ↑↑**, Tyler Warren TE **↓** (QB-dependent, big-play reliant), **Kyle Pitts TE ↑** (118 tgts), Sam LaPorta TE ↑, Tucker Kraft TE (–, ACL return), **DJ Moore WR ↑**, Jaylen Waddle WR ↑, Davante Adams WR ↓, **Mike Evans WR ↓**, **Tetairoa McMillan WR ↓** (contested-catch profile), Chuba Hubbard RB (–), Cam Skattebo RB ↑ (if ankle clears), D'Andre Swift RB (–), TreVeyon Henderson RB (–), Rhamondre Stevenson RB (–) | **p48, p53** |
-| **T5 — R6/R7** | **Travis Kelce TE ↑↑** (your own R7 discard; still elite catch-rate chain-mover), Dallas Goedert TE **↓** (11 TD = TD-spike dependent), T.J. Hockenson TE (–), **Jake Ferguson TE ↑**, Dalton Kincaid TE ↑, **David Njoku TE ↑**, **Chris Godwin WR ↑↑**, **Jakobi Meyers WR ↑↑**, **Jayden Reed WR ↑↑**, Jordan Addison WR ↓, Luther Burden WR (–), **Rome Odunze WR ↓↓** (29.3% deep-tgt rate), **George Pickens WR ↓**, **Marvin Harrison Jr. WR ↓↓**, **Brian Thomas Jr. WR ↓↓**, **DK Metcalf WR ↓↓**, **Courtland Sutton WR ↓↓**, **Xavier Worthy WR ↓↓**, **Jaylen Warren RB ↑↑** (Rodgers checkdown back), Tony Pollard RB ↑, Aaron Jones RB ↑, Joe Mixon RB (–) | **p53, p68, p73** |
-| **T6 — R8/R9** | **Michael Pittman WR ↑**, **Stefon Diggs WR ↑**, Deebo Samuel WR (–), Jauan Jennings WR ↑, Darnell Mooney WR ↓, **Woody Marks RB ↑↑** (inherits Mixon's HOU passing-down role), RJ Harvey RB (–), Jordan Mason RB (–), Najee Harris RB ↓, **Alvin Kamara RB ↓**, Tyrone Tracy RB (–), Bhayshul Tuten RB ↓, Rico Dowdle RB (–), Chig Okonkwo TE ↑, Hunter Henry TE (–), Harold Fannin TE ↑ | **p73, p88** |
-| **T7 — R9/R10** | **Josh Downs WR ↑↑** (80% slot rate — highest in the NFL, purest format asset available this late), **Wan'Dale Robinson WR ↑↑** (185 catches/33 gms), Ricky Pearsall WR (–), Matthew Golden WR (–), **Quentin Johnston WR ↓↓**, Christian Watson WR ↓↓, **Justice Hill RB ↑↑** (receiving handcuff), **Jordan James RB ↑↑** (CMC handcuff — best handcuff in football), **Samaje Perine RB ↑**, Blake Corum RB (–), Isaiah Likely TE ↓, Brenton Strange TE ↑, Juwan Johnson TE ↑ | **p88, p93** |
-| **T8 — R11** | **Tyler Shough QB ↑** (QB12 pace from Wk9 on), **Malik Willis QB ↑↑** (44.8 rush yds/gm as a starter), Geno Smith QB ↓, Bryce Young QB (–), Daniel Jones QB ↑, Jaydon Blue RB (–), Kyle Monangai RB (–), Isiah Pacheco RB (–), Zach Charbonnet RB (–), DJ Giddens RB (–), Jalen Coker WR ↑ (10.1 HPPR final 9 gms), Jonathon Brooks RB (–) | **p108** |
-| **T9 — R13/R15** | **Jalen Nailor WR ↑**, **Antonio Williams WR ↑** (2.27 YPRR, vacated WAS slot), **Jaylin Noel WR ↑**, **Jayden Higgins WR ↑** (24% TPRR down the stretch), Ryan Flournoy WR ↓, Alec Pierce WR ↓↓, **Greg Dulcich TE ↑↑** (2.31 YPRR, gutted MIA WR room), Dalton Schultz TE ↓, Cade Otton TE ↓, AJ Barner TE (–), Tank Bigsby RB ↓, MarShawn Lloyd RB (–), Brian Robinson RB (–), Jaylen Wright RB (–), **Justin Fields QB ↑↑** (Mahomes handcuff — top-15 format asset the day Mahomes' knee goes) | **p128, p148** |
-| **T10 — R16 / DEF** | **Houston DST**, **Seattle DST**, LA Rams DST, Denver DST (schedule risk), Detroit DST (easiest Wk1–5 slate), Baltimore DST, LAC DST · Fernando Mendoza QB stash, Anthony Richardson QB stash | **p153** |
+| 1 | 3 | Bijan, Gibbs, Amon-Ra (each player's LAST eligible keeper year) |
+| 2 | 1 | |
+| 3 | 1 | |
+| 4 | 4 | Includes Andrew's own Walker slot |
+| 5 | 3 | |
+| 6 | 1 | |
+| 7 | 1 | |
+| 8 | 0 | Fully live |
+| 9 | 0 | Fully live |
+| 10 | 1 | |
+| 11 | 4 | Includes Andrew's own Nix slot |
+| 12 | 5 | **Heaviest forfeit round league-wide** |
+| 13 | 3 | Includes Andrew's own Jameson slot |
+| 14 | 2 | |
+| 15 | 0 | Fully live |
+| 16 | 0 | Fully live |
 
-**Format-inflation summary you must internalize:** in this scoring, a 7-catch / 55-yard / 5-first-down day (**12.0 pts**) equals a 2-catch / 70-yard / 1-TD day (**12.0 pts**). The possession player does that every week; the deep threat does it four times a year. **Systematically fade Worthy, Metcalf, Sutton, Odunze, MHJ, Brian Thomas Jr., Pickens, Judkins, Goedert, Goff/Stafford. Systematically buy McBride, Kelce, Downs, Wan'Dale, Godwin, Meyers, Reed, McConkey, DeVonta Smith, Jaylen Warren, Woody Marks, Justice Hill, Kyler Murray, Cam Ward, Willis.**
-
----
-
-## 4. PICK-BY-PICK TARGET TABLE
-
-| Pick | Rd | Realistic pool at that pick | **PRIMARY TARGET** | Fallback A | Fallback B | Position priority |
-|---|---|---|---|---|---|---|
-| **8** | 1 | 4–5 QBs, Chase, Nacua, CMC gone. Left: Jeanty, J. Taylor, Lamb, London, McBride, Herbert, Lawrence, A.J. Brown, possibly Hurts | **Ashton Jeanty (RB)** — 321 touches + 55 catches as a rookie in a bad situation, better OL in Yr2; dual rush+rec first-down engine. This is the last pick where a true bell-cow is available. | **Jonathan Taylor (RB)** | **CeeDee Lamb (WR)** | **RB > elite WR > TE > QB.** If Chase or Nacua improbably falls, take him instantly. |
-| **13** | 2 | ~8 more picks gone, ~3 live. Left: McBride (if he survives), Lamb/London, A.J. Brown, Nabers, Breece, Javonte, Herbert/Lawrence | **Trey McBride (TE)** — the only 160-target TE in the pool, 7 rival teams have zero TE, and the FD bonus makes him a WR1 in scoring (~250 pts vs. ~150 for TE10). **Largest positional edge on the entire board.** | **CeeDee Lamb / Drake London (WR)** | **Javonte Williams (RB)** — DAL bell-cow, 16.5+ HPPR in 6 of 9 games | **TE > WR > RB > QB.** If McBride is gone at 13, do NOT reach for TE2 here — take the WR and get Loveland/Pitts/Kelce at 48/53. |
-| **28** | 3 | Only 6 live picks in R3. ~10–11 QBs gone. Left: Purdy, K. Murray, Stafford, Goff, Love, Stroud; McConkey, DeVonta Smith, Olave, Egbuka, Higgins; Judkins, Irving, Hubbard | **Kyler Murray (QB)** if live — MIN job w/ Jefferson/Addison/Hockenson + 30–40 rush yds/gm floor the format double-pays. Else **Trevor Lawrence / Justin Herbert / Patrick Mahomes / Brock Purdy**, in that order. | **Ladd McConkey (WR ↑↑)** | **DeVonta Smith (WR ↑↑)** — PHI's true alpha now that A.J. Brown is in NE | **QB > WR > RB.** This is your QB deadline-minus-one. See §5. |
-| **48** | 5 | ~14 QBs gone. Left: Loveland, Pitts, LaPorta, Kraft, Kelce; DJ Moore, Waddle, Adams, Evans, Burden, Godwin; Pollard, A. Jones, Warren, Skattebo, Swift | **Best WR2 available — DJ Moore (↑) or Jaylen Waddle (↑)**. If you punted QB at 28: **Cam Ward / Baker Mayfield / J.J. McCarthy — HARD DEADLINE, take one.** | **Chris Godwin (WR ↑↑)** | **Colston Loveland (TE ↑↑)** if McBride was missed at 13 | **WR2 (or QB if punted) > TE-if-missed > RB** |
-| **53** | 6 | 3.4 live picks after 48 — treat as a package with p48 | **RB2/FLEX — Jaylen Warren (RB ↑↑)** or **Tony Pollard (RB ↑)**. Warren is the designated Rodgers checkdown back: pure format gold. | **Cam Skattebo (RB ↑)** if ankle cleared | **Travis Kelce (TE ↑↑)** if TE still open | **RB > TE > WR.** Both starting FLEX slots must be filled by end of 53 — the next real gap is 13.3 live picks. |
-| **68** | 7 | ⚠️ **Full 10-team field, zero keepers in R7 — most competitive round of the mid-draft.** Left: Meyers, Godwin, Reed, Addison, Burden, Pittman, Diggs; Ferguson, Kincaid, Njoku, Hockenson; A. Jones, Harvey, Mason, Marks | **Jakobi Meyers (WR ↑↑)** or **Jayden Reed (WR ↑↑)** — high-floor slot chain-movers, 2–3 rounds of value vs. standard ADP | **Michael Pittman Jr. (WR ↑)** | **Jake Ferguson / David Njoku (TE ↑)** as TE2 | **WR3 > RB depth > TE2** |
-| **73** | 8 | 7 live picks in R8 — favorable | **Woody Marks (RB ↑↑)** — inherits Mixon's HOU early-down + passing-down role; a genuine format riser at a bench price | **Stefon Diggs (WR ↑)** | **Rico Dowdle / Aaron Jones (RB)** | **RB depth > WR > TE2** |
-| **88** | 9 | Left: Downs, Wan'Dale, Pearsall, Jennings, Golden; Okonkwo, H. Henry, Fannin, Strange; Tracy, Tuten, Harvey | **Josh Downs (WR ↑↑)** — 80% slot rate, the highest in the NFL. In a 0.5-FD league this is the best value on the board relative to ADP. | **Wan'Dale Robinson (WR ↑↑)** | **Chig Okonkwo (TE ↑)** — clear WAS #2 target with 171 vacated targets | **WR possession > TE2 > RB** |
-| **93** | 10 | 3.4 live picks after 88 — package with p88 | **Jordan James (RB ↑↑)** — the single most valuable handcuff in football behind CMC's injury history; standalone flex value if CMC misses time | **Justice Hill (RB ↑↑)** — receiving back behind a 32-yr-old Henry | **Samaje Perine (RB ↑)** | **Pass-catching handcuff RB > WR > QB3** |
-| **108** | 11 | ⚠️ **Last pick before a 14.7-live-pick dead zone.** Left: Shough, Willis, Geno, Bryce Young, D. Jones; Blue, Monangai, Pacheco, Corum, Charbonnet; Coker, Nailor | **Tyler Shough (QB)** or **Malik Willis (QB ↑↑)** — dual purpose: bye-week SUPERFLEX insurance **and a trade chip**, because four rival teams (havicht, Mass General, DannyBC1, Big Mommy) will be one injury from a dead SF slot all season | **Jalen Coker (WR ↑)** — 10.1 HPPR over his final 9 games | **Blake Corum / Isiah Pacheco (RB)** | **QB3-as-asset > WR upside > RB handcuff** |
-| **128** | 13 | ⚠️ **Before the longest gap of the draft (15.7 live picks).** 7 live picks in R13. Left: Nailor, A. Williams, Noel, J. Higgins, Flournoy; Dulcich, Strange, Barner; Brooks, Bigsby, Lloyd | **Jayden Higgins or Jaylin Noel (WR ↑)** — Yr-2 Texans climbing a short-passing target tree; Higgins hit a 24% TPRR down the stretch | **Antonio Williams (WR ↑)** — 2.27 YPRR into a vacated WAS slot role | **Jonathon Brooks (RB)** — fully healthy, glowing camp, behind a Hubbard who fell RB15→RB38 | **WR upside > RB lottery > TE2** |
-| **148** | 15 | 9 live picks in R15. Thin. | **Greg Dulcich (TE ↑↑)** — 2.31 YPRR (most efficient TE per snap) into a gutted Miami WR room; your TE2 | **Brenton Strange (TE ↑)** — TE12 over a 7-game stretch at a waiver price | **Justin Fields (QB ↑↑)** — the best "if he plays" asset in the league; Mahomes' knee is one hit from making him a top-15 format QB | **TE2 > QB stash > RB dart** |
-| **153** | 16 | Full 10-team field, ~8 DSTs still live | **Houston DST** — DST2 in 2025, 3rd-fewest PPG allowed, projects DST1 | **Seattle DST** — highest-scoring DST in 2025 (17.2 PPG allowed), opens vs. NE/ARI | **Detroit DST** — easiest Wk1–5 schedule in football | **DEF.** Never earlier. Stream from Week 1 waivers anyway. |
+Sum: 29 keepers across 16 rounds. Rounds 8, 9, 15, 16 are fully open — expect real value runs there.
 
 ---
 
-## 5. THE QB QUESTION — DEFINITIVE ANSWER
+## 3. THE 29 KEEPERS — OFF THE BOARD
 
-### **Do NOT take an elite QB at pick 8 or pick 13. Take your QB2 at pick 28, with pick 48 as the absolute hard deadline.**
+All players below are locked to their team at the stated cost. Everyone else on every roster is live in tonight's pool (see Section 4 sourcing / league_reference.md for full unrostered-player detail).
 
-**The supply numbers that force this conclusion:**
-
-1. **You already own a SUPERFLEX starter.** Bo Nix is confirmed healthy ("nothing's holding me back"), unquestioned in Denver, has a real scrambling floor the FD bonus pays for, and — critically — cost you a **12th-round pick.** Four rival teams have **zero** QBs. Your marginal need for QB is the 9th-most-urgent in a 10-team league.
-
-2. **12 QB starting slots, ~16 startable arms live.** That's a 1.33 ratio — the *second-loosest* position on the board. Compare RB at 1.00.
-
-3. **You need QB *#12*, not QB *#4*.** The four zero-QB teams need eight arms; they will pay picks 1–20 prices for the top of the tier. You need one arm that is better than replacement. The delta between the QB you'd take at pick 8 (say Jalen Hurts) and the QB you'd take at pick 28 (say Kyler Murray or Brock Purdy) is roughly **60–70 fantasy points over a season.** The delta between the RB you'd take at pick 8 (Jeanty, ~280 format points) and the RB you'd take at pick 48 (Swift/Stevenson, ~180) is **~100 points**, and the delta between McBride at 13 (~250) and the TE you'd get at 53 (~165) is **~85 points.** Spending pick 8 on a QB costs you ~185 points across two positions to gain ~65 at one.
-
-4. **Two rival teams (Glizzy Guzzler and Ethan's Younglings) have their QB rooms fully solved** and will never bid against you. That's a 20% reduction in QB demand that nobody at the table is pricing in.
-
-5. **The cliff is between your picks 28 and 48, not before 13.** Expected QBs gone: ~5–6 by p13, ~10–11 by p28, ~14–15 by p48. At 28 you're picking from **Purdy / Kyler Murray / Stafford / Goff / Love / Stroud** — genuine weekly SUPERFLEX starters. At 48 you're down to **Mayfield / McCarthy / Cam Ward / Geno.** At 68 you're at **Shough / Willis / Bryce Young** — streamers, not starters.
-
-**The one exception that overrides everything:** if **Jalen Hurts or Trevor Lawrence is somehow on the board at pick 13**, take him. Hurts' value is now almost entirely concentrated in short-yardage designed runs — the exact stat this league pays twice for (0.5 FD + 0.1/yd) — and Lawrence added 359 rush yards / 9 rush TDs under Liam Coen. Either at pick 13 is a top-4 format QB at a QB7 price, and pairing him with Nix would give you the best SUPERFLEX room in the league plus a tradeable surplus. **Do not do this at pick 8** — pick 8 is your only shot at a bell-cow RB.
-
-**Decision rule for pick 28, in order:** Kyler Murray → Trevor Lawrence → Justin Herbert → Patrick Mahomes → Brock Purdy → Jordan Love. **If all six are gone, pivot to McConkey/DeVonta Smith at 28 and take Cam Ward or Baker Mayfield at 48 — but you must not leave pick 48 without a QB2.**
-
-**Bonus play:** take a 3rd QB at pick 108 (Shough or Willis). Four teams will be one QB injury from a hole in their most valuable lineup slot. A $0 QB3 is the highest-EV trade asset you can manufacture in this league.
-
----
-
-## 6. POSITIONAL RUNS TO ANTICIPATE
-
-### The QB run — **starts at pick 1, peaks picks 1–20, second wave picks 21–40**
-**Drivers:** havicht (0 QBs, "most QB-desperate team in the league"), Mass General (0 QBs, Burrow ineligible so their own guy is in the pool), DannyBC1 (0 QBs despite rostering Stroud/Lawrence/Geno), Big Mommy Milkers (0 QBs *and* 0 RBs — the most cornered team at the table).
-
-- Picks 1–10: **4–5 QBs** (Allen, Lamar, Burrow, Hurts + one of Herbert/Lawrence).
-- Picks 11–20: **3–4 more** as the desperate teams take QB2 or grab a slider.
-- Picks 21–40: **~4 more** as the 1-QB teams (Pabst needs a Rodgers successor, RPI needs a Maye partner) fill in.
-
-**Your play: FADE the first wave completely, then front-run the tail at pick 28.** You want the desperate teams to spend picks 1–20 on quarterbacks while you take a bell-cow RB and the only elite TE in the pool. Every QB they take at picks 5–15 is an RB/WR/TE that falls to you.
-
-### The TE run — **starts at pick 7, McBride is the trigger, tier-2 clears picks 25–55**
-**Drivers:** SEVEN teams have zero tight ends. Two of them (**Ethan's Younglings, who picks immediately before you at slot 7, and Glizzy Guzzler, who picks immediately after you at slot 9**) have their QB rooms fully solved and therefore have *nothing else to spend early picks on* — they are the most likely to take McBride, one on each side of your own pick 8. jomud is explicitly modeled to "prioritize TE early."
-
-- McBride realistically goes **picks 7–15** — he can now vanish one pick before you're even on the clock.
-- Tier 2 (Loveland, Tyler Warren, Pitts, LaPorta, Kraft) clears **picks 25–50.**
-- By pick 55 the board is Kelce / Goedert / Hockenson / Ferguson / Kincaid / Njoku.
-
-**Your play: FRONT-RUN it hard. Take McBride at 13.** He is the largest single-player edge available to you, and the field's TE desperation guarantees he does not reach 28. If he's gone at 13, **fade the tier-2 run entirely** — do not chase Loveland at 28 — and take **Travis Kelce at 53** (your own R7 discard, a genuine format riser whose ADP is suppressed by decline narratives) or Ferguson/Njoku at 68. Tier 2 to Tier 3 at TE is a much smaller drop than McBride to Tier 2.
-
-### The RB run — **picks 1–30, then a total vacuum**
-**Drivers:** Big Mommy Milkers needs RB1 *and* RB2 (McLaurin/Pollard collided on the same R9 keeper slot). Pabst (only Cook), jomud (only Chase Brown), Mass General (only Henry) all need an RB2.
-Ten bell-cows exist. **They will all be gone by roughly pick 32.**
-**Your play: FRONT-RUN at pick 8.** This is non-negotiable — pick 8 is your only bell-cow window all draft.
-
-### The WR run — **continuous, and you should fade all of it until pick 28**
-**Drivers:** Ethan's Younglings (zero WRs), Glizzy Guzzler (Nabers/Olave/Thomas all back in the pool), Still at RPI (loses Garrett Wilson AND McConkey), havicht (zero WRs).
-Four teams will run WRs aggressively and early. **Let them.** WR is the only position with a 1.60 supply ratio. Godwin, Meyers, Reed, Downs, Wan'Dale, Pittman, Diggs, Jennings, Coker, Noel, Higgins, Nailor, Antonio Williams — the format's best WR archetype (high-target, low-aDOT possession) is available from round 7 through round 15. **Fade WR until pick 28, then take a possession WR at every single one of picks 48, 68, 88, 128.**
-
----
-
-## 7. DEAD-ZONE PLANNING
-
-### Dead zone #1: p28 → p48 (nominal 19 · **12.8 live picks**)
-**Must be secured BEFORE pick 28 closes:**
-- ✅ **Bell-cow RB (pick 8)** — the pool is empty of workhorses by pick 32
-- ✅ **Trey McBride or an accepted TE-punt plan (pick 13)**
-- ✅ **QB2 (pick 28)** — ~4 QBs come off in this window; you enter it with Purdy/Murray/Stafford/Goff/Love/Stroud available and exit it with Mayfield/McCarthy/Ward
-
-**What you can safely leave until p48/53:** WR2, RB2/FLEX, TE2. WR at 1.60 supply survives easily; the TE tier-3 shelf (Kelce/Goedert/Hockenson/Ferguson) does not clear before pick 55.
-
-### Dead zone #2 (the hidden one): p53 → p68 (nominal 14 · **13.3 live picks**)
-Round 7 has **zero keeper forfeits** — all ten teams pick. This is the most competitive stretch of the middle rounds and it is *statistically as long a wait as dead zone #1.*
-**Must be secured BEFORE pick 53 closes:** both **FLEX-caliber starters** — one WR2 and one RB2. Leave 48/53 with a complete starting lineup except DEF. If you exit pick 53 still needing a starter, you will be shopping in a fully-populated Round 7 where every rival is filling the same holes.
-
-### Dead zone #3: p108 → p128 (nominal 19 · **14.7 live picks**)
-**Must be secured BEFORE pick 108 closes:** every roster spot that could plausibly start a game. By pick 108 you should own: QB×2(+3), RB×3, WR×4, TE×1(+2), and be shopping purely for upside.
-**Pick 108 itself** should be the **QB3 trade asset (Shough/Willis)** — that is the last pick at which a startable NFL quarterback exists, and its trade value to four QB-desperate rivals is the highest-leverage thing you can buy that late.
-
-### Dead zone #4: p128 → p148 (nominal 19 · **15.7 live picks — the longest actual wait of the draft**)
-**Must be secured BEFORE pick 128 closes:** your last real upside swing. Picks 148 and 153 are effectively a single package (3.8 live picks apart) and should be spent on **TE2 (Dulcich/Strange) + DEF (Houston/Seattle).** Do not enter this dead zone still needing a startable body — 15.7 live picks in rounds 14–15 will strip every name with a pulse.
-
-### Consolidated pre-dead-zone checklist
-
-| Before pick | Must own |
-|---|---|
-| **28** | Bell-cow RB · Elite TE (or explicit punt) · **QB2** |
-| **53** | Complete starting lineup minus DEF: RB2, WR2, both FLEX bodies |
-| **108** | 3 RBs, 4 WRs, TE1, QB2 — plus the QB3 trade chip taken AT 108 |
-| **128** | All upside swings made; 148/153 reserved for TE2 + DEF |
-
----
-
-## THE ONE-PARAGRAPH PLAN
-
-Take **Ashton Jeanty (or Jonathan Taylor) at 8** — pick 8 is your only bell-cow window, and RB is the only position in this draft with a 1.00 supply-to-demand ratio. Take **Trey McBride at 13** — he is the only elite TE left in a pool where 7 of 10 teams have zero, and the first-down bonus turns his 169 targets into WR1 scoring. Take your **QB2 at 28** (Kyler Murray → Lawrence → Herbert → Mahomes → Purdy → Love), because the QB cliff falls precisely inside your 28→48 gap and Bo Nix means you need QB12, not QB4. Fill both **FLEX starters at 48/53** with a possession WR (DJ Moore/Godwin) and a pass-catching RB (Jaylen Warren/Pollard) before the hidden 13.3-pick Round-7 gap. Then spend **68 through 108 exclusively on the format's arbitrage** — Meyers, Reed, Pittman, Woody Marks, **Josh Downs**, Wan'Dale, Jordan James, Justice Hill — high-catch, low-aDOT chain-movers whose ADP is set by leagues that don't pay for first downs. Take a **QB3 at 108 as a trade asset** aimed at the four teams with empty quarterback rooms. Close with **Dulcich at 148 and Houston DST at 153.**
-
-
----
-
-
-# SUNDAY SCARIES 2026 — MOCK DRAFT DECISION TREES
-### Andrew · Slot 8 · 10-team Superflex · Half-PPR + 0.5/First Down
-### Live picks: 8, 13, 28, 48, 53, 68, 73, 88, 93, 108, 128, 148, 153
-### Keepers: Kenneth Walker III RB · Bo Nix QB · Jameson Williams WR
-
----
-
-## 0. THE SEAT MAP — read this first, it drives every branch
-
-**CONFIRMED (Aug 12, 2026)** — this is the real draft order, resolved by draft:seat-remap from Sleeper and cross-checked against the existing Slot-8 pick map. Previously only 3 of 10 slots were known (6, 8, 9); all 10 are now locked in, and slots 1, 2, 3, 4, 5, 7, and 10 all moved from where the earlier prediction had them. The mock drafts and pick-by-pick notes below have been updated to this order.
-
-| Slot | Team | QBs kept | Biggest hole |
-|---|---|---|---|
-| 1 | Mass General Hospital (pdustin) | **0** | QB×2 |
-| 2 | Water, Barkley, and Hops (havicht) | **0** | QB×2, WR×0 |
-| 3 | Pabst Interference (tlekes) | 1 (Rodgers) | QB2, TE |
-| 4 | Big Mommy Milkers (jpalmeri) | **0** | QB×2 **and** RB×0 — most cornered team |
-| 5 | Still at RPI (PeterCrisileo) | 1 (Maye) | QB2, RB2 |
-| 6 | DannyBC1 | **0** | QB×2 |
-| 7 | Ethan's Younglings (Edeecher) | **2 — DONE** | **WR×0, TE×0 — will never bid on a QB** |
-| **8** | **ANDREW** | 1 (Nix) | TE, RB2, WR2 |
-| 9 | Glizzy Guzzler (Looch / Matthew Carluccio) | **2 — DONE** | **TE, WR — will never bid on a QB** |
-| 10 | jomud (Jonah Mudse) | 1 (Dak) | QB2, WR |
-
-### 0a. The single most important structural fact on your board — REVISED for the confirmed order
-
-The earlier prediction had the two QB-solved, zero-TE teams (Glizzy and Ethan's) sitting at 9-and-10, both picking *after* you. **The confirmed order is different, and arguably more dangerous: Ethan's Younglings sits at slot 7 — immediately BEFORE you — and Glizzy Guzzler sits at slot 9 — immediately AFTER you.** jomud, not Ethan's, holds slot 10.
-
-Consequences you must internalize:
-
-1. **McBride can now disappear before you even pick.** Ethan's (QB-solved, zero TE) picks at 7, one spot ahead of you — not three picks behind. If he's gone at your turn, that's who took him.
-2. **If McBride is still there at 8, you are not out of the woods.** Glizzy is on the clock immediately after you at 9, with the identical QB-solved / zero-TE profile. McBride now has to survive one snipe-caliber team on *each side* of your pick, not two teams both sitting behind it.
-3. **jomud at slot 10 is a genuine QB-needer (only Dak Prescott kept), not a third zero-TE mirror of Glizzy and Ethan's.** Don't assume the pick after Glizzy is automatically safe from a QB run — jomud might reasonably take one there.
-4. **Checked against the actual keeper-forfeit map (§2), "Ethan's-before / Glizzy-after" holds for most but not all of your live picks** — on three turns, one of them has a keeper forfeit that round and your real neighbor is someone else:
-
-| Your pick | Team live immediately before | Team live immediately after |
-|---|---|---|
-| **8** | Ethan's Younglings (ov.7) | Glizzy Guzzler (ov.9) |
-| **13** | jomud (ov.11) — *Ethan's forfeits Rd2* | Still at RPI (ov.16) |
-| **28** | Ethan's Younglings (ov.27) | Glizzy Guzzler (ov.29) |
-| **48** | DannyBC1 (ov.46) — *Ethan's forfeits Rd5* | Glizzy Guzzler (ov.49) |
-| **53** | Glizzy Guzzler (ov.52) | Ethan's Younglings (ov.54) |
-| **68** | Ethan's Younglings (ov.67) | Glizzy Guzzler (ov.69) |
-| **73** | Glizzy Guzzler (ov.72) | Ethan's Younglings (ov.74) |
-| **88** | Ethan's Younglings (ov.87) | Glizzy Guzzler (ov.89) |
-| **93** | Glizzy Guzzler (ov.92) | Ethan's Younglings (ov.94) |
-| **108** | Ethan's Younglings (ov.107) | Glizzy Guzzler (ov.109) |
-| **128** | Ethan's Younglings (ov.127) | jomud (ov.131) — *Glizzy forfeits Rd13* |
-| **148** | Ethan's Younglings (ov.147) | Glizzy Guzzler (ov.149) |
-| **153** | Glizzy Guzzler (ov.152) | Ethan's Younglings (ov.154) |
-
-**Bottom line: Ethan's Younglings and Glizzy Guzzler are your two constant rivals at the table — they sandwich 10 of your 13 live picks, flipping sides by round parity exactly as the snake dictates.** The three exceptions (13, 48, 128) happen because whichever of Ethan's/Glizzy would normally sit there has a keeper forfeit that round; your real neighbor on those turns is jomud, RPI, or DannyBC1 instead. Both Ethan's and Glizzy remain QB-solved and starved for TE/WR, so for the large majority of your picks you are drafting directly against the two teams in the league least likely to take a QB and most likely to take a TE or WR — the McBride and TE-punt logic below still holds, just for a slightly sharper reason (a threat on both sides of pick 8, not two threats both trailing it) than originally modeled.
-
-### 0b. Your true pick map — live picks between each of your selections
-
-Derived from the keeper-forfeit round map, walked against the CONFIRMED slot assignments above (not the nominal round map — this counts the actual live picks by the actual teams now known to hold each seat). These numbers are the deterministic ground truth for this specific draft order and can differ slightly from the "expected" live-pick estimates in §2a/§7, which model average behavior across any seed order rather than this one. Print this.
-
-| Your pick | Rd | Live picks until your next | Live picks that occur between | Character |
+| Team | Player | Pos | Round | Note |
 |---|---|---|---|---|
-| **8** | 1 | 3 | 9–11 (Glizzy at 9, then jomud's turn-double at 10–11) — 12 is Glizzy's R2 forfeit | **Effectively back-to-back with 13** |
-| **13** | 2 | 7 | 16–19, 21, 24, 27 | Softer than it looks |
-| **28** | 3 | **14** | 29–30, 34–39, 41–46 | ⚠️ Dead zone #1 |
-| **48** | 5 | 3 | 49, 51–52 | Back-to-back with 53 |
-| **53** | 6 | **13** | 54–56, 58–67 | ⚠️ Hidden dead zone — R7 has ZERO forfeits |
-| **68** | 7 | 4 | 69–72 | Back-to-back with 73 |
-| **73** | 8 | 9 | 74–75, 78, 80–81, 83, 85–87 | Moderate |
-| **88** | 9 | 4 | 89–92 | Back-to-back with 93 |
-| **93** | 10 | 12 | 94, 96–102, 104–107 | Moderate |
-| **108** | 11 | **16** | 109–112, 115–124, 126–127 | ⚠️ **Dead zone #3 — now the longest wait of the draft under the confirmed order** |
-| **128** | 13 | **14** | 131–132, 134–139, 141–142, 144–147 | ⚠️ Real dead zone, tied with #1 |
-| **148** | 15 | 4 | 149–152 | Back-to-back with 153 |
-| **153** | 16 | — | — | Last pick |
+| Pabst Interference (tlekes) | James Cook | RB | R3 | |
+| Pabst Interference (tlekes) | Rashee Rice | WR | R5 | (3rd slot unused) |
+| **Andrew (own)** | Kenneth Walker III | RB | R4 | |
+| **Andrew (own)** | Bo Nix | QB | R11 | N-1 (was R12) |
+| **Andrew (own)** | Jameson Williams | WR | R13 | N-1 (was R14) |
+| Water Barkley & Hops (havicht) | Cam Skattebo | RB | R11 | |
+| Water Barkley & Hops (havicht) | Quentin Johnston | WR | R12 | FA add (flat R12) |
+| Water Barkley & Hops (havicht) | Rhamondre Stevenson | RB | R14 | |
+| jomud | Dak Prescott | QB | R4 | |
+| jomud | Bucky Irving | RB | R11 | N-1 (was R12) |
+| jomud | Chase Brown | RB | R12 | N-1 (was R13) |
+| Glizzy Guzzler (LoochCarluccio) | Bijan Robinson | RB | R1 | N-1, **last eligible keep year** |
+| Glizzy Guzzler (LoochCarluccio) | Caleb Williams | QB | R4 | |
+| Glizzy Guzzler (LoochCarluccio) | Jaxson Dart | QB | R13 | |
+| Mass General Hospital (pdustin) | Kyle Pitts | TE | R10 | |
+| Mass General Hospital (pdustin) | Blake Corum | RB | R12 | FA add |
+| Mass General Hospital (pdustin) | Jaxon Smith-Njigba | WR | R13 | N-1 (was R14) |
+| Still at RPI (PeterCrisileo) | Brock Bowers | TE | R7 | N-1 (was R8) |
+| Still at RPI (PeterCrisileo) | Drake Maye | QB | R12 | N-1 (was R13) |
+| Still at RPI (PeterCrisileo) | Luther Burden | WR | R14 | |
+| Ethan's Younglings (Edeecher) | Jahmyr Gibbs | RB | R1 | N-1, **last eligible keep year** |
+| Ethan's Younglings (Edeecher) | Jayden Daniels | QB | R4 | N-1 (was R5) |
+| Ethan's Younglings (Edeecher) | Emeka Egbuka | WR | R11 | |
+| DannyBC1 | Amon-Ra St. Brown | WR | R1 | N-1, **last eligible keep year** |
+| DannyBC1 | Kyren Williams | RB | R2 | N-1 (was R3) |
+| DannyBC1 | Trey McBride | TE | R5 | N-1 (was R6) |
+| Big Mommy Milkers (jpalmeri1616) | Davante Adams | WR | R5 | |
+| Big Mommy Milkers (jpalmeri1616) | Zay Flowers | WR | R6 | |
+| Big Mommy Milkers (jpalmeri1616) | Rico Dowdle | RB | R12 | FA add — now **Pittsburgh** |
 
-**Pairs to treat as ONE decision, made in advance:** 8+13 · 48+53 · 68+73 · 88+93 · 148+153.
+**Keeper rule recap:** keep up to 3; cost = 2025 draft round (first keep) or one round cheaper than last year's cost (N-1, if already kept); R1-drafted players can never be kept; FA/waiver adds cost flat R12; max 3 consecutive years kept.
 
 ---
 
-# PART A — THREE FULL MOCK DRAFTS
+## 4. POSITION TIERS — LIVE POOL
+
+Team assignments corrected as of today (Aug 24). Format-fit note (✓PD = possession/first-down profile, benefits from scoring) called out where relevant. Andrew's needs after keepers: **QB2, RB2, WR2, TE (zero rostered), 1 FLEX, DEF, bench.** Every player below is ranked in order within his tier; the reason given is *why he ranks where he does relative to the players next to him*, not generic praise.
+
+### QB (Superflex — draft two, this format inflates QB value hard)
+
+**Tier 1 — elite SF1, top overall targets:**
+1. Lamar Jackson — highest rushing floor at the position; the rush-first-down bonus rewards him more than any pure pocket passer.
+2. Josh Allen — nearly Lamar's rushing volume plus better contested-catch weapons; below Lamar only on marginally lower rushing ceiling.
+3. Jalen Hurts — Eagles' scheme funnels goal-line runs to Saquon instead of Hurts, capping his rushing upside just below Allen/Lamar.
+4. Joe Burrow — best pure arm/volume in the pool, but zero rushing floor is a real gap vs. the three ahead in a rush-bonus format.
+5. Patrick Mahomes — still elite, ranked below Burrow on a thinner weapons corps after offseason turnover.
+6. Justin Herbert — talent on par with Mahomes, but Chargers' run-first tendencies and shakier weapons keep counting stats a tier below.
+
+**Tier 2 — strong SF QB1 floor:**
+1. C.J. Stroud — best of this tier: big arm, real rushing chunks, weapons continuity into year three.
+2. Brock Purdy — efficient, low weekly-floor risk in the 49ers scheme; below Stroud on lower ceiling/no rushing.
+3. Baker Mayfield — high-volume passer in Tampa's pass-funnel offense, similar floor to Purdy but more TD-dependent variance.
+4. Jared Goff — elite protection/weapons in Detroit, but zero rushing floor caps this format's bonus upside vs. Mayfield.
+5. Trevor Lawrence — real talent flashes, but weapon-usage inconsistency and injury history drop him below the established names above.
+6. Matthew Stafford — still efficient, but age/durability risk caps his ceiling relative to the younger arms above.
+7. Geno Smith (now **NY Jets**) — steady game-manager floor, but a brand-new offense/weapons context is a genuine unknown, ranking him last of tier 2.
+
+**Tier 3 — streaming/QB2 SF value:**
+1. Jordan Love — best ceiling in this tier if his pass-catchers stay healthy.
+2. Sam Darnold — coming off a strong prior season with established rapport with his weapons; ranked just below Love on a lower ceiling.
+3. Daniel Jones — some rushing juice, but weaker weapons than Darnold behind him.
+4. J.J. McCarthy — unproven as a full-season starter; ranked above Young on Minnesota's better supporting weapons.
+5. Bryce Young — Carolina's retooled weapons give him more upside than the veterans below on pure youth/trajectory.
+6. Kirk Cousins — stable game manager, but on the decline arc with unclear starting security.
+7. Aaron Rodgers — name-value spot-start dart with real decline risk at this stage of his career.
+8. Cam Ward — rookie tools (arm, mobility) are real, but rookie-QB bust variance drops him below the veteran streamers above.
+9. Jacoby Brissett (Andrew's own, unrostered) — pure backup/bye-week fill only; last of the startable names.
+
+**Deep/dynasty stash (skip in redraft unless it's the very last pick):**
+1. Shedeur Sanders
+2. Tyler Shough
+3. Quinn Ewers
+4. Carson Wentz
+5. Fernando Mendoza (rookie, LV) — buried behind Cousins, effectively zero 2026 snap outlook, ranked last.
+
+### RB
+
+**Tier 1 — true elite RB1, first-round-caliber:**
+1. Saquon Barkley — best pure workhorse volume + efficiency left in the pool, RB1 overall among live options.
+2. Christian McCaffrey — elite talent/target share when healthy; below Saquon only on recent injury-history durability risk.
+3. Jonathan Taylor — bell-cow volume in a run-funnel offense; trails McCaffrey on receiving-game involvement, which this half-PPR/PD format rewards more.
+4. Ashton Jeanty (Las Vegas) — true rookie workhorse volume projected; **flag: sprained ankle Aug 23, but multiple reports say he avoided serious injury and is expected fine** — ranked below Taylor only on that unresolved-report uncertainty, not talent.
+5. Breece Hall — proven receiving-back skill set fits the possession scoring well, but touchdown competition/offense quality keep him below the three ahead.
+6. Omarion Hampton — rookie with a clear lead role, ranked here on unproven in-season workload vs. the established names above.
+7. De'Von Achane — explosive, but a historically lighter early-down/goal-line share is the separator vs. Hampton and Hall.
+
+**Tier 2 — strong RB2/weekly-flex starters:**
+1. Derrick Henry — still elite volume and goal-line role; top of tier 2 on proven recent production, but the age curve (32) is why he's out of tier 1.
+2. TreVeyon Henderson — clear passing-down role in a good offense; ranked above Harvey on more settled early-season role certainty.
+3. RJ Harvey — real rookie opportunity but shares backfield touches, slightly less proven than Henderson.
+4. Quinshon Judkins — early-down and goal-line volume, format-friendly; ranked above Jacobs purely because Jacobs carries real off-field risk below.
+5. Josh Jacobs (Green Bay) — talent equal to or above this tier, but priced down here specifically for a groin injury (not expected long-term) **plus** a real unresolved possible suspension tied to a May arrest — genuine month-1 risk.
+6. Travis Etienne (now **New Orleans**) — new offense/backfield context adds uncertainty; below Jacobs on pure talent but with a cleaner risk profile (no legal exposure).
+7. Aaron Jones — still involved in the passing game (✓PD chain-mover fit), but age/decline risk is why he sits below the younger committee options above.
+
+**Tier 3 — committee/possession RB2-FLEX (✓PD chain-movers):**
+1. David Montgomery (now **Houston**) — new offense, but a proven early-down/goal-line role; top of this tier on volume certainty.
+2. Jaylen Warren — clear passing-down role, strong ✓PD fit, but shares early-down work which caps him just below Montgomery.
+3. Tony Pollard — steady volume in a crowded backfield picture, a comparable floor to Warren.
+4. Najee Harris — solid between-the-tackles volume; ranked here on a slightly lower offense ceiling than the names above.
+5. D'Andre Swift — receiving usage fits ✓PD scoring, but a committee touch share is a real cap.
+6. Jordan Mason (Andrew's own, unrostered) — backup/committee role; cheap stash since Andrew already owns rights.
+7. Javonte Williams (Andrew's own, unrostered) — similar committee profile to Mason, ranked alongside for the same reason.
+
+**Late-round/dart tier:**
+1. Jaydon Blue
+2. Isaiah Davis
+3. Trey Benson
+4. Woody Marks
+5. Kenny Gainwell
+6. Tyler Allgeier
+7. Kyle Monangai
+8. Kareem Hunt (unsigned free agent) — zero role unless he signs, ranked last of the darts on that basis alone.
+
+**Do not roster:** Joe Mixon (Andrew's own, unrostered) — unsigned, no known suitor, a chronic unresolved foot/circulation issue, hasn't played since Jan 2025, and reportedly believes his career may be over. Explicitly flagged avoid — not a live option tonight regardless of where he'd otherwise slot.
+
+### WR (first-down bonus especially rewards the possession/slot types in Tier 3)
+
+**Tier 1 — true elite WR1:**
+1. Ja'Marr Chase — best pure talent/target-share/QB combination left in the pool, WR1 overall tonight.
+2. CeeDee Lamb — elite target volume; just below Chase on a slightly less explosive passing offense.
+3. Justin Jefferson — top-tier talent, trailing Chase/Lamb only on recent QB-situation volatility in Minnesota.
+4. Puka Nacua (Andrew's own, unrostered) — the actual 2025 overall WR1 (129 rec/1715 yds/10 TD, First-Team All-Pro) and fully healthy talent-wise, but ranked below the clean-record names above because of a real possible Week 1 suspension tied to an ongoing civil case — Schefter says he "could be suspended," his court date was pushed past Sept 7 so he's more-likely-than-not available, but that residual risk is why he's not 1.1 tonight.
+5. Malik Nabers — massive target-share talent; below Nacua's talent tier only on a slightly less proven QB situation.
+6. Garrett Wilson — high-volume target hog, trailing Nabers marginally on offensive efficiency.
+7. Nico Collins — elite per-target efficiency, below Wilson because a run-heavier offense caps his raw volume.
+8. Drake London — strong target share; quarterback play is the clear limiter vs. the names above.
+9. A.J. Brown (now **New England**) — elite talent, but bottom of tier 1 purely on new-team/new-QB chemistry risk — unproven target share in a brand-new offense.
+
+**Tier 2 — strong weekly WR2:**
+1. Terry McLaurin — reliable high-floor volume, top of tier 2 on target-share certainty.
+2. DK Metcalf — big-play upside, but more TD/boom-bust dependent than McLaurin, which this scoring format discounts.
+3. Tee Higgins — strong when healthy; below Metcalf on recent injury-availability questions.
+4. Courtland Sutton — steady target share; offense ceiling is a tier below the names above.
+5. Deebo Samuel (now **San Francisco**, re-signed) — versatile touches with some rush-first-down upside, but below Sutton on age/usage-share uncertainty in a crowded skill group.
+6. DJ Moore (likely now **Buffalo**) — talent good enough for tier-1 territory, but a likely team change adds real role/target-share uncertainty that drops him here.
+7. Mike Evans (now **San Francisco**, 3yr/$42M, new WR1 there) — turning 33 this month with a brand-new team/QB/scheme simultaneously, and his contested-catch/TD-dependent profile fits this first-down-bonus possession format worse than the chain-movers around him.
+8. Chris Godwin — proven possession skill set (✓PD), but recent injury history is the separator vs. healthier names above.
+9. George Pickens — big-play talent, bottom of tier 2 on lower target-share certainty and volatile usage.
+
+**Tier 3 — ✓PD possession specialists, undervalued in this scoring:**
+1. Ladd McConkey — highest target share of this group; the slot-possession profile is close to ideal for this format.
+2. Jauan Jennings — proven chain-mover role, just below McConkey on lower overall target volume.
+3. Khalil Shakir — efficient possession profile (✓PD), trailing Jennings slightly on offense scoring environment.
+4. Jakobi Meyers — reliable possession target; team/offense context is a notch below the names above.
+5. DeVonta Smith (Andrew's own, unrostered) — clear possession WR2 role (✓PD); already owned, easy stash-and-start.
+6. Tetairoa McMillan (Andrew's own, unrostered) — promising rookie profile, ranked alongside Smith on unproven-but-real target share.
+7. Stefon Diggs (now **Washington**) — talent still there, but new-team integration plus the age curve is why he's near the bottom of this tier.
+8. Michael Pittman (now **Pittsburgh**) — new-team role uncertainty, below Diggs on a less proven target share in the new offense.
+
+**Tier 4 — WR3/depth, real weekly-flex ceiling:**
+1. Jaylen Waddle — talent above this tier line, but crowded target competition in Miami caps volume; top of tier 4 regardless.
+2. Brian Thomas — big-play upside, below Waddle on less consistent second-year target share.
+3. Rome Odunze — ascending role, trailing Thomas on quarterback-play uncertainty.
+4. Chris Olave — target hog when healthy, ranked here on recent injury/availability concerns.
+5. Marvin Harrison Jr. — talent flashes, below Olave on unsettled QB situation in his second year.
+6. Jordan Addison — steady WR2/3 role; offense ceiling is a tier below the names above.
+7. Xavier Worthy — big-play speed, but a boom-bust/deep-threat profile fits this possession-scoring format worse than the names above.
+8. Jayden Reed — solid role, trailing Worthy because a crowded receiver room caps his targets.
+9. Wan'Dale Robinson — mildly possession-leaning (soft ✓PD), but a lower overall ceiling than the names above.
+10. Christian Watson — big-play/TD-dependent profile is a poor fit for this format, near the bottom of tier 4.
+11. Darnell Mooney — steady but unspectacular, rounds out tier 4 on the lowest target-share certainty of the group.
+
+**Late/dart tier:**
+1. Kayshon Boutte — traded to Houston literally today (Aug 24); brand-new landing spot with an unclear immediate role, pure speculative dart until that clarifies.
+2. Troy Franklin — above Mitchell on more established target share.
+3. Adonai Mitchell — talent unproven at the NFL level, below Franklin on unclear role.
+4. Michael Wilson (Andrew's own, unrostered) — depth stash since Andrew already owns rights.
+5. Keenan Allen (unsigned free agent) — zero role unless/until he signs somewhere, ranked last on that basis.
+
+### TE (Andrew has zero rostered — priority need)
+
+**Tier 1 — true elite TE1:**
+1. Travis Kelce (Andrew's own, unrostered) — confirmed returning for his 14th season as Kansas City's clear, unchallenged TE1; only real watch item is normal age-decline turning 37 in October, not retirement risk — ranked at the very top on role certainty alone.
+2. George Kittle — just activated off PUP list Aug 23 and on track for Week 1, with the earlier Achilles concern now resolved/stale; ranked right behind Kelce only because that health clearance is a day old vs. Kelce's zero-doubt workload.
+
+**Tier 2 — strong TE1/high-floor starters:**
+1. T.J. Hockenson — full-season role, elite target share for the position, top of tier 2.
+2. Mark Andrews — proven red-zone role, below Hockenson on recent target-share erosion in a crowded passing game.
+3. Dallas Goedert — steady possession role (✓PD), lower ceiling than the two ahead.
+4. Tyler Warren — strong rookie-year breakout profile, below Goedert on less proven full-season volume.
+5. Jake Ferguson — solid target share, trailing Warren on offense ceiling.
+6. Hunter Henry — reliable red-zone role but lower overall target volume than the names above.
+7. David Njoku (now **LA Chargers**) — new-team role uncertainty puts him at the bottom of tier 2.
+
+**Tier 3 — ✓PD possession TEs, format-friendly value:**
+1. Dalton Kincaid — high target share, a possession profile that fits this bonus scoring well; top of tier 3.
+2. Tucker Kraft — ascending role, strong ✓PD chain-mover fit, just below Kincaid on slightly lower volume.
+3. Chig Okonkwo — steady underneath role (✓PD), trailing Kraft on offense/scoring environment.
+4. Colby Parkinson (Andrew's own, unrostered) — possession-leaning role; already owned, cheap stash.
+
+**Late/dart tier:**
+1. Kenyon Sadiq (rookie, NYJ) — clearest immediate-opportunity rookie TE, since the Jets' TE room was unproductive last year; top of this tier on pure opportunity.
+2. Michael Mayer — solid but buried on the depth chart, below Sadiq on a much less immediate role.
+3. Juwan Johnson — depth/streaming option only.
+4. Harold Fannin — rookie dart, unproven role.
+5. Oronde Gadsden — rookie dart, ranked last on the least clarity of opportunity in this group.
+
+### DEF
+DEF scoring was buggy/overpowered last year and a fix is flagged but **unconfirmed as of tonight** — don't overpay. Draft DEF late (last 2 rounds) regardless of matchup-streaming upside until the ruleset is verified live at the table.
 
 ---
 
-## SCENARIO A — "QB RUN EARLY"
-### Five QBs go in the first six picks. An elite skill player falls to 8.
+## 5. 2026 BYE WEEKS
 
-### How Round 1 plays out
-
-| Pick | Team | Selection |
-|---|---|---|
-| 1 | Mass General (pdustin) | **Jalen Hurts** QB |
-| 2 | havicht | **Josh Allen** QB |
-| 3 | Pabst | Puka Nacua WR |
-| 4 | Big Mommy | **Lamar Jackson** QB |
-| 5 | Still at RPI | **Joe Burrow** QB |
-| 6 | DannyBC1 | **Justin Herbert** QB |
-| 7 | Ethan's Younglings | Ja'Marr Chase WR |
-| **8** | **ANDREW** | **→ your pick** |
-
-**Board at 8:** Christian McCaffrey, Ashton Jeanty, Jonathan Taylor, CeeDee Lamb, Drake London, Trey McBride, Trevor Lawrence, A.J. Brown, Malik Nabers.
-
-### 🟢 PICK 8 — **CHRISTIAN McCAFFREY (RB, SF)**
-Five quarterbacks in six picks pushed a Tier-1 overall asset into your lap. CMC is the only remaining player with a plausible 100-catch season *and* 250 carries — in a 0.5-FD league that is two independent first-down engines in one roster spot. Take him and plan to draft **Jordan James at pick 93** as the highest-value handcuff in football.
-*If you're age-averse: Ashton Jeanty is the identical pick with a decade of runway. Either is correct. Do not take Lamb over both.*
-
-**9 Glizzy → Ashton Jeanty RB · 10 jomud → CeeDee Lamb WR · 11 jomud (turn double-pick) → Trevor Lawrence QB · 12 Glizzy forfeits (R2 keeper cost)**
-
-### 🟢 PICK 13 — **TREY McBRIDE (TE, ARI)**
-He survived — Ethan's used their pick 7, right before yours, on Chase instead of him; Glizzy grabbed the last bell-cow (Jeanty) at 9; and jomud's turn-double at 10–11 went to Lamb and Lawrence instead. **Do not think about it.** 169 targets, 126 catches, seven rival rosters with zero tight end. He scores like a WR1 in this format and the drop from him to TE2 is ~85 points.
-
-*Picks 14–24 burn: Jonathan Taylor, Brock Purdy QB, Drake London, Javonte Williams, Kyler Murray QB, A.J. Brown, Patrick Mahomes QB, Breece Hall, Josh Jacobs.*
-**QBs gone entering pick 28: 9** (Hurts, Allen, Lamar, Burrow, Herbert in Rd1 + Lawrence at 11 + Purdy, Murray, Mahomes in the 14–24 window).
-
-### 🟢 PICK 28 — **JORDAN LOVE (QB, GB)**
-Murray, Lawrence, Herbert, Mahomes and Purdy are all off the board. Love is the **last** name on your six-deep decision list and the last genuine weekly SUPERFLEX starter. Nine QBs are gone with ~4 more coming before pick 48 — if you pass here you are choosing between Mayfield, McCarthy and Cam Ward. **In a QB-run scenario the deadline moves UP, not down. Take the QB.**
-
-*Picks 29–47 burn: Nabers, Garrett Wilson, Tee Higgins, DeVonta Smith, Achane, Judkins, McConkey, Irving, Olave, Hubbard, Rice, Tyler Warren TE, C.J. Stroud QB, Egbuka.*
-
-### 🟢 PICK 48 — **DJ MOORE (WR, CHI)**
-Your WR2. Target-hog underneath role, first-down volume, ADP suppressed by two mediocre real-life seasons. Godwin and Waddle are the co-equal alternatives.
-
-**49 Glizzy → Colston Loveland TE · 51 jomud → Kyle Pitts TE · 52 Glizzy → Jaylen Waddle**
-
-### 🟢 PICK 53 — **JAYLEN WARREN (RB, PIT)**
-The designated Rodgers checkdown back. In a league that pays 0.5 for the reception *and* 0.5 for the first down, a 6-catch/40-yard afternoon is 10 points before he touches the end zone. **You now leave pick 53 with a complete starting lineup minus DEF**, which is the whole objective before the 13-live-pick Round-7 wall.
-
-*Picks 54–67 burn: LaPorta, Swift, Henderson, Pollard, Godwin, Mayfield QB, Skattebo, Kraft, Aaron Jones, Adams, Evans, Odunze, McCarthy QB.*
-
-### 🟢 PICK 68 — **JAKOBI MEYERS (WR, LV)**
-Pure format arbitrage. Low aDOT, high target share, chain-mover. Two to three rounds of value versus standard ADP because nobody else's rankings pay for first downs.
-
-**69 Glizzy → Travis Kelce · 70 jomud → Jayden Reed · 71 jomud → Woody Marks · 72 Glizzy → Cam Ward QB**
-
-### 🟢 PICK 73 — **STEFON DIGGS (WR, NE)**
-Woody Marks got sniped at 71. Diggs is the fallback: volume, slot usage, cheap. *If you'd rather have running back insurance behind CMC, Rico Dowdle is the pivot.*
-
-### 🟢 PICK 88 — **JOSH DOWNS (WR, IND)**
-80% slot rate — the highest in the NFL. This is the single largest ADP-vs-format gap available after round 6.
-
-### 🟢 PICK 93 — **JORDAN JAMES (RB, SF)**
-You own CMC. This is the highest-leverage handcuff in football and a standalone FLEX the week CMC tweaks anything.
-
-### 🟢 PICK 108 — **MALIK WILLIS (QB, GB)**
-44.8 rush yards per game as a starter — the format double-pays that. More importantly this is **a trade asset**: havicht, Mass General, DannyBC1 and Big Mommy will each be one injury away from a dead SUPERFLEX slot all season.
-
-### 🟢 PICK 128 — **JAYDEN HIGGINS (WR, HOU)** · 🟢 **148 — GREG DULCICH (TE, MIA)** · 🟢 **153 — HOUSTON DST**
-
-### FINAL ROSTER — SCENARIO A
-
-| Slot | Player |
+| Week | Teams on bye |
 |---|---|
-| **QB** | Bo Nix *(keeper)* |
-| **RB** | Christian McCaffrey |
-| **RB** | Kenneth Walker III *(keeper)* |
-| **WR** | DJ Moore |
-| **WR** | Jakobi Meyers |
-| **TE** | **Trey McBride** |
-| **FLEX** | Jaylen Warren |
-| **FLEX** | Jameson Williams *(keeper)* |
-| **SUPERFLEX** | **Jordan Love** |
-| **DEF** | Houston |
-| Bench 1 | Malik Willis QB |
-| Bench 2 | Jordan James RB |
-| Bench 3 | Stefon Diggs WR |
-| Bench 4 | Josh Downs WR |
-| Bench 5 | Jayden Higgins WR |
-| Bench 6 | Greg Dulcich TE |
+| 5 | CAR, KC |
+| 6 | CIN, DET, MIA, MIN |
+| 7 | BUF, JAX, LAC, WAS |
+| 8 | HOU, NO, NYG, SF |
+| 9 | PIT, TEN |
+| 10 | CHI, DEN, PHI, TB |
+| 11 | **ATL, CLE, GB, LAR, NE, SEA — 6 teams, unusually large pileup, flag this** |
+| 12 | none |
+| 13 | BAL, IND, LV, NYJ |
+| 14 | ARI, DAL |
 
-**Grade: A.** Elite RB1, the only elite TE, two startable QBs, and five possession receivers. Weakness: QB room is Nix/Love rather than an elite arm — acceptable, because you spent picks 8 and 13 on the two scarcest assets in the draft.
+Playoffs start Week 15 — the Week 11 six-team pileup and the Week 13/14 byes matter more for playoff-roster construction (bench depth, stream targets) than the early byes do. Build bench with that in mind, not just Week 5–10.
 
 ---
 
-## SCENARIO B — "SKILL PLAYERS FIRST"
-### Rivals hammer RB/WR early. An elite QB is still on the board at 8.
+## 6. ROUND-BY-ROUND STRATEGY — ANDREW'S 13 LIVE PICKS
 
-### How Round 1 plays out
+**Pick 8 (R1):** Best player available from Nacua / Chase / Lamb / Jefferson / Wilson / London / A.J. Brown / Mahomes / Herbert / Hurts tier — with 3 of the true elite RBs (Bijan, Gibbs, plus early run) already gone to keepers, expect a strong WR or top-tier SF QB still sitting here. Take the clear best player; don't reach for need yet.
 
-| Pick | Team | Selection |
-|---|---|---|
-| 1 | Mass General (pdustin) | Ja'Marr Chase WR |
-| 2 | havicht | Christian McCaffrey RB |
-| 3 | Pabst | Puka Nacua WR |
-| 4 | Big Mommy | Ashton Jeanty RB |
-| 5 | Still at RPI | Josh Allen QB |
-| 6 | DannyBC1 | Jonathan Taylor RB |
-| 7 | Ethan's Younglings | CeeDee Lamb WR |
-| **8** | **ANDREW** | **→ your pick** |
+**Pick 13 (R2):** One keeper (Bijan at #9) already known to fall before this. Second-tier elite RB/WR run likely underway. Target whichever of RB/WR/QB1 is deepest relative to the tier that just got picked clean above.
 
-**Board at 8:** Lamar Jackson, Joe Burrow, Jalen Hurts, Herbert, Lawrence, Mahomes · Drake London, A.J. Brown, Nabers · **Trey McBride** · Javonte Williams, Breece Hall, Josh Jacobs, Achane.
+**Pick 28 (R3):** 14-pick gap from 13, only 2 pre-known (Kyren Williams #15, James Cook #23). This is a real uncertainty window — build a short flexible list rather than one target. Good spot to lock RB2 or WR2 depending on run behavior.
 
-### 🟢 PICK 8 — **TREY McBRIDE (TE, ARI)** ← the counterintuitive one
-**All four bell-cows are gone.** The "pick 8 is your only bell-cow window" rule has expired — there is no workhorse left to protect. So the question becomes: *which of my two remaining elite targets is more likely to survive?*
+**Pick 33 — FORFEIT (Walker III auto-fills).**
 
-- **Ethan's Younglings picks immediately before you at slot 7 — QB-solved, zero tight ends — and just took Lamb over McBride.** That restraint doesn't guarantee anything about the next team.
-- **Glizzy Guzzler picks immediately after you at slot 9, with the identical profile** (QB-solved, zero TE) and is on the clock one pick after yours.
-- Lamar Jackson / Hurts / Herbert / Lawrence / Mahomes, by contrast, have every incentive to survive — neither Ethan's nor Glizzy will touch a quarterback, and jomud's turn-double at 10–11 is a WR/RB spend, not a QB threat.
+**Pick 48 (R5):** Two more keepers fall just before (Prescott #31, Caleb Williams #32) — minor signal that QB is thinning at the position turn. If SUPER_FLEX QB2 need is still open, this is a reasonable pivot point; otherwise keep stacking RB/WR/TE value.
 
-**Take McBride at 8. The QB comes to you at 13.**
+**Pick 53 (R6):** Only 4 picks from 48, all live — tight, high-value window right after your own pick. Good place to grab a player you were torn on at 48.
 
-**9 Glizzy → Malik Nabers WR (McBride sniped, they pivot) · 10 jomud → Drake London WR · 11 jomud (turn double-pick) → Javonte Williams RB · 12 Glizzy forfeits (R2 keeper cost)**
+**Pick 68 (R7):** Round 7 has zero league-wide forfeits — fully competitive round, expect real starters still moving. TE1 tier (Kittle/Kelce/Andrews/Hockenson, if any remain) is worth prioritizing here if TE is still empty.
 
-### 🟢 PICK 13 — **LAMAR JACKSON (QB, BAL)**
-Exactly as modeled: zero QBs came off between your picks. You just bought the QB1 overall at pick 13 in a superflex league, and you pair him with a $12th-round Bo Nix. **This is the best QB room in the league for a combined cost of pick 13 plus a 12th.** Burrow, Hurts, Herbert, Lawrence and Mahomes are all acceptable substitutes here — take whichever is best available, preferring rushing equity: **Hurts > Lamar > Lawrence > Herbert > Mahomes > Burrow** in this scoring.
+**Pick 73 (R8):** Also a zero-forfeit round. Same logic as 68 — treat rounds 7–9 as the last stretch with legitimate weekly-starter talent before the pool thins into committee/depth pieces.
 
-*Picks 14–24 burn: Burrow QB, Hurts QB, Herbert QB, Lawrence QB, Breece Hall, A.J. Brown, Mahomes QB.*
+**Pick 88 (R9):** **This follows the fully-live 73→88 gap — the single highest-variance stretch on the board.** Come into pick 73 with a wide list (6–8 acceptable names across 2–3 positions), because nothing in that 14-pick window is predictable. By 88, fill whatever hole is now most exposed — likely FLEX or a positional need that got run on.
 
-### 🟢 PICK 28 — **JOSH JACOBS (RB, GB)**
-You have exactly one running back. Jacobs is a genuine 250-touch bell-cow with 40+ catches and goal-line work; the conduct-risk discount is why he's here at 28. Achane, Judkins and Irving are the alternatives — **prefer Jacobs' volume to Achane's big-play profile in this scoring.**
+**Pick 93 (R10):** 4 picks after 88, all live. Depth/value pick — best-player-available among remaining starters or high-upside backups.
 
-*Picks 29–47 burn: McConkey, Higgins, G. Wilson, Olave, Achane, DeVonta Smith, Irving, Judkins, Rice, Hubbard, Egbuka, Kyler Murray QB, Purdy QB, Tyler Warren TE.*
+**Pick 108 — FORFEIT (Bo Nix auto-fills).**
 
-### 🟢 PICK 48 — **DJ MOORE (WR, CHI)** · 🟢 PICK 53 — **JAYLEN WARREN (RB, PIT)**
-Same as Scenario A and for the same reason: **you must exit pick 53 with all nine non-DEF starters filled** before the Round-7 wall. After 53 your lineup reads Lamar / Walker / Jacobs / Moore / +1 WR / McBride / J. Warren / Jameson Williams / Nix.
+**Pick 113 (R12):** Heaviest forfeit round league-wide (5 of 10 teams) — Skattebo, Irving, Chase Brown, plus more fall around this window. Real market inefficiency: whoever's left in the RB/committee tier may be undervalued because so many rosters are frozen on keeper slots. Good round to grab a sneaky-good committee back or a TE2.
 
-### 🟢 PICK 68 — **JAKOBI MEYERS (WR, LV)** — your WR2 proper.
-### 🟢 PICK 73 — **MICHAEL PITTMAN JR. (WR, IND)** — 100+ target floor, first-down machine, FLEX-quality depth.
-### 🟢 PICK 88 — **JOSH DOWNS (WR, IND)**
-### 🟢 PICK 93 — **JUSTICE HILL (RB, BAL)** — receiving back behind a 32-year-old Derrick Henry; pure checkdown-first-down asset. *Alternative: whoever is Josh Jacobs' direct backup, as insurance on your RB2.*
-### 🟢 PICK 108 — **TYLER SHOUGH (QB, NO)** — QB3 as a trade chip, not as a player.
-### 🟢 PICK 128 — **ANTONIO WILLIAMS (WR, WAS)** · 🟢 **148 — BRENTON STRANGE (TE, JAX)** · 🟢 **153 — SEATTLE DST**
+**Pick 128 — FORFEIT (Jameson Williams auto-fills).**
 
-### FINAL ROSTER — SCENARIO B
+**Pick 133 (R14):** DEF/streaming-depth window opens. Also fine spot for a QB3 dart or a rookie stash (Jeremiyah Love, Jadarian Price, Carnell Tate, Jordyn Tyson — see Watch List).
 
-| Slot | Player |
-|---|---|
-| **QB** | **Lamar Jackson** |
-| **RB** | Josh Jacobs |
-| **RB** | Kenneth Walker III *(keeper)* |
-| **WR** | DJ Moore |
-| **WR** | Jakobi Meyers |
-| **TE** | **Trey McBride** |
-| **FLEX** | Jaylen Warren |
-| **FLEX** | Jameson Williams *(keeper)* |
-| **SUPERFLEX** | Bo Nix *(keeper)* |
-| **DEF** | Seattle |
-| Bench 1 | Tyler Shough QB |
-| Bench 2 | Justice Hill RB |
-| Bench 3 | Michael Pittman Jr. WR |
-| Bench 4 | Josh Downs WR |
-| Bench 5 | Antonio Williams WR |
-| Bench 6 | Brenton Strange TE |
+**Pick 148 (R15):** Fully live round (zero league forfeits). Last realistic window for a bench piece you actually believe in — handcuffs, injury-return QB, or a rookie with a real role.
 
-**Grade: A+.** You captured the two positions with the worst supply ratios *and* the best QB room, because you read the seat map instead of the rankings. Weakness: RB corps is Walker/Jacobs/Warren with no elite ceiling — fine, since your QB and TE edges are league-winning.
+**Pick 153 (R16, final pick):** Fully live. Pure dart throw / DEF-2 / lottery ticket. Nothing to lose.
 
 ---
 
-## SCENARIO C — "CHAOS / BEST CASE"
-### A QB run plus a camp-narrative slide pushes Ja'Marr Chase to pick 8.
+## 7. MOCK SCENARIOS (tight, not exhaustive)
 
-### How Round 1 plays out
+**Scenario A — WR runs early:** If picks 1–7 go RB/QB-heavy (plausible given Bijan/Gibbs/Amon-Ra already keeper-gone and elite-RB scarcity), Nacua or a top-3 WR could still be sitting at 8. Take the WR, then at 13 pivot to best-available SF QB since the QB pool is deep behind Mahomes/Allen/Lamar/Herbert.
 
-| Pick | Team | Selection |
-|---|---|---|
-| 1 | Mass General (pdustin) | Joe Burrow QB |
-| 2 | havicht | Josh Allen QB |
-| 3 | Pabst | Lamar Jackson QB |
-| 4 | Big Mommy | Christian McCaffrey RB |
-| 5 | Still at RPI | Ashton Jeanty RB |
-| 6 | DannyBC1 | Jalen Hurts QB |
-| 7 | Ethan's Younglings | Puka Nacua WR |
-| **8** | **ANDREW** | **→ your pick** |
+**Scenario B — QB run early (common in SF leagues):** If 3+ QBs go in the first 7 picks, RB/WR value slides to 8. Take the best true RB1 available (Saquon/Jeanty-risk-adjusted/McCaffrey tier) — SF QB2 value is deep enough to wait to pick 48 or later given the Prescott/Caleb Williams keeper signal right before that pick.
 
-### 🟢 PICK 8 — **JA'MARR CHASE (WR, CIN)** — no deliberation, no clock burn
-The value board's own instruction: *"If Chase or Nacua improbably falls, take him instantly."* He is the highest-floor, highest-ceiling non-QB in football and a 125-target-minimum first-down source. Chase at 8 is a two-round overpay in your favor. **Click it in under 10 seconds.**
-
-**9 Glizzy → Trey McBride TE ← the snipe you must be prepared for · 10 jomud → CeeDee Lamb WR · 11 jomud (turn double-pick) → Trevor Lawrence QB · 12 Glizzy forfeits (R2 keeper cost)**
-
-### 🟢 PICK 13 — **JONATHAN TAYLOR (RB, IND)**
-McBride is gone. **Rule: when McBride is gone, do NOT reach for TE2 at 13.** The McBride-to-Loveland drop is huge; the Loveland-to-Kelce drop is small. Take the last true bell-cow instead. JT plus Kenneth Walker gives you two uncontested workhorses — the scarcest commodity in the draft, 1.00 supply-to-demand.
-
-*Picks 14–24 burn: London, Herbert QB, Javonte Williams, Kyler Murray QB, Breece Hall, A.J. Brown, Mahomes QB.*
-**QBs gone entering 28: 8** (Burrow, Allen, Lamar, Hurts in Rd1 + Lawrence at 11 + Herbert, Murray, Mahomes in the 14–24 window).
-
-### 🟢 PICK 28 — **BROCK PURDY (QB, SF)**
-Murray, Lawrence, Herbert and Mahomes are gone. Purdy is next on the list and is a genuine weekly SUPERFLEX starter in a high-completion, high-first-down offense. **This is the QB deadline for practical purposes** — the pool at 48 is Mayfield/McCarthy/Ward. *If Jordan Love is somehow still there, Love is co-equal.*
-
-*Picks 29–47 burn: Nabers, G. Wilson, Higgins, Jacobs, Achane, McConkey, Judkins, DeVonta Smith, Irving, Hubbard, Olave, Rice, Love QB, Egbuka.*
-
-### 🟢 PICK 48 — **COLSTON LOVELAND (TE, CHI)**
-The TE punt now has to be resolved. Five rival teams still have zero tight end and the tier-2 shelf — Loveland, Tyler Warren, Pitts, LaPorta, Kraft — clears completely between picks 45 and 55. You cannot risk it across a 3-live-pick gap with jomud picking at 51 also hungry for a TE. **Secure the position.**
-
-**49 Glizzy → Waddle · 51 jomud → Kyle Pitts TE (validates the pick) · 52 Glizzy → Tyler Warren TE**
-
-### 🟢 PICK 53 — **DJ MOORE (WR, CHI)** — your WR2 opposite Chase.
-### 🟢 PICK 68 — **JAYLEN WARREN (RB, PIT)** — FLEX #1, checkdown gold.
-### 🟢 PICK 73 — **MICHAEL PITTMAN JR. (WR, IND)** — FLEX #2 / WR3.
-### 🟢 PICK 88 — **JOSH DOWNS (WR, IND)**
-### 🟢 PICK 93 — **JUSTICE HILL (RB, BAL)**
-### 🟢 PICK 108 — **MALIK WILLIS (QB, GB)** — trade chip.
-### 🟢 PICK 128 — **DJ GIDDENS (RB, IND)** — direct Jonathan Taylor handcuff; league-winning if JT misses time.
-### 🟢 PICK 148 — **GREG DULCICH (TE, MIA)** · 🟢 **153 — HOUSTON DST**
-
-### FINAL ROSTER — SCENARIO C
-
-| Slot | Player |
-|---|---|
-| **QB** | Brock Purdy |
-| **RB** | **Jonathan Taylor** |
-| **RB** | Kenneth Walker III *(keeper)* |
-| **WR** | **Ja'Marr Chase** |
-| **WR** | DJ Moore |
-| **TE** | Colston Loveland |
-| **FLEX** | Jaylen Warren |
-| **FLEX** | Jameson Williams *(keeper)* |
-| **SUPERFLEX** | Bo Nix *(keeper)* |
-| **DEF** | Houston |
-| Bench 1 | Malik Willis QB |
-| Bench 2 | Justice Hill RB |
-| Bench 3 | DJ Giddens RB |
-| Bench 4 | Michael Pittman Jr. WR |
-| Bench 5 | Josh Downs WR |
-| Bench 6 | Greg Dulcich TE |
-
-**Grade: A.** Best skill-position core of the three. Weakness: **TE and QB are both merely good rather than elite.** That is the price of Chase falling, and it is a price worth paying.
+**Scenario C — balanced board (most likely):** Standard mixed run, 8 stays BPA among Nacua/Wilson/London/top-tier QB. At 13, with Bijan just gone at #9, RB tier thins fast — strongly consider locking RB2 here rather than waiting, since Andrew's only non-keeper RB depth right now is thin and rounds 3–5 skew QB-keeper-heavy (Prescott, Caleb Williams, Daniels all fall in that window), not RB.
 
 ---
 
-# PART B — DECISION FLOWCHARTS
+## 8. WATCH LIST / LATE-ROUND DARTS / HANDCUFFS
 
-## B1 — PICK 8
-
-```mermaid
-flowchart TD
-    A["PICK 8 on the clock"] --> B{"Is Chase or Nacua on the board?"}
-    B -->|"yes"| C["TAKE HIM INSTANTLY - do not think"]
-    B -->|"no"| D{"Is a true bell-cow RB available? CMC or Jeanty or Jonathan Taylor"}
-    D -->|"yes - two or more of them"| E["TAKE THE BELL-COW RB<br/>Prefer CMC then Jeanty then Taylor<br/>Plan McBride at 13"]
-    D -->|"yes - exactly one left"| F{"Is McBride also available?"}
-    F -->|"yes"| G["TAKE THE RB<br/>McBride is a coin flip at 13<br/>Backup plan is Kelce at 53"]
-    F -->|"no"| H["TAKE THE RB<br/>TE is punted - Kelce or Ferguson later"]
-    D -->|"no - all bell-cows gone"| I{"Is McBride available?"}
-    I -->|"yes"| J["TAKE TREY McBRIDE<br/>Seat 7 (before you) and seat 9 (after you) are QB-solved and TE-starved<br/>He will NOT survive - the QB will"]
-    I -->|"no"| K{"Elite QB on the board? Lamar or Hurts or Burrow"}
-    K -->|"yes"| L["TAKE THE ELITE QB<br/>Prefer rushing equity: Hurts, Lamar, Lawrence"]
-    K -->|"no"| M["TAKE BEST WR: Lamb then London then A.J. Brown"]
-```
-
-## B2 — PICK 13, keyed to what you took at 8
-
-```mermaid
-flowchart TD
-    A["PICK 13 on the clock<br/>Only 3 live picks happened since pick 8 - Glizzy at 9, then jomud's turn-double at 10-11"] --> B{"What did you take at 8?"}
-
-    B -->|"Bell-cow RB"| C{"Is McBride still there?"}
-    C -->|"yes"| D["TAKE TREY McBRIDE - largest edge on the board"]
-    C -->|"no"| E{"Is Hurts or Lawrence or Lamar there?"}
-    E -->|"yes"| F["TAKE THE QB - top-4 format arm at a QB7 price"]
-    E -->|"no"| G["TAKE BEST WR: Lamb, London, A.J. Brown<br/>DO NOT reach for TE2<br/>Kelce at 53 is the TE plan"]
-
-    B -->|"McBride"| H{"Is an elite QB there? Lamar, Hurts, Burrow, Herbert, Lawrence"}
-    H -->|"yes"| I["TAKE THE QB<br/>Best QB room in the league for pick 13 plus a 12th"]
-    H -->|"no"| J{"Is a bell-cow RB there? Javonte or Breece or Jacobs"}
-    J -->|"yes"| K["TAKE THE RB - you own only Walker"]
-    J -->|"no"| L["TAKE BEST WR"]
-
-    B -->|"Chase or Nacua"| M{"Bell-cow RB available?"}
-    M -->|"yes"| N["TAKE THE RB - Jonathan Taylor or Javonte Williams"]
-    M -->|"no"| O{"McBride available?"}
-    O -->|"yes"| P["TAKE McBRIDE"]
-    O -->|"no"| Q["TAKE ELITE QB - Herbert or Lawrence or Mahomes"]
-
-    B -->|"Elite QB"| R["TAKE McBRIDE if alive<br/>else best bell-cow RB<br/>You now MUST get RB2 at 28"]
-```
-
-## B3 — COMBINED PICKS 28 + 48, across the 14-live-pick dead zone
-
-Treat these two picks as one decision made at pick 28. Between them, expect **~4 more QBs, ~5 RBs, ~2 tier-2 TEs and ~7 WRs** to disappear.
-
-```mermaid
-flowchart TD
-    A["PICK 28 - dead zone of 14 live picks begins"] --> B{"Do you already have a QB2 you would start?"}
-    B -->|"no"| C{"Count QBs already gone"}
-    C -->|"9 or more gone"| D["TAKE A QB NOW - no exceptions<br/>Order: Murray, Lawrence, Herbert, Mahomes, Purdy, Love"]
-    C -->|"7 or 8 gone"| E{"Are two or more of Murray, Lawrence, Herbert, Mahomes, Purdy, Love still alive?"}
-    E -->|"yes"| F["You may take a skill player<br/>ONE of the six will survive to 48<br/>Take McConkey or DeVonta Smith or best RB"]
-    E -->|"no"| D
-    C -->|"6 or fewer gone"| F
-
-    B -->|"yes"| G{"Which hole is bigger?"}
-    G -->|"no TE yet"| H{"Is a tier-2 TE alive? Loveland, Tyler Warren, Pitts, LaPorta, Kraft"}
-    H -->|"three or more alive"| I["Skip TE - take best RB or WR<br/>Tier-2 TE survives to 48"]
-    H -->|"two or fewer alive"| J["TAKE THE TE AT 28 - tier clears by pick 50"]
-    G -->|"only one RB rostered"| K["TAKE RB - Jacobs, Achane, Judkins, Irving, Hubbard"]
-    G -->|"RB and TE both covered"| L["TAKE POSSESSION WR - McConkey or DeVonta Smith or Olave"]
-
-    D --> M["PICK 48"]
-    F --> M
-    I --> M
-    J --> M
-    K --> M
-    L --> M
-
-    M --> N{"Still no QB2?"}
-    N -->|"yes"| O["HARD DEADLINE - TAKE ONE NOW<br/>Cam Ward, Mayfield, McCarthy, Stroud<br/>After 48 the pool is Shough and Willis"]
-    N -->|"no"| P{"Still no TE?"}
-    P -->|"yes"| Q["TAKE TE NOW - Loveland or Pitts or LaPorta<br/>Only 3 live picks until 53 but seat 51 wants a TE"]
-    P -->|"no"| R["TAKE BEST POSSESSION WR - DJ Moore, Godwin, Waddle"]
-
-    O --> S["PICK 53 - you MUST exit with all 9 non-DEF starters filled"]
-    Q --> S
-    R --> S
-    S --> T["Take Jaylen Warren or Pollard or Skattebo for the last FLEX<br/>Next real gap is 13 live picks through a full-field Round 7"]
-```
-
-## B4 — "WHEN DO I TAKE MY QB2", keyed to QBs already off the board
-
-Count QBs gone at each of your picks. This is the only number you need to track live.
-
-```mermaid
-flowchart TD
-    A["Your turn - count QBs already drafted"] --> B{"Which pick are you on?"}
-
-    B -->|"Pick 8"| C{"QBs gone"}
-    C -->|"0 to 3"| D["DO NOT take a QB<br/>Take the bell-cow RB or Chase or Nacua"]
-    C -->|"4 or 5"| E{"Are all bell-cow RBs gone AND McBride gone?"}
-    E -->|"yes"| F["Elite QB is acceptable here"]
-    E -->|"no"| D
-
-    B -->|"Pick 13"| G{"QBs gone"}
-    G -->|"7 or more"| H["TAKE A QB if Lamar, Hurts, Lawrence, Herbert or Mahomes is alive"]
-    G -->|"5 or 6"| I{"Is Hurts or Lawrence specifically alive?"}
-    I -->|"yes"| H
-    I -->|"no"| J["Take McBride or best skill - QB at 28"]
-    G -->|"4 or fewer"| J
-
-    B -->|"Pick 28"| K{"QBs gone"}
-    K -->|"9 or more"| L["MANDATORY QB<br/>Take the best of Murray, Lawrence, Herbert, Mahomes, Purdy, Love"]
-    K -->|"7 or 8"| M{"Two or more of the six still alive?"}
-    M -->|"yes"| N["Optional - you may take skill and get a QB at 48"]
-    M -->|"no"| L
-    K -->|"6 or fewer"| N
-
-    B -->|"Pick 48"| O["ABSOLUTE HARD DEADLINE<br/>If you have no QB2, take one NOW<br/>Cam Ward or Mayfield or McCarthy or Stroud or Geno<br/>NO skill player is worth entering pick 53 without a QB2"]
-
-    B -->|"Pick 108"| P["TAKE A THIRD QB regardless<br/>Shough or Willis or Daniel Jones or Justin Fields<br/>Four rival teams have zero QB depth<br/>This is a manufactured trade asset, not a bench body"]
-```
-
-## B5 — LATE-DRAFT CLOSER, picks 108 through 153
-
-```mermaid
-flowchart TD
-    A["PICK 108 - last pick before a 15 live pick dead zone"] --> B{"Roster audit: do you own 2 QB, 3 RB, 4 WR, 1 TE?"}
-    B -->|"no"| C["FILL THE MISSING STARTER FIRST<br/>Nothing after this point can start a game"]
-    B -->|"yes"| D["TAKE QB3 - Shough or Willis or Fields<br/>Highest-EV trade chip in the draft"]
-    C --> E["PICK 128 - longest wait of the draft follows"]
-    D --> E
-    E --> F{"Any starter still shaky?"}
-    F -->|"yes"| G["Take the safest floor body available"]
-    F -->|"no"| H["Take your last real upside swing<br/>Jayden Higgins or Jaylin Noel or Antonio Williams<br/>or the direct handcuff to your RB1"]
-    G --> I["PICKS 148 plus 153 - one package, 4 live picks apart"]
-    H --> I
-    I --> J["148: TE2 - Dulcich or Strange or Juwan Johnson<br/>153: DEF - Houston then Seattle then Detroit"]
-    J --> K{"Did you skip a TE2 earlier and is your TE1 fragile?"}
-    K -->|"yes"| L["Take TE2 at 148 and DEF at 153 - never reverse this"]
-    K -->|"no"| M["Optional: Justin Fields at 148 as the Mahomes handcuff<br/>then DEF at 153"]
-```
+- **Emari Demercado** — direct Kenneth Walker III handcuff context is moot now; Walker left Seattle for **Kansas City**, so Seattle's backfield behind him is *not* the handcuff anymore. Seattle's actual backfield value now: **Jadarian Price** (rookie, direct beneficiary of Walker's departure + Charbonnet PUP/injury) is arguably a better pure-opportunity dart than any traditional "handcuff," and **George Holani** is the depth name behind him.
+- **Kansas City backfield behind Walker** — now the real handcuff to watch since Walker is the new KC lead back (Pacheco and Hunt both gone); whichever late-round rookie KC carries is a cheap dart, worth a very late-round flier once identified at the table.
+- **Jeremiyah Love (ARI)** — 3-down profile, weak surrounding team tempers upside; still the top rookie RB value if he falls to a bench slot.
+- **Kaelon Black (SF)** — CMC's direct backup; stash value if McCaffrey's injury history repeats.
+- **Carnell Tate (TEN)** and **Jordyn Tyson (NO)** — rookie WR2 roles with real early-season target share; both reasonable pick 133+ darts.
+- **Kenyon Sadiq (NYJ)** — clearest immediate-opportunity rookie TE; worth a stash if TE is still thin on Andrew's bench by round 14–15.
+- **Fernando Mendoza (LV)** — dynasty-only, buried behind Cousins; skip for a redraft-only league unless the very last pick.
 
 ---
 
-# PART C — DRAFT-DAY RULES OF THUMB
+## 9. OPEN FLAGS — READ THIS BEFORE THE DRAFT
 
-Print these. They are hard rules, not preferences.
-
-### The five inviolable rules
-
-1. **NEVER take a defense before pick 153.** Not 148, not 128. Houston, Seattle, Detroit, LAR, Baltimore and LAC will all still be available at 153 — there are ~8 startable DSTs and one round of demand. You will stream from Week 1 waivers anyway.
-2. **NEVER leave pick 48 without a QB2.** After pick 48 the pool is Shough, Willis, Bryce Young and Geno. There is no skill player worth a dead SUPERFLEX slot for 17 weeks.
-3. **NEVER leave pick 53 without all nine non-DEF starters filled.** The gap from 53 to 68 is 13 live picks through the only round in the draft with zero keeper forfeits. Every one of your ten rivals picks in Round 7.
-4. **NEVER take a second player at a position before you have one at every position.** With 13 picks for 13 roster spots you have exactly zero margin for a wasted selection.
-5. **NEVER reach for TE2 at pick 13 or 28 if McBride is gone.** The McBride-to-Loveland drop is ~85 points. The Loveland-to-Kelce drop is ~20. Punt to 48/53.
-
-### The "if two of three are gone, pivot" triggers
-
-| If TWO of these are gone… | …at this pick | Then pivot to |
-|---|---|---|
-| CMC · Jeanty · Jonathan Taylor | **8** | McBride, or an elite QB if McBride is also gone |
-| McBride · a bell-cow RB · Chase/Nacua | **8** | Elite QB — Hurts > Lamar > Lawrence |
-| Kyler Murray · Lawrence · Herbert | **28** | Take Mahomes/Purdy/Love immediately — the tier is collapsing |
-| Loveland · Tyler Warren · Pitts | **48** | Take LaPorta or Kraft NOW; do not wait for Kelce at 53 |
-| Jaylen Warren · Pollard · Skattebo | **53** | Take Aaron Jones or D'Andre Swift — you need a FLEX body, not the perfect one |
-| Meyers · Reed · Godwin | **68** | Pittman or Diggs — same archetype, one round later |
-| Downs · Wan'Dale · Pearsall | **88** | Chig Okonkwo as TE2 instead; the slot-WR tier is done |
-
-### Format rules — the scoring is the edge
-
-8. **A 7-catch / 55-yard / 5-first-down day equals a 2-catch / 70-yard / 1-TD day. Both are 12.0 points.** The possession player does that every week; the deep threat does it four times a year.
-9. **AUTO-BUY when the value is even:** McBride, Kelce, Josh Downs, Wan'Dale Robinson, Godwin, Meyers, Reed, McConkey, DeVonta Smith, Jaylen Warren, Woody Marks, Justice Hill, Kyler Murray, Cam Ward, Malik Willis, Michael Pittman.
-10. **AUTO-FADE, even at a one-round discount:** Xavier Worthy, DK Metcalf, Courtland Sutton, Rome Odunze, Marvin Harrison Jr., Brian Thomas Jr., George Pickens, Quentin Johnston, Quinshon Judkins, Dallas Goedert, Jared Goff, Matthew Stafford.
-11. **A rushing QB is worth roughly a full round more than his ADP here** — you are paid 0.1/yard AND 0.5 per rushing first down. Hurts, Lamar, Lawrence, Kyler Murray, Willis, Fields all move up. Burrow, Goff, Stafford, Herbert move down.
-
-### Timing rules
-
-12. **Pre-decide every paired pick before the first of the pair.** 8+13, 48+53, 68+73, 88+93, 148+153 are single decisions with two names. On a 60-second clock you cannot think twice.
-13. **Between picks, maintain exactly three counters:** QBs gone · bell-cow RBs gone · tier-2 TEs gone. Nothing else matters.
-14. **Front-run RB in Round 1, front-run TE in Round 2, fade the QB run entirely until pick 28, and fade WR completely until pick 28.** WR has a 1.60 supply ratio; the format's best WR archetype is available from round 7 through round 15.
-15. **Take a QB3 at 108 even if you love a receiver there.** Four teams — havicht, Mass General, DannyBC1, Big Mommy Milkers — have zero QB depth. A free QB3 is the highest-value trade asset you can manufacture in this league.
+- **Bench size unconfirmed.** 9 starters + assumed 6 bench = 15 spots, one short of 16 rounds. Either bench is actually 7, or there's a roster-slot mapping wrinkle. **Sanity-check this live at the draft table if it comes up** — don't assume either way going in.
+- **DEF scoring fix status unconfirmed.** Last year's DEF scoring was buggy/overpowered; commissioner flagged a fix as TBD with no confirmation it's live tonight. Draft DEF conservatively (late) until proven otherwise.
 
 ---
 
-# PART D — PANIC BUTTONS
+## POST-DRAFT UPDATE (2026-08-25) — see `draft_report_2026.md`
 
-What to do when a run empties a position between your picks. Each entry is a full recovery plan, not a consolation prize.
+The draft happened as scheduled and is complete. Two things this document got right by design and one thing worth noting for next year:
 
-### 🔴 PANIC 1 — "McBride went at 7 or 9"
-**Probability: HIGH — roughly 60%.** The team immediately before you (Ethan's Younglings, slot 7) and the team immediately after you (Glizzy Guzzler, slot 9) are both QB-solved and TE-empty.
-**Do NOT** take Loveland or Tyler Warren at 13. That is a ~40-pick reach for a ~20-point upgrade.
-**Do:** take the best bell-cow RB or elite QB at 13, then run the **two-TE punt**: Colston Loveland or Kyle Pitts at 48 *if* the tier is collapsing, otherwise **Travis Kelce at 53** — your own R7 keeper discard, whose ADP is suppressed by decline narratives while his catch rate and first-down rate remain elite. Backstop it with **Jake Ferguson or David Njoku at 68** and **Greg Dulcich or Brenton Strange at 148**. Two mid TEs streamed by matchup recovers ~70% of the McBride edge for a fraction of the cost.
-
-### 🔴 PANIC 2 — "All the bell-cow RBs are gone before pick 8"
-**Probability: MODERATE.** Ten workhorses exist and they are gone by ~pick 32.
-**Do:** stop chasing. Take McBride at 8 and an elite QB at 13 — you convert an RB scarcity problem into two positional monopolies. Then build the backfield out of **volume-by-committee first-down accumulators**: Jaylen Warren at 53, Woody Marks at 73, Justice Hill at 93, plus a direct handcuff at 128. In this format three 12-touch backs who catch passes out-score one 20-carry grinder. **Do not panic-reach for Judkins** — ~30 catches and TD-dependent is the worst possible profile here.
-
-### 🔴 PANIC 3 — "Nine or more QBs are gone before my pick 28"
-**Probability: MODERATE-HIGH in Scenario A.**
-**Do:** take the last name on your six-deep list — Murray → Lawrence → Herbert → Mahomes → Purdy → Love — **immediately, without comparing him to a receiver.** If all six are gone at 28, take the best skill player and then take **Cam Ward at 48 without hesitation** (Ward is the one riser in that tier: added rushing volume, high completion offense). If Ward is gone too, Mayfield → McCarthy → Stroud → Geno. Then take a **second** cheap QB at 108 so your SUPERFLEX slot is never dead.
-
-### 🔴 PANIC 4 — "Round 7 emptied the WR shelf before pick 68"
-**Probability: HIGH. Round 7 has zero keeper forfeits — all ten teams pick, 13 live picks between your 53 and 68.**
-**Do:** this is why rule 3 exists — you should already have all nine starters. Pivot 68 and 73 to the **second wave of the same archetype**: Michael Pittman Jr., Stefon Diggs, Jauan Jennings, Luther Burden. If those are gone too, take **TE2 early** (Ferguson, Kincaid, Njoku) and buy receivers at 88/93, where Josh Downs and Wan'Dale Robinson are the deepest pocket of format value in the entire draft. **The slot-WR pool does not truly run dry until pick 100.**
-
-### 🔴 PANIC 5 — "A run at 49–52 took every tier-2 TE while I waited"
-**Do:** take **Travis Kelce at 53** without a second thought. If Kelce is also gone, take a starting RB/WR at 53 and grab **Jake Ferguson or David Njoku at 68** — Ferguson is a genuine format riser at a TE10 price and the gap from Kraft to Ferguson is small. Then double up at 148 with **Dulcich or Strange** and stream.
-
-### 🔴 PANIC 6 — "I'm at pick 108 and I still don't have a startable X"
-**Do:** abandon the QB3 trade-chip plan and fill the hole. The 15-live-pick gap to 128 will strip every name with a pulse. Emergency fills by position: **QB** Bryce Young or Daniel Jones · **RB** Isiah Pacheco, Blake Corum, Zach Charbonnet, Kyle Monangai · **WR** Jalen Coker, Ricky Pearsall, Matthew Golden · **TE** Isaiah Likely, Juwan Johnson. Then take the QB3 at 128 instead — Justin Fields will still be there and he is the best "if he plays" asset in the league.
-
-### 🔴 PANIC 7 — "Someone took a DEF at pick 130 and now there's a defense run"
-**Probability: LOW, but it happens.**
-**Do:** nothing. There are eight-plus startable defenses — Houston, Seattle, LAR, Denver, Detroit, Baltimore, LAC, Pittsburgh. Even if five go before 153 you will get a top-8 unit. **Taking a DEF at 148 to "beat the run" costs you Greg Dulcich, and that trade is a loss.** Take your player at 148 and whichever defense remains at 153.
-
-### 🔴 PANIC 8 — "Chase or Nacua is somehow still there at 13"
-Not a panic — but do not freeze. **Take him.** A top-3 overall asset at pick 13 outweighs any positional plan, including McBride. Your TE hole is recoverable at 48/53; a two-round discount on the WR1 overall is not recoverable at all.
-
----
-
-## THE 30-SECOND VERSION — tape this to your monitor
-
-> **8:** Bell-cow RB. If none → McBride. If neither → elite QB.
-> **13:** McBride if alive. Else the falling elite QB. Else best RB. **Never TE2 here.**
-> **28:** QB2. Murray → Lawrence → Herbert → Mahomes → Purdy → Love. Skip only if 2+ of those six will survive to 48.
-> **48+53:** Fill every remaining starter. WR2 + FLEX RB. DJ Moore / Godwin / Waddle and Jaylen Warren / Pollard. **Zero empty starting slots after 53.**
-> **68+73:** Meyers, Reed, Pittman, Diggs, Woody Marks.
-> **88+93:** Josh Downs, Wan'Dale, then the handcuff to your own RB1.
-> **108:** QB3 as a trade chip. Shough / Willis / Fields.
-> **128:** Last upside swing. Higgins / Noel / Antonio Williams / your RB1's backup.
-> **148+153:** Dulcich or Strange, then Houston or Seattle DST. **Never a defense earlier.**
+- **The bench-size open flag above is resolved:** the live draft ran **15 rounds, not 16**. 9 starters + 6 bench = 15 exactly — no mapping wrinkle after all.
+- Puka Nacua did **not** last to pick 8 as this board's Round 1 guidance expected — he went 3rd overall (to Pabst Interference). Christian McCaffrey fell to Andrew at pick 8 instead, which is how the actual draft opened.
+- Full team-by-team results, grades, and a league-wide power ranking are in `draft_report_2026.md`, generated the night of the draft from the actual completed pick data.

@@ -1,0 +1,247 @@
+<title>Sunday Scaries Season Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --ground:#F5F4EF; --surface:#FFFFFF; --surface-2:#EDEBE4; --ink:#191C21;
+    --muted:#5E6875; --line:#E2E0D8; --accent:#B0701F; --accent-2:#8A551C;
+    --good:#2C7A57; --bad:#BF463C; --pend:#5C6A79;
+    --good-bg:#E4F0EA; --bad-bg:#F6E4E2; --pend-bg:#E7EBEF;
+    --shadow:0 1px 2px rgba(20,22,28,.06),0 3px 10px rgba(20,22,28,.05);
+  }
+  :root:not([data-theme="light"]){ }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#111419; --surface:#1A1E25; --surface-2:#232932; --ink:#E9EBEE;
+      --muted:#96A0AE; --line:#2A303A; --accent:#E0A24E; --accent-2:#EBB876;
+      --good:#4FB98A; --bad:#E27469; --pend:#7C8B9C;
+      --good-bg:#16281F; --bad-bg:#2C1C1A; --pend-bg:#1E252E;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#111419; --surface:#1A1E25; --surface-2:#232932; --ink:#E9EBEE;
+    --muted:#96A0AE; --line:#2A303A; --accent:#E0A24E; --accent-2:#EBB876;
+    --good:#4FB98A; --bad:#E27469; --pend:#7C8B9C;
+    --good-bg:#16281F; --bad-bg:#2C1C1A; --pend-bg:#1E252E;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.28);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    line-height:1.5;margin:0;padding-block:0;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:20px 18px 56px;}
+  h1,h2,h3{margin:0;text-wrap:balance}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2)}
+  /* header */
+  header{padding:8px 0 20px;border-bottom:1px solid var(--line)}
+  .brand{font-family:"Oswald",sans-serif;font-weight:700;font-size:34px;
+    line-height:1.02;letter-spacing:.01em;text-transform:uppercase}
+  .brand .b2{color:var(--accent)}
+  .tag{color:var(--muted);font-size:14px;margin-top:6px;max-width:52ch}
+  /* stat row */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:14px 14px 12px;box-shadow:var(--shadow)}
+  .stat .k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .stat .v{font-family:"Oswald",sans-serif;font-weight:600;font-size:30px;
+    line-height:1;margin-top:8px;font-variant-numeric:tabular-nums}
+  .stat .sub{font-size:11.5px;color:var(--muted);margin-top:5px}
+  .stat.accent .v{color:var(--accent)}
+  /* sections */
+  section{margin-top:30px}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+  .sec-head h2{font-family:"Oswald",sans-serif;font-weight:600;font-size:19px;
+    text-transform:uppercase;letter-spacing:.03em}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    box-shadow:var(--shadow);overflow:hidden}
+  .card .top{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:14px 16px;border-bottom:1px solid var(--line)}
+  .card .top .wk{font-family:"Oswald",sans-serif;font-weight:600;font-size:16px;text-transform:uppercase}
+  .matchup{font-size:13px;color:var(--muted)}
+  .matchup b{color:var(--ink);font-weight:600}
+  /* decision rows */
+  .dec{display:flex;gap:12px;padding:12px 16px;border-top:1px solid var(--line)}
+  .dec:first-child{border-top:none}
+  .dec .body{flex:1;min-width:0}
+  .dec .call{font-size:14px;font-weight:500}
+  .dec .why{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .pill{flex:none;align-self:flex-start;font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    padding:4px 8px;border-radius:999px;white-space:nowrap}
+  .pill.good{color:var(--good);background:var(--good-bg)}
+  .pill.bad{color:var(--bad);background:var(--bad-bg)}
+  .pill.pend{color:var(--pend);background:var(--pend-bg)}
+  .type-tag{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-right:7px}
+  /* lessons */
+  .lesson{display:flex;gap:12px;padding:13px 16px;border-top:1px solid var(--line)}
+  .lesson:first-child{border-top:none}
+  .lesson .wknum{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+    color:var(--accent-2);flex:none;padding-top:1px;min-width:34px}
+  .lesson .txt{font-size:13.5px}
+  /* week log list */
+  .weekrow{padding:13px 16px;border-top:1px solid var(--line)}
+  .weekrow:first-child{border-top:none}
+  .weekrow .r1{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .weekrow .wl{font-family:"Oswald",sans-serif;font-weight:600;font-size:15px;text-transform:uppercase}
+  .weekrow .score{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--muted)}
+  .weekrow .rate{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);margin-top:4px}
+  .res-w{color:var(--good);font-weight:600}
+  .res-l{color:var(--bad);font-weight:600}
+  .empty{color:var(--muted);font-size:13.5px;padding:20px 16px;text-align:center}
+  .skeleton{color:var(--muted);font-size:13.5px;padding:22px 16px;text-align:center;
+    animation:pulse 1.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.5}50%{opacity:.85}}
+  @media (prefers-reduced-motion:reduce){.skeleton{animation:none}}
+  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:12px}
+  footer code{font-family:"IBM Plex Mono",monospace;font-size:11px;background:var(--surface-2);
+    padding:1px 5px;border-radius:4px}
+  a{color:var(--accent-2)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Automated weekly manager · Sleeper</div>
+    <h1 class="brand">Sunday <span class="b2">Scaries</span></h1>
+    <p class="tag">The season log for Andrew's team. Every Tuesday brief and Sunday lineup check is graded against what actually happened — this is the running scorecard.</p>
+    <div class="stats" id="stats">
+      <div class="stat"><div class="k">Record</div><div class="v" id="st-rec">—</div><div class="sub" id="st-rec-sub">season 2026</div></div>
+      <div class="stat"><div class="k">Week</div><div class="v" id="st-week">—</div><div class="sub" id="st-week-sub">regular season</div></div>
+      <div class="stat accent"><div class="k">Call hit-rate</div><div class="v" id="st-hit">—</div><div class="sub" id="st-hit-sub">graded calls</div></div>
+    </div>
+  </header>
+
+  <section id="thisweek-sec">
+    <div class="sec-head"><h2>This week</h2><span class="eyebrow" id="tw-when"></span></div>
+    <div class="card" id="thisweek"><div class="skeleton">Loading the latest brief…</div></div>
+  </section>
+
+  <section id="lessons-sec">
+    <div class="sec-head"><h2>Lessons learned</h2><span class="eyebrow">what the model is adjusting</span></div>
+    <div class="card" id="lessons"><div class="skeleton">Loading…</div></div>
+  </section>
+
+  <section id="log-sec">
+    <div class="sec-head"><h2>Season log</h2><span class="eyebrow">graded, week by week</span></div>
+    <div class="card" id="log"><div class="skeleton">Loading…</div></div>
+  </section>
+
+  <footer>
+    This page is the system's durable memory: the automated Tuesday/Sunday runs read last week's calls from here, grade them, and write the new week back — no manual step. Data lives in the artifact's own store (collections <code>weeks</code>, <code>lessons</code>, <code>meta</code>).
+  </footer>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ var d=document.createElement('div'); d.textContent = s==null?'':String(s); return d.innerHTML; };
+
+  function pillFor(outcome){
+    var o = (outcome||'').toLowerCase();
+    if(o.indexOf('hit')>-1 || o==='correct' || o==='win') return '<span class="pill good">Hit</span>';
+    if(o.indexOf('miss')>-1 || o==='wrong' || o==='loss') return '<span class="pill bad">Miss</span>';
+    if(o==='push' || o==='n/a' || o==='partial') return '<span class="pill pend">'+esc(outcome)+'</span>';
+    return '<span class="pill pend">Pending</span>';
+  }
+
+  function renderThisWeek(w){
+    var el = $('thisweek');
+    if(!w){ el.innerHTML = '<div class="empty">The first brief lands this week. Check back after the Tuesday run.</div>'; return; }
+    $('tw-when').textContent = w.generated ? ('generated '+w.generated) : '';
+    var res = w.result;
+    var resHtml = '';
+    if(res && /^w/i.test(res)) resHtml = ' · <span class="res-w">'+esc(res)+'</span>';
+    else if(res && /^l/i.test(res)) resHtml = ' · <span class="res-l">'+esc(res)+'</span>';
+    else if(res) resHtml = ' · '+esc(res);
+    var head = '<div class="top"><div class="wk">Week '+esc(w.week)+'</div>'
+      + '<div class="matchup">vs <b>'+esc(w.opponent||'—')+'</b>'+resHtml+'</div></div>';
+    var decs = (w.decisions||[]);
+    var rows = decs.map(function(d){
+      var t = d.type ? '<span class="type-tag">'+esc(String(d.type).replace(/_/g,' '))+'</span>' : '';
+      var why = d.rationale ? '<div class="why">'+esc(d.rationale)+'</div>' : (d.grade_note?'<div class="why">'+esc(d.grade_note)+'</div>':'');
+      return '<div class="dec"><div class="body"><div class="call">'+t+esc(d.call)+'</div>'+why+'</div>'+pillFor(d.outcome)+'</div>';
+    }).join('');
+    el.innerHTML = head + (rows || '<div class="empty">No decisions recorded this week.</div>');
+  }
+
+  function renderLessons(list){
+    var el = $('lessons');
+    if(!list || !list.length){ el.innerHTML = '<div class="empty">Lessons appear here as the model grades its own calls and adjusts. Nothing yet — it starts week 1.</div>'; return; }
+    el.innerHTML = list.map(function(l){
+      return '<div class="lesson"><div class="wknum">Wk '+esc(l.week)+'</div><div class="txt">'+esc(l.text)+'</div></div>';
+    }).join('');
+  }
+
+  function renderLog(weeks){
+    var el = $('log');
+    if(!weeks || !weeks.length){ el.innerHTML = '<div class="empty">Weeks land here as they close, each with its graded hit-rate.</div>'; return; }
+    el.innerHTML = weeks.map(function(w){
+      var res = w.result;
+      var resHtml = res ? (/^w/i.test(res)?'<span class="res-w">'+esc(res)+'</span>':(/^l/i.test(res)?'<span class="res-l">'+esc(res)+'</span>':esc(res))) : '<span style="color:var(--pend)">in progress</span>';
+      var n = (w.decisions||[]).length;
+      var graded = (w.decisions||[]).filter(function(d){var o=(d.outcome||'').toLowerCase();return o.indexOf('hit')>-1||o.indexOf('miss')>-1;});
+      var hits = graded.filter(function(d){return (d.outcome||'').toLowerCase().indexOf('hit')>-1;}).length;
+      var rate = graded.length ? (Math.round(hits/graded.length*100)+'% ('+hits+'/'+graded.length+' calls)') : (n+' calls, pending grade');
+      return '<div class="weekrow"><div class="r1"><span class="wl">Week '+esc(w.week)+'</span><span class="score">vs '+esc(w.opponent||'—')+' · '+resHtml+'</span></div><div class="rate">graded calls: '+rate+'</div></div>';
+    }).join('');
+  }
+
+  function renderAll(meta, weeks, lessons){
+    weeks = (weeks||[]).slice().sort(function(a,b){return (b.week||0)-(a.week||0);});
+    lessons = (lessons||[]).slice().sort(function(a,b){return (b.week||0)-(a.week||0) || (b.created||'').localeCompare(a.created||'');});
+    // stats
+    if(meta){
+      if(meta.record) $('st-rec').textContent = meta.record;
+      if(meta.current_week!=null) $('st-week').textContent = meta.current_week;
+      if(meta.hit_rate!=null){ $('st-hit').textContent = meta.hit_rate; }
+      if(meta.hit_rate_sub) $('st-hit-sub').textContent = meta.hit_rate_sub;
+    }
+    if($('st-week').textContent==='—' && weeks.length) $('st-week').textContent = weeks[0].week;
+    // derive hit-rate from weeks if meta didn't carry it
+    if($('st-hit').textContent==='—'){
+      var g=0,h=0;
+      weeks.forEach(function(w){(w.decisions||[]).forEach(function(d){var o=(d.outcome||'').toLowerCase();
+        if(o.indexOf('hit')>-1){g++;h++;} else if(o.indexOf('miss')>-1){g++;}});});
+      $('st-hit').textContent = g ? Math.round(h/g*100)+'%' : '—';
+      $('st-hit-sub').textContent = g ? (h+'/'+g+' graded calls') : 'no graded calls yet';
+    }
+    renderThisWeek(weeks[0]);
+    renderLessons(lessons);
+    renderLog(weeks);
+  }
+
+  function offline(){
+    // db not available in this view (e.g., opened outside claude.ai) — show a stable resting state.
+    renderThisWeek(null); renderLessons(null); renderLog(null);
+    $('st-rec').textContent='0-0'; $('st-week').textContent='1'; $('st-hit').textContent='—';
+    $('st-hit-sub').textContent='connect on claude.ai to load';
+  }
+
+  async function boot(){
+    var db = null;
+    try{ db = window.claude && claude.use ? await claude.use('db') : null; }catch(e){ db=null; }
+    if(!db){ offline(); return; }
+    async function load(){
+      try{
+        var m = await db.doc('meta/season').get();
+        var ws = await db.collection('weeks').get();
+        var ls = await db.collection('lessons').get();
+        renderAll(m.exists?m.data():null,
+                  ws.docs.map(function(d){return d.data();}),
+                  ls.docs.map(function(d){return d.data();}));
+      }catch(e){ offline(); }
+    }
+    await load();
+    // live refresh when the automated run writes a new week
+    try{ db.collection('weeks').onSnapshot(function(){ load(); }, function(){}); }catch(e){}
+  }
+  boot();
+})();
+</script>

@@ -1,0 +1,31 @@
+{
+  "_export_note": "Full mirror of the Sunday Scaries season-log artifact database, pulled 2026-09-11. This is a plain-JSON copy you own outright. The live store lives at the artifact URL below; this file is a portable, version-controllable snapshot. The weekly run refreshes this mirror; it can also be regenerated on demand at any time by reading the artifact's db.",
+  "exported": "2026-09-11",
+  "artifact_url": "https://claude.ai/code/artifact/004d6522-cc50-4a98-b4f6-b0002aab10e1",
+  "meta": {
+    "season": {
+      "current_week": 1,
+      "hit_rate": "—",
+      "hit_rate_sub": "grades begin after Week 1",
+      "record": "0-0",
+      "season": 2026,
+      "updated": "2026-09-10"
+    }
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "season": 2026,
+      "opponent": "pdustin (Mass General Hospital)",
+      "result": null,
+      "generated": "2026-09-10",
+      "decisions": [
+        {"type": "start_sit", "call": "Slight lean: start Chris Godwin over Jameson Williams at WR2", "rationale": "0.5/first-down bonus favors Godwin's possession profile over Jameson's boom-bust deep-threat profile; close call", "outcome": null},
+        {"type": "waiver", "call": "HOLD — do not claim Michael Mayer (TE) in Week 1; not worth burning #3 waiver priority on a speculative TE2", "rationale": "Revisit only if LaPorta's hip lingers", "outcome": null},
+        {"type": "start_sit", "call": "Start the locked core: Nix, McCaffrey, Walker, Pickens, LaPorta, Barkley (FLEX), Darnold (SUPER_FLEX), BUF (DEF)", "rationale": "All active; elite floor", "outcome": null},
+        {"type": "monitor", "call": "Re-check Kenneth Walker (foot) and Sam LaPorta (hip) vs Sunday inactives before lock", "rationale": "Both expected to play; confirm on the final injury report", "outcome": null}
+      ]
+    }
+  ],
+  "lessons": []
+}

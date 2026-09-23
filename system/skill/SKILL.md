@@ -1,332 +1,320 @@
 ---
 name: sunday-scaries
-description: Runs Andrew's Sunday Scaries fantasy football system (Sleeper, 10-team superflex half-PPR-plus-first-down keeper league) end to end from any chat, with no prior history. Use for the Tuesday update, the weekly fantasy brief, or any in-season question about this league - waiver claims and pickups, who to start or sit, lineup help, drop candidates, trade offers, opponent scouting, keeper decisions and keeper equity, or rebuilding state after a container reset. Triggers on - tuesday update, fantasy update, sunday scaries, weekly fantasy brief, waiver recommendations, what should I claim, who should I start, start/sit, lineup help, fantasy trade offers, keeper board, league intel.
+description: Runs Andrew's Sunday Scaries fantasy football system (Sleeper, 10-team superflex half-PPR-plus-first-down keeper league) end to end from a fresh session with no prior memory. Use for the scheduled Tuesday and Sunday-AM runs, the weekly fantasy brief, or any in-season question about this league - waiver claims, start/sit and lineup help, drop candidates, trade offers, opponent scouting, keeper decisions and keeper equity. Triggers - tuesday update, sunday scaries, weekly fantasy brief, waiver recommendations, what should I claim, who should I start, start/sit, lineup help, fantasy trade offers, keeper board, league intel.
 ---
 
-# Sunday Scaries — the Tuesday system
+# Sunday Scaries — the weekly automated system
 
-One command, fired any Tuesday, that produces the week's action plan: lineup, ordered waiver
-claims, drop candidates, trade offers, and an intel brief on what all nine rivals are about to do.
+A fresh Claude session, fired on a schedule, that produces the week's action plan for Andrew's
+Sleeper team: **lineup, ordered waiver claims, drop candidates, trade offers, an intel read on the
+nine rivals, and — first — a graded review of how last week's recommendations actually turned out.**
+That last part is what makes this a *learning* system, not just a weekly report generator.
 
-**The files are canonical, not the chat.** Everything needed to run is on disk. Read state from
-files, never from memory of a previous conversation.
+## The golden rule + where memory lives
 
-```
-ROOT = /home/claude/sunday_scaries
-  system/league_config.json     league constants (hand-verified against the API)
-  system/players_cache.json     player_id -> name/pos/team/injury, built incrementally
-  system/fetch_manifest.md      the WebFetch <-> builder contract, full detail
-  system/players_cache.py       ingest / lookup / unresolved / stale / stats
-  system/state_builder.py       raw/*.json  ->  state/week_N.json
-  system/repo_sync.py           the loop's durable memory: pull/push data/week_NN/ against
-                                the git repo, since a Tuesday session has no memory of its own
-  system/merge_state.py         folds the agent's opponent_model/keeper_equity/decisions_log/
-                                open_questions into week_N.json without overwriting facts
-  system/weekly.js              the 18-agent workflow (Workflow tool, NOT node)
-  system/analysis/*.py          scoring, opponent_pressure, waiver_contention, keeper_equity
-                                (+ test_analysis.py — 76 tests, run it after any edit)
-  system/raw/                   fetched Sleeper JSON lands here
-  system/state/week_N.json      the local working copy. week_0.json is the preseason baseline.
-  system/reports/week_N.md      the delivered brief
-  repo_clone/                   working directory for the git-backed archive (see Step 0), default
-                                path repo_sync.py uses -- data/week_NN/{report.md,state.json,
-                                state.synthesis.json} for every week that has closed
-```
+A scheduled firing **remembers nothing on its own** — it's a fresh session. Two durable stores hold
+everything, and knowing which is which is the whole trick:
 
-## Two hard environment facts
+- **Code + reference** live in the GitHub repo `github.com/Aroth2000/sleeper_league` — this runbook,
+  the Python, the config, the docs. Clone it to read; it changes rarely.
+- **Weekly memory** — last week's decisions, their grades, the running lessons, the rolling
+  hit-rate — lives in the **season-log artifact's database**, which a scheduled cloud run can read
+  AND write directly with the Artifact tool, **no push and no linked computer needed**:
+  **`ARTIFACT_URL = https://claude.ai/code/artifact/004d6522-cc50-4a98-b4f6-b0002aab10e1`**
+  Read it with the Artifact `read_db` action, write it with `write_db` (collections `weeks`,
+  `lessons`, `meta`). This is the primary memory the learning loop runs on, and it is bridge-proof.
+  The GitHub `data/week_NN/` archive is a secondary, best-effort copy — nice for browsing, not
+  required, since pushing from a cloud session is unreliable.
 
-1. **Nothing in this sandbox can reach `api.sleeper.app` except the WebFetch tool.** The proxy
-   returns 403 on CONNECT. Never write or run Python/curl that calls Sleeper — it will fail.
-   WebFetch writes raw JSON to disk; Python parses it. That split is not negotiable.
+Never rely on "what we discussed last time"; read from these two stores and from freshly fetched
+Sleeper data. There is no last time.
+
+## Runtime & two hard environment facts
+
+This runs in an Anthropic cloud session. It may also be linked to Andrew's computer (the
+`mcp__remote-devices__*` tools) — that link is used **only to push to GitHub** and is optional; the
+brief itself never depends on it.
+
+1. **Only the WebFetch tool can reach `api.sleeper.app`.** The sandbox proxy 403s direct
+   curl/python HTTP to Sleeper. WebFetch pulls the JSON, Python parses it from disk. That split is
+   not negotiable. (If a run is executing on the linked computer via `device_bash`, that shell's
+   network *may* reach Sleeper directly — try it, but WebFetch is always the reliable fallback.)
 2. **`/players/nfl` (~5MB) will not come through WebFetch.** Never attempt it. The player cache is
-   built incrementally from draft-pick payloads and per-player calls. See `reference/data_layer.md`.
+   built incrementally from draft payloads and per-player calls (`.../players/nfl/{id}`).
 
-## Step 0 — sync the repo, then orient
-
-**Every Tuesday firing is a brand-new session with no memory of last week's session.** The only
-durable memory this system has is the git repo (`github.com/Aroth2000/sleeper_league`), so the
-first thing every run does — before reading anything else — is try to sync it:
+`RUN_DIR` below = the working clone this run operates in. In a scheduled cloud session, make one:
 
 ```bash
-python3 /home/claude/sunday_scaries/system/repo_sync.py pull
-echo $?
+RUN_DIR=~/sleeper_run
+rm -rf "$RUN_DIR" && git clone --depth 50 https://github.com/Aroth2000/sleeper_league.git "$RUN_DIR"
+cd "$RUN_DIR/system"
 ```
 
-Branch on the result immediately, out loud, in whatever you say back to Andrew:
+A public clone for *reading* always works from the cloud. Pushing is Step 8's problem.
 
-| Result | Do this |
-|---|---|
-| Exit 0 | The clone at `repo_clone/` (default; override with `--dir`) is current. This is the source of truth for "last week's real state" in Step 2. |
-| Exit non-zero | **Fall back to the skill's bundled snapshot exactly as documented before this repo existed** — `system/state/week_N.json` on local disk is what you have. **Say so plainly in the delivered brief** — e.g. "repo sync failed this run, working from the last locally-bundled state, continuity may be stale." Never fail silently; this is the same non-negotiable guardrail as the availability and freshness gates below. |
+---
 
-Then orient:
+## STEP 0 — orient
 
 ```bash
-ls /home/claude/sunday_scaries/system/state/          # what weeks exist locally?
-python3 /home/claude/sunday_scaries/system/repo_sync.py latest-week   # what weeks exist in the repo?
-python3 /home/claude/sunday_scaries/system/state_builder.py --dry-run --summary
+python3 state_builder.py --week AUTO --summary --dry-run   # after Step 1 fills state_nfl.json; on the
+                                                           # very first orient, just read what exists
+ls state/ ; ls data/            # what weeks exist locally and in the archive?
 ```
 
-That summary prints the current week, waiver order, Andrew's lineup and which raw files are
-missing — it is the fastest read on where the system stands. Then branch:
+Determine the current week from `raw/state_nfl.json` (fetched first in Step 1) — never guess it from
+the calendar. Then branch:
 
-| What you find | Do this |
+| What you find | Do |
 |---|---|
-| `system/` missing entirely | **Cold start.** See "Rebuilding from nothing" below. |
-| `repo_sync.py latest-week` prints `none` | Fresh start — no prior week anywhere in the repo. Proceed with no diff in Step 2 and say so; this is correct and expected for a brand-new league-year or a repo that was just bootstrapped. |
-| State files exist, newest is last week | Normal run. Go to Step 1. |
-| Newest state is this week, generated today | Already ran. Show the existing `reports/week_N.md` unless asked to re-run. |
-| State exists but `meta.degraded == true` | A fetch was missing. Check `meta.sources.missing`, re-fetch those, rebuild. |
-| Only `week_0.json` (or repo's `week_00`) and it is week 1 | Correct and expected. Week 0 is the preseason baseline, not a played week. |
+| Newest archived week is last week | Normal run — continue. |
+| A brief for *this* week already exists (`data/week_NN/`) and nothing material changed | Say so; re-run only if asked or if news broke. |
+| `data/` has only `week_00` and it is week 1 | Correct — week 0 is the preseason baseline, not a played week. Proceed with no prior-week diff and say so. |
+| Repo clone failed | Fall back to any local `system/state/` snapshot; say plainly in the brief that continuity may be stale this run. Never fail silently. |
 
-Confirm the week from `raw/state_nfl.json` (fetch it fresh — step 1 below). Never assume the week
-from the calendar if a real answer is available.
+## STEP 1 — fetch (WebFetch only)
 
-## Step 1 — fetch (WebFetch only)
+Fetch these into `RUN_DIR/system/raw/`. Run `state/nfl` first — it defines `{N}`. On every WebFetch
+use this exact extraction prompt or the summariser turns JSON into prose:
 
-Work through the ordered table in `system/fetch_manifest.md`. The core five, every week:
+> Output ONLY a single line of raw JSON, no markdown fences, no commentary, no truncation. Copy every field value verbatim from the source. Use null for missing values.
 
-| # | URL | Save to `system/raw/` |
+| # | URL | Save as |
 |---|---|---|
-| 1 | `https://api.sleeper.app/v1/state/nfl` | `state_nfl.json` ← run first, it defines `{N}` |
-| 2 | `https://api.sleeper.app/v1/league/1389753893356838912` | `league.json` |
+| 1 | `.../v1/state/nfl` | `state_nfl.json` |
+| 2 | `.../v1/league/1389753893356838912` | `league.json` |
 | 3 | `.../league/1389753893356838912/rosters` | `rosters.json` |
 | 4 | `.../league/1389753893356838912/users` | `users.json` |
-| 5 | `.../league/1389753893356838912/transactions/{N}` | `transactions_week{N}.json` |
-| 6 | `.../league/1389753893356838912/matchups/{N}` | `matchups_week{N}.json` |
-| 7 | `.../players/nfl/{player_id}` (injured / new / unresolved ids) | append to `players_resolved.jsonl` |
-| 8 | `.../players/nfl/trending/add?lookback_hours=24&limit=25` | `trending_add.json` |
+| 5 | `.../league/1389753893356838912/matchups/{N}` | `matchups_week{N}.json` |
+| 6 | `.../league/1389753893356838912/transactions/{N}` | `transactions_week{N}.json` |
+| 7 | `.../players/nfl/trending/add?lookback_hours=24&limit=25` | `trending_add.json` |
+| 8 | `.../players/nfl/{id}` for injured / new / unresolved ids | append to `players_resolved.jsonl` |
 
-Use this extraction prompt **verbatim** on every WebFetch call, or the summarising model will turn
-the JSON into prose:
+A 404 on a URL you know is good is a 15-minute cache artifact — retry with `?r=1`. Strip any ```json
+fences before writing. Wrong filename = silently empty section, not an error.
 
-> Output ONLY a single line of raw JSON, no markdown fences, no commentary, no truncation. Copy
-> every field value verbatim from the source. Use null for missing values.
-
-Strip any ```json fences before writing. A 404 on a URL you know is good is a 15-minute cache
-artifact — retry with a throwaway query string (`?r=1`). Filenames matter: a wrong name produces a
-silently empty section, not an error.
-
-## Step 2 — pull the real diff target out of the repo, THEN build state
-
-**Order matters here and is not cosmetic.** `state_builder.py` has no `--prevstate` flag — it
-silently looks for last week's state at the fixed path `system/state/week_{N-1}.json` (i.e.
-`<out-dir>/week_{N-1}.json`) at the moment it runs, and if that file is not there yet it just
-degrades to `roster_diff: {"status": "no_previous_state", ...}` with a warning, not an error. On a
-genuinely fresh container that has never seen week `N-1` locally, the only place that file can come
-from is the repo clone — so `repo_sync.py get-state` **must run before** `state_builder.py`, not
-after. (An earlier version of this doc had these two steps in the opposite order; that silently
-produced an empty diff on every first-run-in-a-fresh-container, which defeats the entire point of
-Step 0's repo sync. Verified by execution in `system/LOOP_VERIFICATION_REPORT.md` §2 — running the
-old order against a container with no local `week_{N-1}.json` reproduces the empty diff, and
-swapping the order fixes it with no other change.)
+## STEP 2 — resolve the player cache
 
 ```bash
-cd /home/claude/sunday_scaries/system
-python3 players_cache.py ingest --dir raw          # identities FIRST
-python3 repo_sync.py get-state --week {N-1}         # THEN the diff target, before building state
-python3 state_builder.py --week {N} --summary        # now state_builder finds week_{N-1}.json already staged
-```
-
-This copies `data/week_{N-1}/state.json` out of the `repo_sync.py pull` clone from Step 0 to
-`system/state/week_{N-1}.json` — exactly where `state_builder.py`'s diff lookup and `weekly.js`'s
-`prevstate` argument already look by default (see `weekly_README.md`), so nothing downstream has to
-change to pick it up. **Backward compatibility, unchanged from before this existed:** if Step 0
-reported the repo unreachable, or `repo_sync.py latest-week` said `none`, or `get-state` exits
-non-zero because that week isn't in the repo yet, there is no prior week to diff against — proceed
-with no diff, exactly as today, and say so in the brief rather than inventing a comparison.
-
-Then check the cache is clean:
-
-```bash
+python3 players_cache.py ingest --dir raw
 python3 players_cache.py unresolved --roster-file raw/rosters.json   # want: none
 python3 players_cache.py stale      --roster-file raw/rosters.json   # want: short
 ```
 
-Anything unresolved goes back to step 1 line 7. `stale` means the entry was seeded from the 2025
-draft, so its **team and injury fields are 2025-vintage and must not be trusted** — Mike Evans is
-cached from that draft as TB when he is on SF. Refresh stale entries for Andrew's roster and for
-anyone you are about to recommend.
+Any unresolved id → fetch `.../players/nfl/{id}` (Step 1 line 8) and re-ingest. `stale` entries were
+seeded from the 2025 draft, so **their team/injury fields are a year old and must not be trusted** —
+refresh every stale player on Andrew's roster and anyone about to be recommended. New 2026 rookies
+(e.g. the late-round picks) usually need one per-id fetch each the first time they appear.
 
-## Step 3 — build the analysis baseline, then run the workflow
-
-**First, run the deterministic analysis stack** — `weekly.js` cannot call this Python itself
-(`agent()` calls are LLM calls, not code execution), so it has to run as its own command, after
-`state_builder.py` and before the Workflow tool:
+## STEP 3 — build state + the deterministic analysis baseline
 
 ```bash
-python3 /home/claude/sunday_scaries/system/analysis/build_analysis_output.py \
-  /home/claude/sunday_scaries/system/state/week_{N}.json
+python3 repo_sync.py get-state --week {N-1}     # stage last week's real state from the archive, if any
+python3 state_builder.py --week {N} --summary   # raw/*.json -> state/week_{N}.json (facts only)
+python3 analysis/build_analysis_output.py state/week_{N}.json
 ```
 
-This writes `system/state/week_{N}_analysis_output.json` — opponent pressure, predicted waiver
-claims, a full Monte Carlo contention report, the keeper board, and the code-verified free-agent
-pool, all computed from box scores and rosters alone with zero qualitative input. `weekly.js`'s
-`analysis_output` arg defaults to exactly this path, so no arg is needed if you ran this first. Full
-detail, including the "baseline vs refine" contract every prompt is held to, is in
-`weekly_README.md`'s "The analysis baseline" section.
+`state_builder.py` produces the non-hallucinable facts (standings, rosters, starters, matchups,
+injuries, the **code-verified** free-agent set, bye coverage — 2026 byes are now populated in
+`league_config.json`). `build_analysis_output.py` produces `state/week_{N}_analysis_output.json`:
+opponent positional pressure, predicted rival waiver claims, a Monte-Carlo contention report on who
+survives to Andrew's waiver slot, and the keeper-equity board (N-1 rule). These numbers are the
+baseline every qualitative judgment must cite and may refine — never contradict silently.
 
-**Then invoke the Workflow tool**, absolute path. It is not a node program; do not `node` it.
+## STEP 4 — grade last week (the learning loop) ★
 
-```
-Workflow: /home/claude/sunday_scaries/system/weekly.js
-args:     week={N}
-```
+Before making any new call, score the last one. Read last week's decisions from the season-log DB —
+Artifact `read_db` on `ARTIFACT_URL`, collection `weeks`, doc `week_{N-1}` (its `decisions` array).
+For each open decision, determine what actually happened from this week's fetched data and mark an
+`outcome` (`hit` / `miss` / `push`):
 
-18 agents: 15 sonnet in parallel (9 opponent models, 4 topic-sliced news sweeps, free-agent board,
-my-team read), then 2 opus (waiver contention, trade board), then 1 opus synthesis.
-Optional args: `waivers=priority|faab` (default hedges both), `state=`, `prevstate=`,
-`analysis_output=` (rarely needed — see above), `report=`. Full detail in `system/weekly_README.md`.
+- **Waiver claim recommended** → did Andrew's roster gain that player (check `transaction_log` /
+  roster diff)? Did the player produce? Was he even still available when Andrew's slot came up
+  (compare to the contention model's prediction)?
+- **Start/sit call** → did the started player out-score the benched alternative this week
+  (`matchups_week{N}`)? Log the points swing, positive or negative.
+- **Drop / hold** → did the dropped player get claimed by a rival and hurt us? Did the held player
+  justify the roster spot?
+- **Trade floated** → did it happen, get countered, or get ignored?
 
-## Step 4 — write the outputs and deliver
+Write the graded results **back to the DB**: `write_db` `weeks/week_{N-1}` with each decision's
+`outcome` set (add a short `grade_note`); append one `lessons` doc per notable miss/hit
+(`write_db` a new doc `{week, text, created}`); and update `meta/season` with the new rolling
+hit-rate. Keep a rolling hit-rate: fraction of graded waiver/start calls that were correct.
+**Feed these lessons into Step 6** — e.g. "we've over-valued Week-1 target
+share three times; discount it," or "our contention model under-predicted jomud's RB appetite."
+This is the mechanism by which the system gets better; do not skip it, and do not let it become
+self-congratulatory — the misses are the point.
 
-The workflow does no file I/O. The caller writes what it returns:
+If there is no prior `decisions.json` (first run of the season), say so and skip grading.
 
-- `report_markdown` → `write_targets.report` (`system/reports/week_{N}.md`)
-- `state_json` → `write_targets.state` (`system/state/week_{N}.synthesis.json`)
+## STEP 5 — research (news + opponents), gated
 
-Then merge the model's sections into the deterministic state file from step 2:
+Gather the qualitative layer. For a full weekly brief, fan this out to parallel subagents (the Agent
+tool) to stay fast and keep each one's context clean — a reasonable split: one agent for
+Andrew's-roster news, one or two for leaguewide injury/role/depth-chart news by position group, and
+one to scout the rivals most likely to contest Andrew's waiver targets (use the pressure model to
+pick which rivals matter). Two gates are absolute:
+
+- **Availability gate.** Never name a "free agent" without confirming against all ten rosters in
+  `raw/rosters.json` that he is genuinely unrostered *in this league*. The most damaging failure the
+  system has is recommending a claim for someone already rostered — deterministic check, not vibes.
+- **Freshness gate.** Every injury/snap/practice/role claim carries a named source dated within 7
+  days. No Wikipedia for anything time-sensitive. Prefer the WebFetch/WebSearch tools; if a domain
+  is blocked, find another source rather than routing around the restriction.
+
+## STEP 6 — synthesize the brief
+
+Produce the action plan, weighting: (a) this league's scoring — the 0.5/first-down bonus rewards
+possession/chain-movers over boom-bust deep threats (see `reference/scoring.md`); (b) the season
+phase posture (`reference/season_phases.md` — week 2 and week 12 get different answers); (c) the
+**lessons from Step 4**; (d) the deterministic baseline from Step 3; (e) keeper equity — every
+in-season add carries hidden 2027 keeper value at an R12 price (`reference/keepers.md`, N-1 rule).
+
+The brief has these parts (format: `reference/output_format.md`): **①** last week graded + rolling
+hit-rate, **②** lineup / start-sit with the points reasoning, **③** ordered waiver claims with the
+survival odds and the keeper-equity note, **④** drop candidates, **⑤** trade board, **⑥** rival
+intel (what each contender is about to do), **⑦** open questions still unresolved, **⑧** the
+machine-readable `decisions.json` for THIS week (so next week's Step 4 can grade it).
+
+## STEP 7 — deliver to Andrew
+
+Send Andrew the brief so he holds it independent of any container: SendUserFile the report, and post
+a phone-readable action card inline (30-second read). On a scheduled run, the completion
+notification carries the headline. This delivery is the run's core value and must happen **even if
+Step 8's archive push fails.**
+
+## STEP 8 — persist memory (primary), then archive (best-effort)
+
+**Primary — write this week's memory to the season-log DB.** Bridge-independent, always works from a
+cloud run, and it is what makes next week's Step 4 possible:
+- Artifact `write_db` `ARTIFACT_URL` collection `weeks` doc `week_{N}` = `{week, season, opponent,
+  result, generated, decisions}` — the `decisions` array is this week's calls, each with
+  `outcome: null`, ready to be graded next week.
+- Artifact `write_db` `meta/season` = `{current_week, record, hit_rate, hit_rate_sub, updated}`.
+- **Mirror the DB to an owned copy.** `read_db` all collections and write them as JSON under
+  `system/state/db_mirror/` (carried by the best-effort archive push below), and SendUserFile the
+  export to Andrew on request. This guarantees a portable, version-controlled copy that survives even
+  if the artifact is ever deleted — the DB is the fast live store, this JSON is the backup Andrew owns.
+
+Do this even if every other step failed — a delivered brief with its decisions saved is a complete
+run.
+
+**Secondary — GitHub archive (best-effort, for browsable history).** Merge judgment into the facts
+file, then try to push; it will often fail from the cloud, and that is fine because the DB above
+already holds the memory:
 
 ```bash
-python3 /home/claude/sunday_scaries/system/merge_state.py --week {N}
+python3 merge_state.py --week {N}   # folds opponent_model/keeper_equity/decisions_log/open_questions
+                                    # into the FACTS file without overwriting them; keeps a backup
 ```
 
-**Never write `state_json` straight to `week_{N}.json`.** That file is what `state_builder.py`
-computed from the Sleeper payloads — standings, rosters, starters, matchups, transactions,
-injuries, the verified free-agent set. Overwriting it with model output replaces facts with a
-reconstruction, and next week reads the reconstruction as ground truth. `merge_state.py` takes
-only `opponent_model`, `keeper_equity`, `decisions_log` and `open_questions` from the agent and
-discards anything else it emitted. It keeps a `.prebuild.json` backup and refuses to touch the
-deterministic file if the synthesis JSON is missing or malformed.
-
-**Check `state_parse_error` first.** Non-null means the synthesis agent emitted malformed JSON:
-write the report anyway and skip the merge — the deterministic state file stands on its own and
-is still correct, it just has no opponent model this week. Check `counts` too;
-`intelligence_agents_returned` below `dispatched` means agents died and the brief is thinner than
-it looks.
-
-Then **send Andrew the files** (report + state JSON) so he holds a copy independent of this
-container. That is what makes the next cold start survivable. Post the action card inline in chat —
-it should be readable on a phone in thirty seconds. Format: `reference/output_format.md`.
-
-## Step 5 — archive the week into the repo
-
-This is what makes next Tuesday's Step 0/Step 2 actually work — commit this week's outputs to the
-same repo Step 0 pulled from, so the *next* brand-new session has something real to read.
+Never write synthesis output straight over `week_{N}.json` — that file is the deterministic facts;
+`merge_state.py` takes only the four judgment sections and discards the rest. Then archive (this is
+what makes next week's Step 0/3/4 work):
 
 ```bash
-python3 /home/claude/sunday_scaries/system/repo_sync.py commit-and-push \
-  --week {N} \
-  --report system/reports/week_{N}.md \
-  --state system/state/week_{N}.json \
-  --synthesis system/state/week_{N}.synthesis.json
+export SUNDAY_SCARIES_GH_TOKEN="$(cat <token-file>)"   # see 'The push token' below
+python3 repo_sync.py commit-and-push --week {N} \
+  --report reports/week_{N}.md --state state/week_{N}.json --synthesis state/week_{N}.synthesis.json
+# also archive this week's decisions.json and lessons.md into data/week_{N}/
 ```
 
-Run this **after** Step 4's `merge_state.py`, using the merged (post-merge) `week_{N}.json` —
-never the pre-merge or synthesis-only file — so the archived copy matches what
-`state_builder.py`/`merge_state.py` actually produced, facts intact.
+**The push, honestly.** A cloud session cannot push to GitHub directly — the git proxy blocks it
+unless the repo is added to the session's authorized sources. Two ways it actually lands:
+- *Authorized sources configured* → `commit-and-push` works from the cloud. Best case; nothing else needed.
+- *Linked computer available* → run the commit-and-push through `device_bash` on the linked machine
+  (its git can push), reading the token from the gitignored file on disk there.
+- *Neither right now* → the commit still exists locally; the **brief was already delivered in Step
+  7**. Say "archive deferred, will sync next run," and the next run re-derives from live data anyway.
+  Never withhold or redo the brief over an archival failure — they are independent deliverables.
 
-What to expect, and how to react:
+Verify by checking, not assuming: `git log origin/main --oneline -3` after a fetch shows whether the
+commit actually reached GitHub.
 
-| Result | Meaning | Do this |
-|---|---|---|
-| Exit 0, "pushed ... to origin" | Archived for real. `git log` in the clone is now this month's index. | Nothing further. |
-| Exit 0, "SUNDAY_SCARIES_GH_TOKEN is not set" | Expected until Andrew provides a token — this is not an error. The week is committed **locally** in the clone, just not pushed. | Mention it in passing in the brief (not an alarm — this is the documented current state), and note the manual push command the script printed. |
-| Exit non-zero, push failed (auth/network) | The commit still exists locally; only the push failed. | See "When it breaks" below — do not lose the week's brief over this. |
-
-Re-running this step for the same week (e.g. after fixing a token problem) is safe — identical
-content produces no new commit, and `commit-and-push` still (re)attempts the push, so retrying is
-the correct recovery action, not a special case.
+**The push token.** Auth is a fine-grained GitHub PAT (repo `Aroth2000/sleeper_league`, contents
+read+write), never hardcoded and never written into `.git/config`. `repo_sync.py` reads it only from
+`SUNDAY_SCARIES_GH_TOKEN` and passes it inline on the one push URL. On the linked computer it lives
+in a gitignored file (e.g. `.secrets/gh_token.txt`) outside anything that gets committed.
 
 ---
 
-## Not every question needs 18 agents
+## Not every question needs the full run
 
-The full run is for the Tuesday brief. For a single narrow question, stay inline and cheap:
+For a single narrow ask, stay inline and cheap: fetch what's needed (Steps 1–3), read the answer out
+of the state file, reason over it with the scoring/keeper references. Escalate to the full run only
+for "what should I do this week" or anything that depends on modelling rival behavior.
 
-- **"Who should I start?"** — Steps 1–2 (fetch rosters/matchups, rebuild state), then read the
-  lineup out of the state file and reason over it. Weight the first-down bonus; see `reference/scoring.md`.
-- **"Should I claim X?"** — Verify he is genuinely a free agent against all ten rosters in
-  `raw/rosters.json`, then weigh win-now value against 12th-round keeper equity
-  (`reference/keepers.md`) and who picks ahead of Andrew (`system/state/week_N.json` → `waiver_order`).
-- **"What changed this week?"** — `state_builder.py --summary` plus the `roster_diff` and
-  `transaction_log` sections of the state file.
+## Guardrails (non-negotiable)
 
-Escalate to the full workflow when the question is "what should I do this week", or when the answer
-depends on modelling what rivals will do.
-
-## Non-negotiable guardrails
-
-- **Availability gate.** Never name a free agent without confirming against all ten rosters in
-  `raw/rosters.json` that he is actually unrostered *in this league*. This is the most damaging
-  failure the system has: it looks authoritative and wastes a claim. Deterministic check, not vibes.
-- **Freshness gate.** Every injury, snap, practice or role claim carries a named source dated inside
-  7 days. Wikipedia is banned for anything time-sensitive.
-- **Diff, don't snapshot.** The value is in what changed. Load last week's state and compare —
-  from the repo clone (`repo_sync.py get-state`, Step 0/2), not from session memory, which does
-  not exist between Tuesday firings.
-- **Never invent a bye week.** 2026 byes are not populated and are not available from any Sleeper
-  endpoint here. `bye_coverage` stays `unknown` until someone hand-enters them. A guessed bye
-  silently produces a wrong lineup.
-- **Say what is unresolved.** The open questions (waiver clock time, DEF scoring fix, keeper
-  deadline, 2026 byes) appear in section 8 of every brief until closed.
+- **Availability gate** and **Freshness gate** — as in Step 5.
+- **Diff, don't snapshot.** The value is in what changed since last week; load the prior state from
+  the archive and compare.
+- **Byes are populated** (`league_config.json` → `nfl_bye_weeks_2026`, cross-verified). Week 11 is a
+  6-team bye; week 12 has none. Still sanity-check a starter isn't on bye before recommending him.
+- **Say what's unresolved.** Open questions (exact waiver clock time; whether the DEF scoring fix
+  shipped) ride in section ⑦ of every brief until closed.
+- **Keeper math is N-1.** A repeat keep costs one round cheaper in number than last year (floored at
+  R1 = final year); a first-time keep costs his draft round; FA adds cost R12. Never quote the old
+  flat model.
 
 ## When it breaks
 
-**Usage cap mid-run.** Re-run the identical command with the identical `args`. Completed agents
-replay from cache, so a resume only pays for what did not finish. Two rules: pass `week=` explicitly
-(a date rollover otherwise changes the week and invalidates the whole cache) and **resume before
-midnight UTC** — the run date is embedded in every prompt, so tomorrow's resume re-runs everything.
-If Phase 1 keeps dying, run it once to warm the cache on whatever succeeds, then run again.
+- **Sleeper fetch 403/404** → retry once with `?r=1`; else build from raw already on disk
+  (`state_builder.py` degrades to a warning + `meta.degraded`) and name the stale section.
+- **A subagent dies** → the brief is thinner, not wrong; note which intel is missing.
+- **Usage cap mid-run** → resume; pass `week={N}` explicitly so a date rollover doesn't shift it.
+- **Push fails** → Step 8 above; brief still ships.
 
-**Sleeper unreachable / a fetch 403s.** Retry once with `?r=1`. If it still fails, build from the
-raw files already on disk — `state_builder.py` degrades to a warning plus an empty section and sets
-`meta.degraded`. Say plainly in the brief which section is stale.
+## The comprehensive research sweep (Tuesday, and on demand)
 
-**State file missing or stale.** Rebuild from `raw/` (step 2) — it is fully reconstructible. If
-`raw/` is also gone, re-fetch (step 1). If a *previous* week's state is missing, run anyway: the
-workflow tolerates a missing predecessor, it just loses the diff, and it will say so.
+Goal: current, sourced coverage of **every relevant offensive player** — all rostered players,
+recently dropped players, waiver-pool names, and the broader skill-position pool across all 32 NFL
+teams — without exhausting the web-search budget. The trick is breadth from BULK data, depth (web
+search) only where something moved.
 
-**Rebuilding from nothing (new container, no `system/`).** Ask Andrew for the delivered bundle
-(the `.skill` file ships a `bundle/` copy of the whole runtime — see `reference/data_layer.md` for
-the restore command) plus the most recent `week_N.json` he was sent. Everything except state and
-raw is static and restores byte-for-byte. If nothing at all survives, the league is still fully
-reconstructible from the API: this skill's reference files carry every constant, and steps 1–2
-rebuild the rest from scratch. Nothing here depends on a chat staying alive.
+1. **Bulk ingest — a handful of fetches that cover everyone.** Pull structured leaguewide data and
+   save raw to `raw/`, parse with Python:
+   - Sleeper: all 10 rosters (who's rostered / just dropped), every player's `injury_status`,
+     transactions, trending adds/drops.
+   - ESPN public JSON (reachable via WebFetch, verified): leaguewide injuries
+     `https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries`; team depth charts and
+     rosters via ESPN's team endpoints.
+   - Weekly usage (snaps / routes / target & carry share): a bulk source (e.g. nflverse weekly data);
+     verify reachability each run and fall back to per-team ESPN box-score pulls if one is down.
+   This layer is cheap and covers every player — it is the breadth, and it cannot be throttled the way
+   per-player search can.
 
-**GitHub push fails / repo unreachable.** This can happen at either end of the loop — Step 0's
-pull or Step 5's push — and neither one should ever cost Andrew the week's brief:
+2. **Deterministic flagging.** From the bulk data compute who MATERIALLY changed: a snap/target-share
+   jump, a new starter, an injury/IR/suspension, a depth-chart climb, an NFL-team change, or a spike
+   in adds/drops. Leaguewide this is typically 30–60 players, not 500.
 
-- *Step 0 pull fails* (auth, network, repo renamed/deleted): `repo_sync.py pull` exits non-zero and
-  prints why. Fall back to the bundled local snapshot exactly as this skill worked before the repo
-  existed — `system/state/week_{N-1}.json` on local disk, if present — and say plainly in the
-  delivered brief that continuity may be stale this run because the repo sync failed. Do not block
-  the rest of the run on this; a stale-but-present diff target is still better than refusing to
-  produce the brief.
-- *Step 5 push fails* (bad/expired token, network, GitHub outage): `commit-and-push` still commits
-  locally before attempting the push, so the week's archive is **not lost** — it is sitting in
-  `repo_clone/` waiting for a working push. Tell Andrew the brief is done and delivered, but this
-  week's archive is pending (local-only) and needs either a token fix or a manual
-  `git push origin main` from `repo_clone/` once the problem clears. Never treat an archival
-  failure as a reason to withhold or redo the brief itself — the brief and the archive are
-  independent deliverables.
-- *`SUNDAY_SCARIES_GH_TOKEN` unset* is not a failure at all — it is today's expected state until
-  Andrew provides a fine-grained PAT (repo: `Aroth2000/sleeper_league`, contents read/write). Treat
-  it exactly like the second bullet above: local commit good, push pending, mention it without
-  alarm.
-- Either way, **verify by checking, not assuming** — `cd repo_clone && git log --oneline -3` shows
-  whether this week's commit exists locally, and `git log origin/main --oneline -3` (after a
-  `git fetch`) shows whether it actually reached GitHub. Don't report a push as successful without
-  having seen `repo_sync.py` print the "pushed ... to origin" line for real.
+3. **Targeted deep web-search fan-out — POOLED / BATCHED.** One agent per flagged player, each running
+   the SAME fixed protocol: depth chart, snaps/routes/touches + trend, teammate-injury opportunity
+   shifts, practice-report status, role/scheme notes, transactions/suspensions — every claim carrying
+   a source dated within 7 days. **Launch in waves of ~10–15 (next wave starts as the prior finishes),
+   never all at once, to stay under the shared search rate/budget.** If using the Workflow tool, cap
+   `parallel()` concurrency to the wave size. Breadth already came from step 1, so this expensive step
+   only ever runs on the small flagged set.
 
-## Reference files — read on demand, not up front
+4. **Store a dossier per player to the DB** — collection `players`, doc id = Sleeper `player_id`,
+   `{name, pos, team, updated, injury_status, snaps, target_share, role_note, source, source_date}`.
+   Every player the bulk layer covered gets the structured fields; flagged players also get the
+   researched `role_note`. The brief is synthesized from the decision-relevant subset while every
+   other dossier sits queryable in the DB for trades and scouting.
 
-| File | Read it when |
+On demand ("do research"): the same sweep runs whenever Andrew asks, not only on the Tuesday schedule.
+For a single player or team, run just steps 1+3 scoped to them.
+
+## Reference files — read on demand
+
+| File | When |
 |---|---|
-| `reference/league.md` | you need IDs, roster slots, calendar, waiver mechanics |
+| `reference/league.md` | IDs, roster slots, calendar, waiver mechanics |
 | `reference/scoring.md` | valuing any player — the first-down bonus warps everything |
-| `reference/teams.md` | naming an owner, a roster_id, or scouting a rival |
-| `reference/keepers.md` | any keeper, drop, or long-horizon claim decision |
-| `reference/season_phases.md` | deciding posture — week 2 and week 12 get different answers |
+| `reference/teams.md` | naming an owner / roster_id / scouting a rival |
+| `reference/keepers.md` | any keeper, drop, or long-horizon claim (N-1 rule, keeper equity) |
+| `reference/season_phases.md` | posture — week 2 ≠ week 12 |
 | `reference/output_format.md` | writing the brief |
-| `reference/data_layer.md` | fetching, the player cache, or restoring the runtime |
+| `reference/data_layer.md` | fetching, the player cache, restoring the runtime |
+| `../../docs/draft_report_2026.md` | how the season started — each team's draft, strengths, holes |

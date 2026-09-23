@@ -589,10 +589,19 @@ class TestKeeperEquity(unittest.TestCase):
         self.assertTrue(cost["eligible"])
         self.assertIn("12th", cost["notes"][0])
 
-    def test_kept_round_carries_forward(self):
+    def test_kept_round_escalates_n_minus_1(self):
+        # A repeat keep costs one round cheaper in NUMBER than last year (N-1).
         cost = ke.keeper_cost({"acquisition": "keeper", "kept_at_round": 12,
                                "draft_round": 3})
-        self.assertEqual(cost["cost_round"], 12)
+        self.assertEqual(cost["cost_round"], 11)
+
+    def test_n_minus_1_floors_at_r1_and_stays_eligible(self):
+        # Kept @R2 last year -> escalates to R1: still valid, but final eligible year.
+        cost = ke.keeper_cost({"acquisition": "keeper", "kept_at_round": 2,
+                               "consecutive_years_kept": 1})
+        self.assertEqual(cost["cost_round"], 1)
+        self.assertTrue(cost["eligible"])
+        self.assertTrue(cost["is_final_eligible_year"])
 
     def test_first_rounders_are_never_keepable(self):
         cost = ke.keeper_cost({"acquisition": "draft", "draft_round": 1})
@@ -751,8 +760,9 @@ class TestKeeperEquity(unittest.TestCase):
         self.assertEqual(by_name["Kenneth Walker"]["consecutive_years_kept"], 0)
         board = ke.build_keeper_board(roster, draft_slot=8, season=2026)
         nix = next(r for r in board if r["player"] == "Bo Nix")
-        self.assertEqual(nix["keeper_cost_2026"], "R12")
-        self.assertEqual(nix["forfeits_overall_pick"], 113)
+        # N-1: Bo Nix kept @R12 in 2025 -> R11 for 2026 (forfeits pick 108, not 113).
+        self.assertEqual(nix["keeper_cost_2026"], "R11")
+        self.assertEqual(nix["forfeits_overall_pick"], 108)
         # config records consecutive_years_if_kept == 2 for the 2026 keep
         self.assertEqual(nix["consecutive_years_if_kept"], 2)
         self.assertFalse(nix["is_final_eligible_year"])
@@ -783,22 +793,32 @@ class TestKeeperEquity(unittest.TestCase):
         self.assertEqual(rules["draft_slot"], 8)
 
     def test_andrews_real_keeper_plan_reproduces_from_the_config(self):
-        """The config records the plan: Walker R4/pick 33, Nix R12/pick 113,
-        Jameson Williams R14/pick 133. Recompute it from the rules and check the
-        forfeited picks match exactly."""
+        """N-1 corrected plan: Walker (first-time keep) R4/pick 33; Bo Nix (repeat,
+        kept @R12) -> R11/pick 108; Jameson Williams (repeat, kept @R14) -> R13/pick
+        128. Recompute from the rules using each player's real keep-type and check
+        the config's recorded cost + forfeited pick match exactly."""
         cfg = load_json(CONFIG_PATH)
         if not cfg:
             self.skipTest("league_config.json not present")
-        plan = cfg["andrew"]["keeper_plan"]["keeping"]
-        for entry in plan:
-            row = ke.evaluate_keeper({
-                "player": entry["name"], "position": entry["pos"],
-                "kept_at_round": entry["cost_round"], "acquisition": "keeper",
-                "consecutive_years_kept": entry["consecutive_years_if_kept"] - 1,
-            }, draft_slot=8)
-            self.assertEqual(row["keeper_cost_round"], entry["cost_round"])
-            self.assertEqual(row["forfeits_overall_pick"], entry["forfeits_overall_pick"],
-                             "pick math wrong for %s" % entry["name"])
+        plan = {k["name"]: k for k in cfg["andrew"]["keeper_plan"]["keeping"]}
+
+        # inputs = each player's real keep-type (first-time -> draft_round, no N-1;
+        # repeat -> kept_at_round = last year's keep round, N-1 applies).
+        cases = [
+            ("Kenneth Walker", {"draft_round": 4, "acquisition": "draft",
+                                "consecutive_years_kept": 0}, 4, 33),
+            ("Bo Nix", {"kept_at_round": 12, "acquisition": "keeper",
+                        "consecutive_years_kept": 1}, 11, 108),
+            ("Jameson Williams", {"kept_at_round": 14, "acquisition": "keeper",
+                                  "consecutive_years_kept": 1}, 13, 128),
+        ]
+        for name, inp, exp_round, exp_pick in cases:
+            row = ke.evaluate_keeper(dict(inp, player=name), draft_slot=8)
+            self.assertEqual(row["keeper_cost_round"], exp_round, "cost wrong for %s" % name)
+            self.assertEqual(row["forfeits_overall_pick"], exp_pick, "pick wrong for %s" % name)
+            # and it must agree with what the config records
+            self.assertEqual(plan[name]["cost_round"], exp_round, "config cost drift for %s" % name)
+            self.assertEqual(plan[name]["forfeits_overall_pick"], exp_pick, "config pick drift for %s" % name)
 
 
 # ==========================================================================

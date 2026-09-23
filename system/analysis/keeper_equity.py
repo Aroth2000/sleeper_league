@@ -79,7 +79,7 @@ __all__ = [
 WAIVER_KEEPER_COST_ROUND = 12
 MAX_KEEPERS = 3
 MAX_CONSECUTIVE_YEARS = 3
-DRAFT_ROUNDS = 16
+DRAFT_ROUNDS = 15
 NUM_TEAMS = 10
 FIRST_ROUND_INELIGIBLE = True
 
@@ -107,8 +107,8 @@ MARKET_ROUND_BY_PPG = {
            (11.0, 8), (10.0, 10), (9.0, 12), (0.0, 15)],
     "TE": [(15.0, 1), (13.0, 2), (11.5, 3), (10.5, 4), (9.5, 6), (8.5, 8),
            (7.5, 10), (0.0, 14)],
-    "DEF": [(9.0, 13), (7.0, 15), (0.0, 16)],
-    "K": [(0.0, 16)],
+    "DEF": [(9.0, 13), (7.0, 15), (0.0, 15)],
+    "K": [(0.0, 15)],
 }
 
 # Analysts speak in tiers far more often than in ppg, so accept both.
@@ -214,19 +214,28 @@ def keeper_cost(player, rules=None):
     acq = str(player.get("acquisition") or player.get("acquired") or "").lower()
     waiver_round = int(rules.get("undrafted_pickup_cost_round", WAIVER_KEEPER_COST_ROUND))
     notes = []
+    escalated = False  # True when this cost came from N-1 escalation of a prior keep
 
     kept_at = player.get("kept_at_round")
     drafted = player.get("draft_round")
 
     if kept_at is not None:
-        cost = int(kept_at)
-        notes.append("kept at round %d last year; that round carries forward" % cost)
+        # He was KEPT last year at round `kept_at`. Under this league's N-1 rule the
+        # cost to keep him AGAIN is one round cheaper in NUMBER (floored at R1).
+        prev = int(kept_at)
+        cost = max(1, prev - 1)
+        escalated = True
+        if cost < prev:
+            notes.append("kept at round %d last year; N-1 escalation -> this year costs round %d" % (prev, cost))
+        else:
+            notes.append("kept at round %d last year; already at the R1 floor -> stays round %d" % (prev, cost))
     elif acq.startswith("waiver") or acq in ("free_agent", "fa", "undrafted", "add"):
         cost = waiver_round
         notes.append("added off waivers/FA, never drafted -> costs a %dth" % waiver_round)
     elif drafted is not None:
+        # First-time keep: costs the round he was drafted, with no N-1 discount yet.
         cost = int(drafted)
-        notes.append("drafted in round %d" % cost)
+        notes.append("first-time keep; drafted in round %d" % cost)
     elif acq == "trade":
         cost = int(player.get("original_draft_round") or waiver_round)
         notes.append("acquired by trade; cost follows his original draft round "
@@ -239,9 +248,11 @@ def keeper_cost(player, rules=None):
     years = int(player.get("consecutive_years_kept") or 0)
     eligible = True
     reason = None
-    if rules.get("first_round_ineligible", True) and cost <= 1:
+    # The R1 restriction applies to a player's ORIGINAL draft round, not to a cost
+    # that has escalated into R1 via N-1. An escalated R1 cost is valid (but final).
+    if rules.get("first_round_ineligible", True) and cost <= 1 and not escalated:
         eligible = False
-        reason = "1st-round picks are not keeper-eligible"
+        reason = "1st-round pick -- not keeper-eligible (original draft round)"
     max_years = int(rules.get("max_consecutive_years", MAX_CONSECUTIVE_YEARS))
     if years >= max_years:
         eligible = False
@@ -249,8 +260,12 @@ def keeper_cost(player, rules=None):
                   % (years, max_years))
 
     years_after = years + 1
-    final_year = years_after >= max_years and eligible
-    if final_year:
+    cost_floor_reached = escalated and cost <= 1
+    final_year = eligible and (years_after >= max_years or cost_floor_reached)
+    if eligible and cost_floor_reached:
+        notes.append("cost has escalated to the R1 floor -- valid this year but NOT "
+                     "keepable again (no R0 to escalate to); final eligible year")
+    elif final_year:
         notes.append("FINAL eligible year -- keeping him uses up the %d-year cap"
                      % max_years)
 
@@ -442,20 +457,33 @@ def andrew_roster_from_config(config_path=None, projections=None, season=2026):
         pid = row.get("player_id")
         name = row.get("name")
         years = 1 if row.get("kept_in_2025") else 0
+        kept_last_year = bool(row.get("kept_in_2025"))
         entry = {
             "player": name,
             "player_id": pid,
             "position": row.get("pos"),
-            "kept_at_round": row.get("cost_round"),
-            "acquisition": "keeper" if row.get("kept_in_2025") else "draft",
+            "acquisition": "keeper" if kept_last_year else "draft",
             "consecutive_years_kept": years,
             "projected_ppg": projections.get(pid, projections.get(name)),
             "flag": row.get("flag"),
         }
+        # A repeat keep (kept in 2025) escalates via N-1 off last year's keep round;
+        # a first-time keep just costs his 2025 draft round. Feed keeper_cost() the
+        # field it interprets correctly for each case (kept_at_round => N-1 applies).
+        if kept_last_year:
+            entry["kept_at_round"] = row.get("cost_round")
+        else:
+            entry["draft_round"] = row.get("cost_round")
         if season >= 2027:
             if pid in planned:
+                # Base 2026 cost, then one more N-1 step per season past 2026.
+                base_2026 = (int(row.get("cost_round")) - 1) if kept_last_year else int(row.get("cost_round"))
+                prior_year_cost = max(1, base_2026 - (season - 2026 - 1))
+                entry.pop("draft_round", None)
+                entry["kept_at_round"] = prior_year_cost
+                entry["acquisition"] = "keeper"
                 entry["consecutive_years_kept"] = years + (season - 2026)
-                entry["cost_basis"] = "carried forward from the planned 2026 keep"
+                entry["cost_basis"] = "N-1 escalation from the planned 2026 keep"
             else:
                 entry["cost_basis_unknown"] = (
                     "not in the 2026 keeper plan -- he re-enters the draft, so his "
