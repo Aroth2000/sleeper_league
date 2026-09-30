@@ -1,31 +1,160 @@
 {
-  "_export_note": "Full mirror of the Sunday Scaries season-log artifact database, pulled 2026-09-11. This is a plain-JSON copy you own outright. The live store lives at the artifact URL below; this file is a portable, version-controllable snapshot. The weekly run refreshes this mirror; it can also be regenerated on demand at any time by reading the artifact's db.",
-  "exported": "2026-09-11",
-  "artifact_url": "https://claude.ai/code/artifact/004d6522-cc50-4a98-b4f6-b0002aab10e1",
-  "meta": {
-    "season": {
-      "current_week": 1,
-      "hit_rate": "—",
-      "hit_rate_sub": "grades begin after Week 1",
-      "record": "0-0",
-      "season": 2026,
-      "updated": "2026-09-10"
-    }
-  },
-  "weeks": [
+ "_export_note": "Full mirror of the Sunday Scaries season-log artifact database. A plain-JSON copy you own outright; the live store is at artifact_url. Regenerate any time by reading the artifact's db.",
+ "exported": "2026-09-29",
+ "artifact_url": "https://claude.ai/code/artifact/004d6522-cc50-4a98-b4f6-b0002aab10e1",
+ "meta": {
+  "season": {
+   "current_week": 3,
+   "hit_rate": "63%",
+   "hit_rate_sub": "5/8 graded calls",
+   "last_run_note": "Week 3 brief refreshed with live data + injury research (full automated-style run)",
+   "record": "0-2",
+   "season": 2026,
+   "updated": "2026-09-23"
+  }
+ },
+ "weeks": [
+  {
+   "decisions": [
     {
-      "week": 1,
-      "season": 2026,
-      "opponent": "pdustin (Mass General Hospital)",
-      "result": null,
-      "generated": "2026-09-10",
-      "decisions": [
-        {"type": "start_sit", "call": "Slight lean: start Chris Godwin over Jameson Williams at WR2", "rationale": "0.5/first-down bonus favors Godwin's possession profile over Jameson's boom-bust deep-threat profile; close call", "outcome": null},
-        {"type": "waiver", "call": "HOLD — do not claim Michael Mayer (TE) in Week 1; not worth burning #3 waiver priority on a speculative TE2", "rationale": "Revisit only if LaPorta's hip lingers", "outcome": null},
-        {"type": "start_sit", "call": "Start the locked core: Nix, McCaffrey, Walker, Pickens, LaPorta, Barkley (FLEX), Darnold (SUPER_FLEX), BUF (DEF)", "rationale": "All active; elite floor", "outcome": null},
-        {"type": "monitor", "call": "Re-check Kenneth Walker (foot) and Sam LaPorta (hip) vs Sunday inactives before lock", "rationale": "Both expected to play; confirm on the final injury report", "outcome": null}
-      ]
+     "call": "Slight lean: start Chris Godwin over Jameson Williams at WR2",
+     "grade_note": "Started Jameson (7.5) over Godwin (7.3) \u2014 immaterial 0.2. The real miss: benched DJ Moore went 20.0, outscoring every started WR.",
+     "outcome": "miss",
+     "rationale": "0.5/first-down bonus favors Godwin's possession profile; close call",
+     "type": "start_sit"
+    },
+    {
+     "call": "HOLD \u2014 do not claim Michael Mayer (TE) in Week 1",
+     "grade_note": "LaPorta healthy (8.3); hold justified.",
+     "outcome": "hit",
+     "rationale": "Revisit only if LaPorta's hip lingers",
+     "type": "waiver"
+    },
+    {
+     "call": "Start the locked core (Nix, McCaffrey, Walker, Pickens, LaPorta, Barkley FLEX, Darnold SF, BUF DEF)",
+     "grade_note": "Correct starts; Walker led 36.6. Loss was variance (Nix/Pickens/Darnold busts).",
+     "outcome": "hit",
+     "rationale": "All active; elite floor",
+     "type": "start_sit"
+    },
+    {
+     "call": "Re-check Kenneth Walker (foot) and Sam LaPorta (hip) vs inactives",
+     "grade_note": "Both played (36.6, 8.3).",
+     "outcome": "hit",
+     "rationale": "Both expected to play",
+     "type": "monitor"
     }
-  ],
-  "lessons": []
+   ],
+   "generated": "2026-09-10",
+   "graded": "2026-09-17",
+   "opponent": "pdustin (Mass General Hospital)",
+   "result": "L 94.5\u2013159.6",
+   "season": 2026,
+   "week": 1
+  },
+  {
+   "decisions": [
+    {
+     "call": "SUPER_FLEX: start Daniel Jones over Sam Darnold",
+     "grade_note": "Jones 12.9 vs Darnold 0.0 \u2014 pivot worked.",
+     "outcome": "hit",
+     "rationale": "Darnold busted Wk1; Jones the upgrade if active",
+     "type": "start_sit"
+    },
+    {
+     "call": "WR2: DJ Moore in over Jameson Williams / Godwin",
+     "grade_note": "Moore laid an egg (-0.1); benched Godwin (9.3) and Jameson (5.3) both beat him. Moore is boom/bust; the possession play (Godwin) is the steadier floor.",
+     "outcome": "miss",
+     "rationale": "Moore's hot hand off Wk1's 20",
+     "type": "start_sit"
+    },
+    {
+     "call": "USE the #1 waiver priority on a difference-maker",
+     "grade_note": "Not acted on \u2014 still at waiver #1 a second week. The claim is unused while sitting 0-2.",
+     "outcome": "miss",
+     "rationale": "Reverse-standings top claim after 0-1",
+     "type": "waiver"
+    },
+    {
+     "call": "Confirm CMC, Walker, Daniel Jones active",
+     "grade_note": "All active and productive (CMC 22.6, Walker 25.3, Jones 12.9).",
+     "outcome": "hit",
+     "rationale": "Verify before lock",
+     "type": "monitor"
+    }
+   ],
+   "generated": "2026-09-17",
+   "graded": "2026-09-22",
+   "opponent": "jpalmeri1616 (Big Mommy Milkers)",
+   "result": "L 108.5\u2013157.7",
+   "season": 2026,
+   "week": 2
+  },
+  {
+   "decisions": [
+    {
+     "call": "Claim #1: Tre Tucker (LV WR), drop Jordan James (SF RB4).",
+     "outcome": null,
+     "rationale": "Every-week WR1 role (65% snaps, 18.6% tgt share); fills the WR need; R12 keeper value",
+     "type": "waiver"
+    },
+    {
+     "call": "Claim #2: Kirk Cousins (LV QB, named starter) for superflex insurance; move Jordyn Tyson (IR, out to ~Wk5-6) to the IR slot to make room, else drop Godwin.",
+     "outcome": null,
+     "rationale": "Darnold hurt (glute), only Nix + Jones healthy; a SF zero cost Week 1",
+     "type": "waiver"
+    },
+    {
+     "call": "Claim #3: Denzel Boston (CLE rookie WR), drop Godwin (or Jameson). Backups: Mariota (WAS QB) if Cousins goes elsewhere; Adonai Mitchell (NYJ WR) if Boston/Tucker taken. Skip Emanuel Wilson (already own Price), Bagent (concussion).",
+     "outcome": null,
+     "rationale": "93% snaps, 21% tgt share, WR10 thru 2 wks; R12 rookie keeper",
+     "type": "waiver"
+    },
+    {
+     "call": "WR2: DJ Moore only if full practice/active (AC sprain); else Khalil Shakir. Tucker is a live WR2/flex if claimed.",
+     "outcome": null,
+     "rationale": "Hurt boom/bust WR is a zero risk",
+     "type": "start_sit"
+    },
+    {
+     "call": "SUPER_FLEX: start Daniel Jones. (Correction: Darnold is NOT a pivot \u2014 glute injury, Drew Lock starting for SEA.)",
+     "outcome": null,
+     "rationale": "Jones is the only healthy QB option besides Nix",
+     "type": "start_sit"
+    },
+    {
+     "call": "Verify Saquon (stinger, MNF), DJ Moore (Fri), Jones active. Walker (KC) healthy.",
+     "outcome": null,
+     "rationale": "Saquon is the core's one health question",
+     "type": "monitor"
+    },
+    {
+     "call": "Root for a Burrow scratch (back+rib, @PIT).",
+     "outcome": null,
+     "rationale": "Exploit jomud's downside as underdog",
+     "type": "opponent"
+    }
+   ],
+   "generated": "2026-09-23",
+   "opponent": "jomud (2-0, 306 pts)",
+   "refreshed_note": "Refreshed 9-23 with live data + injury research; waiver list expanded + SF correction (Darnold injured, Drew Lock starting) same night",
+   "result": null,
+   "season": 2026,
+   "week": 3
+  }
+ ],
+ "lessons": [
+  {
+   "created": "2026-09-17",
+   "text": "Benched DJ Moore (crowded CHI room) scored 20.0, outscoring every started WR. Don't reflexively bench a talented WR for the possession-lean \u2014 ceiling matters. The Godwin-vs-Jameson possession lean was a wash (0.2 pts).",
+   "week": 1,
+   "id": "wk1_dj_moore"
+  },
+  {
+   "created": "2026-09-22",
+   "text": "DJ Moore is boom/bust (20 then -0.1 back-to-back); the possession play (Godwin) is the steadier floor and better format fit \u2014 chase Moore's ceiling only when you NEED variance (underdog weeks). And: the #1 waiver claim has gone unused two straight weeks at 0-2 \u2014 stop sitting on it.",
+   "week": 2,
+   "id": "wk2_moore_and_waiver"
+  }
+ ]
 }

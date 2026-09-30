@@ -86,6 +86,8 @@ use this exact extraction prompt or the summariser turns JSON into prose:
 | 3 | `.../league/1389753893356838912/rosters` | `rosters.json` |
 | 4 | `.../league/1389753893356838912/users` | `users.json` |
 | 5 | `.../league/1389753893356838912/matchups/{N}` | `matchups_week{N}.json` |
+| 5b | `.../league/1389753893356838912/matchups/{k}` for EVERY completed week k = 1..N-1 | `matchups_week{k}.json` (per-player points; the trade analysis and grading both need the history) |
+| 5c | `.../draft/1389753893356838913/picks` — **only if `raw/draft_2026_picks.json` is missing** (it is committed; the draft never changes) | `draft_2026_picks.json` |
 | 6 | `.../league/1389753893356838912/transactions/{N}` | `transactions_week{N}.json` |
 | 7 | `.../players/nfl/trending/add?lookback_hours=24&limit=25` | `trending_add.json` |
 | 8 | `.../players/nfl/{id}` for injured / new / unresolved ids | append to `players_resolved.jsonl` |
@@ -163,6 +165,47 @@ pick which rivals matter). Two gates are absolute:
   days. No Wikipedia for anything time-sensitive. Prefer the WebFetch/WebSearch tools; if a domain
   is blocked, find another source rather than routing around the restriction.
 
+## STEP 5b — trade analysis (deterministic search, then research, then re-run) ★
+
+The trade board is code, not vibes: `analysis/trade_analysis.py` values every rostered player
+(this season's points shrunk toward a draft-round prior), builds each team's best lineup week by
+week through the fantasy playoffs (byes, injuries and a first-order injury penalty for thin depth
+all included), and searches every 1-for-1 and 2-for-1 / 1-for-2 trade with all nine rivals. A trade
+is proposed only if **your** lineup gains, the **other side's lineup doesn't lose**, and the
+perceived-value swap is close enough that they might say yes. It also prints 2027 keeper cost and
+value for every player involved, and always reports straight RB-for-WR and WR-for-RB swaps.
+
+It does not read the news. The research feeds it through a flags file. Run from `system/`:
+
+```bash
+# 0. every rostered id must be identified first (the script warns loudly otherwise):
+#    fetch /players/nfl/{id} for each, append to raw/players_resolved.jsonl
+# 1. who needs a health/role check before the numbers can be trusted?
+python3 analysis/trade_analysis.py --raw raw --me 2 --candidates-only
+# 2. RESEARCH those players (Agent waves, freshness gate: source dated within 7 days), then write
+#    state/week_{N}_flags.json  -- format in the docstring of trade_analysis.py:
+#    {"<player_id>": {"out_weeks": [4,5]} | {"out_through": 6} | {"season_ending": true}
+#                     | {"ros_mult": 1.1} | {"ppg_override": 17} | {"untouchable": true}, "note": "..."}
+#    Put Andrew's must-keep players in as {"untouchable": true}.
+# 3. the real run (~20 seconds):
+python3 analysis/trade_analysis.py --raw raw --me 2 --flags state/week_{N}_flags.json \
+    --out state/week_{N}_trades.json --md reports/week_{N}_trades.md
+```
+
+Rules for using the output in the brief (part ⑤):
+- **Present it, don't oversell it.** Lead with the best 2-3 trades and the straight-swap sections.
+  Say what each side gains in lineup points per week and the fairness line. If the honest answer is
+  "no trade clears the bar", say that.
+- **Availability + freshness gates apply.** Re-check every player in a proposed trade against the
+  latest injury news; a flag you have not verified this week must be labelled as unverified.
+- **Never claim a trade will be accepted.** Andrew sends offers in Sleeper himself; give him the
+  pitch (who, what, why they say yes).
+- **Log them for grading.** Add the top 3 to this week's `decisions` (`type: "trade"`,
+  `outcome: null`). Next Tuesday's Step 4 grades them: did the trade happen (`transactions` of type
+  `trade`), and how did the players involved actually score after.
+- The value model is a heuristic on 3-4 games of data. When a proposal hinges on a small
+  difference (under ~1 point a week), say so.
+
 ## STEP 6 — synthesize the brief
 
 Produce the action plan, weighting: (a) this league's scoring — the 0.5/first-down bonus rewards
@@ -173,7 +216,7 @@ in-season add carries hidden 2027 keeper value at an R12 price (`reference/keepe
 
 The brief has these parts (format: `reference/output_format.md`): **①** last week graded + rolling
 hit-rate, **②** lineup / start-sit with the points reasoning, **③** ordered waiver claims with the
-survival odds and the keeper-equity note, **④** drop candidates, **⑤** trade board, **⑥** rival
+survival odds and the keeper-equity note, **④** drop candidates, **⑤** trade board (from Step 5b: best trades any shape + straight RB/WR swaps + buy-low and sell-high lists), **⑥** rival
 intel (what each contender is about to do), **⑦** open questions still unresolved, **⑧** the
 machine-readable `decisions.json` for THIS week (so next week's Step 4 can grade it).
 
